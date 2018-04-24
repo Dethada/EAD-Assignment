@@ -7,7 +7,7 @@ Provide README file to provide instructions on how to setup the project.
 
 ## Overview
 
-**SPMovy **is considering to create an online movie booking portal to allow the public to book for movie tickets online. Before it launches its online booking service, it requires a web application to computerize its movie database and allow the public to view its movies details online.
+**SPMovy** is considering to create an online movie booking portal to allow the public to book for movie tickets online. Before it launches its online booking service, it requires a web application to computerize its movie database and allow the public to view its movies details online.
 
 For the time being, the system only allows the following roles:
 
