@@ -28,12 +28,20 @@ CREATE TABLE MovieActor(
 );
 
 CREATE TABLE timeslot(
-    timing time NOT NULL,
+    timing datetime NOT NULL,
     movieID int NOT NULL,
     PRIMARY KEY (timing),
     FOREIGN KEY (movieID) REFERENCES movie(ID)
     ON DELETE CASCADE
     ON UPDATE CASCADE
+);
+
+CREATE TABLE Genre(
+    ID int NOT NULL AUTO_INCREMENT,
+    name varchar(150) NOT NULL,
+    description text NOT NULL,
+    UNIQUE (name),
+    PRIMARY KEY(ID)
 );
 
 CREATE TABLE MovieGenre(
@@ -61,7 +69,7 @@ CREATE TABLE reviews(
 
 CREATE TABLE users(
     ID int NOT NULL AUTO_INCREMENT,
-    username varchar(100) NOT NULL,
+    username varchar(50) NOT NULL,
     password char(60) NOT NULL
     role varchar(50) NOT NULL,
     lastloginip varchar(15) NULL,
@@ -70,13 +78,6 @@ CREATE TABLE users(
     PRIMARY KEY(userID)
 );
 
-CREATE TABLE Genre(
-    ID int NOT NULL AUTO_INCREMENT,
-    name varchar(150) NOT NULL,
-    description text NOT NULL,
-    UNIQUE (name),
-    PRIMARY KEY(ID)
-);
 
 CREATE TABLE MovienMod(
 	timelog datetime null,
