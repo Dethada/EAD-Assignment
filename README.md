@@ -22,9 +22,9 @@ You are tasked to design and develop a web application for the company to mainta
 
 ### Admin
 
-* Can maintain the movies database. The login credentials are to be stored in a database table, which you are required to use this table to authenticate the administrator.
+* ~~Can maintain the movies database. The login credentials are to be stored in a database table, which you are required to use this table to authenticate the administrator.~~
 
-* He must be able to add new movie genre categories to the database. A database **genre table is required** for management of genre info and details. 
+* ~~He must be able to add new movie genre categories to the database. A database **genre table is required** for management of genre info and details.~~
 
 * He must be able to add new movie data to the database. For each movie, the
   following minimum information must be recorded
@@ -42,7 +42,7 @@ You are tasked to design and develop a web application for the company to mainta
 
 * Must be able to update and delete movies from the database.
 
-* Must be able to delete movie genres created previously
+* ~~Must be able to delete movie genres created previously~~
 
 * Each movie should have an image associated. The system will assign a default image if there is no existing image.
 
