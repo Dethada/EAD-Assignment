@@ -72,8 +72,8 @@ CREATE TABLE users(
     username varchar(50) NOT NULL,
     password char(60) NOT NULL
     role varchar(50) NOT NULL,
-    lastloginip varchar(15) NULL,
-    lastlogintime datetime NULL,
+    lastloginip varchar(39) NULL, --changed varchar length to accomdate for IPv6 addresses.
+    lastlogintime datetime NOT NULL,
     UNIQUE (username),
     PRIMARY KEY(userID)
 );
