@@ -27,13 +27,14 @@ CREATE TABLE MovieActor(
     ON UPDATE CASCADE
 );
 
-CREATE TABLE timeslot(
-    timing datetime NOT NULL,
+create table timeslot(
+	movietime time NOT NULL,
+    moviedate date NOT NULL,
     movieID int NOT NULL,
-    PRIMARY KEY (timing),
+    PRIMARY KEY (movietime,moviedate,movieID),
     FOREIGN KEY (movieID) REFERENCES movie(ID)
     ON DELETE CASCADE
-    ON UPDATE CASCADE
+	ON UPDATE CASCADE
 );
 
 CREATE TABLE Genre(
