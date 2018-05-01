@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Movies
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -21,7 +21,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Genres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,12 +30,12 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Actors
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/admin/actors.jsp">List Actors</a>
-                    <a class="dropdown-item" href="#">Add Actor</a>
+                    <a class="dropdown-item" href="/admin/addActor.jsp">Add Actor</a>
                 </div>
             </li>
         </ul>
@@ -76,13 +76,12 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="status" class="col-sm-2 col-form-label">Status</label>
-        <div class="col-md-3">
-            <input type="text" name="status" id="status" placeholder="Status" required>
-            <small id="passwordHelpInline" class="form-text text-muted">
-                Coming Soon/Now Showing
-            </small>
-        </div>
+        <label class="col-sm-2 col-form-label">Status</label>
+        <select name="status" class="custom-select col-md-3" required>
+            <option value="Coming Soon">Coming Soon</option>
+            <option value="Now Showing">Now Showing</option>
+            <option value="Over">Over</option>
+        </select>
     </div>
     <div class="form-group row">
         <label for="customFile" class="col-sm-2 col-form-label">Movie Poster</label>
