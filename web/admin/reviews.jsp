@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/admin/header.html"%>
-<title>Add Actor</title>
+<%@ include file="header.html"%>
+<title>Reviews</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -11,7 +11,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Movies
                 </a>
@@ -29,7 +29,7 @@
                     <a class="dropdown-item" href="/admin/addGenre.jsp">Add Genre</a>
                 </div>
             </li>
-            <li class="nav-item dropdown active">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Actors
                 </a>
@@ -40,7 +40,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Actors" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Movie Title" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav">
@@ -50,25 +50,44 @@
         </ul>
     </div>
 </nav>
-<h1>Genre</h1>
-<form method="post" action="/backend/processAddActor.jsp">
-    <div class="form-group row">
-        <label for="name" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-md-3">
-            <input id="name" class="form-control" type="text" name="name" placeholder="Name" required>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="description" class="col-sm-2 col-form-label">Description</label>
-        <div class="col-md-3">
-            <textarea id="description" rows="6" class="form-control" type="text" name="description" placeholder="Description" required></textarea>
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Add Actor</button>
-        </div>
-    </div>
-</form>
+<%@ page import="java.sql.*,java.net.URLDecoder" %>
+<h2><%= URLDecoder.decode(request.getParameter("title"), "UTF-8") %></h2>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%
+        int id = Integer.parseInt(request.getParameter("id"));
+        String driverName = "com.mysql.jdbc.Driver";
+        Class.forName(driverName);
+        String url = "jdbc:mysql://52.74.214.114/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, "spmovy", "15Pb6pc%$8!@P^NR$h@5rLM84gJvR2u1p72F^3");
+            PreparedStatement prepared = connection.prepareStatement("SELECT * FROM reviews where movieID=?");
+            prepared.setInt(1, id);
+            ResultSet rs = prepared.executeQuery();
+            while (rs.next()) {
+                out.print("<td>" + rs.getString("name")+ "</td><td>" + rs.getInt("rating") + "</td><td>" + rs.getString("reviewSentence") + "</td>");
+                out.print("<td><form method=\"post\" action=\"/backend/processDelete.jsp\">" +
+                        "<input type=\"hidden\" name=\"from\" value=\"/admin/reviews.jsp?id=" + id + "\"&title=\"" + request.getParameter("title") + "\">" +
+                        "<input type=\"hidden\" name=\"table\" value=\"timeslot\">" +
+                        "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
+                        "<input type=\"submit\" value=\"Delete\"></form></td>");
+                out.print("</tr>");
+            }
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    %>
+    </tbody>
+</table>
 </body>
-<%@ include file="/admin/footer.html"%>
+<%@ include file="footer.html"%>

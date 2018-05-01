@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/admin/header.html"%>
-<title>Add Actor</title>
+<%@ include file="header.html"%>
+<title>Update Actor</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -50,25 +50,54 @@
         </ul>
     </div>
 </nav>
-<h1>Genre</h1>
-<form method="post" action="/backend/processAddActor.jsp">
+<%@ page import="java.sql.*" %>
+<%
+    int id = 1;
+    if (request.getParameter("id") == null) {
+        response.sendRedirect("/admin/actors.jsp");
+    } else {
+        id = Integer.parseInt(request.getParameter("id"));
+    }
+    String name = "";
+    String description = "";
+    String driverName = "com.mysql.jdbc.Driver";
+    Class.forName(driverName);
+    String url = "jdbc:mysql://52.74.214.114/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true";
+
+    try {
+        Connection connection = DriverManager.getConnection(url, "spmovy", "15Pb6pc%$8!@P^NR$h@5rLM84gJvR2u1p72F^3");
+        PreparedStatement prepared = connection.prepareStatement("SELECT * FROM actor where ID=?");
+        prepared.setInt(1, id);
+        ResultSet rs = prepared.executeQuery();
+        if (rs.next()) {
+            out.print("<tr>");
+            name = rs.getString("name");
+            description = rs.getString("description");
+        }
+        connection.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
+<form method="post" action="/backend/processUpdateActor.jsp">
     <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-md-3">
-            <input id="name" class="form-control" type="text" name="name" placeholder="Name" required>
+            <input id="name" class="form-control" type="text" name="name" value="<%= name %>" required>
         </div>
     </div>
     <div class="form-group row">
         <label for="description" class="col-sm-2 col-form-label">Description</label>
         <div class="col-md-3">
-            <textarea id="description" rows="6" class="form-control" type="text" name="description" placeholder="Description" required></textarea>
+            <textarea id="description" rows="6" class="form-control" type="text" name="description" required><%= description %></textarea>
         </div>
     </div>
+    <input type="hidden" name="id" value="<%= id %>">
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Add Actor</button>
+            <button type="submit" class="btn btn-primary">Update Actor</button>
         </div>
     </div>
 </form>
 </body>
-<%@ include file="/admin/footer.html"%>
+<%@ include file="footer.html"%>

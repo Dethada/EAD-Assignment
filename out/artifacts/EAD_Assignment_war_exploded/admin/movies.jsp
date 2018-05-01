@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Movies
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -21,7 +21,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Genres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,12 +30,12 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Actors
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/admin/actors.jsp">List Actors</a>
-                    <a class="dropdown-item" href="#">Add Actor</a>
+                    <a class="dropdown-item" href="/admin/addActor.jsp">Add Actor</a>
                 </div>
             </li>
         </ul>
@@ -50,7 +50,7 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*,java.net.URLEncoder" %>
 </table>
 <table class="table">
     <thead class="thead-dark">
@@ -83,11 +83,13 @@
                 out.print("<td>" + title + "</td><td>" + status + "</td><td>" +  releasedate + "</td><td>" +
                         "<form action=\"/admin/timeslot.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
+                        "<input type=\"hidden\" name=\"title\" value=\"" + URLEncoder.encode(title, "UTF-8") + "\">" +
                         "<input type=\"submit\" value=\"View\"></form></td><td>" +
-                        "<form action=\"/admin/comments.jsp\">" +
+                        "<form action=\"/admin/reviews.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
+                        "<input type=\"hidden\" name=\"title\" value=\"" + URLEncoder.encode(title, "UTF-8") + "\">" +
                         "<input type=\"submit\" value=\"View\"></form></td>");
-                out.print("<td><form method=\"post\" action=\"/backend/processUpdateMovie.jsp\">" +
+                out.print("<td><form action=\"/admin/updateMovie.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                         "<input type=\"submit\" value=\"Edit\"></form>" +
                         "<form method=\"post\" action=\"/backend/processDelete.jsp\">" +

@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Movies
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -21,7 +21,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Genres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,7 +30,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Actors
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -51,7 +51,6 @@
     </div>
 </nav>
 <%@ page import="java.sql.*" %>
-</table>
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -77,7 +76,7 @@
                 String name = rs.getString("name");
                 String description = String.valueOf(rs.getString("description"));
                 out.print("<td>" + name + "</td><td>" + description + "</td>");
-                out.print("<td><form method=\"post\" action=\"/backend/processUpdateActor.jsp\">" +
+                out.print("<td><form method=\"post\" action=\"/admin/updateActor.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                         "<input type=\"submit\" value=\"Edit\"></form>" +
                         "<form method=\"post\" action=\"/backend/processDelete.jsp\">" +
