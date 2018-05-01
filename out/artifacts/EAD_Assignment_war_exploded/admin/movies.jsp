@@ -50,8 +50,7 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*,java.net.URLEncoder" %>
-</table>
+<%@ page import="java.sql.*,java.net.URLEncoder,org.apache.commons.lang3.StringEscapeUtils" %>
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -80,7 +79,7 @@
                 String title = rs.getString("title");
                 String status = rs.getString("status");
                 String releasedate = String.valueOf(rs.getDate("releasedate"));
-                out.print("<td>" + title + "</td><td>" + status + "</td><td>" +  releasedate + "</td><td>" +
+                out.print("<td>" + StringEscapeUtils.escapeHtml4(title) + "</td><td>" + StringEscapeUtils.escapeHtml4(status) + "</td><td>" +  StringEscapeUtils.escapeHtml4(releasedate) + "</td><td>" +
                         "<form action=\"/admin/timeslot.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                         "<input type=\"hidden\" name=\"title\" value=\"" + URLEncoder.encode(title, "UTF-8") + "\">" +
