@@ -79,7 +79,7 @@
                         "<input type=\"hidden\" name=\"from\" value=\"/admin/reviews.jsp?id=" + id + "\"&title=\"" + request.getParameter("title") + "\">" +
                         "<input type=\"hidden\" name=\"table\" value=\"timeslot\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                        "<input type=\"submit\" value=\"Delete\"></form></td>");
+                        "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
                 out.print("</tr>");
             }
             connection.close();

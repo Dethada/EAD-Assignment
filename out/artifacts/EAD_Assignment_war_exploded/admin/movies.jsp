@@ -83,19 +83,19 @@
                         "<form action=\"/admin/timeslot.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                         "<input type=\"hidden\" name=\"title\" value=\"" + URLEncoder.encode(title, "UTF-8") + "\">" +
-                        "<input type=\"submit\" value=\"View\"></form></td><td>" +
+                        "<input class=\"btn btn-info\" type=\"submit\" value=\"View\"></form></td><td>" +
                         "<form action=\"/admin/reviews.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                         "<input type=\"hidden\" name=\"title\" value=\"" + URLEncoder.encode(title, "UTF-8") + "\">" +
-                        "<input type=\"submit\" value=\"View\"></form></td>");
+                        "<input class=\"btn btn-info\" type=\"submit\" value=\"View\"></form></td>");
                 out.print("<td><form action=\"/admin/updateMovie.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                        "<input type=\"submit\" value=\"Edit\"></form>" +
+                        "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
                         "<form method=\"post\" action=\"/backend/processDelete.jsp\">" +
                         "<input type=\"hidden\" name=\"from\" value=\"/admin/movies.jsp\">" +
                         "<input type=\"hidden\" name=\"table\" value=\"movie\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                        "<input type=\"submit\" value=\"Delete\"></form></td>");
+                        "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
                 out.print("</tr>");
             }
             connection.close();

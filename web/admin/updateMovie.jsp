@@ -50,13 +50,15 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils,java.util.ArrayList" %>
 <%
-    int id = 1;
+    int noActors = 0;
+    int noGenres = 0;
+    int movieid = 1;
     if (request.getParameter("id") == null) {
         response.sendRedirect("/admin/movies.jsp");
     } else {
-        id = Integer.parseInt(request.getParameter("id"));
+        movieid = Integer.parseInt(request.getParameter("id"));
     }
     String title = "";
     String releasedate = "";
@@ -64,6 +66,8 @@
     int duration = 0;
     String imagepath = "";
     String status = "";
+    ArrayList<String> genrelist = new ArrayList();
+    ArrayList<String> actorlist = new ArrayList();
     String driverName = "com.mysql.jdbc.Driver";
     Class.forName(driverName);
     String url = "jdbc:mysql://52.74.214.114/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true";
@@ -71,7 +75,7 @@
     try {
         Connection connection = DriverManager.getConnection(url, "spmovy", "15Pb6pc%$8!@P^NR$h@5rLM84gJvR2u1p72F^3");
         PreparedStatement prepared = connection.prepareStatement("SELECT * FROM movie where ID=?");
-        prepared.setInt(1, id);
+        prepared.setInt(1, movieid);
         ResultSet rs = prepared.executeQuery();
         if (rs.next()) {
             out.print("<tr>");
@@ -82,6 +86,23 @@
             imagepath = rs.getString("imagepath");
             status = rs.getString("status");
         }
+        // get actors
+        PreparedStatement showactors = connection.prepareStatement("SELECT movie.title, actor.name from MovieActor inner join movie on MovieActor.movieID = movie.ID inner join actor on MovieActor.actorID = actor.ID where movie.id = ?");
+        showactors.setObject(1, movieid);
+        ResultSet rs2 = showactors.executeQuery();
+        while(rs2.next()){
+            actorlist.add(rs2.getString(2));
+        }
+        noActors = actorlist.size();
+
+        // get genres
+        PreparedStatement showgenre = connection.prepareStatement("select Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID where movie.id=?");
+        showgenre.setObject(1, movieid);
+        ResultSet rs3 = showgenre.executeQuery();
+        while(rs3.next()){
+            genrelist.add(rs3.getString(1));
+        }
+        noGenres = genrelist.size();
         connection.close();
     } catch (Exception e) {
         e.printStackTrace();
@@ -107,10 +128,42 @@
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Duration</label>
+        <label class="col-sm-2 col-form-label">Duration (mins)</label>
         <div class="col-md-3">
             <input class="form-control" type="number" name="duration" value="<%= duration %>" required>
         </div>
+    </div>
+    <div class="form-group row">
+        <label for="genres" class="col-sm-2 col-form-label">Genres</label>
+        <div class="col-md-3" id="genres">
+            <%  for(int i=0;i < noGenres; i++) {
+                if (i == noGenres-1) {
+                    out.print("<input class=\"form-control\" id=\"field" + (i+1) + "\" name=\"genre" + (i+1) + "\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
+                } else {
+                    out.print("<input class=\"form-control\" id=\"field" + (i+1) + "\" name=\"genre" + (i+1) + "\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
+                    out.print("<button id=\"remove" + (i+1) + "\" class=\"btn btn-danger remove-me\" >-</button>");
+                }
+            }
+            %>
+            <button id="b1" class="btn add-more" type="button">+</button>
+        </div>
+        <input type="hidden" id="next" value="<%=noGenres%>" />
+    </div>
+    <div class="form-group row">
+        <label for="actors" class="col-sm-2 col-form-label">Actors</label>
+        <div class="col-md-3" id="actors">
+            <%  for(int i=0;i < noActors; i++) {
+                if (i == noActors-1) {
+                    out.print("<input class=\"form-control\" id=\"fieldz" + (i+1) + "\" name=\"actor" + (i+1) + "\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
+                } else {
+                    out.print("<input class=\"form-control\" id=\"fieldz" + (i+1) + "\" name=\"actor" + (i+1) + "\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
+                    out.print("<button id=\"remove" + (i+1) + "\" class=\"btn btn-danger remove-me\" >-</button>");
+                }
+            }
+            %>
+            <button id="bt1" class="btn add-more2" type="button">+</button>
+        </div>
+        <input type="hidden" id="next2" value="<%=noActors%>" />
     </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Image Path</label>
@@ -126,7 +179,7 @@
             <option <% if(status.equals("Over")) {out.print("selected=\"selected\"");} %> value="Over">Over</option>
         </select>
     </div>
-    <input type="hidden" name="id" value="<%= id %>">
+    <input type="hidden" name="id" value="<%= movieid %>">
     <div class="form-group row">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Update Movie</button>
@@ -134,4 +187,5 @@
     </div>
 </form>
 </body>
+<script src="/js/dynamicfields.js" defer></script>
 <%@ include file="footer.html"%>
