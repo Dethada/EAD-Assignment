@@ -50,7 +50,7 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*,java.net.URLDecoder" %>
+<%@ page import="java.sql.*,java.net.URLDecoder,org.apache.commons.lang3.StringEscapeUtils" %>
 <h2><%= URLDecoder.decode(request.getParameter("title"), "UTF-8") %></h2>
 <table class="table">
     <thead class="thead-dark">
@@ -74,7 +74,7 @@
             prepared.setInt(1, id);
             ResultSet rs = prepared.executeQuery();
             while (rs.next()) {
-                out.print("<td>" + rs.getString("name")+ "</td><td>" + rs.getInt("rating") + "</td><td>" + rs.getString("reviewSentence") + "</td>");
+                out.print("<td>" + StringEscapeUtils.escapeHtml4(rs.getString("name")) + "</td><td>" + rs.getInt("rating") + "</td><td>" + StringEscapeUtils.escapeHtml4(rs.getString("reviewSentence")) + "</td>");
                 out.print("<td><form method=\"post\" action=\"/backend/processDelete.jsp\">" +
                         "<input type=\"hidden\" name=\"from\" value=\"/admin/reviews.jsp?id=" + id + "\"&title=\"" + request.getParameter("title") + "\">" +
                         "<input type=\"hidden\" name=\"table\" value=\"timeslot\">" +

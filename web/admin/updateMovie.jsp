@@ -50,7 +50,7 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils" %>
 <%
     int id = 1;
     if (request.getParameter("id") == null) {
@@ -91,7 +91,7 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Title</label>
         <div class="col-md-3">
-            <input class="form-control" type="text" name="title" value="<%= title %>" required>
+            <input class="form-control" type="text" name="title" value="<%= StringEscapeUtils.escapeHtml4(title) %>" required>
         </div>
     </div>
     <div class="form-group row">
@@ -103,7 +103,7 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Synopsis</label>
         <div class="col-md-3">
-            <textarea rows="6" class="form-control" type="text" name="synopsis" required><%= synopsis %></textarea>
+            <textarea rows="6" class="form-control" type="text" name="synopsis" required><%= StringEscapeUtils.escapeHtml4(synopsis) %></textarea>
         </div>
     </div>
     <div class="form-group row">
@@ -115,7 +115,7 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Image Path</label>
         <div class="col-md-3">
-            <input class="form-control" type="text" name="imagepath" value="<%= imagepath %>" required>
+            <input class="form-control" type="text" name="imagepath" value="<%= StringEscapeUtils.escapeHtml4(imagepath) %>" required>
         </div>
     </div>
     <div class="form-group row">

@@ -50,7 +50,7 @@
         </ul>
     </div>
 </nav>
-<h1>Genre</h1>
+<h1>Actor</h1>
 <form method="post" action="/backend/processAddActor.jsp">
     <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>

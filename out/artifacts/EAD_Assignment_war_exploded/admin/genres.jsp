@@ -50,8 +50,7 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*" %>
-</table>
+<%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils" %>
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -75,8 +74,8 @@
                 out.print("<tr>");
                 int id = rs.getInt("ID");
                 String name = rs.getString("name");
-                String description = String.valueOf(rs.getString("description"));
-                out.print("<td>" + name + "</td><td>" + description + "</td>");
+                String description = rs.getString("description");
+                out.print("<td>" + StringEscapeUtils.escapeHtml4(name) + "</td><td>" + StringEscapeUtils.escapeHtml4(description) + "</td>");
                 out.print("<td><form action=\"/admin/UpdateGenre.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                         "<input type=\"submit\" value=\"Edit\"></form>" +

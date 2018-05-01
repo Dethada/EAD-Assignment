@@ -50,6 +50,7 @@
         </ul>
     </div>
 </nav>
+<h1>Movie</h1>
 <form method="post" action="/backend/processAddMovie.jsp">
     <div class="form-group row">
         <label for="title" class="col-sm-2 col-form-label">Title</label>

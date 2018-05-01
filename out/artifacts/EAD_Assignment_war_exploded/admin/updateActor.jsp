@@ -50,7 +50,7 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils" %>
 <%
     int id = 1;
     if (request.getParameter("id") == null) {
@@ -83,13 +83,13 @@
     <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-md-3">
-            <input id="name" class="form-control" type="text" name="name" value="<%= name %>" required>
+            <input id="name" class="form-control" type="text" name="name" value="<%= StringEscapeUtils.escapeHtml4(name) %>" required>
         </div>
     </div>
     <div class="form-group row">
         <label for="description" class="col-sm-2 col-form-label">Description</label>
         <div class="col-md-3">
-            <textarea id="description" rows="6" class="form-control" type="text" name="description" required><%= description %></textarea>
+            <textarea id="description" rows="6" class="form-control" type="text" name="description" required><%= StringEscapeUtils.escapeHtml4(description) %></textarea>
         </div>
     </div>
     <input type="hidden" name="id" value="<%= id %>">
