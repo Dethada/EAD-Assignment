@@ -63,7 +63,9 @@ CREATE TABLE reviews(
     reviewSentence text NOT NULL,
     name varchar(70) NOT NULL,
     rating int NOT NULL,
-    PRIMARY KEY(reviewID)
+    createdat datetime NOT NULL,
+    ip varchar(39) NOT NULL,
+    PRIMARY KEY(reviewID,movieID),
     FOREIGN KEY(movieID) REFERENCES movie(ID)
     ON DELETE CASCADE
     ON UPDATE CASCADE
@@ -72,10 +74,12 @@ CREATE TABLE reviews(
 CREATE TABLE users(
     ID int NOT NULL AUTO_INCREMENT,
     username varchar(50) NOT NULL,
-    password char(60) NOT NULL
+    password char(60) NOT NULL,
     role varchar(50) NOT NULL,
-    lastloginip varchar(39) NULL, --changed varchar length to accomdate for IPv6 addresses.
-    lastlogintime datetime NOT NULL,
+    lastloginip varchar(39) NULL,
+    lastlogintime datetime NULL,
+    currentloginip varchar(39) NULL,
+    currentlogintime datetime NULL,
     UNIQUE (username),
-    PRIMARY KEY(userID)
+    PRIMARY KEY(ID)
 );
