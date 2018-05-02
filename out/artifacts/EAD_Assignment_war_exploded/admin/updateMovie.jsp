@@ -157,7 +157,7 @@
                     out.print("<input class=\"form-control\" id=\"fieldz" + (i+1) + "\" name=\"actor" + (i+1) + "\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
                 } else {
                     out.print("<input class=\"form-control\" id=\"fieldz" + (i+1) + "\" name=\"actor" + (i+1) + "\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
-                    out.print("<button id=\"remove" + (i+1) + "\" class=\"btn btn-danger remove-me\" >-</button>");
+                    out.print("<button id=\"remove" + (i+1) + "\" class=\"btn btn-danger remove-me2\" >-</button>");
                 }
             }
             %>
