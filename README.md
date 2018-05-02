@@ -40,7 +40,7 @@ You are tasked to design and develop a web application for the company to mainta
 
   > We can suggest other fields to be included.
 
-* Must be able to update and delete movies from the database.
+* ~~Must be able to update and delete movies from the database.~~
 
 * ~~Must be able to delete movie genres created previously~~
 

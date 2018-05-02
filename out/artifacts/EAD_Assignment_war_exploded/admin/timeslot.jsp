@@ -51,16 +51,22 @@
     </div>
 </nav>
 <%@ page import="java.sql.*,java.net.URLDecoder" %>
-<h2><%= URLDecoder.decode(request.getParameter("title"), "UTF-8") %></h2>
+<%
+    int id = Integer.parseInt(request.getParameter("id"));
+    String title = URLDecoder.decode(request.getParameter("title"), "UTF-8");
+    session.setAttribute("prevpage", "/admin/timeslot.jsp?id=" + id + "&title=" + request.getParameter("title"));
+%>
+<h2><%= title %></h2>
 <form class="form-inline" action="/backend/addTimeslot.jsp">
     <div class="form-group mx-sm-3 mb-2">
         <label class="col-form-label">Date</label>
-        <input type="date" class="form-control">
+        <input type="date" name="date" class="form-control">
     </div>
     <div class="form-group mx-sm-3 mb-2">
         <label class="col-form-label"2>Time</label>
-        <input type="time" class="form-control">
+        <input type="time" name="time" class="form-control">
     </div>
+    <input type="hidden" name="id" value="<%= id %>">
     <button type="submit" class="btn btn-primary mb-2">Add Timeslot</button>
 </form>
 <table class="table">
@@ -73,7 +79,6 @@
     </thead>
     <tbody>
 <%
-    int id = Integer.parseInt(request.getParameter("id"));
     String driverName = "com.mysql.jdbc.Driver";
     Class.forName(driverName);
     String url = "jdbc:mysql://52.74.214.114/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true";
@@ -84,13 +89,14 @@
         prepared.setInt(1, id);
         ResultSet rs = prepared.executeQuery();
         while (rs.next()) {
-            out.print("<td>" + rs.getString("moviedate")+ "</td><td>" + rs.getString("movietime") + "</td>");
+            out.print("<td>" + rs.getString("moviedate") + "</td><td>" + rs.getString("movietime") + "</td>");
             out.print("<td><form method=\"post\" action=\"/admin/updateTimeslot.jsp\">" +
                     "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                     "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
-                    "<form method=\"post\" action=\"/backend/processDelete.jsp\">" +
+                    "<form method=\"post\" action=\"/backend/deleteTimeslot.jsp\">" +
                     "<input type=\"hidden\" name=\"from\" value=\"/admin/timeslot.jsp?id=" + id + "\"&title=\"" + request.getParameter("title") + "\">" +
-                    "<input type=\"hidden\" name=\"table\" value=\"timeslot\">" +
+                    "<input type=\"hidden\" name=\"movietime\" value=\"" + rs.getString("movietime") + "\">" +
+                    "<input type=\"hidden\" name=\"moviedate\" value=\"" + rs.getString("moviedate") + "\">" +
                     "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                     "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
             out.print("</tr>");

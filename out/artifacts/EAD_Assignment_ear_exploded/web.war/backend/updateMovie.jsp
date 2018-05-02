@@ -51,14 +51,6 @@
     ResultSet movieIDResult = getMovieID.executeQuery();
     movieIDResult.next();
     int movieid = movieIDResult.getInt("ID");
-    // get list of current genres
-    ArrayList<Integer> currentGenres = new ArrayList();
-    PreparedStatement getCurrentGenres = connection.prepareStatement("SELECT * FROM MovieGenre WHERE movieID=?");
-    getCurrentGenres.setInt(1, movieid);
-    ResultSet currentGenresrs = getCurrentGenres.executeQuery();
-    while (currentGenresrs.next()) {
-        currentGenres.add(currentGenresrs.getInt("genreID"));
-    }
     // get list of current actors
     ArrayList<Integer> currentActors = new ArrayList();
     PreparedStatement getCurrentActors = connection.prepareStatement("SELECT * FROM MovieActor WHERE movieID=?");
@@ -67,7 +59,6 @@
     while (currentActorsrs.next()) {
         currentActors.add(currentActorsrs.getInt("actorID"));
     }
-    // prepare insert statements
     PreparedStatement insertGenre = connection.prepareStatement("insert into MovieGenre values (?, ?)");
     PreparedStatement insertActor = connection.prepareStatement("insert into MovieActor values (?, ?)");
     insertGenre.setInt(1, movieid);
@@ -77,27 +68,14 @@
         getGenreID.setString(1, genre);
         ResultSet rs = getGenreID.executeQuery();
         if (rs.next()) {
-            int tmpID = rs.getInt("ID");
-            if (currentGenres.contains(tmpID)) {
-                currentGenres.remove(Integer.valueOf(tmpID));
-            } else {
-                insertGenre.setInt(2, tmpID);
-                try {
-                    insertGenre.executeUpdate();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+            insertGenre.setInt(2, rs.getInt("ID"));
+            try {
+                insertGenre.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
-    // delete genres
-    PreparedStatement deleteGenre = connection.prepareStatement("DELETE FROM MovieGenre WHERE movieID=? AND genreID=?");
-    deleteGenre.setInt(1, movieid);
-    for(int deleteid : currentGenres) {
-        deleteGenre.setInt(2, deleteid);
-        deleteGenre.executeUpdate();
-    }
-
     // add actors for movie
     for(String actor : actors) {
         getActorID.setString(1, actor);

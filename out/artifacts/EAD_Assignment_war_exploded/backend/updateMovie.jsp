@@ -44,12 +44,30 @@
     prepared.executeUpdate();
     PreparedStatement getGenreID = connection.prepareStatement("SELECT * FROM Genre WHERE name=?");
     PreparedStatement getActorID = connection.prepareStatement("SELECT * FROM actor WHERE name=?");
+    // get movie id
     PreparedStatement getMovieID = connection.prepareStatement("SELECT * FROM movie WHERE title=? and releasedate=?");
     getMovieID.setString(1, title);
     getMovieID.setDate(2, java.sql.Date.valueOf(releasedate));
     ResultSet movieIDResult = getMovieID.executeQuery();
     movieIDResult.next();
     int movieid = movieIDResult.getInt("ID");
+    // get list of current genres
+    ArrayList<Integer> currentGenres = new ArrayList();
+    PreparedStatement getCurrentGenres = connection.prepareStatement("SELECT * FROM MovieGenre WHERE movieID=?");
+    getCurrentGenres.setInt(1, movieid);
+    ResultSet currentGenresrs = getCurrentGenres.executeQuery();
+    while (currentGenresrs.next()) {
+        currentGenres.add(currentGenresrs.getInt("genreID"));
+    }
+    // get list of current actors
+    ArrayList<Integer> currentActors = new ArrayList();
+    PreparedStatement getCurrentActors = connection.prepareStatement("SELECT * FROM MovieActor WHERE movieID=?");
+    getCurrentActors.setInt(1, movieid);
+    ResultSet currentActorsrs = getCurrentActors.executeQuery();
+    while (currentActorsrs.next()) {
+        currentActors.add(currentActorsrs.getInt("actorID"));
+    }
+    // prepare insert statements
     PreparedStatement insertGenre = connection.prepareStatement("insert into MovieGenre values (?, ?)");
     PreparedStatement insertActor = connection.prepareStatement("insert into MovieActor values (?, ?)");
     insertGenre.setInt(1, movieid);
@@ -59,26 +77,51 @@
         getGenreID.setString(1, genre);
         ResultSet rs = getGenreID.executeQuery();
         if (rs.next()) {
-            insertGenre.setInt(2, rs.getInt("ID"));
-            try {
-                insertGenre.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            int tmpID = rs.getInt("ID");
+            if (currentGenres.contains(tmpID)) {
+                currentGenres.remove(Integer.valueOf(tmpID));
+            } else {
+                insertGenre.setInt(2, tmpID);
+                try {
+                    insertGenre.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
+    // delete genres
+    PreparedStatement deleteGenre = connection.prepareStatement("DELETE FROM MovieGenre WHERE movieID=? AND genreID=?");
+    deleteGenre.setInt(1, movieid);
+    for(int deleteid : currentGenres) {
+        deleteGenre.setInt(2, deleteid);
+        deleteGenre.executeUpdate();
+    }
+
     // add actors for movie
     for(String actor : actors) {
         getActorID.setString(1, actor);
         ResultSet rs = getActorID.executeQuery();
         if (rs.next()) {
-            insertActor.setInt(2, rs.getInt("ID"));
-            try {
-                insertActor.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            int tmpID = rs.getInt("ID");
+            if (currentActors.contains(tmpID)) {
+                currentActors.remove(Integer.valueOf(tmpID));
+            } else {
+                insertActor.setInt(2, tmpID);
+                try {
+                    insertActor.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
+    }
+    // delete actors
+    PreparedStatement deleteActor = connection.prepareStatement("DELETE FROM MovieActor WHERE movieID=? AND actorID=?");
+    deleteActor.setInt(1, movieid);
+    for(int deleteid : currentActors) {
+        deleteActor.setInt(2, deleteid);
+        deleteActor.executeUpdate();
     }
 
     connection.close();
