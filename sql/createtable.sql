@@ -1,5 +1,5 @@
 CREATE TABLE movie (
-   	ID int NOT NULL AUTO_INCREMENT,
+    ID int NOT NULL AUTO_INCREMENT,
     title  varchar(255) NOT NULL,
     releasedate date NOT NULL,
     synopsis    text NOT NULL,
@@ -24,7 +24,8 @@ CREATE TABLE MovieActor(
     ON UPDATE CASCADE,
     FOREIGN KEY (actorID) REFERENCES actor(ID)
     ON DELETE CASCADE
-    ON UPDATE CASCADE
+    ON UPDATE CASCADE,
+    PRIMARY KEY (movieID, actorID)
 );
 
 CREATE TABLE timeslot(
@@ -52,7 +53,8 @@ CREATE TABLE MovieGenre(
     ON UPDATE CASCADE,
     FOREIGN KEY (genreID) REFERENCES Genre(ID)
     ON DELETE CASCADE
-    ON UPDATE CASCADE
+    ON UPDATE CASCADE,
+    PRIMARY KEY (movieID, genreID)
 );
 
 CREATE TABLE reviews(
