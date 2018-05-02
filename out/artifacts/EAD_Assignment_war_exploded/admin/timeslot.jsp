@@ -87,12 +87,12 @@
             out.print("<td>" + rs.getString("moviedate")+ "</td><td>" + rs.getString("movietime") + "</td>");
             out.print("<td><form method=\"post\" action=\"/admin/updateTimeslot.jsp\">" +
                     "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                    "<input type=\"submit\" value=\"Edit\"></form>" +
+                    "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
                     "<form method=\"post\" action=\"/backend/processDelete.jsp\">" +
                     "<input type=\"hidden\" name=\"from\" value=\"/admin/timeslot.jsp?id=" + id + "\"&title=\"" + request.getParameter("title") + "\">" +
                     "<input type=\"hidden\" name=\"table\" value=\"timeslot\">" +
                     "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                    "<input type=\"submit\" value=\"Delete\"></form></td>");
+                    "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
             out.print("</tr>");
         }
         connection.close();

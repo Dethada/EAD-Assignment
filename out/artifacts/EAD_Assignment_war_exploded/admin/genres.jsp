@@ -78,12 +78,12 @@
                 out.print("<td>" + StringEscapeUtils.escapeHtml4(name) + "</td><td>" + StringEscapeUtils.escapeHtml4(description) + "</td>");
                 out.print("<td><form action=\"/admin/UpdateGenre.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                        "<input type=\"submit\" value=\"Edit\"></form>" +
+                        "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
                         "<form method=\"post\" action=\"/backend/processDelete.jsp\">" +
                         "<input type=\"hidden\" name=\"from\" value=\"/admin/genres.jsp\">" +
                         "<input type=\"hidden\" name=\"table\" value=\"Genre\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                        "<input type=\"submit\" value=\"Delete\"></form></td>");
+                        "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
                 out.print("</tr>");
             }
             connection.close();

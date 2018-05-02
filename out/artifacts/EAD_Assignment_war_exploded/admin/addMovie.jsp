@@ -73,12 +73,28 @@
     <div class="form-group row">
         <label for="duration" class="col-sm-2 col-form-label">Duration (mins)</label>
         <div class="col-md-3">
-            <input type="number" name="duration" id="duration" required>
+            <input type="number" class="form-control" name="duration" id="duration" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <input type="hidden" id="next" value="1" />
+        <label for="genres" class="col-sm-2 col-form-label">Genres</label>
+        <div class="col-md-3" id="genres">
+            <input class="form-control" id="field1" name="genre1" type="text" placeholder="Genre" required>
+            <button id="b1" class="btn add-more" type="button">+</button>
+        </div>
+    </div>
+    <div class="form-group row">
+        <input type="hidden" id="next2" value="1" />
+        <label for="actors" class="col-sm-2 col-form-label">Actors</label>
+        <div class="col-md-3" id="actors">
+            <input class="form-control" id="fieldz1" name="actor1" type="text" placeholder="Actor" required>
+            <button id="bt1" class="btn add-more2" type="button">+</button>
         </div>
     </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Status</label>
-        <select name="status" class="custom-select col-md-3" required>
+        <select name="status" class="custom-select col-md-3 form-control" required>
             <option value="Coming Soon">Coming Soon</option>
             <option value="Now Showing">Now Showing</option>
             <option value="Over">Over</option>
@@ -98,5 +114,19 @@
         </div>
     </div>
 </form>
+<%--<div class="row">--%>
+    <%--<input type="hidden" name="count" value="1" />--%>
+    <%--<div class="control-group" id="fields">--%>
+        <%--<label class="control-label" for="field1">Nice Multiple Form Fields</label>--%>
+        <%--<div class="controls" id="profs">--%>
+            <%--<form class="input-append">--%>
+                <%--<div id="field"><input autocomplete="off" class="input" id="field1" name="prof1" type="text" placeholder="Type something" data-items="8"/><button id="b1" class="btn add-more" type="button">+</button></div>--%>
+            <%--</form>--%>
+            <%--<br>--%>
+            <%--<small>Press + to add another form field :)</small>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 </body>
+<script src="/js/dynamicfields.js" defer></script>
 <%@ include file="/admin/footer.html"%>
