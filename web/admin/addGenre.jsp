@@ -45,13 +45,13 @@
         </form>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="/backend/Logout">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
 <h1>Genre</h1>
-<form method="post" action="/backend/processAddGenre.jsp">
+<form method="post" action="/backend/admin/AddGenre">
     <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-md-3">

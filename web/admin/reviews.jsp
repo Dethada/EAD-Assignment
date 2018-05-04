@@ -45,12 +45,13 @@
         </form>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="/backend/Logout">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
 <%@ page import="java.sql.*,java.net.URLDecoder,org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page import="com.spmovy.DatabaseUtils" %>
 <h2><%= URLDecoder.decode(request.getParameter("title"), "UTF-8") %></h2>
 <table class="table">
     <thead class="thead-dark">
@@ -64,27 +65,23 @@
     <tbody>
     <%
         int id = Integer.parseInt(request.getParameter("id"));
-        String driverName = "com.mysql.jdbc.Driver";
-        Class.forName(driverName);
-        String url = "jdbc:mysql://52.74.214.114/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true";
+        DatabaseUtils db = new DatabaseUtils();
 
         try {
-            Connection connection = DriverManager.getConnection(url, "spmovy", "15Pb6pc%$8!@P^NR$h@5rLM84gJvR2u1p72F^3");
-            PreparedStatement prepared = connection.prepareStatement("SELECT * FROM reviews where movieID=?");
-            prepared.setInt(1, id);
-            ResultSet rs = prepared.executeQuery();
+            ResultSet rs = db.executeQuery("SELECT * FROM reviews where movieID=?", id);
             while (rs.next()) {
                 out.print("<td>" + StringEscapeUtils.escapeHtml4(rs.getString("name")) + "</td><td>" + rs.getInt("rating") + "</td><td>" + StringEscapeUtils.escapeHtml4(rs.getString("reviewSentence")) + "</td>");
-                out.print("<td><form method=\"post\" action=\"/backend/processDelete.jsp\">" +
+                out.print("<td><form method=\"post\" action=\"/backend/admin/Delete\">" +
                         "<input type=\"hidden\" name=\"from\" value=\"/admin/reviews.jsp?id=" + id + "\"&title=\"" + request.getParameter("title") + "\">" +
                         "<input type=\"hidden\" name=\"table\" value=\"timeslot\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                         "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
                 out.print("</tr>");
             }
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            db.closeConnection();
         }
     %>
     </tbody>

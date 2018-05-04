@@ -10,28 +10,23 @@
     <title>Admin Panel</title>
 </head>
 <body>
-<%@ include file="../backend/loginRequiredAdmin.jsp"%>
-
 <%@ include file="navbar.html"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="com.spmovy.DatabaseUtils" %>
 <%  String ip = "";
     String lastlogintime = "";
-    String driverName = "com.mysql.jdbc.Driver";
-    Class.forName(driverName);
-    String url = "jdbc:mysql://52.74.214.114/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true";
+    DatabaseUtils db = new DatabaseUtils();
 
     try {
-        Connection connection = DriverManager.getConnection(url, "spmovy", "15Pb6pc%$8!@P^NR$h@5rLM84gJvR2u1p72F^3");
-        PreparedStatement prepared = connection.prepareStatement("SELECT * FROM users where ID=?");
-        prepared.setInt(1, (Integer) session.getAttribute("userid"));
-        ResultSet rs = prepared.executeQuery();
+        ResultSet rs = db.executeQuery("SELECT * FROM users where ID=?", (Integer) session.getAttribute("userid"));
         if (rs.next()) {
             ip = rs.getString("lastloginip");
             lastlogintime = String.valueOf(rs.getTimestamp("lastlogintime"));
         }
-        connection.close();
-    } catch (Exception e) {
+    } catch (SQLException e) {
         e.printStackTrace();
+    } finally {
+        db.closeConnection();
     }
 %>
 <h2>Last login from <%= ip %> at <%= lastlogintime %></h2>
@@ -125,6 +120,5 @@
         </div>
     </div>
 </div>
-<!-- /.row -->
 </body>
 <%@ include file="footer.html"%>

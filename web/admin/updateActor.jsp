@@ -45,12 +45,13 @@
         </form>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="/backend/Logout">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
 <%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page import="com.spmovy.DatabaseUtils" %>
 <%
     int id = 1;
     if (request.getParameter("id") == null) {
@@ -60,26 +61,22 @@
     }
     String name = "";
     String description = "";
-    String driverName = "com.mysql.jdbc.Driver";
-    Class.forName(driverName);
-    String url = "jdbc:mysql://52.74.214.114/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true";
+    DatabaseUtils db = new DatabaseUtils();
 
     try {
-        Connection connection = DriverManager.getConnection(url, "spmovy", "15Pb6pc%$8!@P^NR$h@5rLM84gJvR2u1p72F^3");
-        PreparedStatement prepared = connection.prepareStatement("SELECT * FROM actor where ID=?");
-        prepared.setInt(1, id);
-        ResultSet rs = prepared.executeQuery();
+        ResultSet rs = db.executeQuery("SELECT * FROM actor where ID=?", id);
         if (rs.next()) {
             out.print("<tr>");
             name = rs.getString("name");
             description = rs.getString("description");
         }
-        connection.close();
-    } catch (Exception e) {
+    } catch (SQLException e) {
         e.printStackTrace();
+    } finally {
+        db.closeConnection();
     }
 %>
-<form method="post" action="/backend/processUpdateActor.jsp">
+<form method="post" action="/backend/admin/UpdateActor">
     <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-md-3">
