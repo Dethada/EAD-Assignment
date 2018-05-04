@@ -29,7 +29,7 @@ values("Action","Action film is a film genre in which the protagonist or protago
 ("Drama","Drama film is a genre that relies on the emotional and relational development of realistic characters. Often, these dramatic themes are taken from intense, real life issues.")
 
 insert into users(username,password,role) values
-(admin,admin,admin)
+("admin","admin","admin")
 
 insert into timeslot values
 ("2018/04/27 08:00:00",1),
