@@ -6,9 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56a9b021-fdd2-4319-ae3b-0c2e57fb86c5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/DatabaseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/DatabaseUtils.java" afterDir="false" />
-    </list>
+    <list default="true" id="56a9b021-fdd2-4319-ae3b-0c2e57fb86c5" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,8 +60,8 @@
       <file leaf-file-name="DatabaseUtils.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/DatabaseUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+            <state relative-caret-position="418">
+              <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -197,7 +195,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-76" />
     <option name="y" value="-25" />
     <option name="width" value="3204" />
@@ -544,11 +542,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90955000" />
+    <option name="totallyTimeSpent" value="91400000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="9" visible="true" weight="0.3289777" />
@@ -806,8 +803,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/DatabaseUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+        <state relative-caret-position="418">
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
         </state>
       </provider>
     </entry>

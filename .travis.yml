@@ -3,6 +3,7 @@ jdk:
  - oraclejdk8
 sudo: false
 
+script: "mvn cobertura:cobertura"
 before_install: 
   - mvn compile -DskipTests=true -U
 install: mvn test
