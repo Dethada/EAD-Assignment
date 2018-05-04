@@ -1,7 +1,5 @@
 package com.spmovy;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.sql.*;
 
 public class DatabaseUtils {
@@ -22,8 +20,7 @@ public class DatabaseUtils {
             e.printStackTrace();
         }
     }
-
-    @Nullable
+    
     private PreparedStatement prepare(String sql, Object ... values) {
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
