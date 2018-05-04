@@ -45,12 +45,12 @@
         </form>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="/backend/Logout">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils,java.util.ArrayList" %>
+<%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils,java.util.ArrayList,com.spmovy.DatabaseUtils" %>
 <%
     int noActors = 0;
     int noGenres = 0;
@@ -68,15 +68,10 @@
     String status = "";
     ArrayList<String> genrelist = new ArrayList();
     ArrayList<String> actorlist = new ArrayList();
-    String driverName = "com.mysql.jdbc.Driver";
-    Class.forName(driverName);
-    String url = "jdbc:mysql://52.74.214.114/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true";
-
+    DatabaseUtils db = new DatabaseUtils();
+    ResultSet rs = null;
     try {
-        Connection connection = DriverManager.getConnection(url, "spmovy", "15Pb6pc%$8!@P^NR$h@5rLM84gJvR2u1p72F^3");
-        PreparedStatement prepared = connection.prepareStatement("SELECT * FROM movie where ID=?");
-        prepared.setInt(1, movieid);
-        ResultSet rs = prepared.executeQuery();
+        rs = db.executeQuery("SELECT * FROM movie where ID=?", movieid);
         if (rs.next()) {
             out.print("<tr>");
             title = rs.getString("title");
@@ -87,28 +82,26 @@
             status = rs.getString("status");
         }
         // get actors
-        PreparedStatement showactors = connection.prepareStatement("SELECT movie.title, actor.name from MovieActor inner join movie on MovieActor.movieID = movie.ID inner join actor on MovieActor.actorID = actor.ID where movie.id = ?");
-        showactors.setObject(1, movieid);
-        ResultSet rs2 = showactors.executeQuery();
-        while(rs2.next()){
-            actorlist.add(rs2.getString(2));
+        rs = db.executeQuery("SELECT movie.title, actor.name from MovieActor inner join movie on MovieActor.movieID = movie.ID inner join actor on MovieActor.actorID = actor.ID where movie.id = ?",
+        movieid);
+        while(rs.next()) {
+            actorlist.add(rs.getString(2));
         }
         noActors = actorlist.size();
 
         // get genres
-        PreparedStatement showgenre = connection.prepareStatement("select Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID where movie.id=?");
-        showgenre.setObject(1, movieid);
-        ResultSet rs3 = showgenre.executeQuery();
-        while(rs3.next()){
-            genrelist.add(rs3.getString(1));
+        rs = db.executeQuery("select Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID where movie.id=?", movieid);
+        while(rs.next()){
+            genrelist.add(rs.getString(1));
         }
         noGenres = genrelist.size();
-        connection.close();
     } catch (Exception e) {
         e.printStackTrace();
+    } finally {
+        db.closeConnection();
     }
 %>
-<form method="post" action="/backend/updateMovie.jsp">
+<form method="post" action="/backend/admin/UpdateMovie">
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Title</label>
         <div class="col-md-3">
@@ -138,9 +131,9 @@
         <div class="col-md-3" id="genres">
             <%  for(int i=0;i < noGenres; i++) {
                 if (i == noGenres-1) {
-                    out.print("<input class=\"form-control\" id=\"field" + (i+1) + "\" name=\"genre" + (i+1) + "\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
+                    out.print("<input class=\"form-control\" id=\"field" + (i+1) + "\" name=\"genre\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
                 } else {
-                    out.print("<input class=\"form-control\" id=\"field" + (i+1) + "\" name=\"genre" + (i+1) + "\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
+                    out.print("<input class=\"form-control\" id=\"field" + (i+1) + "\" name=\"genre\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
                     out.print("<button id=\"remove" + (i+1) + "\" class=\"btn btn-danger remove-me\" >-</button>");
                 }
             }
@@ -154,9 +147,9 @@
         <div class="col-md-3" id="actors">
             <%  for(int i=0;i < noActors; i++) {
                 if (i == noActors-1) {
-                    out.print("<input class=\"form-control\" id=\"fieldz" + (i+1) + "\" name=\"actor" + (i+1) + "\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
+                    out.print("<input class=\"form-control\" id=\"fieldz" + (i+1) + "\" name=\"actor\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
                 } else {
-                    out.print("<input class=\"form-control\" id=\"fieldz" + (i+1) + "\" name=\"actor" + (i+1) + "\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
+                    out.print("<input class=\"form-control\" id=\"fieldz" + (i+1) + "\" name=\"actor\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
                     out.print("<button id=\"remove" + (i+1) + "\" class=\"btn btn-danger remove-me2\" >-</button>");
                 }
             }

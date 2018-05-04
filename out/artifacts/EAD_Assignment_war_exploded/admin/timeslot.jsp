@@ -45,19 +45,20 @@
         </form>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="/backend/Logout">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
 <%@ page import="java.sql.*,java.net.URLDecoder" %>
+<%@ page import="com.spmovy.DatabaseUtils" %>
 <%
     int id = Integer.parseInt(request.getParameter("id"));
     String title = URLDecoder.decode(request.getParameter("title"), "UTF-8");
     session.setAttribute("prevpage", "/admin/timeslot.jsp?id=" + id + "&title=" + request.getParameter("title"));
 %>
 <h2><%= title %></h2>
-<form class="form-inline" action="/backend/addTimeslot.jsp">
+<form class="form-inline" method="post" action="/backend/admin/AddTimeslot">
     <div class="form-group mx-sm-3 mb-2">
         <label class="col-form-label">Date</label>
         <input type="date" name="date" class="form-control">
@@ -79,31 +80,26 @@
     </thead>
     <tbody>
 <%
-    String driverName = "com.mysql.jdbc.Driver";
-    Class.forName(driverName);
-    String url = "jdbc:mysql://52.74.214.114/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true";
+    DatabaseUtils db = new DatabaseUtils();
 
     try {
-        Connection connection = DriverManager.getConnection(url, "spmovy", "15Pb6pc%$8!@P^NR$h@5rLM84gJvR2u1p72F^3");
-        PreparedStatement prepared = connection.prepareStatement("SELECT * FROM timeslot where movieID=?");
-        prepared.setInt(1, id);
-        ResultSet rs = prepared.executeQuery();
+        ResultSet rs = db.executeQuery("SELECT * FROM timeslot where movieID=?", id);
         while (rs.next()) {
             out.print("<td>" + rs.getString("moviedate") + "</td><td>" + rs.getString("movietime") + "</td>");
             out.print("<td><form method=\"post\" action=\"/admin/updateTimeslot.jsp\">" +
                     "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                     "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
-                    "<form method=\"post\" action=\"/backend/deleteTimeslot.jsp\">" +
-                    "<input type=\"hidden\" name=\"from\" value=\"/admin/timeslot.jsp?id=" + id + "\"&title=\"" + request.getParameter("title") + "\">" +
+                    "<form method=\"post\" action=\"/backend/admin/DeleteTimeslot\">" +
                     "<input type=\"hidden\" name=\"movietime\" value=\"" + rs.getString("movietime") + "\">" +
                     "<input type=\"hidden\" name=\"moviedate\" value=\"" + rs.getString("moviedate") + "\">" +
                     "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                     "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
             out.print("</tr>");
         }
-        connection.close();
     } catch (Exception e) {
         e.printStackTrace();
+    } finally {
+        db.closeConnection();
     }
 %>
     </tbody>

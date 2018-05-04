@@ -45,13 +45,13 @@
         </form>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="/backend/Logout">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
 <h1>Movie</h1>
-<form method="post" action="/backend/processAddMovie.jsp">
+<form method="post" action="/backend/admin/AddMovie">
     <div class="form-group row">
         <label for="title" class="col-sm-2 col-form-label">Title</label>
         <div class="col-md-3">
@@ -114,19 +114,6 @@
         </div>
     </div>
 </form>
-<%--<div class="row">--%>
-    <%--<input type="hidden" name="count" value="1" />--%>
-    <%--<div class="control-group" id="fields">--%>
-        <%--<label class="control-label" for="field1">Nice Multiple Form Fields</label>--%>
-        <%--<div class="controls" id="profs">--%>
-            <%--<form class="input-append">--%>
-                <%--<div id="field"><input autocomplete="off" class="input" id="field1" name="prof1" type="text" placeholder="Type something" data-items="8"/><button id="b1" class="btn add-more" type="button">+</button></div>--%>
-            <%--</form>--%>
-            <%--<br>--%>
-            <%--<small>Press + to add another form field :)</small>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
 </body>
 <script src="/js/dynamicfields.js" defer></script>
 <%@ include file="/admin/footer.html"%>

@@ -5,7 +5,7 @@ $(document).ready(function(){
         var addto = "#field" + next;
         var addRemove = "#field" + (next);
         next = next + 1;
-        var newIn = '<input class="form-control" placeholder="Genre" id="field' + next + '" name="genre' + next + '" type="text">';
+        var newIn = '<input class="form-control" placeholder="Genre" id="field' + next + '" name="genre" type="text">';
         var newInput = $(newIn);
         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button>';
         var removeButton = $(removeBtn);
@@ -28,7 +28,7 @@ $(document).ready(function(){
         var add2to = "#fieldz" + next2;
         var add2Remove = "#fieldz" + (next2);
         next2 = next2 + 1;
-        var newIn = '<input class="form-control" placeholder="Actor" id="fieldz' + next2 + '" name="actor' + next2 + '" type="text">';
+        var newIn = '<input class="form-control" placeholder="Actor" id="fieldz' + next2 + '" name="actor" type="text">';
         var newInput = $(newIn);
         var removeBtn = '<button id="remove' + (next2 - 1) + '" class="btn btn-danger remove-me2" >-</button>';
         var removeButton = $(removeBtn);

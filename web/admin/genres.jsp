@@ -45,12 +45,12 @@
         </form>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="/backend/Logout">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page import="java.sql.ResultSet,com.spmovy.DatabaseUtils,java.sql.SQLException,org.apache.commons.lang3.StringEscapeUtils" %>
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -61,34 +61,28 @@
     </thead>
     <tbody>
     <%
-        String driverName = "com.mysql.jdbc.Driver";
-        Class.forName(driverName);
-        String url = "jdbc:mysql://52.74.214.114/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true";
-
+        DatabaseUtils db = new DatabaseUtils();
+        ResultSet rs = db.executeFixedQuery("SELECT * FROM Genre");
         try {
-            Connection connection = DriverManager.getConnection(url, "spmovy", "15Pb6pc%$8!@P^NR$h@5rLM84gJvR2u1p72F^3");
-            Statement stmt = connection.createStatement();
-            String sqlStr = "SELECT * FROM Genre";
-            ResultSet rs = stmt.executeQuery(sqlStr);
             while (rs.next()) {
                 out.print("<tr>");
                 int id = rs.getInt("ID");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
                 out.print("<td>" + StringEscapeUtils.escapeHtml4(name) + "</td><td>" + StringEscapeUtils.escapeHtml4(description) + "</td>");
-                out.print("<td><form action=\"/admin/UpdateGenre.jsp\">" +
+                out.print("<td><form action=\"/admin/updateGenre.jsp\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                         "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
-                        "<form method=\"post\" action=\"/backend/processDelete.jsp\">" +
-                        "<input type=\"hidden\" name=\"from\" value=\"/admin/genres.jsp\">" +
+                        "<form method=\"post\" action=\"/backend/admin/Delete\">" +
                         "<input type=\"hidden\" name=\"table\" value=\"Genre\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                         "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
                 out.print("</tr>");
             }
-            connection.close();
-        } catch (Exception e) {
-            // log the error here and maybe notify admin somehow
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
         }
     %>
     </tbody>
