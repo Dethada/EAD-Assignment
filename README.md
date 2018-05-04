@@ -1,4 +1,5 @@
-# EAD-Assignment ST0291 [![Build Status](https://travis-ci.com/PotatoDrug/EAD-Assignment.svg?token=6u9dQjLz7vCpD1gzxyL5&branch=master)](https://travis-ci.com/PotatoDrug/EAD-Assignment)
+# EAD-Assignment ST0291 [![Build Status](https://travis-ci.com/PotatoDrug/EAD-Assignment.svg?token=6u9dQjLz7vCpD1gzxyL5&branch=master)](https://travis-ci.com/PotatoDrug/EAD-Assignment) [![codecov](https://codecov.io/gh/PotatoDrug/EAD-Assignment/branch/master/graph/badge.svg?token=kjqDtFyGLg)](https://codecov.io/gh/PotatoDrug/EAD-Assignment)
+
 Due Date: 21st May 1000hrs
 
 Provide README file to provide instructions on how to setup the project.
