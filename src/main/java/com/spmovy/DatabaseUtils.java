@@ -30,7 +30,7 @@ public class DatabaseUtils {
 
             for (int i = 0; i < values.length; i++) {
                 if (values[i] instanceof Integer)
-                    preparedStatement.setInt(i + 1, (int) values[i]);
+                    preparedStatement.setInt(i + 1, (Integer) values[i]);
                 else if (values[i] instanceof String)
                     preparedStatement.setString(i + 1, (String) values[i]);
                 else if (values[i] instanceof Time)
