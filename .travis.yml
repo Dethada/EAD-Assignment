@@ -1,5 +1,11 @@
 language: java
 jdk:
-  - oraclejdk8
+ - oraclejdk8
+sudo: false
+
+before_install: 
+  - mvn compile -DskipTests=true -U
+install: mvn test
+
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t 667fb76c-f29e-466d-9d6c-983e6e6ed4d2
