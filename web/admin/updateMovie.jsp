@@ -179,6 +179,71 @@
         </div>
     </div>
 </form>
+<h3>File Upload:</h3>
+Select a file to upload: <br />
+<form method="post" enctype="multipart/form-data" id="fileUploadForm">
+    <input type="file" name="file"  multiple="true"/><br/><br/>
+    <input type="submit" value="Upload File" id="btnSubmit"/>
+</form>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
 <script src="/js/dynamicfields.js" defer></script>
-<%@ include file="footer.html"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+    var path;
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function (event) {
+
+            //stop submit the form, we will post it manually.
+            event.preventDefault();
+
+            // Get form
+            var form = $('#fileUploadForm')[0];
+
+            // Create an FormData object
+            var data = new FormData(form);
+
+            // disabled the submit button
+            $("#btnSubmit").prop("disabled", true);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: "https://cdn.spmovy.xyz/upload",
+                headers: {"token":"jwqIVxAJxBbe8iobMiyY4B1snIW7CSm9FNyfpjTrzdo389sQjvv9cF7x3AGDfDlj"},
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+
+                    $("#result").text(data);
+                    var x = JSON.parse(data).files.file.path.split('/');
+                    path = x[x.length-1];
+                    $.ajax({
+                        type: 'POST',
+                        url: "/backend/admin/UpdateMovieImagePath",
+                        data: {
+                            'id':'<%=movieid%>',
+                            'path': path
+                        },
+                        success: function(msg){
+                            alert(msg);
+                        }
+                    });
+                    $("#btnSubmit").prop("disabled", false);
+
+                },
+                error: function (e) {
+                    $("#result").text(e.responseText);
+                    console.log("ERROR : ", e);
+                    $("#btnSubmit").prop("disabled", false);
+                }
+            });
+        });
+    });
+
+</script>
+</html>
