@@ -72,8 +72,9 @@
         }
     } catch (SQLException e) {
         e.printStackTrace();
+    } finally {
+        db.closeConnection();
     }
-    db.closeConnection();
 %>
 <form method="post" action="/backend/admin/UpdateActor">
     <div class="form-group row">

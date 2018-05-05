@@ -80,8 +80,9 @@
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            db.closeConnection();
         }
-        db.closeConnection();
     %>
     </tbody>
 </table>

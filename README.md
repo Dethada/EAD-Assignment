@@ -45,7 +45,7 @@ You are tasked to design and develop a web application for the company to mainta
 
 * ~~Must be able to delete movie genres created previously~~
 
-* Each movie should have an image associated. The system will assign a default image if there is no existing image.
+* ~~Each movie should have an image associated. The system will assign a default image if there is no existing image.~~
 
 ### General Public
 

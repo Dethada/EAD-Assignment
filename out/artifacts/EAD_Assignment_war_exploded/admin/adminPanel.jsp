@@ -25,8 +25,9 @@
         }
     } catch (SQLException e) {
         e.printStackTrace();
+    } finally {
+        db.closeConnection();
     }
-    db.closeConnection();
 %>
 <h2>Last login from <%= ip %> at <%= lastlogintime %></h2>
 <div class="row">
