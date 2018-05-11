@@ -52,7 +52,22 @@
 </nav>
 <%@ page import="java.sql.*,java.net.URLDecoder,org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
-<h2><%= URLDecoder.decode(request.getParameter("title"), "UTF-8") %></h2>
+<%
+    int id = Integer.parseInt(request.getParameter("id"));
+    DatabaseUtils db = new DatabaseUtils();
+    ResultSet rs = db.executeQuery("SELECT title FROM movie WHERE ID=?", id);
+    String title = "";
+    try {
+        if (rs.next()) {
+            title = rs.getString("title");
+        } else {
+            response.sendRedirect("/admin/movies.jsp");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+%>
+<h2><%= title %></h2>
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -64,11 +79,8 @@
     </thead>
     <tbody>
     <%
-        int id = Integer.parseInt(request.getParameter("id"));
-        DatabaseUtils db = new DatabaseUtils();
-
         try {
-            ResultSet rs = db.executeQuery("SELECT * FROM reviews where movieID=?", id);
+            rs = db.executeQuery("SELECT * FROM reviews where movieID=?", id);
             while (rs.next()) {
                 out.print("<td>" + StringEscapeUtils.escapeHtml4(rs.getString("name")) + "</td><td>" + rs.getInt("rating") + "</td><td>" + StringEscapeUtils.escapeHtml4(rs.getString("reviewSentence")) + "</td>");
                 out.print("<td><form method=\"post\" action=\"/backend/admin/Delete\">" +

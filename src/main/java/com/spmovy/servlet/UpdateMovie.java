@@ -38,7 +38,6 @@ public class UpdateMovie extends HttpServlet {
                 status,
                 id);
         Connection connection = db.getConnection();
-        ResultSet tmpRS;
         try {
             // get movie id
             ResultSet movieIDResult = db.executeQuery("SELECT * FROM movie WHERE title=? and releasedate=?",
@@ -99,7 +98,6 @@ public class UpdateMovie extends HttpServlet {
     private ArrayList<Integer> getcList(ResultSet rs) throws SQLException {
         // get list of current actors
         ArrayList<Integer> cList = new ArrayList();
-        ArrayList<Integer> currentActors = new ArrayList();
         while (rs.next()) {
             cList.add(rs.getInt(2));
         }

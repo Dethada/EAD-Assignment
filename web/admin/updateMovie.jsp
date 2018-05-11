@@ -69,7 +69,7 @@
     ArrayList<String> genrelist = new ArrayList();
     ArrayList<String> actorlist = new ArrayList();
     DatabaseUtils db = new DatabaseUtils();
-    ResultSet rs = null;
+    ResultSet rs;
     try {
         rs = db.executeQuery("SELECT * FROM movie where ID=?", movieid);
         if (rs.next()) {
@@ -178,6 +178,11 @@
             <button type="submit" class="btn btn-primary">Update Movie</button>
         </div>
     </div>
+</form>
+<form method="post" action="/backend/admin/DeleteMovie">
+    <input type="hidden" name="table" value="movie">
+    <input type="hidden" name="id" value="<%=movieid%>">
+    <input class="btn btn-danger" type="submit" value="Delete">
 </form>
 <h3>File Upload:</h3>
 Select a file to upload: <br />

@@ -62,7 +62,7 @@ public class AddMovie extends HttpServlet {
         } finally {
             db.closeConnection();
         }
-        response.sendRedirect(request.getHeader("referer"));
+        response.sendRedirect("/admin/movies.jsp");
     }
 
     private void addManytoMany(String[] list, PreparedStatement getID, PreparedStatement insertStmt) throws SQLException {
