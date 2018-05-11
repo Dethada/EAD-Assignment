@@ -39,8 +39,8 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Movie Title" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="movies.jsp">
+            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav">
@@ -50,7 +50,8 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.ResultSet,com.spmovy.DatabaseUtils,java.net.URLEncoder,org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page import="java.sql.ResultSet,com.spmovy.DatabaseUtils,org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page import="java.sql.SQLException" %>
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -65,30 +66,40 @@
     <tbody>
     <%
         DatabaseUtils db = new DatabaseUtils();
-        ResultSet rs = db.executeFixedQuery("SELECT * FROM movie");
-        while (rs.next()) {
-            out.print("<tr>");
-            int id = rs.getInt("ID");
-            String title = rs.getString("title");
-            String status = rs.getString("status");
-            String releasedate = String.valueOf(rs.getDate("releasedate"));
-            out.print("<td>" + StringEscapeUtils.escapeHtml4(title) + "</td><td>" + StringEscapeUtils.escapeHtml4(status) + "</td><td>" +  StringEscapeUtils.escapeHtml4(releasedate) + "</td><td>" +
-                    "<form action=\"/admin/timeslot.jsp\">" +
-                    "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                    "<input class=\"btn btn-info\" type=\"submit\" value=\"View\"></form></td><td>" +
-                    "<form action=\"/admin/reviews.jsp\">" +
-                    "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                    "<input class=\"btn btn-info\" type=\"submit\" value=\"View\"></form></td>");
-            out.print("<td><form action=\"/admin/updateMovie.jsp\">" +
-                    "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                    "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
-                    "<form method=\"post\" action=\"/backend/admin/DeleteMovie\">" +
-                    "<input type=\"hidden\" name=\"table\" value=\"movie\">" +
-                    "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                    "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
-            out.print("</tr>");
+        ResultSet rs;
+        if (request.getParameter("moviename") == null) {
+            rs = db.executeFixedQuery("SELECT * FROM movie");
+        } else {
+            rs = db.executeQuery("SELECT * FROM movie WHERE title LIKE ?", "%"+request.getParameter("moviename")+"%");
         }
-        db.closeConnection();
+        try {
+            while (rs.next()) {
+                out.print("<tr>");
+                int id = rs.getInt("ID");
+                String title = rs.getString("title");
+                String status = rs.getString("status");
+                String releasedate = String.valueOf(rs.getDate("releasedate"));
+                out.print("<td>" + StringEscapeUtils.escapeHtml4(title) + "</td><td>" + StringEscapeUtils.escapeHtml4(status) + "</td><td>" + StringEscapeUtils.escapeHtml4(releasedate) + "</td><td>" +
+                        "<form action=\"/admin/timeslot.jsp\">" +
+                        "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
+                        "<input class=\"btn btn-info\" type=\"submit\" value=\"View\"></form></td><td>" +
+                        "<form action=\"/admin/reviews.jsp\">" +
+                        "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
+                        "<input class=\"btn btn-info\" type=\"submit\" value=\"View\"></form></td>");
+                out.print("<td><form action=\"/admin/updateMovie.jsp\">" +
+                        "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
+                        "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
+                        "<form method=\"post\" action=\"/backend/admin/DeleteMovie\">" +
+                        "<input type=\"hidden\" name=\"table\" value=\"movie\">" +
+                        "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
+                        "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
+                out.print("</tr>");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
     %>
     </tbody>
 </table>

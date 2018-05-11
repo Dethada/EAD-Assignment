@@ -39,8 +39,8 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Genres" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="genres.jsp">
+            <input class="form-control mr-sm-2" name="genrename" type="search" placeholder="Genres" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav">
@@ -62,7 +62,12 @@
     <tbody>
     <%
         DatabaseUtils db = new DatabaseUtils();
-        ResultSet rs = db.executeFixedQuery("SELECT * FROM Genre");
+        ResultSet rs;
+        if (request.getParameter("genrename") == null) {
+            rs = db.executeFixedQuery("SELECT * FROM Genre");
+        } else {
+            rs = db.executeQuery("SELECT * FROM Genre WHERE name LIKE ?", "%"+request.getParameter("genrename")+"%");
+        }
         try {
             while (rs.next()) {
                 out.print("<tr>");
