@@ -26,7 +26,7 @@ public class UpdateActor extends HttpServlet {
             response.sendRedirect(request.getHeader("referer"));
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("/error.html");
+            response.sendRedirect("/errors/error.html");
             return;
         } finally {
             db.closeConnection();
