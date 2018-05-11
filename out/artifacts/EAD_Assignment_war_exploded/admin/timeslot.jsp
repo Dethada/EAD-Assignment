@@ -50,12 +50,22 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*,java.net.URLDecoder" %>
+<%@ page import="java.sql.*" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
 <%
+    DatabaseUtils db = new DatabaseUtils();
     int id = Integer.parseInt(request.getParameter("id"));
-    String title = URLDecoder.decode(request.getParameter("title"), "UTF-8");
-    session.setAttribute("prevpage", "/admin/timeslot.jsp?id=" + id + "&title=" + request.getParameter("title"));
+    ResultSet rs = db.executeQuery("SELECT title FROM movie WHERE ID=?", id);
+    String title = "";
+    try {
+        if (rs.next()) {
+            title = rs.getString("title");
+        } else {
+            response.sendRedirect("/admin/movies.jsp");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
 %>
 <h2><%= title %></h2>
 <form class="form-inline" method="post" action="/backend/admin/AddTimeslot">
@@ -80,10 +90,8 @@
     </thead>
     <tbody>
 <%
-    DatabaseUtils db = new DatabaseUtils();
-
     try {
-        ResultSet rs = db.executeQuery("SELECT * FROM timeslot where movieID=?", id);
+        rs = db.executeQuery("SELECT * FROM timeslot where movieID=?", id);
         while (rs.next()) {
             out.print("<td>" + rs.getString("moviedate") + "</td><td>" + rs.getString("movietime") + "</td>");
             out.print("<td><form method=\"post\" action=\"/admin/updateTimeslot.jsp\">" +

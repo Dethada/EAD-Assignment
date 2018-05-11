@@ -75,16 +75,14 @@
             out.print("<td>" + StringEscapeUtils.escapeHtml4(title) + "</td><td>" + StringEscapeUtils.escapeHtml4(status) + "</td><td>" +  StringEscapeUtils.escapeHtml4(releasedate) + "</td><td>" +
                     "<form action=\"/admin/timeslot.jsp\">" +
                     "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                    "<input type=\"hidden\" name=\"title\" value=\"" + URLEncoder.encode(title, "UTF-8") + "\">" +
                     "<input class=\"btn btn-info\" type=\"submit\" value=\"View\"></form></td><td>" +
                     "<form action=\"/admin/reviews.jsp\">" +
                     "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                    "<input type=\"hidden\" name=\"title\" value=\"" + URLEncoder.encode(title, "UTF-8") + "\">" +
                     "<input class=\"btn btn-info\" type=\"submit\" value=\"View\"></form></td>");
             out.print("<td><form action=\"/admin/updateMovie.jsp\">" +
                     "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                     "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
-                    "<form method=\"post\" action=\"/backend/admin/Delete\">" +
+                    "<form method=\"post\" action=\"/backend/admin/DeleteMovie\">" +
                     "<input type=\"hidden\" name=\"table\" value=\"movie\">" +
                     "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
                     "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
