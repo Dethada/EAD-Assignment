@@ -24,8 +24,9 @@ public class UpdateMovie extends HttpServlet {
         String[] genres = request.getParameterValues("genre");
         String[] actors = request.getParameterValues("actor");
         // redirect if no genre or actor is provided
-        if (genres.length == 0 || actors.length == 0) {
+        if (genres == null || actors == null) {
             response.sendRedirect(request.getHeader("referer"));
+            return;
         }
         DatabaseUtils db = new DatabaseUtils();
         db.executeUpdate("UPDATE movie SET title=?, releasedate=?, synopsis=?, duration=?, imagepath=?, status=? WHERE ID=?",

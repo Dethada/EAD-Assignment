@@ -80,7 +80,7 @@
         <input type="hidden" id="next" value="1" />
         <label for="genres" class="col-sm-2 col-form-label">Genres</label>
         <div class="col-md-3" id="genres">
-            <input class="form-control" id="field1" name="genre1" type="text" placeholder="Genre" required>
+            <input class="form-control" id="field1" name="genre" type="text" placeholder="Genre" required>
             <button id="b1" class="btn add-more" type="button">+</button>
         </div>
     </div>
@@ -88,7 +88,7 @@
         <input type="hidden" id="next2" value="1" />
         <label for="actors" class="col-sm-2 col-form-label">Actors</label>
         <div class="col-md-3" id="actors">
-            <input class="form-control" id="fieldz1" name="actor1" type="text" placeholder="Actor" required>
+            <input class="form-control" id="fieldz1" name="actor" type="text" placeholder="Actor" required>
             <button id="bt1" class="btn add-more2" type="button">+</button>
         </div>
     </div>
@@ -107,7 +107,7 @@
             <label class="custom-file-label" for="customFile">Choose image file...</label>
         </div>
     </div>
-    <input type="hidden" name="imagepath" value="image/default.png">
+    <input type="hidden" name="imagepath" value="image/default.svg">
     <div class="form-group row">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Add Movie</button>
