@@ -1,18 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.html"%>
+<%@ include file="header.html" %>
 <title>Reviews</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/admin/adminPanel.jsp">SPMovy Admin</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Movies
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -21,7 +23,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Genres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,7 +33,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Actors
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -53,9 +57,9 @@
 <%@ page import="java.sql.*,java.net.URLDecoder,org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
 <%
-    int id = Integer.parseInt(request.getParameter("id"));
+    int movieid = Integer.parseInt(request.getParameter("id"));
     DatabaseUtils db = new DatabaseUtils();
-    ResultSet rs = db.executeQuery("SELECT title FROM movie WHERE ID=?", id);
+    ResultSet rs = db.executeQuery("SELECT title FROM movie WHERE ID=?", movieid);
     String title = "";
     try {
         if (rs.next()) {
@@ -67,7 +71,8 @@
         e.printStackTrace();
     }
 %>
-<h2><%= title %></h2>
+<h2><%= title %>
+</h2>
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -80,13 +85,13 @@
     <tbody>
     <%
         try {
-            rs = db.executeQuery("SELECT * FROM reviews where movieID=?", id);
+            rs = db.executeQuery("SELECT * FROM reviews where movieID=?", movieid);
             while (rs.next()) {
                 out.print("<td>" + StringEscapeUtils.escapeHtml4(rs.getString("name")) + "</td><td>" + rs.getInt("rating") + "</td><td>" + StringEscapeUtils.escapeHtml4(rs.getString("reviewSentence")) + "</td>");
-                out.print("<td><form method=\"post\" action=\"/backend/admin/Delete\">" +
-                        "<input type=\"hidden\" name=\"from\" value=\"/admin/reviews.jsp?id=" + id + "\"&title=\"" + request.getParameter("title") + "\">" +
-                        "<input type=\"hidden\" name=\"table\" value=\"timeslot\">" +
-                        "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
+                out.print("<td><form method=\"post\" action=\"/backend/admin/DeleteReview\">" +
+                        "<input type=\"hidden\" name=\"table\" value=\"reviews\">" +
+                        "<input type=\"hidden\" name=\"movieid\" value=\"" + movieid + "\">" +
+                        "<input type=\"hidden\" name=\"reviewid\" value=\"" + rs.getInt("reviewID") + "\">" +
                         "<input class=\"btn btn-danger\" type=\"submit\" value=\"Delete\"></form></td>");
                 out.print("</tr>");
             }
@@ -99,4 +104,4 @@
     </tbody>
 </table>
 </body>
-<%@ include file="footer.html"%>
+<%@ include file="footer.html" %>
