@@ -86,6 +86,7 @@
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            response.sendRedirect("/error.html");
         } finally {
             db.closeConnection();
         }

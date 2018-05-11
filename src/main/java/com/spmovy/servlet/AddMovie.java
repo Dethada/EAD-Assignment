@@ -1,6 +1,7 @@
 package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
+import com.spmovy.Utils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,18 +33,19 @@ public class AddMovie extends HttpServlet {
             response.sendRedirect(request.getHeader("referer"));
             return;
         }
-        DatabaseUtils db = new DatabaseUtils();
-        db.executeUpdate("INSERT INTO movie(title,releasedate,synopsis,duration,imagepath,status) VALUES (?, ?, ?, ?, ?, ?)",
-                title,
-                java.sql.Date.valueOf(releasedate),
-                synopsis,
-                duration,
-                imagepath,
-                status);
-
-        Connection connection = db.getConnection();
-
+        DatabaseUtils db = Utils.getDatabaseUtils(response);
+        if (db == null) return;
         try {
+            db.executeUpdate("INSERT INTO movie(title,releasedate,synopsis,duration,imagepath,status) VALUES (?, ?, ?, ?, ?, ?)",
+                    title,
+                    java.sql.Date.valueOf(releasedate),
+                    synopsis,
+                    duration,
+                    imagepath,
+                    status);
+
+            Connection connection = db.getConnection();
+
             ResultSet movieIDResult = db.executeQuery("SELECT * FROM movie WHERE title=? and releasedate=?",
                     title,
                     java.sql.Date.valueOf(releasedate));
@@ -59,6 +61,8 @@ public class AddMovie extends HttpServlet {
             addManytoMany(actors, getActorID, insertActor); // add actors for movie
         } catch (SQLException e) {
             e.printStackTrace();
+            response.sendRedirect("/error.html");
+            return;
         } finally {
             db.closeConnection();
         }

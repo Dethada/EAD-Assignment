@@ -1,6 +1,7 @@
 package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
+import com.spmovy.Utils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +20,11 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        DatabaseUtils db = new DatabaseUtils();
-        ResultSet rs = db.executeQuery("SELECT * FROM users where username=? and password=?", username, password);
+        ResultSet rs;
+        DatabaseUtils db = Utils.getDatabaseUtils(response);
+        if (db == null) return;
         try {
+            rs = db.executeQuery("SELECT * FROM users where username=? and password=?", username, password);
             if (rs.next()) {
                 // login sucessful
                 HttpSession session=request.getSession();
@@ -38,6 +41,8 @@ public class Login extends HttpServlet {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            response.sendRedirect("/error.html");
+            return;
         } finally {
             db.closeConnection();
         }

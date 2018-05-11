@@ -69,6 +69,7 @@
         }
     } catch (SQLException e) {
         e.printStackTrace();
+        response.sendRedirect("/error.html");
     }
 %>
 <h2><%= title %>
@@ -111,6 +112,7 @@
             }
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("/error.html");
         } finally {
             db.closeConnection();
         }

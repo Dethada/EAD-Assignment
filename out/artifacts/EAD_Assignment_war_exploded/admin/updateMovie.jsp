@@ -97,6 +97,7 @@
         noGenres = genrelist.size();
     } catch (Exception e) {
         e.printStackTrace();
+        response.sendRedirect("/error.html");
     } finally {
         db.closeConnection();
     }
