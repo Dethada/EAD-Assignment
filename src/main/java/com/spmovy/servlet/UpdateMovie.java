@@ -1,6 +1,7 @@
 package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
+import com.spmovy.Utils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,17 +29,18 @@ public class UpdateMovie extends HttpServlet {
             response.sendRedirect(request.getHeader("referer"));
             return;
         }
-        DatabaseUtils db = new DatabaseUtils();
-        db.executeUpdate("UPDATE movie SET title=?, releasedate=?, synopsis=?, duration=?, imagepath=?, status=? WHERE ID=?",
-                title,
-                Date.valueOf(releasedate),
-                synopsis,
-                duration,
-                imagepath,
-                status,
-                id);
-        Connection connection = db.getConnection();
+        DatabaseUtils db = Utils.getDatabaseUtils(response);
+        if (db == null) return;
         try {
+            db.executeUpdate("UPDATE movie SET title=?, releasedate=?, synopsis=?, duration=?, imagepath=?, status=? WHERE ID=?",
+                    title,
+                    Date.valueOf(releasedate),
+                    synopsis,
+                    duration,
+                    imagepath,
+                    status,
+                    id);
+            Connection connection = db.getConnection();
             // get movie id
             ResultSet movieIDResult = db.executeQuery("SELECT * FROM movie WHERE title=? and releasedate=?",
                     title,
@@ -63,6 +65,8 @@ public class UpdateMovie extends HttpServlet {
             updateManytoMany(actors, currentActors, getActorID, insertActor, deleteActor);
         } catch (SQLException e) {
             e.printStackTrace();
+            response.sendRedirect("/error.html");
+            return;
         } finally {
             db.closeConnection();
         }
@@ -80,11 +84,7 @@ public class UpdateMovie extends HttpServlet {
                     cList.remove(Integer.valueOf(tmpID));
                 } else {
                     insertStmt.setInt(2, tmpID);
-                    try {
-                        insertStmt.executeUpdate();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    insertStmt.executeUpdate();
                 }
             }
         }

@@ -69,6 +69,7 @@
         }
     } catch (SQLException e) {
         e.printStackTrace();
+        response.sendRedirect("/error.html");
     }
 %>
 <h2><%= title %>
@@ -79,6 +80,8 @@
         <th scope="col">Name</th>
         <th scope="col">Rating</th>
         <th scope="col">Comment</th>
+        <th scope="col">Created At</th>
+        <th scope="col">IP</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
@@ -87,7 +90,9 @@
         try {
             rs = db.executeQuery("SELECT * FROM reviews where movieID=?", movieid);
             while (rs.next()) {
-                out.print("<td>" + StringEscapeUtils.escapeHtml4(rs.getString("name")) + "</td><td>" + rs.getInt("rating") + "</td><td>" + StringEscapeUtils.escapeHtml4(rs.getString("reviewSentence")) + "</td>");
+                out.print("<td>" + StringEscapeUtils.escapeHtml4(rs.getString("name")) + "</td><td>" +
+                        rs.getInt("rating") + "</td><td>" + StringEscapeUtils.escapeHtml4(rs.getString("reviewSentence")) +
+                        "</td><td>" + rs.getTimestamp("createdat") + "</td><td>" + StringEscapeUtils.escapeHtml4(rs.getString("ip")) + "</td>");
                 out.print("<td><form method=\"post\" action=\"/backend/admin/DeleteReview\">" +
                         "<input type=\"hidden\" name=\"table\" value=\"reviews\">" +
                         "<input type=\"hidden\" name=\"movieid\" value=\"" + movieid + "\">" +
@@ -97,6 +102,7 @@
             }
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("/error.html");
         } finally {
             db.closeConnection();
         }

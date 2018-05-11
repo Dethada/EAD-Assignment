@@ -1,23 +1,33 @@
 package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
+import com.spmovy.Utils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/backend/admin/AddGenre")
 public class AddGenre extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        DatabaseUtils db = new DatabaseUtils();
-        db.executeUpdate("INSERT INTO Genre(name, description) VALUES (?, ?)",
-                request.getParameter("name"),
-                request.getParameter("description"));
-        db.closeConnection();
+        DatabaseUtils db = Utils.getDatabaseUtils(response);
+        if (db == null) return;
+        try {
+            db.executeUpdate("INSERT INTO Genre(name, description) VALUES (?, ?)",
+                    request.getParameter("name"),
+                    request.getParameter("description"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error.html");
+            return;
+        } finally {
+            db.closeConnection();
+        }
         response.sendRedirect(request.getHeader("referer"));
     }
 }

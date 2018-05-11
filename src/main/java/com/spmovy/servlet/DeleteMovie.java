@@ -1,6 +1,7 @@
 package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
+import com.spmovy.Utils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +14,9 @@ public class DeleteMovie extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        DatabaseUtils db = new DatabaseUtils();
-        db.callDelete(request.getParameter("table"), Integer.parseInt(request.getParameter("id")));
-        db.closeConnection();
+        DatabaseUtils db = Utils.getDatabaseUtils(response);
+        if (db == null) return;
+        if (Utils.deleteID(request, response, db) == false) return;
         response.sendRedirect("/admin/movies.jsp");
     }
 }
