@@ -26,18 +26,24 @@ public class DatabaseUtils {
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
 
             for (int i = 0; i < values.length; i++) {
-                if (values[i] instanceof Integer)
+                if (values[i] instanceof Integer) {
                     preparedStatement.setInt(i + 1, (Integer) values[i]);
-                else if (values[i] instanceof String)
+                }
+                else if (values[i] instanceof String) {
                     preparedStatement.setString(i + 1, (String) values[i]);
-                else if (values[i] instanceof Time)
+                }
+                else if (values[i] instanceof Time) {
                     preparedStatement.setTime(i + 1, (Time) values[i]);
-                else if (values[i] instanceof Timestamp)
+                }
+                else if (values[i] instanceof Timestamp) {
                     preparedStatement.setTimestamp(i + 1, (Timestamp) values[i]);
-                else if (values[i] instanceof Date)
+                }
+                else if (values[i] instanceof Date) {
                     preparedStatement.setDate(i + 1, (Date) values[i]);
-                else
+                }
+                else {
                     preparedStatement.setObject(i + 1, values[i]);
+                }
             }
             return preparedStatement;
         } catch (SQLException e) {

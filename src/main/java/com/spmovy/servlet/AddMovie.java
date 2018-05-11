@@ -66,7 +66,7 @@ public class AddMovie extends HttpServlet {
     }
 
     private void addManytoMany(String[] list, PreparedStatement getID, PreparedStatement insertStmt) throws SQLException {
-        for(String item : list) {
+        for (String item : list) {
             getID.setString(1, item);
             ResultSet rs = getID.executeQuery();
             if (rs.next()) {
