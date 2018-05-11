@@ -39,8 +39,8 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Actors" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="actors.jsp">
+            <input class="form-control mr-sm-2" name="actorname" type="search" placeholder="Actors" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav">
@@ -63,7 +63,12 @@
     <tbody>
     <%
         DatabaseUtils db = new DatabaseUtils();
-        ResultSet rs = db.executeFixedQuery("SELECT * FROM actor");
+        ResultSet rs;
+        if (request.getParameter("actorname") == null) {
+            rs = db.executeFixedQuery("SELECT * FROM actor");
+        } else {
+            rs = db.executeQuery("SELECT * FROM actor WHERE Name LIKE ?", "%"+request.getParameter("actorname")+"%");
+        }
         try {
             while (rs.next()) {
                 out.print("<tr>");

@@ -43,8 +43,8 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Movie Title" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="movies.jsp">
+            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav">
@@ -54,7 +54,7 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.*,java.net.URLDecoder,org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
 <%
     int movieid = Integer.parseInt(request.getParameter("id"));
