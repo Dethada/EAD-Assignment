@@ -29,7 +29,7 @@ public class AddTimeslot extends HttpServlet {
                     id);
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("/error.html");
+            response.sendRedirect("/errors/error.html");
         } finally {
             db.closeConnection();
         }

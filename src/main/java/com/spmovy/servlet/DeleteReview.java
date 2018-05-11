@@ -22,7 +22,7 @@ public class DeleteReview extends HttpServlet {
             db.executeUpdate("delete from reviews where movieID=? and reviewID=?", movieid, reviewid);
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("/error.html");
+            response.sendRedirect("/errors/error.html");
             return;
         } finally {
             db.closeConnection();

@@ -61,7 +61,7 @@ public class AddMovie extends HttpServlet {
             addManytoMany(actors, getActorID, insertActor); // add actors for movie
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("/error.html");
+            response.sendRedirect("/errors/error.html");
             return;
         } finally {
             db.closeConnection();

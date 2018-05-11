@@ -13,7 +13,7 @@ public class Utils {
             db = new DatabaseUtils();
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("/error.html");
+            response.sendRedirect("/errors/error.html");
             return null;
         }
         return db;
@@ -24,7 +24,7 @@ public class Utils {
             db.callDelete(request.getParameter("table"), Integer.parseInt(request.getParameter("id")));
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("/error.html");
+            response.sendRedirect("/errors/error.html");
             return false;
         } finally {
             db.closeConnection();

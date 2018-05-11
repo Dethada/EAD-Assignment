@@ -23,7 +23,7 @@ public class AddActor extends HttpServlet {
                     request.getParameter("description"));
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("/error.html");
+            response.sendRedirect("/errors/error.html");
             return;
         } finally {
             db.closeConnection();
