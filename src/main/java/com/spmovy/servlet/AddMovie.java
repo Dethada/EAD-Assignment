@@ -28,8 +28,9 @@ public class AddMovie extends HttpServlet {
         String[] actors = request.getParameterValues("actor");
         Map<String, String[]> parameters = request.getParameterMap();
         // redirect if no genre or actor is provided
-        if (genres.length == 0 || actors.length == 0) {
+        if (genres == null || actors == null) {
             response.sendRedirect(request.getHeader("referer"));
+            return;
         }
         DatabaseUtils db = new DatabaseUtils();
         db.executeUpdate("INSERT INTO movie(title,releasedate,synopsis,duration,imagepath,status) VALUES (?, ?, ?, ?, ?, ?)",

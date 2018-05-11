@@ -7,14 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56a9b021-fdd2-4319-ae3b-0c2e57fb86c5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/WEB-INF/lib/commons-io-2.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/backend/uploadhandler.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/lib/commons-io-2.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/test.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin/updateMovie.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/updateMovie.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/backend/uploadhandler.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/image/Mailing.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/WEB-INF/classes/com/spmovy/DatabaseUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/WEB-INF/classes/com/spmovy/DatabaseUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/WEB-INF/classes/com/spmovy/servlet/AddMovie.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/WEB-INF/classes/com/spmovy/servlet/AddMovie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/WEB-INF/classes/com/spmovy/servlet/UpdateMovie.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/WEB-INF/classes/com/spmovy/servlet/UpdateMovie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/admin/addMovie.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/EAD_Assignment_war_exploded/admin/addMovie.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spmovy/servlet/AddMovie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spmovy/servlet/AddMovie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spmovy/servlet/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spmovy/servlet/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spmovy/servlet/UpdateMovie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spmovy/servlet/UpdateMovie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin/addMovie.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/addMovie.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,8 +37,17 @@
       <file leaf-file-name="AddMovie.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovie.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+            <state relative-caret-position="435">
+              <caret line="26" column="62" selection-start-line="26" selection-start-column="62" selection-end-line="26" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addMovie.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/admin/addMovie.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="793">
+              <caret line="90" column="14" lean-forward="true" selection-start-line="90" selection-start-column="14" selection-end-line="90" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -42,17 +55,17 @@
       <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="18" column="104" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="104" />
+            <state relative-caret-position="232">
+              <caret line="18" column="104" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="104" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateMovie.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UpdateMovie.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovie.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="30" column="70" lean-forward="true" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
+            <state relative-caret-position="812">
+              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="updateMovie.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/admin/updateMovie.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1056">
-              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+            <state relative-caret-position="4785">
+              <caret line="165" column="10" selection-start-line="165" selection-start-column="10" selection-end-line="165" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -93,7 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/adminPanel.jsp" />
         <option value="$PROJECT_DIR$/web/backend/verifyAdmin.jsp" />
         <option value="$PROJECT_DIR$/web/backend/addMovie.jsp" />
         <option value="$PROJECT_DIR$/web/js/adminpanelui.js" />
@@ -123,7 +135,6 @@
         <option value="$PROJECT_DIR$/web/admin/reviews.jsp" />
         <option value="$PROJECT_DIR$/web/admin/moviedetails.jsp" />
         <option value="$PROJECT_DIR$/web/js/dynamicfields.js" />
-        <option value="$PROJECT_DIR$/web/admin/addMovie.jsp" />
         <option value="$PROJECT_DIR$/web/backend/processAddMovie.jsp" />
         <option value="$PROJECT_DIR$/web/backend/deleteTimeslot.jsp" />
         <option value="$PROJECT_DIR$/web/admin/timeslot.jsp" />
@@ -144,6 +155,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovieImagePath.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovieImagePath.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovie.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovie.java" />
+        <option value="$PROJECT_DIR$/web/admin/addMovie.jsp" />
       </list>
     </option>
   </component>
@@ -184,6 +197,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -206,36 +220,22 @@
               <item name="SPMovy" type="b2602c69:ProjectViewProjectNode" />
               <item name="EAD-Assignment" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SPMovy" type="b2602c69:ProjectViewProjectNode" />
               <item name="EAD-Assignment" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SPMovy" type="b2602c69:ProjectViewProjectNode" />
               <item name="EAD-Assignment" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="spmovy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SPMovy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EAD-Assignment" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="spmovy" type="462c0819:PsiDirectoryNode" />
-              <item name="servlet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SPMovy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EAD-Assignment" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SPMovy" type="b2602c69:ProjectViewProjectNode" />
@@ -256,7 +256,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -392,6 +391,28 @@
         <value defaultName="singleModule" />
       </option>
       <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
     </configuration>
     <configuration name="Tomcat 7.0.86" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.86" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/" />
@@ -552,28 +573,6 @@
         </option>
       </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <properties />
-      <listeners />
-    </configuration>
     <list>
       <item itemvalue="Tomcat Server.Tomcat 7.0.86" />
       <item itemvalue="Tomcat Server.uploadhandler.jsp" />
@@ -613,6 +612,8 @@
       <workItem from="1525441048172" duration="183000" />
       <workItem from="1525448069178" duration="2020000" />
       <workItem from="1525450247672" duration="1535000" />
+      <workItem from="1525655324237" duration="2787000" />
+      <workItem from="1526000932876" duration="23000" />
     </task>
     <servers />
   </component>
@@ -643,56 +644,37 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104587000" />
+    <option name="totallyTimeSpent" value="107397000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <frame x="-2" y="37" width="3204" height="1765" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.3289777" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32820907" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49952698" visible="true" weight="0.16757813" />
-      <window_info id="Web" order="2" side_tool="true" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3289777" />
-      <window_info id="JavaEE:App" order="4" side_tool="true" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="Favorites" order="5" sideWeight="0.500473" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Web" order="2" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.25595695" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25571066" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info id="Designer" order="3" />
-      <window_info id="JavaEE:App" order="4" side_tool="true" />
-      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49952698" visible="true" weight="0.1675" />
+      <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="JavaEE:App" order="4" side_tool="true" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="Favorites" order="5" sideWeight="0.500473" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289777" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.3289777" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49952698" visible="true" weight="0.16757813" />
     </layout>
     <layout-to-restore>
       <window_info id="JavaEE:App" order="4" side_tool="true" />
@@ -739,7 +721,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/backend/loginRequiredAdmin.jsp" />
     <entry file="file://$PROJECT_DIR$/web/backend/processAddGenre.jsp" />
     <entry file="file://$PROJECT_DIR$/web/backend/processAddActor.jsp" />
     <entry file="file://$PROJECT_DIR$/web/css/adminpanel.css" />
@@ -776,16 +757,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/admin/moviedetails.jsp" />
-    <entry file="file://$PROJECT_DIR$/web/admin/addMovie.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="87" column="47" selection-start-line="87" selection-start-column="47" selection-end-line="87" selection-end-column="47" />
-          <folding>
-            <element signature="n#nav#0;n#body#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/backend/processAddMovie.jsp" />
     <entry file="file://$PROJECT_DIR$/web/backend/deleteMovieActor.jsp" />
     <entry file="file://$PROJECT_DIR$/web/js/dynamicfields.js" />
@@ -824,13 +795,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/DatabaseUtilsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/DatabaseUtilsTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/DatabaseUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -846,17 +811,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/backend/uploadhandler.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/web/backend/uploadhandler.jsp" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="18" column="104" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="104" />
+        <state relative-caret-position="232">
+          <caret line="18" column="104" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="104" />
         </state>
       </provider>
     </entry>
@@ -867,13 +826,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/apache-tomcat-7.0.86/lib/servlet-api.jar!/javax/servlet/http/HttpServlet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-851">
-          <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/apache-tomcat-7.0.86/lib/servlet-api.jar!/javax/servlet/http/HttpServlet.class" />
     <entry file="file://$PROJECT_DIR$/sql/createtable.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -881,33 +834,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/image/Mailing.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="374">
-            <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovieImagePath.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/web/image/Mailing.md" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovieImagePath.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovieImagePath.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="12" selection-start-line="12" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -918,34 +850,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/admin/test.jsp" />
+    <entry file="file://$PROJECT_DIR$/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/web/admin/updateMovie.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4785">
+          <caret line="165" column="10" selection-start-line="165" selection-start-column="10" selection-end-line="165" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="26" column="62" selection-start-line="26" selection-start-column="62" selection-end-line="26" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/admin/addMovie.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="793">
+          <caret line="90" column="14" lean-forward="true" selection-start-line="90" selection-start-column="14" selection-end-line="90" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovie.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="30" column="70" lean-forward="true" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
+        <state relative-caret-position="812">
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/admin/updateMovie.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-772">
-          <caret line="113" column="65" selection-start-line="113" selection-start-column="65" selection-end-line="113" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/admin/test.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="38" column="35" lean-forward="true" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
