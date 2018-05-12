@@ -1,1 +1,10 @@
+com\spmovy\servlet\AddActorTest.class
+com\spmovy\servlet\LogoutTest.class
+com\spmovy\servlet\AddMovieTest.class
+com\spmovy\servlet\DeleteReviewTest.class
+com\spmovy\servlet\DeleteTest.class
 com\spmovy\DatabaseUtilsTest.class
+com\spmovy\servlet\DeleteTimeslotTest.class
+com\spmovy\servlet\AddGenreTest.class
+com\spmovy\servlet\AddTimeslotTest.class
+com\spmovy\servlet\LoginTest.class
