@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import static com.spmovy.BCryptUtil.checkPassword;
+
 @WebServlet("/backend/Login")
 public class Login extends HttpServlet {
 
@@ -24,17 +26,21 @@ public class Login extends HttpServlet {
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
         try {
-            rs = db.executeQuery("SELECT * FROM users where username=? and password=?", username, password);
+            rs = db.executeQuery("SELECT * FROM users where username=?", username);
             if (rs.next()) {
-                // login sucessful
-                HttpSession session=request.getSession();
-                session.setAttribute("userid", rs.getInt("ID"));
-                session.setAttribute("role", rs.getString("role"));
-                db.executeUpdate("UPDATE users SET lastloginip=?, lastlogintime=? WHERE username=?",
-                        request.getRemoteAddr(),
-                        new Timestamp(System.currentTimeMillis()),
-                        username);
-                response.sendRedirect("/admin/adminPanel.jsp");
+                if (checkPassword(password, rs.getString("password"))) {
+                    // login sucessful
+                    HttpSession session = request.getSession();
+                    session.setAttribute("userid", rs.getInt("ID"));
+                    session.setAttribute("role", rs.getString("role"));
+                    db.executeUpdate("UPDATE users SET lastloginip=?, lastlogintime=? WHERE username=?",
+                            request.getRemoteAddr(),
+                            new Timestamp(System.currentTimeMillis()),
+                            username);
+                    response.sendRedirect("/admin/adminPanel.jsp");
+                } else  {
+                    response.sendRedirect("/admin/admin.jsp?login=Failed");
+                }
             } else {
                 // login failed
                 response.sendRedirect("/admin/admin.jsp?login=Failed");
