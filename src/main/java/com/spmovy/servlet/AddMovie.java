@@ -22,15 +22,24 @@ public class AddMovie extends HttpServlet {
         String title = request.getParameter("title");
         String releasedate = request.getParameter("releasedate");
         String synopsis = request.getParameter("synopsis");
-        int duration = Integer.parseInt(request.getParameter("duration"));
+        int duration;
+        try {
+            duration = Integer.parseInt(request.getParameter("duration"));
+        } catch (NumberFormatException e) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
         String imagepath = request.getParameter("imagepath");
         String status = request.getParameter("status");
         String[] genres = request.getParameterValues("genre");
         String[] actors = request.getParameterValues("actor");
-        Map<String, String[]> parameters = request.getParameterMap();
         // redirect if no genre or actor is provided
         if (genres == null || actors == null) {
-            response.sendRedirect(request.getHeader("referer"));
+            if (request.getHeader("referer") == null) {
+                response.sendRedirect("/errors/error.html");
+            } else {
+                response.sendRedirect(request.getHeader("referer"));
+            }
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);

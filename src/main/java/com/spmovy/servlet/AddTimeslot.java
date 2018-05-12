@@ -17,22 +17,31 @@ public class AddTimeslot extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String date = request.getParameter("date");
-        String time = request.getParameter("time")+":00";
+        int id;
+        Date date;
+        Time time;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+            date = Date.valueOf(request.getParameter("date"));
+            time = Time.valueOf(request.getParameter("time")+":00");
+        } catch (Exception e) { // catch all format exceptions
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
         try {
-            db.executeUpdate("INSERT INTO timeslot VALUES (?, ?, ?)",
-                    Time.valueOf(time),
-                    Date.valueOf(date),
-                    id);
+            db.executeUpdate("INSERT INTO timeslot VALUES (?, ?, ?)", time, date, id);
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
         } finally {
             db.closeConnection();
         }
-        response.sendRedirect(request.getHeader("referer"));
+        if (request.getHeader("referer") == null) {
+            response.sendRedirect("/admin/timeslots.jsp?id="+id);
+        } else {
+            response.sendRedirect(request.getHeader("referer"));
+        }
     }
 }

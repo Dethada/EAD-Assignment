@@ -14,8 +14,15 @@ import java.sql.SQLException;
 public class DeleteReview extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int movieid = Integer.parseInt(request.getParameter("movieid"));
-        int reviewid = Integer.parseInt(request.getParameter("reviewid"));
+        int movieid;
+        int reviewid;
+        try {
+            movieid = Integer.parseInt(request.getParameter("movieid"));
+            reviewid = Integer.parseInt(request.getParameter("reviewid"));
+        } catch (NumberFormatException e) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
         try {
@@ -28,7 +35,6 @@ public class DeleteReview extends HttpServlet {
             db.closeConnection();
         }
 
-
-        response.sendRedirect(request.getHeader("referer"));
+        response.sendRedirect("/admin/reviews.jsp?id="+movieid);
     }
 }
