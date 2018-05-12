@@ -19,8 +19,14 @@ public class DeleteTimeslot extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
+        int id;
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException e) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
+        try {
             String date = request.getParameter("moviedate");
             String time = request.getParameter("movietime");
             db.executeUpdate("delete from timeslot where movietime=? and moviedate=? and movieID=?",
@@ -34,6 +40,6 @@ public class DeleteTimeslot extends HttpServlet {
         } finally {
             db.closeConnection();
         }
-        response.sendRedirect(request.getHeader("referer"));
+        response.sendRedirect("/admin/timeslots.jsp?id="+id);
     }
 }

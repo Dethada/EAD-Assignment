@@ -18,6 +18,10 @@ public class Delete extends HttpServlet {
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
         if (Utils.deleteID(request, response, db) == false) return;
-        response.sendRedirect(request.getHeader("referer"));
+        if (request.getHeader("referer") == null) {
+            response.sendRedirect("/admin/adminPanel.jsp");
+        } else {
+            response.sendRedirect(request.getHeader("referer"));
+        }
     }
 }

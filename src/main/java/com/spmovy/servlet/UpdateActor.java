@@ -23,7 +23,6 @@ public class UpdateActor extends HttpServlet {
                     request.getParameter("name"),
                     request.getParameter("description"),
                     Integer.parseInt(request.getParameter("id")));
-            response.sendRedirect(request.getHeader("referer"));
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
@@ -31,5 +30,6 @@ public class UpdateActor extends HttpServlet {
         } finally {
             db.closeConnection();
         }
+        response.sendRedirect(request.getHeader("referer"));
     }
 }
