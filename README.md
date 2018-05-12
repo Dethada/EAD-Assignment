@@ -6,6 +6,27 @@ Provide README file to provide instructions on how to setup the project.
 
 > The assignment should be implemented using JSPs, HTML, Apache Tomcat, Eclipse and MySql.
 
+## Deployment
+
+### Windows
+
+[Install Maven](https://www.mkyong.com/maven/how-to-install-maven-in-windows/)
+
+[Set ENV Variable Windows 10](https://superuser.com/questions/949560/how-do-i-set-system-environment-variables-in-windows-10)
+
+```powershell
+# Go to your tomcat folder > bin
+# start tomcat server
+>.\startup.bat
+# Go to your project folder
+# Build war file
+> mvn clean install -DskipTests
+# Deploy to tomcat
+> mvn tomcat7:deploy
+# stop tomcat server
+>.\shutdown.bat
+```
+
 ## Overview
 
 **SPMovy** is considering to create an online movie booking portal to allow the public to book for movie tickets online. Before it launches its online booking service, it requires a web application to computerize its movie database and allow the public to view its movies details online.
@@ -27,8 +48,8 @@ You are tasked to design and develop a web application for the company to mainta
 
 * ~~He must be able to add new movie genre categories to the database. A database **genre table is required** for management of genre info and details.~~
 
-* He must be able to add new movie data to the database. For each movie, the
-  following minimum information must be recorded
+* ~~He must be able to add new movie data to the database. For each movie, the~~
+  ~~following minimum information must be recorded~~
 
   * Movie ID (PK, Auto-Increment, Int)
   * Movie Title
@@ -49,18 +70,17 @@ You are tasked to design and develop a web application for the company to mainta
 
 ### General Public
 
-* There should be a movies page which allows users to see current movies. This page should
-  show the movie picture and the title and duration as summary. Clicking the
-  movie picture would display the full details of the movie in another separate
-  page, including the reviews of the movie. 
-* Users can choose to filter current movies based on the available genres. This can be
-  through usage of a dropdown box with the available movie genres (retrieved from
-  database table).
-* Users can write reviews on the movie by giving it a rating and entering the comments
-  and name. The ‘write review’ button should be shown on the movie details page.
-  A review table with the review details and foreign key linking to the movie
-  table should be created in the database.
-* Login not required
+* ~~There should be a movies page which allows users to see current movies. This page should~~
+  ~~show the movie picture and the title and duration as summary. Clicking the~~
+  ~~movie picture would display the full details of the movie in another separate~~
+  ~~page, including the reviews of the movie.~~ 
+* ~~Users can choose to filter current movies based on the available genres. This can be~~
+  ~~through usage of a dropdown box with the available movie genres (retrieved from~~
+  ~~database table).~~
+* ~~Users can write reviews on the movie by giving it a rating and entering the comments~~
+  ~~and name. The ‘write review’ button should be shown on the movie details page.~~
+  ~~A review table with the review details and foreign key linking to the movie table should be created in the database.~~
+* ~~Login not required~~
 
 ## System Specification
 
