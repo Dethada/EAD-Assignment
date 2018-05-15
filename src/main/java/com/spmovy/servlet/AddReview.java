@@ -1,6 +1,7 @@
 package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
+import com.spmovy.Utils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ public class AddReview extends HttpServlet {
         String review = request.getParameter("review");
         String rating = request.getParameter("rating");
         String movieid = request.getParameter("movieid");
-        DatabaseUtils db = new DatabaseUtils();
+        DatabaseUtils db = Utils.getDatabaseUtils(response);
 //        ResultSet rs = db.executeQuery("SELECT * FROM reviews WHERE name=? and movieid = ?",name,movieid);
         try {
 //            if(rs.next()){

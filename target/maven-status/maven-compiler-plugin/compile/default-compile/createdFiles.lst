@@ -1,6 +1,7 @@
 com\spmovy\filters\SessionCheckFilter.class
 com\spmovy\Utils.class
 com\spmovy\servlet\AddTimeslot.class
+com\spmovy\servlet\AddReview.class
 com\spmovy\servlet\Logout.class
 com\spmovy\DatabaseUtils.class
 com\spmovy\servlet\AddGenre.class
