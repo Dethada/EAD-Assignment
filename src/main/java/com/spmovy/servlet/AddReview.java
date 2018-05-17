@@ -34,6 +34,7 @@ public class AddReview extends HttpServlet {
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
+        if (db == null) return; // return if database connection failed
         try {
             int updateCount = db.executeUpdate("INSERT INTO reviews(movieID,reviewSentence,name,rating,createdat,ip) VALUES (?,?,?,?,?,?)",
                     movieid,
@@ -42,7 +43,7 @@ public class AddReview extends HttpServlet {
                     rating,
                     new Timestamp(System.currentTimeMillis()),
                     request.getRemoteAddr());
-            if (updateCount != 1) {
+            if (updateCount != 1) { // checks if insert is successful
                 response.sendRedirect("/errors/error.html");
                 return;
             }

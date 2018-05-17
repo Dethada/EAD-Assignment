@@ -37,7 +37,7 @@ public class UpdateMovie extends HttpServlet {
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
-        if (db == null) return;
+        if (db == null) return;  // return if database connection failed
         try {
             int updateCount = db.executeUpdate("UPDATE movie SET title=?, releasedate=?, synopsis=?, duration=?, imagepath=?, status=? WHERE ID=?",
                     title,
@@ -53,17 +53,17 @@ public class UpdateMovie extends HttpServlet {
             }
             Connection connection = db.getConnection();
             // get movie id
-            ResultSet movieIDResult = db.executeQuery("SELECT * FROM movie WHERE title=? and releasedate=?",
+            ResultSet movieIDResult = db.executeQuery("SELECT ID FROM movie WHERE title=? and releasedate=?",
                     title,
                     java.sql.Date.valueOf(releasedate));
             movieIDResult.next();
             int movieid = movieIDResult.getInt("ID");
             // get list of current genres/actors
-            ArrayList<Integer> currentGenres = getcList(db.executeQuery("SELECT * FROM MovieGenre WHERE movieID=?", movieid));
-            ArrayList<Integer> currentActors = getcList(db.executeQuery("SELECT * FROM MovieActor WHERE movieID=?", movieid));
+            ArrayList<Integer> currentGenres = getcList(db.executeQuery("SELECT genreID FROM MovieGenre WHERE movieID=?", movieid));
+            ArrayList<Integer> currentActors = getcList(db.executeQuery("SELECT movieID FROM MovieActor WHERE movieID=?", movieid));
             // prepare prepared statements
-            PreparedStatement getGenreID = connection.prepareStatement("SELECT * FROM Genre WHERE name=?");
-            PreparedStatement getActorID = connection.prepareStatement("SELECT * FROM actor WHERE name=?");
+            PreparedStatement getGenreID = connection.prepareStatement("SELECT ID FROM Genre WHERE name=?");
+            PreparedStatement getActorID = connection.prepareStatement("SELECT ID FROM actor WHERE name=?");
             PreparedStatement insertGenre = connection.prepareStatement("insert into MovieGenre values (?, ?)");
             PreparedStatement insertActor = connection.prepareStatement("insert into MovieActor values (?, ?)");
             PreparedStatement deleteGenre = connection.prepareStatement("DELETE FROM MovieGenre WHERE movieID=? AND genreID=?");
@@ -84,6 +84,16 @@ public class UpdateMovie extends HttpServlet {
         response.sendRedirect(request.getHeader("referer"));
     }
 
+    /**
+     * This method adds new actors/genres for the movie and deletes actors/genres for movie that are not in the list of actors/genres submitted by the user.
+     *
+     * @param list       List of actors/genres submitted by the user
+     * @param cList      Current list of actors/genres
+     * @param getID      PreparedStatement to get ID of actor/genre
+     * @param insertStmt PreparedStatement to insert actor/genre
+     * @param deleteStmt PreparedStatement to delete actor/genre
+     * @throws SQLException
+     */
     private void updateManytoMany(String[] list, ArrayList<Integer> cList, PreparedStatement getID, PreparedStatement insertStmt, PreparedStatement deleteStmt) throws SQLException {
         // add actors/genres for movie
         for (String actor : list) {
@@ -106,11 +116,17 @@ public class UpdateMovie extends HttpServlet {
         }
     }
 
+    /**
+     * get list of IDs from the result set
+     *
+     * @param rs ResultSet of IDs
+     * @return ArrayList of the IDs of current actors/genres
+     * @throws SQLException
+     */
     private ArrayList<Integer> getcList(ResultSet rs) throws SQLException {
-        // get list of current actors
         ArrayList<Integer> cList = new ArrayList();
         while (rs.next()) {
-            cList.add(rs.getInt(2));
+            cList.add(rs.getInt(1));
         }
         return cList;
     }

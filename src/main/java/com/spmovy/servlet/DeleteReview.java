@@ -24,9 +24,14 @@ public class DeleteReview extends HttpServlet {
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
-        if (db == null) return;
+        if (db == null) return; // return if database connection failed
+
         try {
-            db.executeUpdate("delete from reviews where movieID=? and reviewID=?", movieid, reviewid);
+            int updateCount = db.executeUpdate("delete from reviews where movieID=? and reviewID=?", movieid, reviewid);
+            if (updateCount != 1) { // checks if delete is successful
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

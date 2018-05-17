@@ -20,8 +20,8 @@ public class DeleteMovie extends HttpServlet {
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
-        if (db == null) return;
-        if (!Utils.deleteID(request, response, db, table)) return;
+        if (db == null) return; // return if database connection failed
+        if (!Utils.deleteID(request, response, db, table)) return; // return if deleteID failed
         response.sendRedirect("/admin/movies.jsp");
     }
 }

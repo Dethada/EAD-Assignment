@@ -47,6 +47,13 @@ public class BCryptUtil {
         return BCrypt.checkpw(sha256hash(password_plaintext), stored_hash);
     }
 
+    /**
+     * This method returns the sha256 hash of a String.
+     *
+     * @param plaintext The account's plaintext password as provided during account creation,
+     *                  or when changing an account's password.
+     * @return String - sha256 hash of the plaintext in hex string format, length 64
+     */
     private static String sha256hash(String plaintext) {
         MessageDigest digest = null;
         try {
@@ -57,6 +64,12 @@ public class BCryptUtil {
         return bytesToHex(digest.digest(plaintext.getBytes(StandardCharsets.UTF_8)));
     }
 
+    /**
+     * This method converts bytes to hex string
+     *
+     * @param bytes The bytes to be converted to hex string
+     * @return String - hex string of the bytes
+     */
     private static String bytesToHex(byte[] bytes) {
         StringBuffer result = new StringBuffer();
         for (byte byt : bytes) result.append(Integer.toString((byt & 0xff) + 0x100, 16).substring(1));

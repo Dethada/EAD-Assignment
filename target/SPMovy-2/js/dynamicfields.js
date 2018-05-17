@@ -1,6 +1,6 @@
-$(document).ready(function(){
+$(document).ready(function () {
     var next = parseInt(document.getElementById("next").value);
-    $(".add-more").click(function(e){
+    $(".add-more").click(function (e) {
         e.preventDefault();
         var addto = "#field" + next;
         var addRemove = "#field" + (next);
@@ -11,19 +11,19 @@ $(document).ready(function(){
         var removeButton = $(removeBtn);
         $(addto).after(newInput);
         $(addRemove).after(removeButton);
-        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+        $("#field" + next).attr('data-source', $(addto).attr('data-source'));
         $("#count").val(next);
 
-        $('.remove-me').click(function(e){
+        $('.remove-me').click(function (e) {
             e.preventDefault();
-            var fieldNum = this.id.charAt(this.id.length-1);
+            var fieldNum = this.id.charAt(this.id.length - 1);
             var fieldID = "#field" + fieldNum;
             $(this).remove();
             $(fieldID).remove();
         });
     });
     var next2 = parseInt(document.getElementById("next2").value);
-    $(".add-more2").click(function(e){
+    $(".add-more2").click(function (e) {
         e.preventDefault();
         var add2to = "#fieldz" + next2;
         var add2Remove = "#fieldz" + (next2);
@@ -34,11 +34,11 @@ $(document).ready(function(){
         var removeButton = $(removeBtn);
         $(add2to).after(newInput);
         $(add2Remove).after(removeButton);
-        $("#fieldz" + next2).attr('data-source',$(add2to).attr('data-source'));
+        $("#fieldz" + next2).attr('data-source', $(add2to).attr('data-source'));
 
-        $('.remove-me2').click(function(e){
+        $('.remove-me2').click(function (e) {
             e.preventDefault();
-            var fieldNum = this.id.charAt(this.id.length-1);
+            var fieldNum = this.id.charAt(this.id.length - 1);
             var fieldID = "#fieldz" + fieldNum;
             $(this).remove();
             $(fieldID).remove();

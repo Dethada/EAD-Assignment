@@ -43,7 +43,7 @@ public class AddMovie extends HttpServlet {
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
-        if (db == null) return;
+        if (db == null) return; // return if database connection failed
         try {
             int updateCount = db.executeUpdate("INSERT INTO movie(title,releasedate,synopsis,duration,imagepath,status) VALUES (?, ?, ?, ?, ?, ?)",
                     title,
@@ -52,7 +52,7 @@ public class AddMovie extends HttpServlet {
                     duration,
                     imagepath,
                     status);
-            if (updateCount != 1) {
+            if (updateCount != 1) { // checks if insert is successful
                 response.sendRedirect("/errors/error.html");
                 return;
             }
@@ -82,6 +82,14 @@ public class AddMovie extends HttpServlet {
         response.sendRedirect("/admin/movies.jsp");
     }
 
+    /**
+     * This method adds actors/genres submitted for the movie
+     *
+     * @param list       List of actors/genres submitted by the user
+     * @param getID      PreparedStatement to get ID of actor/genre
+     * @param insertStmt PreparedStatement to insert actor/genre
+     * @throws SQLException
+     */
     private void addManytoMany(String[] list, PreparedStatement getID, PreparedStatement insertStmt) throws SQLException {
         for (String item : list) {
             getID.setString(1, item);

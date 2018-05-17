@@ -29,10 +29,10 @@ public class AddTimeslot extends HttpServlet {
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
-        if (db == null) return;
+        if (db == null) return; // return if database connection failed
         try {
             int updateCount = db.executeUpdate("INSERT INTO timeslot VALUES (?, ?, ?)", time, date, id);
-            if (updateCount != 1) {
+            if (updateCount != 1) { // checks if insert is successful
                 response.sendRedirect("/errors/error.html");
                 return;
             }

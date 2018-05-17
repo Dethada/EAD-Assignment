@@ -2,10 +2,21 @@ package com.spmovy;
 
 import java.sql.*;
 
+/**
+ * This class is a helper class for database connections and executing sql queries and updates.
+ *
+ * @Author David
+ */
+
 public class DatabaseUtils {
 
     private Connection connection;
 
+    /**
+     * Attempts to initiate database connection
+     *
+     * @throws SQLException if connection failed
+     */
     public DatabaseUtils() throws SQLException {
         String driverName = "com.mysql.jdbc.Driver";
         try {
@@ -17,6 +28,14 @@ public class DatabaseUtils {
         this.connection = DriverManager.getConnection(url, "spmovy", "15Pb6pc%$8!@P^NR$h@5rLM84gJvR2u1p72F^3");
     }
 
+    /**
+     * Prepares the prepared statement by setting values automatically.
+     *
+     * @param sql    The sql string for the prepared statement
+     * @param values The values to be inserted into the prepared statement.
+     * @return PreparedStatement - Prepared statement with values inserted.
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     private PreparedStatement prepare(String sql, Object... values) throws SQLException {
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
 
@@ -38,19 +57,50 @@ public class DatabaseUtils {
         return preparedStatement;
     }
 
+    /**
+     * Executes a sql query using prepared statements.
+     *
+     * @param sql    The sql string for the prepared statement
+     * @param values The values to be inserted into the prepared statement.
+     * @return ResultSet - ResultSet of the query
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public ResultSet executeQuery(String sql, Object... values) throws SQLException {
         return prepare(sql, values).executeQuery();
     }
 
+    /**
+     * Executes a sql update using prepared statements.
+     *
+     * @param sql    The sql string for the prepared statement
+     * @param values The values to be inserted into the prepared statement.
+     * @return int - Number of rows updated
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public int executeUpdate(String sql, Object... values) throws SQLException {
         return prepare(sql, values).executeUpdate();
     }
 
+    /**
+     * Executes a sql query using raw sql string, only to be used when no variable is being used in the sql string.
+     *
+     * @param sql The sql query string to be executed
+     * @return ResultSet - ResultSet of the query
+     * @throws SQLException if invalid sql string is provided or database connection is down
+     */
     public ResultSet executeFixedQuery(String sql) throws SQLException {
         Statement stmt = this.connection.createStatement();
         return stmt.executeQuery(sql);
     }
 
+    /**
+     * Deletes an object by calling a delete procedure.
+     *
+     * @param table The table to delete the object from
+     * @param id    The ID of the object to be deleted
+     * @return ResultSet - ResultSet of the query
+     * @throws SQLException if invalid id or table is provided or database connection is down
+     */
     public void callDelete(String table, int id) throws SQLException {
         CallableStatement stmt = connection.prepareCall("{CALL deleteProcedure(?, ?)}");
         stmt.setString(1, table);
@@ -58,10 +108,18 @@ public class DatabaseUtils {
         stmt.execute();
     }
 
+    /**
+     * Returns the current database connection
+     *
+     * @return Connection - The current database connection
+     */
     public Connection getConnection() {
         return this.connection;
     }
 
+    /**
+     * Closes the database connection.
+     */
     public void closeConnection() {
         try {
             this.connection.close();
