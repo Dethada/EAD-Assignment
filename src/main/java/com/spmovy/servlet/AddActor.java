@@ -15,16 +15,20 @@ public class AddActor extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        DatabaseUtils db = Utils.getDatabaseUtils(response);
-        if (db == null) return;
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         if (name == null || description == null) {
             response.sendRedirect("/errors/error.html");
             return;
         }
+        DatabaseUtils db = Utils.getDatabaseUtils(response);
+        if (db == null) return; // return if database connection failed
         try {
-            db.executeUpdate("INSERT INTO actor(Name, description) VALUES (?, ?)", name, description);
+            int updateCount = db.executeUpdate("INSERT INTO actor(Name, description) VALUES (?, ?)", name, description);
+            if (updateCount != 1) { // checks if insert is successful
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

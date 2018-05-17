@@ -1,18 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/admin/header.html"%>
+<%@ include file="/admin/header.html" %>
 <title>Add Movie</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/admin/adminPanel.jsp">SPMovy Admin</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Movies
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -21,7 +23,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Genres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,7 +33,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Actors
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -40,7 +44,8 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="movies.jsp">
-            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
+                   aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav">
@@ -67,7 +72,8 @@
     <div class="form-group row">
         <label for="synopsis" class="col-sm-2 col-form-label">Synopsis</label>
         <div class="col-md-3">
-            <textarea id="synopsis" rows="6" class="form-control" type="text" name="synopsis" placeholder="Synopsis" required></textarea>
+            <textarea id="synopsis" rows="6" class="form-control" type="text" name="synopsis" placeholder="Synopsis"
+                      required></textarea>
         </div>
     </div>
     <div class="form-group row">
@@ -77,7 +83,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <input type="hidden" id="next" value="1" />
+        <input type="hidden" id="next" value="1"/>
         <label for="genres" class="col-sm-2 col-form-label">Genres</label>
         <div class="col-md-3" id="genres">
             <input class="form-control" id="field1" name="genre" type="text" placeholder="Genre" required>
@@ -85,7 +91,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <input type="hidden" id="next2" value="1" />
+        <input type="hidden" id="next2" value="1"/>
         <label for="actors" class="col-sm-2 col-form-label">Actors</label>
         <div class="col-md-3" id="actors">
             <input class="form-control" id="fieldz1" name="actor" type="text" placeholder="Actor" required>
@@ -116,4 +122,4 @@
 </form>
 </body>
 <script src="/js/dynamicfields.js" defer></script>
-<%@ include file="/admin/footer.html"%>
+<%@ include file="/admin/footer.html" %>

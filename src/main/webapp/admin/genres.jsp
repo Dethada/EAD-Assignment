@@ -1,18 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.html"%>
+<%@ include file="header.html" %>
 <title>Genres</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/admin/adminPanel.jsp">SPMovy Admin</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Movies
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -21,7 +23,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Genres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,7 +33,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Actors
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -50,7 +54,8 @@
         </ul>
     </div>
 </nav>
-<%@ page import="java.sql.ResultSet,com.spmovy.DatabaseUtils,java.sql.SQLException,org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page
+        import="java.sql.ResultSet,com.spmovy.DatabaseUtils,java.sql.SQLException,org.apache.commons.lang3.StringEscapeUtils" %>
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -66,7 +71,7 @@
         if (request.getParameter("genrename") == null) {
             rs = db.executeFixedQuery("SELECT * FROM Genre");
         } else {
-            rs = db.executeQuery("SELECT * FROM Genre WHERE name LIKE ?", "%"+request.getParameter("genrename")+"%");
+            rs = db.executeQuery("SELECT * FROM Genre WHERE name LIKE ?", "%" + request.getParameter("genrename") + "%");
         }
         try {
             while (rs.next()) {
@@ -94,4 +99,4 @@
     </tbody>
 </table>
 </body>
-<%@ include file="footer.html"%>
+<%@ include file="footer.html" %>

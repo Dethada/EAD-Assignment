@@ -2,7 +2,6 @@ package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;

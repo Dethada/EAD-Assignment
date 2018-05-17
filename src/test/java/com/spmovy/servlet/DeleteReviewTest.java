@@ -8,13 +8,14 @@ import org.mockito.Mockito;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 
 public class DeleteReviewTest extends Mockito {
 
-    private static int reviewID = 100;
+    private static int reviewID;
     private static int movieID = 1;
 
     @Before
@@ -22,9 +23,15 @@ public class DeleteReviewTest extends Mockito {
         DatabaseUtils db = new DatabaseUtils();
         // reviewID, movieID, reviewSentence, name, rating, createdat, ip
         try {
-            db.executeUpdate("INSERT INTO movie VALUES (?, ?, ?, ?, ?, ?, ?)",
-                    reviewID, movieID, "Hi nice movie", "test", 5, "1990-01-01", "127.0.0.1");
+            db.executeUpdate("INSERT INTO reviews(movieID, reviewSentence, name, rating, createdat, ip) VALUES (?, ?, ?, ?, ?, ?)",
+                    movieID, "Hi nice movie", "test", 5, "1990-01-01", "127.0.0.1");
+            ResultSet rs =db.executeQuery("SELECT reviewID FROM reviews WHERE movieID=? and reviewSentence=? and name=? and rating=? and createdat=? and ip=?",
+                    movieID, "Hi nice movie", "test", 5, "1990-01-01", "127.0.0.1");
+            if (rs.next()) {
+                reviewID = rs.getInt("reviewID");
+            }
         } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

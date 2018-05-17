@@ -26,9 +26,13 @@ public class UpdateMovieImagePath extends HttpServlet {
         }
         String path = "https://cdn.spmovy.xyz/" + request.getParameter("path");
         DatabaseUtils db = Utils.getDatabaseUtils(response);
-        if (db == null) return;
+        if (db == null) return; // return if database connection failed
         try {
-            db.executeUpdate("UPDATE movie SET imagepath=? WHERE ID=?", path, id);
+            int updateCount = db.executeUpdate("UPDATE movie SET imagepath=? WHERE ID=?", path, id);
+            if (updateCount != 1) { // checks if update is successful
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
