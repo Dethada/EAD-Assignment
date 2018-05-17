@@ -56,6 +56,7 @@
 </nav>
 <%@ page
         import="java.sql.ResultSet,com.spmovy.DatabaseUtils,java.sql.SQLException,org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page import="com.spmovy.Utils" %>
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -66,7 +67,8 @@
     </thead>
     <tbody>
     <%
-        DatabaseUtils db = new DatabaseUtils();
+        DatabaseUtils db = Utils.getDatabaseUtils(response);
+        if (db == null) return;
         ResultSet rs;
         if (request.getParameter("genrename") == null) {
             rs = db.executeFixedQuery("SELECT * FROM Genre");

@@ -57,8 +57,10 @@
 </nav>
 <%@ page import="java.sql.*" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
+<%@ page import="com.spmovy.Utils" %>
 <%
-    DatabaseUtils db = new DatabaseUtils();
+    DatabaseUtils db = Utils.getDatabaseUtils(response);
+    if (db == null) return;
     int id = Integer.parseInt(request.getParameter("id"));
     ResultSet rs = db.executeQuery("SELECT title FROM movie WHERE ID=?", id);
     String title = "";
