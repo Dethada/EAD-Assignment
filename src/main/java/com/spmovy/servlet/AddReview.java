@@ -46,7 +46,7 @@ public class AddReview extends HttpServlet {
                 response.sendRedirect("/errors/error.html");
                 return;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
             return;

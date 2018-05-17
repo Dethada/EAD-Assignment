@@ -44,6 +44,6 @@ public class DeleteTimeslot extends HttpServlet {
         } finally {
             db.closeConnection();
         }
-        response.sendRedirect("/admin/timeslots.jsp?id="+id);
+        response.sendRedirect("/admin/timeslots.jsp?id=" + id);
     }
 }

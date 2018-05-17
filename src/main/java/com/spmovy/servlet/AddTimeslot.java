@@ -23,7 +23,7 @@ public class AddTimeslot extends HttpServlet {
         try {
             id = Integer.parseInt(request.getParameter("id"));
             date = Date.valueOf(request.getParameter("date"));
-            time = Time.valueOf(request.getParameter("time")+":00");
+            time = Time.valueOf(request.getParameter("time") + ":00");
         } catch (Exception e) { // catch all format exceptions
             response.sendRedirect("/errors/error.html");
             return;
@@ -43,7 +43,7 @@ public class AddTimeslot extends HttpServlet {
             db.closeConnection();
         }
         if (request.getHeader("referer") == null) {
-            response.sendRedirect("/admin/timeslots.jsp?id="+id);
+            response.sendRedirect("/admin/timeslots.jsp?id=" + id);
         } else {
             response.sendRedirect(request.getHeader("referer"));
         }

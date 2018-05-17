@@ -86,7 +86,7 @@ public class UpdateMovie extends HttpServlet {
 
     private void updateManytoMany(String[] list, ArrayList<Integer> cList, PreparedStatement getID, PreparedStatement insertStmt, PreparedStatement deleteStmt) throws SQLException {
         // add actors/genres for movie
-        for(String actor : list) {
+        for (String actor : list) {
             getID.setString(1, actor);
             ResultSet rs = getID.executeQuery();
             if (rs.next()) {
@@ -100,7 +100,7 @@ public class UpdateMovie extends HttpServlet {
             }
         }
         // delete actors/genres for movie
-        for(int deleteid : cList) {
+        for (int deleteid : cList) {
             deleteStmt.setInt(2, deleteid);
             deleteStmt.executeUpdate();
         }

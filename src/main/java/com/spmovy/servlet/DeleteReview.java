@@ -35,6 +35,6 @@ public class DeleteReview extends HttpServlet {
             db.closeConnection();
         }
 
-        response.sendRedirect("/admin/reviews.jsp?id="+movieid);
+        response.sendRedirect("/admin/reviews.jsp?id=" + movieid);
     }
 }

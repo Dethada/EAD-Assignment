@@ -12,7 +12,7 @@ public class Logout extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
         session.invalidate();
         response.sendRedirect("/admin.jsp");
     }

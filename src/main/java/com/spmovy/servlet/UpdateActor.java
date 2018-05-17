@@ -16,7 +16,7 @@ public class UpdateActor extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
-        String description =  request.getParameter("description");
+        String description = request.getParameter("description");
         int id;
         if (name == null || description == null) {
             response.sendRedirect("/errors/error.html");

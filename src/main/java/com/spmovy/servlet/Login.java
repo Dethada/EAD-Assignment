@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
                             new Timestamp(System.currentTimeMillis()),
                             username);
                     response.sendRedirect("/admin/adminPanel.jsp");
-                } else  {
+                } else {
                     response.sendRedirect("/admin/admin.jsp?login=Failed");
                 }
             } else {
