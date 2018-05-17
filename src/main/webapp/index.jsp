@@ -1,13 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Javiery
-  Date: 29/4/2018
-  Time: 9:33 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.*" import="org.apache.commons.lang3.StringEscapeUtils"%>
-<%@ page import="org.omg.CORBA.Request" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
+<%@ page import="com.spmovy.Utils" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -71,7 +64,8 @@
     </section>
     <%
 
-        DatabaseUtils db = new DatabaseUtils();
+        DatabaseUtils db = Utils.getDatabaseUtils(response);
+        if (db == null) return;
 
         String moviestatus = request.getParameter("status");
         if(moviestatus == null){
@@ -169,7 +163,7 @@
                             <%
                                 out.print("<a class=\"btn btn-sm btn-outline-secondary\"" + "href=\"moviedetails.jsp?movieid=" + StringEscapeUtils.escapeHtml4(movieID) + "\">View</a>");%>
                         </div>
-                        <small class="text-muted"><%=StringEscapeUtils.escapeHtml4(duration) + " mins"%>
+                        <small class="text-muted"><%=duration + " mins"%>
                         </small>
                     </div>
                 </div>
@@ -183,7 +177,7 @@
     <%
         } catch (Exception e) {
             e.printStackTrace();
-
+            response.sendRedirect("/errors/error.html");
         }
         finally {
             db.closeConnection();

@@ -45,13 +45,17 @@ public class AddMovie extends HttpServlet {
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
         try {
-            db.executeUpdate("INSERT INTO movie(title,releasedate,synopsis,duration,imagepath,status) VALUES (?, ?, ?, ?, ?, ?)",
+            int updateCount = db.executeUpdate("INSERT INTO movie(title,releasedate,synopsis,duration,imagepath,status) VALUES (?, ?, ?, ?, ?, ?)",
                     title,
                     java.sql.Date.valueOf(releasedate),
                     synopsis,
                     duration,
                     imagepath,
                     status);
+            if (updateCount != 1) {
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
 
             Connection connection = db.getConnection();
 

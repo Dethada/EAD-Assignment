@@ -24,7 +24,11 @@ public class AddActor extends HttpServlet {
             return;
         }
         try {
-            db.executeUpdate("INSERT INTO actor(Name, description) VALUES (?, ?)", name, description);
+            int updateCount = db.executeUpdate("INSERT INTO actor(Name, description) VALUES (?, ?)", name, description);
+            if (updateCount != 1) {
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

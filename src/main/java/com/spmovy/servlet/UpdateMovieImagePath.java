@@ -28,7 +28,11 @@ public class UpdateMovieImagePath extends HttpServlet {
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
         try {
-            db.executeUpdate("UPDATE movie SET imagepath=? WHERE ID=?", path, id);
+            int updateCount = db.executeUpdate("UPDATE movie SET imagepath=? WHERE ID=?", path, id);
+            if (updateCount != 1) {
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

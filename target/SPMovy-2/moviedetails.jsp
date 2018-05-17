@@ -1,12 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Javiery
-  Date: 29/4/2018
-  Time: 3:23 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.*" import="java.util.*" import="org.apache.commons.lang3.StringEscapeUtils"%>
 <%@ page import="com.spmovy.DatabaseUtils" %>
+<%@ page import="com.spmovy.Utils" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -55,49 +49,58 @@
 <main role="main">
 <div class="album py-5 bg-light">
 <div class="container">
-    <%
-
-    %>
     <div>
 <%
-    String movieID = request.getParameter("movieid");
-    DatabaseUtils db = new DatabaseUtils();
-    ResultSet rs = db.executeQuery("SELECT title, synopsis, date_format(releasedate,'%e/%m/%Y'), duration, imagepath, status FROM  movie where movie.ID = ?",
-            movieID);
+    int movieID;
+    try {
+        movieID = Integer.parseInt(request.getParameter("movieid"));
+    } catch (NumberFormatException e) {
+        response.sendRedirect("/index.jsp");
+        return;
+    }
+    DatabaseUtils db = Utils.getDatabaseUtils(response);
+    if (db == null) return;
     String synopsis = "";
-    String duration = "";
+    int duration = 0;
     String releasedate = "";
     String movietitle = "";
     String moviestatus = "";
-    if(rs.next()){
-        movietitle = rs.getString(1);
-        synopsis = rs.getString(2);
-        releasedate = rs.getString(3);
-        duration = rs.getString(4);
-        String imagepath = rs.getString(5);
-        moviestatus = rs.getString(6);
-        out.print("<a class=\"btn btn-primary mb-3\" href=\"index.jsp?status="+moviestatus+"\">Back To Home Page</a>");
-        out.print("<h1 style=\"padding-bottom: 10px;border-bottom: 1px solid  #b2b2b2;\">"+StringEscapeUtils.escapeHtml4(movietitle)+"</h1>");
-        out.print("<div class=\"row\"><div class=\"col-md-5\"><img src=\"" + StringEscapeUtils.escapeHtml4(imagepath) + "\"/></div>");
-
+    ResultSet rs;
+    try {
+        rs = db.executeQuery("SELECT title, synopsis, date_format(releasedate,'%e/%m/%Y'), duration, imagepath, status FROM  movie where movie.ID = ?",
+                movieID);
+        if (rs.next()) {
+            movietitle = rs.getString(1);
+            synopsis = rs.getString(2);
+            releasedate = rs.getString(3);
+            duration = rs.getInt(4);
+            String imagepath = rs.getString(5);
+            moviestatus = rs.getString(6);
+            out.print("<a class=\"btn btn-primary mb-3\" href=\"index.jsp?status=" + StringEscapeUtils.escapeHtml4(moviestatus) + "\">Back To Home Page</a>");
+            out.print("<h1 style=\"padding-bottom: 10px;border-bottom: 1px solid  #b2b2b2;\">" + StringEscapeUtils.escapeHtml4(movietitle) + "</h1>");
+            out.print("<div class=\"row\"><div class=\"col-md-5\"><img src=\"" + StringEscapeUtils.escapeHtml4(imagepath) + "\"/></div>");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        response.sendRedirect("/errors/error.html");
+        return;
     }
 
     ArrayList actorlist = new ArrayList();
-    ResultSet rs2 = db.executeQuery("SELECT actor.name from MovieActor inner join movie on MovieActor.movieID = movie.ID inner join actor on MovieActor.actorID = actor.ID where movie.id = ?"
+    rs = db.executeQuery("SELECT actor.name from MovieActor inner join movie on MovieActor.movieID = movie.ID inner join actor on MovieActor.actorID = actor.ID where movie.id = ?"
             ,movieID);
 
-    while(rs2.next()){
-        actorlist.add(rs2.getString(1));
-
+    while(rs.next()){
+        actorlist.add(rs.getString(1));
     }
     String actor = actorlist.toString();
     actor = actor.replaceAll("[\\[\\]]", "");
 
     ArrayList genrelist = new ArrayList();
-    ResultSet rs3 = db.executeQuery("select Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID where movie.id=?"
+    rs = db.executeQuery("select Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID where movie.id=?"
             ,movieID);
-    while(rs3.next()){
-        genrelist.add(rs3.getString(1));
+    while(rs.next()){
+        genrelist.add(rs.getString(1));
 
     }
     String genre = genrelist.toString();
@@ -105,7 +108,7 @@
 
     out.print("<div class=\"col-md-6\"><h3>Movie Details</h3>");
     out.print("<div class=\"col-md\"><h4>Cast</h4><p>"+StringEscapeUtils.escapeHtml4(actor)+"</p></div>");
-    out.print("<div class=\"col-md\"><h4>Duration</h4><p>"+StringEscapeUtils.escapeHtml4(duration)+" mins</p></div>");
+    out.print("<div class=\"col-md\"><h4>Duration</h4><p>"+duration+" mins</p></div>");
     out.print("<div class=\"col-md\"><h4>Genre</h4><p>"+StringEscapeUtils.escapeHtml4(genre)+"</p></div>");
     out.print("<div class=\"col-md\"><h4>Release Date</h4><p>"+StringEscapeUtils.escapeHtml4(releasedate)+"</p></div>");
 
@@ -166,28 +169,34 @@
 
             <div>
             <%
-                ResultSet getreviews = db.executeQuery("SELECT reviewSentence,name,rating, DATE_FORMAT(createdat,\"%d/%m/%Y %r\") FROM reviews WHERE movieid=?", movieID);
-                String reviewSentence = "";
-                String name = "";
+                String reviewSentence;
+                String name;
                 int rating;
-                String createat = "";
-                while (getreviews.next()) {
-                    reviewSentence = getreviews.getString(1);
-                    name = getreviews.getString(2);
-                    rating = getreviews.getInt(3);
-                    createat = getreviews.getString(4);
+                String createat;
+                try {
+                    ResultSet getreviews = db.executeQuery("SELECT reviewSentence,name,rating, DATE_FORMAT(createdat,\"%d/%m/%Y %r\") FROM reviews WHERE movieid=?", movieID);
+                    while (getreviews.next()) {
+                        reviewSentence = getreviews.getString(1);
+                        name = getreviews.getString(2);
+                        rating = getreviews.getInt(3);
+                        createat = getreviews.getString(4);
 
-                    out.println("<div class=\"row mt-4\">");
-                    out.println("<div class=\"col-sm-3\"><p class=\"text-center\"><strong>"+name+"</strong></p><p class=\"text-center\">"+createat+"</p></div>");
-                    out.println("<div class=\"col-md-6\"><p>"+reviewSentence+"</p></div>");
-                    out.println("<div class=\"col-sm\"><div class=\"stars stars-example-fontawesome-o\">" +
-                            "<select class=\"example-fontawesome-o\" name=\"rating\" data-current-rating=\""+rating+"\">" +
-                            "<option value=\"1\">1</option>" +
-                            "<option value=\"2\">2</option>" +
-                            "<option value=\"3\">3</option>" +
-                            "<option value=\"4\">4</option>" +
-                            "<option value=\"5\">5</option>" +
-                            "</select></div></div></div>");
+                        out.println("<div class=\"row mt-4\">");
+                        out.println("<div class=\"col-sm-3\"><p class=\"text-center\"><strong>" + StringEscapeUtils.escapeHtml4(name) + "</strong></p><p class=\"text-center\">" + createat + "</p></div>");
+                        out.println("<div class=\"col-md-6\"><p>" + StringEscapeUtils.escapeHtml4(reviewSentence) + "</p></div>");
+                        out.println("<div class=\"col-sm\"><div class=\"stars stars-example-fontawesome-o\">" +
+                                "<select class=\"example-fontawesome-o\" name=\"rating\" data-current-rating=\"" + rating + "\">" +
+                                "<option value=\"1\">1</option>" +
+                                "<option value=\"2\">2</option>" +
+                                "<option value=\"3\">3</option>" +
+                                "<option value=\"4\">4</option>" +
+                                "<option value=\"5\">5</option>" +
+                                "</select></div></div></div>");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    response.sendRedirect("/errors/error.html");
+                    return;
                 }
             %>
             </div>
@@ -226,7 +235,7 @@
                                 </div>
                                 <br>
                                 <br>
-                                <%out.print("<input type=\"hidden\" name=\"movieid\" value=\"" + StringEscapeUtils.escapeHtml4(movieID) + "\">");%>
+                                <%out.print("<input type=\"hidden\" name=\"movieid\" value=\"" + movieID + "\">");%>
                                 <input type="submit" value="Submit" class="btn btn-primary">
                             </form>
                         </div>

@@ -31,10 +31,14 @@ public class UpdateActor extends HttpServlet {
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
         try {
-            db.executeUpdate("UPDATE actor SET Name=?, description=? WHERE ID=?",
+            int updateCount = db.executeUpdate("UPDATE actor SET Name=?, description=? WHERE ID=?",
                     name,
                     description,
                     id);
+            if (updateCount != 1) {
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

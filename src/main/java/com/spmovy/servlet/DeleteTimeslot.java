@@ -29,10 +29,14 @@ public class DeleteTimeslot extends HttpServlet {
         try {
             String date = request.getParameter("moviedate");
             String time = request.getParameter("movietime");
-            db.executeUpdate("delete from timeslot where movietime=? and moviedate=? and movieID=?",
+            int updateCount = db.executeUpdate("delete from timeslot where movietime=? and moviedate=? and movieID=?",
                     Time.valueOf(time),
                     Date.valueOf(date),
                     id);
+            if (updateCount != 1) {
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

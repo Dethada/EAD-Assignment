@@ -32,10 +32,14 @@ public class UpdateGenre extends HttpServlet {
         if (db == null) return;
 
         try {
-            db.executeUpdate("UPDATE Genre SET name=?, description=? WHERE ID=?",
+            int updateCount = db.executeUpdate("UPDATE Genre SET name=?, description=? WHERE ID=?",
                     name,
                     description,
                     id);
+            if (updateCount != 1) {
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

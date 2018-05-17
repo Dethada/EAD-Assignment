@@ -39,7 +39,7 @@ public class UpdateMovie extends HttpServlet {
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
         try {
-            db.executeUpdate("UPDATE movie SET title=?, releasedate=?, synopsis=?, duration=?, imagepath=?, status=? WHERE ID=?",
+            int updateCount = db.executeUpdate("UPDATE movie SET title=?, releasedate=?, synopsis=?, duration=?, imagepath=?, status=? WHERE ID=?",
                     title,
                     Date.valueOf(releasedate),
                     synopsis,
@@ -47,6 +47,10 @@ public class UpdateMovie extends HttpServlet {
                     imagepath,
                     status,
                     id);
+            if (updateCount != 1) {
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
             Connection connection = db.getConnection();
             // get movie id
             ResultSet movieIDResult = db.executeQuery("SELECT * FROM movie WHERE title=? and releasedate=?",
