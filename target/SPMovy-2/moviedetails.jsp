@@ -19,6 +19,8 @@
     <link href="css/album.css" rel="stylesheet">
     <link href="css/fontawesome-stars.css" rel="stylesheet">
     <link href="css/fontawesome-stars-o.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
 
     <title>Title</title>
 </head>
