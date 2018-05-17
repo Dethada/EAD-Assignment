@@ -19,7 +19,7 @@ public class Utils {
         return db;
     }
 
-    public static boolean deleteID(HttpServletRequest request, HttpServletResponse response, DatabaseUtils db) throws IOException {
+    public static boolean deleteID(HttpServletRequest request, HttpServletResponse response, DatabaseUtils db, String table) throws IOException {
         int id;
         try {
             id = Integer.parseInt(request.getParameter("id"));
@@ -27,12 +27,8 @@ public class Utils {
             response.sendRedirect("/errors/error.html");
             return false;
         }
-        if (request.getParameter("table") == null) {
-            response.sendRedirect("/errors/error.html");
-            return false;
-        }
         try {
-            db.callDelete(request.getParameter("table"), id);
+            db.callDelete(table, id);
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

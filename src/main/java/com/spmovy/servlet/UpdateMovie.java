@@ -15,18 +15,25 @@ import java.util.ArrayList;
 public class UpdateMovie extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id, duration;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+            duration = Integer.parseInt(request.getParameter("duration"));
+        } catch (NumberFormatException e) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
         String title = request.getParameter("title");
         String releasedate = request.getParameter("releasedate");
         String synopsis = request.getParameter("synopsis");
-        int duration = Integer.parseInt(request.getParameter("duration"));
         String imagepath = request.getParameter("imagepath");
         String status = request.getParameter("status");
         String[] genres = request.getParameterValues("genre");
         String[] actors = request.getParameterValues("actor");
-        // redirect if no genre or actor is provided
-        if (genres == null || actors == null) {
-            response.sendRedirect(request.getHeader("referer"));
+        // redirect there are missing fields
+        if (genres == null || actors == null || title == null || releasedate == null
+                || synopsis == null || imagepath == null || status == null) {
+            response.sendRedirect("/errors/error.html");
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);

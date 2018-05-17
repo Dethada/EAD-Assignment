@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="header.html"%>
     <title>Admin Panel</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -52,11 +56,23 @@
 </nav>
 <%@ page import="java.sql.*" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.ArrayList" %>
 <%  String ip = "";
     String lastlogintime = "";
     DatabaseUtils db = new DatabaseUtils();
-
+    ArrayList countreviewlist = new ArrayList();
+    ArrayList movielist = new ArrayList();
     try {
+        ResultSet getreviews = db.executeFixedQuery("select count(reviewID), movieID from reviews group by movieID order by movieID asc");
+        ResultSet getmovietitle = db.executeFixedQuery("select title from movie order by ID asc");
+        while(getreviews.next()){
+            countreviewlist.add(getreviews.getInt(1));
+        }
+        while(getmovietitle.next()){
+            movielist.add("\"" + getmovietitle.getString(1) + "\"");
+        }
+        System.out.println(movielist);
         ResultSet rs = db.executeQuery("SELECT * FROM users where ID=?", (Integer) session.getAttribute("userid"));
         if (rs.next()) {
             ip = rs.getString("lastloginip");
@@ -158,7 +174,50 @@
                 </div>
             </a>
         </div>
-    </div>
 </div>
+    <div class="container">
+    <canvas id="myChart" width="100" height="100"></canvas>
+    </div>
+        <script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <%=movielist%>,
+                datasets: [{
+                    label: 'Number of reviews',
+                    data: <%=Arrays.toString(countreviewlist.toArray())%>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</div>
+
 </body>
 <%@ include file="footer.html"%>

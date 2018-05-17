@@ -20,6 +20,7 @@ public class LoginTest extends Mockito {
 
         when(request.getParameter("username")).thenReturn("admin");
         when(request.getParameter("password")).thenReturn("admin");
+        when(request.getRemoteAddr()).thenReturn("127.0.0.1");
         when(request.getSession()).thenReturn(session);
 
         new Login().doPost(request, response);
