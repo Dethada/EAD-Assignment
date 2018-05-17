@@ -1,6 +1,7 @@
 package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -9,14 +10,15 @@ import org.mockito.Mockito;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 
 public class DeleteTest extends Mockito {
 
+    private static int id;
     private static String table = "actor";
-    private static int id = 11;
     private static String name = "TestActor";
     private static String description = "TestActor Description";
 
@@ -24,8 +26,23 @@ public class DeleteTest extends Mockito {
     public void setUp() throws Exception {
         DatabaseUtils db = new DatabaseUtils();
         try {
-            db.executeUpdate("INSERT INTO actor VALUES (?, ?, ?)", id, name, description);
+            db.executeUpdate("INSERT INTO actor(Name, description) VALUES (?, ?)", name, description);
+            ResultSet rs = db.executeQuery("select ID from actor where Name=? and description=?", name, description);
+            if (rs.next()) {
+                id = rs.getInt("ID");
+            }
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        DatabaseUtils db = new DatabaseUtils();
+        try {
+            db.executeUpdate("DELETE FROM actor WHERE ID=?", id);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

@@ -1,6 +1,7 @@
 package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -8,15 +9,17 @@ import org.mockito.Mockito;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 
 import static org.junit.Assert.*;
 
 public class DeleteTimeslotTest extends Mockito {
 
     private static int movieID = 1;
-    private static String movietime = "12:00:00";
-    private static String moviedate = "1990-01-01";
+    private static Time movietime = Time.valueOf("12:00:00");
+    private static Date moviedate = Date.valueOf("1990-01-01");
 
 
     @Before
@@ -26,6 +29,18 @@ public class DeleteTimeslotTest extends Mockito {
             db.executeUpdate("INSERT INTO timeslot VALUES (?, ?, ?)",
                     movietime, moviedate, movieID);
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        DatabaseUtils db = new DatabaseUtils();
+        try {
+            db.executeUpdate("DELETE FROM timeslot WHERE movietime=? and moviedate=? and movieID=?",
+                    movietime, moviedate, movieID);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

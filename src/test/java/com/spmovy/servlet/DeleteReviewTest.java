@@ -1,6 +1,7 @@
 package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -30,6 +31,17 @@ public class DeleteReviewTest extends Mockito {
             if (rs.next()) {
                 reviewID = rs.getInt("reviewID");
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        DatabaseUtils db = new DatabaseUtils();
+        // reviewID, movieID, reviewSentence, name, rating, createdat, ip
+        try {
+            db.executeUpdate("DELETE FROM reviews WHERE reviewID=? and movieID=?", reviewID, movieID);
         } catch (SQLException e) {
             e.printStackTrace();
         }
