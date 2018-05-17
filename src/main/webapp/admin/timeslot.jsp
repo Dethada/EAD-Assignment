@@ -103,10 +103,7 @@
             rs = db.executeQuery("SELECT * FROM timeslot where movieID=?", id);
             while (rs.next()) {
                 out.print("<td>" + rs.getString("moviedate") + "</td><td>" + rs.getString("movietime") + "</td>");
-                out.print("<td><form method=\"post\" action=\"/admin/updateTimeslot.jsp\">" +
-                        "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                        "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
-                        "<form method=\"post\" action=\"/backend/admin/DeleteTimeslot\">" +
+                out.print("<td><form method=\"post\" action=\"/backend/admin/DeleteTimeslot\">" +
                         "<input type=\"hidden\" name=\"movietime\" value=\"" + rs.getString("movietime") + "\">" +
                         "<input type=\"hidden\" name=\"moviedate\" value=\"" + rs.getString("moviedate") + "\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
