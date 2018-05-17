@@ -26,7 +26,7 @@ document.getElementById("comingsoonbutton").addEventListener("click", function (
     if (genre !== null) {
         appendInput(form, "genre", genre);
     }
-    appendInput(form,"status","Coming soon");
+    appendInput(form, "status", "Coming soon");
     form.submit();
 
 });

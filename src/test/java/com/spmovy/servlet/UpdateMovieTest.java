@@ -125,7 +125,7 @@ public class UpdateMovieTest extends Mockito {
     public void ValidParams() throws Exception {
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
-//        ID, title, releasedate, synopsis, duration, imagepath, status
+
         when(request.getParameter("id")).thenReturn(String.valueOf(id));
         when(request.getParameter("duration")).thenReturn(String.valueOf(duration));
         when(request.getParameter("title")).thenReturn(title);

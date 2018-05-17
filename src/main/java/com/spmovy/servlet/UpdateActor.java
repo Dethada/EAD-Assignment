@@ -16,7 +16,7 @@ public class UpdateActor extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
-        String description =  request.getParameter("description");
+        String description = request.getParameter("description");
         int id;
         if (name == null || description == null) {
             response.sendRedirect("/errors/error.html");
@@ -29,12 +29,16 @@ public class UpdateActor extends HttpServlet {
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
-        if (db == null) return;
+        if (db == null) return; // return if database connection failed
         try {
-            db.executeUpdate("UPDATE actor SET Name=?, description=? WHERE ID=?",
+            int updateCount = db.executeUpdate("UPDATE actor SET Name=?, description=? WHERE ID=?",
                     name,
                     description,
                     id);
+            if (updateCount != 1) { // checks if update is successful
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

@@ -35,7 +35,7 @@ public class DatabaseUtilsTest {
     }
 
     @Test
-    public void getConnection() throws Exception {
+    public void getConnection() {
         assertNotNull(this.db.getConnection());
     }
 }

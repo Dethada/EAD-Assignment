@@ -1,18 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.html"%>
+<%@ include file="header.html" %>
 <title>Update Movie</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/admin/adminPanel.jsp">SPMovy Admin</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Movies
                 </a>
                 <div class="dropdown-menu active" aria-labelledby="navbarDropdown">
@@ -21,7 +23,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Genres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,7 +33,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Actors
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -40,7 +44,8 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="movies.jsp">
-            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
+                   aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav">
@@ -83,15 +88,15 @@
         }
         // get actors
         rs = db.executeQuery("SELECT movie.title, actor.name from MovieActor inner join movie on MovieActor.movieID = movie.ID inner join actor on MovieActor.actorID = actor.ID where movie.id = ?",
-        movieid);
-        while(rs.next()) {
+                movieid);
+        while (rs.next()) {
             actorlist.add(rs.getString(2));
         }
         noActors = actorlist.size();
 
         // get genres
         rs = db.executeQuery("select Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID where movie.id=?", movieid);
-        while(rs.next()){
+        while (rs.next()) {
             genrelist.add(rs.getString(1));
         }
         noGenres = genrelist.size();
@@ -106,7 +111,8 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Title</label>
         <div class="col-md-3">
-            <input class="form-control" type="text" name="title" value="<%= StringEscapeUtils.escapeHtml4(title) %>" required>
+            <input class="form-control" type="text" name="title" value="<%= StringEscapeUtils.escapeHtml4(title) %>"
+                   required>
         </div>
     </div>
     <div class="form-group row">
@@ -118,7 +124,8 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Synopsis</label>
         <div class="col-md-3">
-            <textarea rows="6" class="form-control" type="text" name="synopsis" required><%= StringEscapeUtils.escapeHtml4(synopsis) %></textarea>
+            <textarea rows="6" class="form-control" type="text" name="synopsis"
+                      required><%= StringEscapeUtils.escapeHtml4(synopsis) %></textarea>
         </div>
     </div>
     <div class="form-group row">
@@ -130,47 +137,57 @@
     <div class="form-group row">
         <label for="genres" class="col-sm-2 col-form-label">Genres</label>
         <div class="col-md-3" id="genres">
-            <%  for(int i=0;i < noGenres; i++) {
-                if (i == noGenres-1) {
-                    out.print("<input class=\"form-control\" id=\"field" + (i+1) + "\" name=\"genre\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
+            <% for (int i = 0; i < noGenres; i++) {
+                if (i == noGenres - 1) {
+                    out.print("<input class=\"form-control\" id=\"field" + (i + 1) + "\" name=\"genre\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
                 } else {
-                    out.print("<input class=\"form-control\" id=\"field" + (i+1) + "\" name=\"genre\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
-                    out.print("<button id=\"remove" + (i+1) + "\" class=\"btn btn-danger remove-me\" >-</button>");
+                    out.print("<input class=\"form-control\" id=\"field" + (i + 1) + "\" name=\"genre\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
+                    out.print("<button id=\"remove" + (i + 1) + "\" class=\"btn btn-danger remove-me\" >-</button>");
                 }
             }
             %>
             <button id="b1" class="btn add-more" type="button">+</button>
         </div>
-        <input type="hidden" id="next" value="<%=noGenres%>" />
+        <input type="hidden" id="next" value="<%=noGenres%>"/>
     </div>
     <div class="form-group row">
         <label for="actors" class="col-sm-2 col-form-label">Actors</label>
         <div class="col-md-3" id="actors">
-            <%  for(int i=0;i < noActors; i++) {
-                if (i == noActors-1) {
-                    out.print("<input class=\"form-control\" id=\"fieldz" + (i+1) + "\" name=\"actor\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
+            <% for (int i = 0; i < noActors; i++) {
+                if (i == noActors - 1) {
+                    out.print("<input class=\"form-control\" id=\"fieldz" + (i + 1) + "\" name=\"actor\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
                 } else {
-                    out.print("<input class=\"form-control\" id=\"fieldz" + (i+1) + "\" name=\"actor\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
-                    out.print("<button id=\"remove" + (i+1) + "\" class=\"btn btn-danger remove-me2\" >-</button>");
+                    out.print("<input class=\"form-control\" id=\"fieldz" + (i + 1) + "\" name=\"actor\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
+                    out.print("<button id=\"remove" + (i + 1) + "\" class=\"btn btn-danger remove-me2\" >-</button>");
                 }
             }
             %>
             <button id="bt1" class="btn add-more2" type="button">+</button>
         </div>
-        <input type="hidden" id="next2" value="<%=noActors%>" />
+        <input type="hidden" id="next2" value="<%=noActors%>"/>
     </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Image Path</label>
         <div class="col-md-3">
-            <input class="form-control" type="text" name="imagepath" value="<%= StringEscapeUtils.escapeHtml4(imagepath) %>" required>
+            <input class="form-control" type="text" name="imagepath"
+                   value="<%= StringEscapeUtils.escapeHtml4(imagepath) %>" required>
         </div>
     </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Status</label>
         <select name="status" class="custom-select col-md-3" required>
-            <option <% if(status.equals("Coming Soon")) {out.print("selected=\"selected\"");} %> value="Coming Soon">Coming Soon</option>
-            <option <% if(status.equals("Now Showing")) {out.print("selected=\"selected\"");} %> value="Now Showing">Now Showing</option>
-            <option <% if(status.equals("Over")) {out.print("selected=\"selected\"");} %> value="Over">Over</option>
+            <option <% if (status.equals("Coming Soon")) {
+                out.print("selected=\"selected\"");
+            } %> value="Coming Soon">Coming Soon
+            </option>
+            <option <% if (status.equals("Now Showing")) {
+                out.print("selected=\"selected\"");
+            } %> value="Now Showing">Now Showing
+            </option>
+            <option <% if (status.equals("Over")) {
+                out.print("selected=\"selected\"");
+            } %> value="Over">Over
+            </option>
         </select>
     </div>
     <input type="hidden" name="id" value="<%= movieid %>">
@@ -186,14 +203,18 @@
     <input class="btn btn-danger" type="submit" value="Delete">
 </form>
 <h3>File Upload:</h3>
-Select a file to upload: <br />
+Select a file to upload: <br/>
 <form method="post" enctype="multipart/form-data" id="fileUploadForm">
-    <input type="file" name="file"  multiple="true"/><br/><br/>
+    <input type="file" name="file" multiple="true"/><br/><br/>
     <input type="submit" value="Upload File" id="btnSubmit"/>
 </form>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"
+        defer></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"
+        defer></script>
 <script src="/js/dynamicfields.js" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
@@ -217,7 +238,7 @@ Select a file to upload: <br />
                 type: "POST",
                 enctype: 'multipart/form-data',
                 url: "https://cdn.spmovy.xyz/upload",
-                headers: {"token":"jwqIVxAJxBbe8iobMiyY4B1snIW7CSm9FNyfpjTrzdo389sQjvv9cF7x3AGDfDlj"},
+                headers: {"token": "jwqIVxAJxBbe8iobMiyY4B1snIW7CSm9FNyfpjTrzdo389sQjvv9cF7x3AGDfDlj"},
                 data: data,
                 processData: false,
                 contentType: false,
@@ -227,15 +248,15 @@ Select a file to upload: <br />
 
                     $("#result").text(data);
                     var x = JSON.parse(data).files.file.path.split('/');
-                    path = x[x.length-1];
+                    path = x[x.length - 1];
                     $.ajax({
                         type: 'POST',
                         url: "/backend/admin/UpdateMovieImagePath",
                         data: {
-                            'id':'<%=movieid%>',
+                            'id': '<%=movieid%>',
                             'path': path
                         },
-                        success: function(msg){
+                        success: function (msg) {
                             alert(msg);
                         }
                     });

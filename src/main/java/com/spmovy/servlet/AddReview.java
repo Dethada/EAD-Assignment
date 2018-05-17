@@ -34,15 +34,20 @@ public class AddReview extends HttpServlet {
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
+        if (db == null) return; // return if database connection failed
         try {
-            db.executeUpdate("INSERT INTO reviews(movieID,reviewSentence,name,rating,createdat,ip) VALUES (?,?,?,?,?,?)",
+            int updateCount = db.executeUpdate("INSERT INTO reviews(movieID,reviewSentence,name,rating,createdat,ip) VALUES (?,?,?,?,?,?)",
                     movieid,
                     review,
                     name,
                     rating,
                     new Timestamp(System.currentTimeMillis()),
                     request.getRemoteAddr());
-        }catch (Exception e) {
+            if (updateCount != 1) { // checks if insert is successful
+                response.sendRedirect("/errors/error.html");
+                return;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
             return;
