@@ -15,14 +15,26 @@ public class UpdateActor extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = request.getParameter("name");
+        String description =  request.getParameter("description");
+        int id;
+        if (name == null || description == null) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException e) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
-
         try {
             db.executeUpdate("UPDATE actor SET Name=?, description=? WHERE ID=?",
-                    request.getParameter("name"),
-                    request.getParameter("description"),
-                    Integer.parseInt(request.getParameter("id")));
+                    name,
+                    description,
+                    id);
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

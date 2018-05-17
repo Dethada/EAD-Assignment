@@ -34,7 +34,7 @@ public class DeleteTest extends Mockito {
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
 
-        when(request.getParameter("table")).thenReturn(null);
+        when(request.getParameter("table")).thenReturn("actor");
         when(request.getParameter("id")).thenReturn(null);
 
         new Delete().doPost(request, response);
@@ -56,7 +56,6 @@ public class DeleteTest extends Mockito {
         new Delete().doPost(request, response);
 
         ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-        verify(request, atLeast(1)).getParameter("id");
         verify(request, atLeast(1)).getParameter("table");
         verify(response).sendRedirect(captor.capture());
         assertEquals("/errors/error.html", captor.getValue());

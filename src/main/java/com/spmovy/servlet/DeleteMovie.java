@@ -14,9 +14,14 @@ public class DeleteMovie extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String table = request.getParameter("table");
+        if (table == null) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
-        if (Utils.deleteID(request, response, db) == false) return;
+        if (!Utils.deleteID(request, response, db, table)) return;
         response.sendRedirect("/admin/movies.jsp");
     }
 }

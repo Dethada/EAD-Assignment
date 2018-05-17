@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.*" import="java.util.*" import="org.apache.commons.lang3.StringEscapeUtils"%>
 <%@ page import="com.spmovy.DatabaseUtils" %>
-<%@ page import="org.omg.CORBA.Request" %>
 <html>
 <head>
     <meta charset="utf-8">

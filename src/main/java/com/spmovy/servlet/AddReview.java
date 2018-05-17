@@ -20,29 +20,35 @@ public class AddReview extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         String review = request.getParameter("review");
-        String rating = request.getParameter("rating");
-        String movieid = request.getParameter("movieid");
-        DatabaseUtils db = Utils.getDatabaseUtils(response);
-//        ResultSet rs = db.executeQuery("SELECT * FROM reviews WHERE name=? and movieid = ?",name,movieid);
+        int rating;
+        int movieid;
         try {
-//            if(rs.next()){
-//                response.sendRedirect("/moviedetails.jsp?movieid=" + movieid + "&review=failed");
-//            }
-//            else {
-                db.executeUpdate("INSERT INTO reviews(movieID,reviewSentence,name,rating,createdat,ip) VALUES (?,?,?,?,?,?)",
-                        movieid,
-                        review,
-                        name,
-                        rating,
-                        new Timestamp(System.currentTimeMillis()),
-                        request.getRemoteAddr());
-                response.sendRedirect("/moviedetails.jsp?movieid=" + movieid);
-//            }
+            rating = Integer.parseInt(request.getParameter("rating"));
+            movieid = Integer.parseInt(request.getParameter("movieid"));
+        } catch (NumberFormatException e) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
+        if (name == null || review == null || rating > 5 || rating < 1) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
+        DatabaseUtils db = Utils.getDatabaseUtils(response);
+        try {
+            db.executeUpdate("INSERT INTO reviews(movieID,reviewSentence,name,rating,createdat,ip) VALUES (?,?,?,?,?,?)",
+                    movieid,
+                    review,
+                    name,
+                    rating,
+                    new Timestamp(System.currentTimeMillis()),
+                    request.getRemoteAddr());
         }catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("/errors/error.html");
+            return;
         } finally {
             db.closeConnection();
         }
-
+        response.sendRedirect("/moviedetails.jsp?movieid=" + movieid);
     }
 }

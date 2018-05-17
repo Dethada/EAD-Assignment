@@ -13,7 +13,17 @@ import java.sql.SQLException;
 @WebServlet("/backend/admin/UpdateMovieImagePath")
 public class UpdateMovieImagePath extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException e) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
+        if (request.getParameter("path") == null) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
         String path = "https://cdn.spmovy.xyz/" + request.getParameter("path");
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return;
@@ -21,9 +31,11 @@ public class UpdateMovieImagePath extends HttpServlet {
             db.executeUpdate("UPDATE movie SET imagepath=? WHERE ID=?", path, id);
         } catch (SQLException e) {
             e.printStackTrace();
+            response.sendRedirect("/errors/error.html");
+            return;
         } finally {
             db.closeConnection();
         }
-        response.getWriter().write("Updated Path");
+        response.getWriter().write("Updated Movie Image Path");
     }
 }
