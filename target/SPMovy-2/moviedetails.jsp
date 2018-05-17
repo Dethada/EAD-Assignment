@@ -83,6 +83,9 @@
                             out.print("<a class=\"btn btn-primary mb-3\" href=\"index.jsp?status=" + StringEscapeUtils.escapeHtml4(moviestatus) + "\">Back To Home Page</a>");
                             out.print("<h1 style=\"padding-bottom: 10px;border-bottom: 1px solid  #b2b2b2;\">" + StringEscapeUtils.escapeHtml4(movietitle) + "</h1>");
                             out.print("<div class=\"row\"><div class=\"col-md-5\"><img src=\"" + StringEscapeUtils.escapeHtml4(imagepath) + "\"/></div>");
+                        } else {
+                            response.sendRedirect("/index.jsp");
+                            return;
                         }
                     } catch (SQLException e) {
                         e.printStackTrace();
