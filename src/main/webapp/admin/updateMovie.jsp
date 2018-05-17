@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="header.html" %>
+<link rel="stylesheet" href="/css/awesomplete.css"/>
+<script src="/js/awesomplete.js" async></script>
 <title>Update Movie</title>
 </head>
 <body>
@@ -56,6 +58,7 @@
     </div>
 </nav>
 <%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils,java.util.ArrayList,com.spmovy.DatabaseUtils" %>
+<%@ page import="com.spmovy.Utils" %>
 <%
     int noActors = 0;
     int noGenres = 0;
@@ -73,7 +76,7 @@
     String status = "";
     ArrayList<String> genrelist = new ArrayList();
     ArrayList<String> actorlist = new ArrayList();
-    DatabaseUtils db = new DatabaseUtils();
+    DatabaseUtils db = Utils.getDatabaseUtils(response);
     ResultSet rs;
     try {
         rs = db.executeQuery("SELECT * FROM movie where ID=?", movieid);
@@ -103,8 +106,6 @@
     } catch (Exception e) {
         e.printStackTrace();
         response.sendRedirect("/error.html");
-    } finally {
-        db.closeConnection();
     }
 %>
 <form method="post" action="/backend/admin/UpdateMovie">
@@ -139,9 +140,9 @@
         <div class="col-md-3" id="genres">
             <% for (int i = 0; i < noGenres; i++) {
                 if (i == noGenres - 1) {
-                    out.print("<input class=\"form-control\" id=\"field" + (i + 1) + "\" name=\"genre\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
+                    out.print("<input class=\"form-control awesomplete\" id=\"field" + (i + 1) + "\" name=\"genre\" list=\"GenreList\" value=\"" + genrelist.get(i) + "\">");
                 } else {
-                    out.print("<input class=\"form-control\" id=\"field" + (i + 1) + "\" name=\"genre\" type=\"text\" value=\"" + genrelist.get(i) + "\">");
+                    out.print("<input class=\"form-control awesomplete\" id=\"field" + (i + 1) + "\" name=\"genre\" list=\"GenreList\" value=\"" + genrelist.get(i) + "\">");
                     out.print("<button id=\"remove" + (i + 1) + "\" class=\"btn btn-danger remove-me\" >-</button>");
                 }
             }
@@ -155,9 +156,9 @@
         <div class="col-md-3" id="actors">
             <% for (int i = 0; i < noActors; i++) {
                 if (i == noActors - 1) {
-                    out.print("<input class=\"form-control\" id=\"fieldz" + (i + 1) + "\" name=\"actor\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
+                    out.print("<input class=\"form-control awesomplete\" id=\"fieldz" + (i + 1) + "\" name=\"actor\" list=\"ActorList\" value=\"" + actorlist.get(i) + "\">");
                 } else {
-                    out.print("<input class=\"form-control\" id=\"fieldz" + (i + 1) + "\" name=\"actor\" type=\"text\" value=\"" + actorlist.get(i) + "\">");
+                    out.print("<input class=\"form-control awesomplete\" id=\"fieldz" + (i + 1) + "\" name=\"actor\" list=\"ActorList\" value=\"" + actorlist.get(i) + "\">");
                     out.print("<button id=\"remove" + (i + 1) + "\" class=\"btn btn-danger remove-me2\" >-</button>");
                 }
             }
@@ -208,6 +209,44 @@ Select a file to upload: <br/>
     <input type="file" name="file" multiple="true"/><br/><br/>
     <input type="submit" value="Upload File" id="btnSubmit"/>
 </form>
+<datalist id="GenreList">
+    <%
+        ArrayList<String> completegenrelist = new ArrayList();
+        try {
+            rs = db.executeQuery("SELECT name from Genre");
+            while (rs.next()) {
+                completegenrelist.add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
+        for (String genre : completegenrelist) {
+            out.print("<option>" + genre + "</option>");
+        }
+    %>
+</datalist>
+<datalist id="ActorList">
+    <%
+        ArrayList<String> completeactorlist = new ArrayList();
+        try {
+            rs = db.executeQuery("SELECT Name from actor");
+            while (rs.next()) {
+                completeactorlist.add(rs.getString("Name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendRedirect("/errors/error.html");
+            return;
+        } finally {
+            db.closeConnection();
+        }
+        for (String actor : completeactorlist) {
+            out.print("<option>" + actor + "</option>");
+        }
+    %>
+</datalist>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"

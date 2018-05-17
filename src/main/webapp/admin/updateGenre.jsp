@@ -56,6 +56,7 @@
 </nav>
 <%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
+<%@ page import="com.spmovy.Utils" %>
 <%
     int id = 1;
     if (request.getParameter("id") == null) {
@@ -65,7 +66,8 @@
     }
     String name = "";
     String description = "";
-    DatabaseUtils db = new DatabaseUtils();
+    DatabaseUtils db = Utils.getDatabaseUtils(response);
+    if (db == null) return;
 
     try {
         ResultSet rs = db.executeQuery("SELECT * FROM Genre where ID=?", id);
