@@ -7,29 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56a9b021-fdd2-4319-ae3b-0c2e57fb86c5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/BCryptUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/BCryptUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/DatabaseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/DatabaseUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddGenre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddGenre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddReview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddTimeslot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddTimeslot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Delete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Delete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/DeleteMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/DeleteMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/DeleteReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/DeleteReview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/DeleteTimeslot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/DeleteTimeslot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateGenre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateGenre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovieImagePath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovieImagePath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/adminPanel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/adminPanel.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteReviewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteReviewTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateMovieTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateMovieTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SPMovy-2/js/examples.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spmovy/BCryptUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spmovy/BCryptUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTimeslotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTimeslotTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -45,29 +26,92 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="admin.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/admin.jsp">
+      <file leaf-file-name="DeleteReviewTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteReviewTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+            <state relative-caret-position="462">
+              <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="adminPanel.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/adminPanel.jsp">
+      <file leaf-file-name="AddActorTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/AddActorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1041">
-              <caret line="92" column="18" selection-start-line="92" selection-start-column="18" selection-end-line="92" selection-end-column="18" />
+            <state relative-caret-position="902">
+              <caret line="52" column="45" lean-forward="true" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Login.java">
+      <file leaf-file-name="AddGenreTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/AddGenreTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="35" column="67" lean-forward="true" selection-start-line="35" selection-start-column="67" selection-end-line="35" selection-end-column="67" />
+            <state relative-caret-position="-301">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeleteTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeleteTimeslotTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTimeslotTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="638">
+              <caret line="42" column="32" lean-forward="true" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/LoginTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateActorTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateActorTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="73">
+              <caret line="30" column="37" lean-forward="true" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateGenreTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateGenreTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-242">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateMovieTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateMovieTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="726">
+              <caret line="47" column="35" lean-forward="true" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddTimeslotTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/AddTimeslotTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -96,10 +140,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateMovieImagePathTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteMovieTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/spmovy/UtilsTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Logout.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin.jsp" />
@@ -139,7 +180,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Delete.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/DeleteMovie.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/DeleteTimeslot.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteReviewTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/DeleteReview.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Login.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateActor.java" />
@@ -147,6 +187,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovieImagePath.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin/adminPanel.jsp" />
+        <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/AddMovieTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteReviewTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTimeslotTest.java" />
       </list>
     </option>
   </component>
@@ -187,6 +231,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -298,8 +344,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -352,7 +396,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DeleteReviewTest">
+  <component name="RunManager" selected="JUnit.DeleteTimeslotTest">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -407,12 +451,12 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="DeleteTimeslotTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DeleteTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EAD-Assignment" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.spmovy.servlet" />
-      <option name="MAIN_CLASS_NAME" value="com.spmovy.servlet.DeleteTimeslotTest" />
+      <option name="MAIN_CLASS_NAME" value="com.spmovy.servlet.DeleteTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -424,12 +468,12 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="UpdateMovieTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DeleteTimeslotTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EAD-Assignment" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.spmovy.servlet" />
-      <option name="MAIN_CLASS_NAME" value="com.spmovy.servlet.UpdateMovieTest" />
+      <option name="MAIN_CLASS_NAME" value="com.spmovy.servlet.DeleteTimeslotTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -583,19 +627,19 @@
     </configuration>
     <list>
       <item itemvalue="Tomcat Server.Tomcat 7.0.86" />
-      <item itemvalue="JUnit.UpdateMovieTest" />
       <item itemvalue="JUnit.DeleteTimeslotTest" />
       <item itemvalue="JUnit.DeleteReviewTest" />
       <item itemvalue="JUnit.DeleteReviewTest.ValidParams" />
       <item itemvalue="JUnit.DeleteReviewTest.MissingParams" />
+      <item itemvalue="JUnit.DeleteTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DeleteReviewTest" />
-        <item itemvalue="JUnit.DeleteReviewTest.MissingParams" />
-        <item itemvalue="JUnit.DeleteReviewTest.ValidParams" />
         <item itemvalue="JUnit.DeleteTimeslotTest" />
-        <item itemvalue="JUnit.UpdateMovieTest" />
+        <item itemvalue="JUnit.DeleteTest" />
+        <item itemvalue="JUnit.DeleteReviewTest" />
+        <item itemvalue="JUnit.DeleteReviewTest.ValidParams" />
+        <item itemvalue="JUnit.DeleteReviewTest.MissingParams" />
       </list>
     </recent_temporary>
   </component>
@@ -634,43 +678,44 @@
       <workItem from="1526528814420" duration="8300000" />
       <workItem from="1526537233830" duration="49000" />
       <workItem from="1526541753190" duration="9764000" />
+      <workItem from="1526554437260" duration="3096000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="DeleteTimeslotTest - 2018.05.17 at 17h 35m 25s.xml">
+    <history-entry file="DeleteReviewTest - 2018.05.17 at 18h 59m 50s.xml">
+      <configuration name="DeleteReviewTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DeleteReviewTest_ValidParams - 2018.05.17 at 19h 02m 04s.xml">
+      <configuration name="DeleteReviewTest.ValidParams" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DeleteReviewTest_ValidParams - 2018.05.17 at 19h 02m 37s.xml">
+      <configuration name="DeleteReviewTest.ValidParams" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DeleteReviewTest - 2018.05.17 at 19h 03m 14s.xml">
+      <configuration name="DeleteReviewTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DeleteReviewTest - 2018.05.17 at 19h 05m 21s.xml">
+      <configuration name="DeleteReviewTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DeleteReviewTest - 2018.05.17 at 19h 05m 54s.xml">
+      <configuration name="DeleteReviewTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DeleteTest - 2018.05.17 at 21h 41m 11s.xml">
+      <configuration name="DeleteTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DeleteTimeslotTest - 2018.05.17 at 21h 43m 36s.xml">
       <configuration name="DeleteTimeslotTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DeleteReviewTest - 2018.05.17 at 17h 36m 26s.xml">
-      <configuration name="DeleteReviewTest" configurationId="JUnit" />
+    <history-entry file="DeleteTimeslotTest - 2018.05.17 at 21h 43m 50s.xml">
+      <configuration name="DeleteTimeslotTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DeleteReviewTest_ValidParams - 2018.05.17 at 17h 36m 50s.xml">
-      <configuration name="DeleteReviewTest.ValidParams" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DeleteReviewTest_ValidParams - 2018.05.17 at 17h 39m 50s.xml">
-      <configuration name="DeleteReviewTest.ValidParams" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DeleteReviewTest_ValidParams - 2018.05.17 at 17h 40m 18s.xml">
-      <configuration name="DeleteReviewTest.ValidParams" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DeleteReviewTest_MissingParams - 2018.05.17 at 17h 40m 38s.xml">
-      <configuration name="DeleteReviewTest.MissingParams" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DeleteReviewTest - 2018.05.17 at 17h 42m 12s.xml">
-      <configuration name="DeleteReviewTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DeleteReviewTest - 2018.05.17 at 17h 44m 48s.xml">
-      <configuration name="DeleteReviewTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DeleteReviewTest - 2018.05.17 at 17h 47m 07s.xml">
-      <configuration name="DeleteReviewTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DeleteReviewTest - 2018.05.17 at 17h 47m 39s.xml">
-      <configuration name="DeleteReviewTest" configurationId="JUnit" />
+    <history-entry file="DeleteTimeslotTest - 2018.05.17 at 21h 45m 03s.xml">
+      <configuration name="DeleteTimeslotTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148644000" />
+    <option name="totallyTimeSpent" value="151740000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
@@ -689,7 +734,6 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.76616913" visible="true" weight="0.16640624" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32868022" />
       <window_info id="JavaEE:App" order="4" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -699,6 +743,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32868022" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -725,65 +770,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/DatabaseUtilsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="111" column="23" selection-start-line="111" selection-start-column="23" selection-end-line="111" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/actors.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="35" column="105" selection-start-line="35" selection-start-column="105" selection-end-line="35" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/addActor.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/addGenre.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="25" column="78" selection-start-line="25" selection-start-column="78" selection-end-line="25" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/addMovie.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/genres.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/header.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/movies.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -928,13 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateMovieTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2486">
-          <caret line="127" lean-forward="true" selection-start-line="127" selection-end-line="127" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddActor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -974,20 +953,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
           <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTimeslotTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteReviewTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-103">
-          <caret line="30" column="49" lean-forward="true" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -1064,14 +1029,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
-          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="35" column="67" lean-forward="true" selection-start-line="35" selection-start-column="67" selection-end-line="35" selection-end-column="67" />
+        <state relative-caret-position="484">
+          <caret line="35" column="67" selection-start-line="35" selection-start-column="67" selection-end-line="35" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -1079,6 +1044,90 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1041">
           <caret line="92" column="18" selection-start-line="92" selection-start-column="18" selection-end-line="92" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/AddReviewTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-815">
+          <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/AddMovieTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="24" column="9" lean-forward="true" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteReviewTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/AddGenreTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-301">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/AddTimeslotTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTimeslotTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="42" column="32" lean-forward="true" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/LoginTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateActorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="30" column="37" lean-forward="true" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateGenreTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-242">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateMovieTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="47" column="35" lean-forward="true" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/spmovy/servlet/AddActorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="52" column="45" lean-forward="true" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
         </state>
       </provider>
     </entry>
