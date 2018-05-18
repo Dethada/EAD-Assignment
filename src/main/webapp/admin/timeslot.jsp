@@ -43,16 +43,14 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="movies.jsp">
-            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
-                   aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/backend/Logout">Logout</a>
-            </li>
-        </ul>
+        <div>
+            <form class="form-inline my-2 my-lg-0" action="movies.jsp">
+                <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
+                       aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Search</button>
+                <a class="btn btn-outline-danger" href="/backend/Logout">Logout</a>
+            </form>
+        </div>
     </div>
 </nav>
 <%@ page import="java.sql.*" %>
@@ -75,20 +73,20 @@
         response.sendRedirect("/error.html");
     }
 %>
-<h2><%= title %>
-</h2>
-<form class="form-inline" method="post" action="/backend/admin/AddTimeslot">
+<h2 class="ml-2 pl-2 mt-2"><%=title%></h2>
+<form class="form-inline px-0 mx-0 mb-2" method="post" action="/backend/admin/AddTimeslot">
     <div class="form-group mx-sm-3 mb-2">
-        <label class="col-form-label">Date</label>
+        <label class="col-form-label mr-1">Date</label>
         <input type="date" name="date" class="form-control">
     </div>
     <div class="form-group mx-sm-3 mb-2">
-        <label class="col-form-label" 2>Time</label>
+        <label class="col-form-label mr-1" 2>Time</label>
         <input type="time" name="time" class="form-control">
     </div>
     <input type="hidden" name="id" value="<%= id %>">
     <button type="submit" class="btn btn-primary mb-2">Add Timeslot</button>
 </form>
+
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -119,5 +117,6 @@
     %>
     </tbody>
 </table>
+
 </body>
 <%@ include file="footer.html" %>

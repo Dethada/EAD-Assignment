@@ -45,16 +45,14 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="movies.jsp">
-            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
-                   aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/backend/Logout">Logout</a>
-            </li>
-        </ul>
+        <div>
+            <form class="form-inline my-2 my-lg-0" action="movies.jsp">
+                <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
+                       aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Search</button>
+                <a class="btn btn-outline-danger" href="/backend/Logout">Logout</a>
+            </form>
+        </div>
     </div>
 </nav>
 <%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils,java.util.ArrayList,com.spmovy.DatabaseUtils" %>
@@ -108,6 +106,7 @@
         response.sendRedirect("/error.html");
     }
 %>
+
 <form method="post" action="/backend/admin/UpdateMovie">
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Title</label>
@@ -140,14 +139,14 @@
         <div class="col-md-3" id="genres">
             <% for (int i = 0; i < noGenres; i++) {
                 if (i == noGenres - 1) {
-                    out.print("<input class=\"form-control awesomplete\" id=\"field" + (i + 1) + "\" name=\"genre\" list=\"GenreList\" value=\"" + genrelist.get(i) + "\">");
+                    out.print("<input class=\"form-control awesomplete mb-2\" id=\"field" + (i + 1) + "\" name=\"genre\" list=\"GenreList\" value=\"" + genrelist.get(i) + "\">");
                 } else {
-                    out.print("<input class=\"form-control awesomplete\" id=\"field" + (i + 1) + "\" name=\"genre\" list=\"GenreList\" value=\"" + genrelist.get(i) + "\">");
-                    out.print("<button id=\"remove" + (i + 1) + "\" class=\"btn btn-danger remove-me\" >-</button>");
+                    out.print("<input class=\"form-control awesomplete mb-2\" id=\"field" + (i + 1) + "\" name=\"genre\" list=\"GenreList\" value=\"" + genrelist.get(i) + "\">");
+                    out.print("<button id=\"remove" + (i + 1) + "\" class=\"btn btn-danger remove-me ml-2\" >-</button>");
                 }
             }
             %>
-            <button id="b1" class="btn add-more" type="button">+</button>
+            <button id="b1" class="btn add-more ml-1" type="button">+</button>
         </div>
         <input type="hidden" id="next" value="<%=noGenres%>"/>
     </div>
@@ -156,14 +155,14 @@
         <div class="col-md-3" id="actors">
             <% for (int i = 0; i < noActors; i++) {
                 if (i == noActors - 1) {
-                    out.print("<input class=\"form-control awesomplete\" id=\"fieldz" + (i + 1) + "\" name=\"actor\" list=\"ActorList\" value=\"" + actorlist.get(i) + "\">");
+                    out.print("<input class=\"form-control awesomplete mb-2\" id=\"fieldz" + (i + 1) + "\" name=\"actor\" list=\"ActorList\" value=\"" + actorlist.get(i) + "\">");
                 } else {
-                    out.print("<input class=\"form-control awesomplete\" id=\"fieldz" + (i + 1) + "\" name=\"actor\" list=\"ActorList\" value=\"" + actorlist.get(i) + "\">");
-                    out.print("<button id=\"remove" + (i + 1) + "\" class=\"btn btn-danger remove-me2\" >-</button>");
+                    out.print("<input class=\"form-control awesomplete mb-2\" id=\"fieldz" + (i + 1) + "\" name=\"actor\" list=\"ActorList\" value=\"" + actorlist.get(i) + "\">");
+                    out.print("<button id=\"remove" + (i + 1) + "\" class=\"btn btn-danger remove-me2 ml-2\" >-</button>");
                 }
             }
             %>
-            <button id="bt1" class="btn add-more2" type="button">+</button>
+            <button id="bt1" class="btn add-more2 ml-1" type="button">+</button>
         </div>
         <input type="hidden" id="next2" value="<%=noActors%>"/>
     </div>
@@ -198,16 +197,16 @@
         </div>
     </div>
 </form>
-<form method="post" action="/backend/admin/DeleteMovie">
+<form class="pt-0 pb-2 mb-4" style="border-bottom:#969696 1px solid" method="post" action="/backend/admin/DeleteMovie">
     <input type="hidden" name="table" value="movie">
     <input type="hidden" name="id" value="<%=movieid%>">
     <input class="btn btn-danger" type="submit" value="Delete">
 </form>
-<h3>File Upload:</h3>
-Select a file to upload: <br/>
-<form method="post" enctype="multipart/form-data" id="fileUploadForm">
+<h3 class="ml-4">Movie Poster Upload:</h3>
+<p class="ml-4">Select an image file to upload:</p><br/>
+<form class="pt-0 mb-2" method="post" enctype="multipart/form-data" id="fileUploadForm">
     <input type="file" name="file" multiple="true"/><br/><br/>
-    <input type="submit" value="Upload File" id="btnSubmit"/>
+    <input type="submit" class="btn btn-outline-success" value="Upload Movie Poster" id="btnSubmit"/>
 </form>
 <datalist id="GenreList">
     <%

@@ -47,16 +47,15 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="movies.jsp">
-            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
-                   aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/backend/Logout">Logout</a>
-            </li>
-        </ul>
+
+        <div>
+            <form class="form-inline my-2 my-lg-0" action="movies.jsp">
+                <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
+                       aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Search</button>
+                <a class="btn btn-outline-danger" href="/backend/Logout">Logout</a>
+            </form>
+        </div>
     </div>
 </nav>
 <%@ page import="java.sql.*" %>
@@ -106,8 +105,8 @@
 %>
 
 
-<div class="row">
-    <div class="col">
+<div class="row mt-2 px-2">
+    <div class="col mr-1">
         <canvas id="myChart"></canvas>
     </div>
     <div class="col">
@@ -136,7 +135,8 @@
             responsive: true,
             title: {
                 display: true,
-                text: 'Number of reviews per day'
+                text: 'Number of reviews per day',
+                fontSize: 20
             },
             tooltips: {
                 mode: 'index',
@@ -180,7 +180,8 @@
                     'rgba(255, 206, 86, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 142, 230,0.2)'
                 ],
                 borderColor: [
                     'rgba(255,99,132,1)',
@@ -188,7 +189,8 @@
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 142, 230,1)'
                 ],
                 borderWidth: 1
             }]
@@ -200,7 +202,8 @@
             },
             title: {
                 display: true,
-                text: 'Number of movies per genre'
+                text: 'Number of movies per genre',
+                fontSize: 20
             },
             animation: {
                 animateScale: true,

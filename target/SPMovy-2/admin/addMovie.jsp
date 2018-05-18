@@ -50,117 +50,117 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="movies.jsp">
-            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
-                   aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/backend/Logout">Logout</a>
-            </li>
-        </ul>
+        <div>
+            <form class="form-inline my-2 my-lg-0" action="movies.jsp">
+                <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
+                       aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Search</button>
+                <a class="btn btn-outline-danger" href="/backend/Logout">Logout</a>
+            </form>
+        </div>
     </div>
 </nav>
-<h1>Movie</h1>
-<form method="post" action="/backend/admin/AddMovie">
-    <div class="form-group row">
-        <label for="title" class="col-sm-2 col-form-label">Title</label>
-        <div class="col-md-3">
-            <input id="title" class="form-control" type="text" name="title" placeholder="Title" required>
+<div class="container-fluid mt-2">
+    <h1>Add Movie</h1>
+    <form method="post" action="/backend/admin/AddMovie">
+        <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-md-3">
+                <input id="title" class="form-control" type="text" name="title" placeholder="Title" required>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="releasedate" class="col-sm-2 col-form-label">Release Date</label>
-        <div class="col-md-3">
-            <input type="date" name="releasedate" class="form-control" id="releasedate" required>
+        <div class="form-group row">
+            <label for="releasedate" class="col-sm-2 col-form-label">Release Date</label>
+            <div class="col-md-3">
+                <input type="date" name="releasedate" class="form-control" id="releasedate" required>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="synopsis" class="col-sm-2 col-form-label">Synopsis</label>
-        <div class="col-md-3">
-            <textarea id="synopsis" rows="6" class="form-control" type="text" name="synopsis" placeholder="Synopsis"
-                      required></textarea>
+        <div class="form-group row">
+            <label for="synopsis" class="col-sm-2 col-form-label">Synopsis</label>
+            <div class="col-md-3">
+                <textarea id="synopsis" rows="6" class="form-control" type="text" name="synopsis" placeholder="Synopsis"
+                          required></textarea>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="duration" class="col-sm-2 col-form-label">Duration (mins)</label>
-        <div class="col-md-3">
-            <input type="number" class="form-control" name="duration" id="duration" required>
+        <div class="form-group row">
+            <label for="duration" class="col-sm-2 col-form-label">Duration (mins)</label>
+            <div class="col-md-3">
+                <input type="number" class="form-control" name="duration" id="duration" required>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <input type="hidden" id="next" value="1"/>
-        <label for="genres" class="col-sm-2 col-form-label">Genres</label>
-        <div class="col-md-3" id="genres">
-            <input class="form-control awesomplete" id="field1" name="genre" list="GenreList" placeholder="Genre" required>
-            <button id="b1" class="btn add-more" type="button">+</button>
+        <div class="form-group row">
+            <input type="hidden" id="next" value="1"/>
+            <label for="genres" class="col-sm-2 col-form-label">Genres</label>
+            <div class="col-md-3" id="genres">
+                <input class="form-control awesomplete" id="field1" name="genre" list="GenreList" placeholder="Genre" required>
+                <button id="b1" class="btn add-more" type="button">+</button>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <input type="hidden" id="next2" value="1"/>
-        <label for="actors" class="col-sm-2 col-form-label">Actors</label>
-        <div class="col-md-3" id="actors">
-            <input class="form-control awesomplete" id="fieldz1" name="actor" list="ActorList" placeholder="Actor" required>
-            <button id="bt1" class="btn add-more2" type="button">+</button>
+        <div class="form-group row">
+            <input type="hidden" id="next2" value="1"/>
+            <label for="actors" class="col-sm-2 col-form-label">Actors</label>
+            <div class="col-md-3" id="actors">
+                <input class="form-control awesomplete" id="fieldz1" name="actor" list="ActorList" placeholder="Actor" required>
+                <button id="bt1" class="btn add-more2" type="button">+</button>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Status</label>
-        <select name="status" class="custom-select col-md-3 form-control" required>
-            <option value="Coming Soon">Coming Soon</option>
-            <option value="Now Showing">Now Showing</option>
-            <option value="Over">Over</option>
-        </select>
-    </div>
-    <input type="hidden" name="imagepath" value="image/default.svg">
-    <div class="form-group row">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Add Movie</button>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Status</label>
+            <select name="status" class="custom-select col-md-3 form-control" required>
+                <option value="Coming Soon">Coming Soon</option>
+                <option value="Now Showing">Now Showing</option>
+                <option value="Over">Over</option>
+            </select>
         </div>
-    </div>
-</form>
-<datalist id="GenreList">
-    <%
-        DatabaseUtils db = Utils.getDatabaseUtils(response);
-        if (db == null) return;
-        ResultSet rs;
-        ArrayList<String> genrelist = new ArrayList();
-        try {
-            rs = db.executeQuery("SELECT name from Genre");
-            while (rs.next()) {
-                genrelist.add(rs.getString("name"));
+        <input type="hidden" name="imagepath" value="image/default.svg">
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Add Movie</button>
+            </div>
+        </div>
+    </form>
+    <datalist id="GenreList">
+        <%
+            DatabaseUtils db = Utils.getDatabaseUtils(response);
+            if (db == null) return;
+            ResultSet rs;
+            ArrayList<String> genrelist = new ArrayList();
+            try {
+                rs = db.executeQuery("SELECT name from Genre");
+                while (rs.next()) {
+                    genrelist.add(rs.getString("name"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                response.sendRedirect("/errors/error.html");
+                return;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            response.sendRedirect("/errors/error.html");
-            return;
-        }
-        for (String genre : genrelist) {
-            out.print("<option>" + genre + "</option>");
-        }
-    %>
-</datalist>
-<datalist id="ActorList">
-    <%
-        ArrayList<String> actorlist = new ArrayList();
-        try {
-            rs = db.executeQuery("SELECT Name from actor");
-            while (rs.next()) {
-                actorlist.add(rs.getString("Name"));
+            for (String genre : genrelist) {
+                out.print("<option>" + genre + "</option>");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            response.sendRedirect("/errors/error.html");
-            return;
-        } finally {
-            db.closeConnection();
-        }
-        for (String actor : actorlist) {
-            out.print("<option>" + actor + "</option>");
-        }
-    %>
-</datalist>
+        %>
+    </datalist>
+    <datalist id="ActorList">
+        <%
+            ArrayList<String> actorlist = new ArrayList();
+            try {
+                rs = db.executeQuery("SELECT Name from actor");
+                while (rs.next()) {
+                    actorlist.add(rs.getString("Name"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                response.sendRedirect("/errors/error.html");
+                return;
+            } finally {
+                db.closeConnection();
+            }
+            for (String actor : actorlist) {
+                out.print("<option>" + actor + "</option>");
+            }
+        %>
+    </datalist>
+</div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="/js/dynamicfields.js" defer></script>

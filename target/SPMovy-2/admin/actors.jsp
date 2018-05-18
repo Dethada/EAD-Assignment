@@ -43,15 +43,13 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="actors.jsp">
-            <input class="form-control mr-sm-2" name="actorname" type="search" placeholder="Actors" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/backend/Logout">Logout</a>
-            </li>
-        </ul>
+        <div>
+            <form class="form-inline my-2 my-lg-0" action="actors.jsp">
+                <input class="form-control mr-sm-2" name="actorname" type="search" placeholder="Actors" aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Search</button>
+                <a class="btn btn-outline-danger" href="/backend/Logout">Logout</a>
+            </form>
+        </div>
     </div>
 </nav>
 <%@ page import="java.sql.ResultSet,com.spmovy.DatabaseUtils,org.apache.commons.lang3.StringEscapeUtils" %>
