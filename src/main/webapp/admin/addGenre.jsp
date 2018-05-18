@@ -43,37 +43,37 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="genres.jsp">
-            <input class="form-control mr-sm-2" name="genrename" type="search" placeholder="Genres" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/backend/Logout">Logout</a>
-            </li>
-        </ul>
+        <div>
+            <form class="form-inline my-2 my-lg-0" action="genres.jsp">
+                <input class="form-control mr-sm-2" name="genrename" type="search" placeholder="Genres" aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Search</button>
+                <a class="btn btn-outline-danger" href="/backend/Logout">Logout</a>
+            </form>
+        </div>
     </div>
 </nav>
-<h1>Genre</h1>
-<form method="post" action="/backend/admin/AddGenre">
-    <div class="form-group row">
-        <label for="name" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-md-3">
-            <input id="name" class="form-control" type="text" name="name" placeholder="Name" required>
+<div class="container-fluid mt-2">
+    <h1>Add Genre</h1>
+    <form method="post" action="/backend/admin/AddGenre">
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-md-3">
+                <input id="name" class="form-control" type="text" name="name" placeholder="Name" required>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="description" class="col-sm-2 col-form-label">Description</label>
-        <div class="col-md-3">
-            <textarea id="description" rows="6" class="form-control" type="text" name="description"
-                      placeholder="Description" required></textarea>
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-md-3">
+                <textarea id="description" rows="6" class="form-control" type="text" name="description"
+                          placeholder="Description" required></textarea>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Add Genre</button>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Add Genre</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 </body>
 <%@ include file="/admin/footer.html" %>
