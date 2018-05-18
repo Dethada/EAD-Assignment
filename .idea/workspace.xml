@@ -8,7 +8,51 @@
   <component name="ChangeListManager">
     <list default="true" id="56a9b021-fdd2-4319-ae3b-0c2e57fb86c5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/adminPanel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/adminPanel.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/image/default.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/image/default.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/SPMovy-2.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/SPMovy-2.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/SPMovy-2/admin/adminPanel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/SPMovy-2/admin/adminPanel.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/SPMovy-2/image/default.svg" beforeDir="false" afterPath="$PROJECT_DIR$/target/SPMovy-2/image/default.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.BCryptUtilTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.BCryptUtilTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.DatabaseUtilsTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.DatabaseUtilsTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.UtilsTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.UtilsTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.AddActorTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.AddActorTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.AddGenreTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.AddGenreTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.AddMovieTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.AddMovieTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.AddReviewTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.AddReviewTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.AddTimeslotTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.AddTimeslotTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.DeleteReviewTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.DeleteReviewTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.DeleteTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.DeleteTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.DeleteTimeslotTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.DeleteTimeslotTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.LoginTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.LoginTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.LogoutTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.LogoutTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.UpdateActorTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.UpdateActorTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.UpdateGenreTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.UpdateGenreTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.UpdateMovieTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spmovy.servlet.UpdateMovieTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.BCryptUtilTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.BCryptUtilTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.DatabaseUtilsTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.DatabaseUtilsTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.UtilsTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.UtilsTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.AddActorTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.AddActorTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.AddGenreTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.AddGenreTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.AddMovieTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.AddMovieTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.AddReviewTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.AddReviewTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.AddTimeslotTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.AddTimeslotTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.DeleteReviewTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.DeleteReviewTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.DeleteTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.DeleteTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.DeleteTimeslotTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.DeleteTimeslotTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.LoginTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.LoginTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.UpdateActorTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.UpdateActorTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.UpdateGenreTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.UpdateGenreTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.UpdateMovieTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spmovy.servlet.UpdateMovieTest.txt" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/timeslot.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/timeslot.jsp" afterDir="false" />
+>>>>>>> master
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,15 +68,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
+<<<<<<< HEAD
+      <file leaf-file-name="UpdateActor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateActor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+=======
       <file leaf-file-name="actors.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/actors.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="528">
               <caret line="70" column="14" selection-start-line="70" selection-start-column="14" selection-end-line="70" selection-end-column="14" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="AddReview.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddReview.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="adminPanel.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/adminPanel.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="303">
+              <caret line="192" column="53" selection-start-line="192" selection-start-column="53" selection-end-line="192" selection-end-column="53" />
+=======
       <file leaf-file-name="addActor.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/addActor.jsp">
           <provider selected="true" editor-type-id="text-editor" />
@@ -48,46 +119,86 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="417">
               <caret line="92" column="18" selection-start-line="92" selection-start-column="18" selection-end-line="92" selection-end-column="18" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="BCryptUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/BCryptUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-221">
+              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+=======
       <file leaf-file-name="genres.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/genres.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="373">
               <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="moviedetails.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/moviedetails.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1003">
+              <caret line="59" column="6" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
+=======
       <file leaf-file-name="movies.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/movies.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
               <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="AddMovie.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddMovie.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
+=======
       <file leaf-file-name="reviews.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/reviews.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="418">
               <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="AddActor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddActor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+=======
       <file leaf-file-name="timeslot.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/timeslot.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="725">
               <caret line="105" column="31" selection-start-line="105" selection-start-column="31" selection-end-line="105" selection-end-column="31" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="AddGenre.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddGenre.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="17" column="60" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="60" />
+=======
       <file leaf-file-name="updateActor.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/updateActor.jsp">
           <provider selected="true" editor-type-id="text-editor">
@@ -102,6 +213,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="506">
               <caret line="68" column="25" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -130,6 +242,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/web/admin/adminPanel.jsp" />
+        <option value="$PROJECT_DIR$/web/admin/genres.jsp" />
+        <option value="$PROJECT_DIR$/web/admin/updateGenre.jsp" />
+        <option value="$PROJECT_DIR$/web/admin/updateMovie.jsp" />
+=======
         <option value="$PROJECT_DIR$/src/test/java/com/spmovy/UtilsTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Logout.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
@@ -148,6 +266,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/moviedetails.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/star.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/BCryptUtil.java" />
+>>>>>>> master
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/DatabaseUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spmovy/Utils.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/UpdateMovieTest.java" />
@@ -170,6 +289,9 @@
         <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/AddMovieTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteReviewTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTest.java" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/adminPanel.jsp" />
+=======
         <option value="$PROJECT_DIR$/src/test/java/com/spmovy/servlet/DeleteTimeslotTest.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/dynamicfields.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin/updateMovie.jsp" />
@@ -181,6 +303,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/admin/updateActor.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin/updateGenre.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin/timeslot.jsp" />
+>>>>>>> master
       </list>
     </option>
   </component>
@@ -209,7 +332,7 @@
       <path value="$PROJECT_DIR$/src/main/webapp/js/awesomplete-gh-pages/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-35" />
     <option name="y" value="-20" />
     <option name="width" value="3205" />
@@ -223,8 +346,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+=======
       <pane id="Scope" />
       <pane id="PackagesPane" />
+>>>>>>> master
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -286,6 +414,8 @@
               <item name="SPMovy" type="b2602c69:ProjectViewProjectNode" />
               <item name="EAD-Assignment" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+=======
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
@@ -302,6 +432,7 @@
               <item name="SPMovy" type="b2602c69:ProjectViewProjectNode" />
               <item name="EAD-Assignment" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+>>>>>>> master
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -336,7 +467,11 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+      <pane id="PackagesPane" />
+=======
       <pane id="AndroidView" />
+>>>>>>> master
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -349,7 +484,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Groovy JUnit" value="groovy.util.GroovyTestCase" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="org.mockito.Mockito" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="C:/Poly/EAD-Assignment" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -388,7 +523,11 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
+  <component name="RunManager" selected="Tomcat Server.Tomcat 7.0.86">
+=======
   <component name="RunManager" selected="JUnit.DeleteTimeslotTest">
+>>>>>>> master
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -493,6 +632,28 @@
       </option>
       <patterns />
     </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
     <configuration name="Tomcat 7.0.86" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.86" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/" />
       <option name="UPDATING_POLICY" value="redeploy-artifacts" />
@@ -595,28 +756,6 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <properties />
-      <listeners />
-    </configuration>
     <list>
       <item itemvalue="Tomcat Server.Tomcat 7.0.86" />
       <item itemvalue="JUnit.DeleteTimeslotTest" />
@@ -669,9 +808,16 @@
       <workItem from="1526392170064" duration="1245000" />
       <workItem from="1526528814420" duration="8300000" />
       <workItem from="1526537233830" duration="49000" />
+<<<<<<< HEAD
+      <workItem from="1526542344248" duration="272000" />
+      <workItem from="1526542842350" duration="312000" />
+      <workItem from="1526543451093" duration="643000" />
+      <workItem from="1526605191626" duration="4642000" />
+=======
       <workItem from="1526541753190" duration="9764000" />
       <workItem from="1526554437260" duration="3096000" />
       <workItem from="1526566703261" duration="2630000" />
+>>>>>>> master
     </task>
     <servers />
   </component>
@@ -708,44 +854,48 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="144771000" />
+=======
     <option name="totallyTimeSpent" value="154370000" />
+>>>>>>> master
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
       <window_info anchor="right" id="Maven Projects" order="5" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info active="true" anchor="bottom" id="Messages" order="9" visible="true" weight="0.32827586" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.33205226" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.76616913" visible="true" weight="0.16640624" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.76616913" visible="true" weight="0.16601562" />
       <window_info id="Web" order="2" side_tool="true" />
-      <window_info anchor="right" id="Database" order="3" />
       <window_info id="JavaEE:App" order="4" side_tool="true" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="5" sideWeight="0.23383084" side_tool="true" weight="0.1671875" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.3289777" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32868022" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Capture Tool" order="2" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -771,7 +921,17 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/web/errors/520.html" />
+    <entry file="file://$PROJECT_DIR$/web/errors/521.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/SessionCheckFilter.java" />
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml" />
+    <entry file="file://$PROJECT_DIR$/web/errors/error.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+=======
     <entry file="file://$PROJECT_DIR$/src/main/webapp/css/fontawesome-stars-o.css">
+>>>>>>> master
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
           <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
@@ -785,7 +945,11 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/Logout.java">
+=======
     <entry file="file://$PROJECT_DIR$/src/main/webapp/css/examples.css">
+>>>>>>> master
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
           <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
@@ -812,15 +976,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddActor.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="425">
+          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+=======
         <state relative-caret-position="418">
           <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/AddGenre.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="153">
+          <caret line="17" column="60" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="60" />
+=======
         <state relative-caret-position="440">
           <caret line="28" column="60" lean-forward="true" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
@@ -861,8 +1035,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/DeleteMovie.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="1003">
+          <caret line="59" column="6" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
+=======
         <state relative-caret-position="352">
           <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
@@ -889,6 +1068,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateMovieImagePath.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="408">
+          <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
+=======
         <state relative-caret-position="484">
           <caret line="30" column="81" lean-forward="true" selection-start-line="30" selection-start-column="81" selection-end-line="30" selection-end-column="81" />
         </state>
@@ -898,13 +1081,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="902">
           <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/servlet/UpdateActor.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="408">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+=======
         <state relative-caret-position="506">
           <caret line="31" column="71" selection-start-line="31" selection-start-column="71" selection-end-line="31" selection-end-column="71" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
@@ -924,8 +1116,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="544">
+          <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
+=======
         <state relative-caret-position="594">
           <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
@@ -1113,6 +1310,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="725">
           <caret line="105" column="31" selection-start-line="105" selection-start-column="31" selection-end-line="105" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spmovy/BCryptUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-221">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/adminPanel.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="192" column="53" selection-start-line="192" selection-start-column="53" selection-end-line="192" selection-end-column="53" />
         </state>
       </provider>
     </entry>
