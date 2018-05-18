@@ -1,18 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.html"%>
+<%@ include file="header.html" %>
 <title>Update Genre</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/admin/adminPanel.jsp">SPMovy Admin</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Movies
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -21,7 +23,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Genres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,7 +33,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Actors
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -52,6 +56,7 @@
 </nav>
 <%@ page import="java.sql.*,org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
+<%@ page import="com.spmovy.Utils" %>
 <%
     int id = 1;
     if (request.getParameter("id") == null) {
@@ -61,7 +66,8 @@
     }
     String name = "";
     String description = "";
-    DatabaseUtils db = new DatabaseUtils();
+    DatabaseUtils db = Utils.getDatabaseUtils(response);
+    if (db == null) return;
 
     try {
         ResultSet rs = db.executeQuery("SELECT * FROM Genre where ID=?", id);
@@ -81,13 +87,15 @@
     <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-md-3">
-            <input id="name" class="form-control" type="text" name="name" value="<%= StringEscapeUtils.escapeHtml4(name) %>" required>
+            <input id="name" class="form-control" type="text" name="name"
+                   value="<%= StringEscapeUtils.escapeHtml4(name) %>" required>
         </div>
     </div>
     <div class="form-group row">
         <label for="description" class="col-sm-2 col-form-label">Description</label>
         <div class="col-md-3">
-            <textarea id="description" rows="6" class="form-control" type="text" name="description" required><%= StringEscapeUtils.escapeHtml4(description) %></textarea>
+            <textarea id="description" rows="6" class="form-control" type="text" name="description"
+                      required><%= StringEscapeUtils.escapeHtml4(description) %></textarea>
         </div>
     </div>
     <input type="hidden" name="id" value="<%= id %>">
@@ -98,4 +106,4 @@
     </div>
 </form>
 </body>
-<%@ include file="footer.html"%>
+<%@ include file="footer.html" %>

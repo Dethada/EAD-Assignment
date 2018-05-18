@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.html"%>
-    <title>Admin Panel</title>
+<%@ include file="header.html" %>
+<title>Admin Panel</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
@@ -9,14 +9,16 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/admin/adminPanel.jsp">SPMovy Admin</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Movies
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -25,7 +27,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Genres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -34,7 +37,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     Actors
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -44,7 +48,8 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="movies.jsp">
-            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
+                   aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav">
@@ -58,6 +63,10 @@
 <%@ page import="com.spmovy.DatabaseUtils" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.spmovy.Utils" %>
+<%  DatabaseUtils db = Utils.getDatabaseUtils(response);
+    ArrayList countreviewlist = new ArrayList();
+    ArrayList movielist = new ArrayList();
 <%  String ip = "";
     String lastlogintime = "";
     DatabaseUtils db = new DatabaseUtils();
@@ -66,12 +75,18 @@
     ArrayList genrelist = new ArrayList();
     ArrayList reviewdatelist = new ArrayList();
     try {
+        ResultSet getreviews = db.executeFixedQuery("select count(reviewID), movieID from reviews group by movieID order by movieID asc");
+        ResultSet getmovietitle = db.executeFixedQuery("select title from movie order by ID asc");
+        while (getreviews.next()) {
+            countreviewlist.add(getreviews.getInt(1));
         ResultSet getmoviegenre = db.executeFixedQuery("SELECT count(movie.ID), Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID group by Genre.name");
         ResultSet getdate = db.executeFixedQuery("select DATE(createdat) from reviews group by DATE(createdat)");
         while(getmoviegenre.next()){
             countmovielist.add(getmoviegenre.getInt(1));
             genrelist.add("\"" + getmoviegenre.getString(2) + "\"");
         }
+        while (getmovietitle.next()) {
+            movielist.add("\"" + getmovietitle.getString(1) + "\"");
         while(getdate.next()){
             datelist.add("\"" + getdate.getString(1) + "\"");
         }
@@ -88,7 +103,7 @@
         }
     } catch (SQLException e) {
         e.printStackTrace();
-        response.sendRedirect("/error.html");
+        response.sendRedirect("/errors/error.html");
     } finally {
         db.closeConnection();
     }
@@ -201,4 +216,4 @@
         });
     </script>
 </body>
-<%@ include file="footer.html"%>
+<%@ include file="footer.html" %>

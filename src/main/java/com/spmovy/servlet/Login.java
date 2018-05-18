@@ -33,12 +33,8 @@ public class Login extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("userid", rs.getInt("ID"));
                     session.setAttribute("role", rs.getString("role"));
-                    db.executeUpdate("UPDATE users SET lastloginip=?, lastlogintime=? WHERE username=?",
-                            request.getRemoteAddr(),
-                            new Timestamp(System.currentTimeMillis()),
-                            username);
                     response.sendRedirect("/admin/adminPanel.jsp");
-                } else  {
+                } else {
                     response.sendRedirect("/admin/admin.jsp?login=Failed");
                 }
             } else {

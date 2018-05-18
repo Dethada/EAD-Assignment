@@ -44,7 +44,8 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="movies.jsp">
-            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
+                   aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav">
@@ -56,8 +57,10 @@
 </nav>
 <%@ page import="java.sql.*" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
+<%@ page import="com.spmovy.Utils" %>
 <%
-    DatabaseUtils db = new DatabaseUtils();
+    DatabaseUtils db = Utils.getDatabaseUtils(response);
+    if (db == null) return;
     int id = Integer.parseInt(request.getParameter("id"));
     ResultSet rs = db.executeQuery("SELECT title FROM movie WHERE ID=?", id);
     String title = "";
@@ -100,10 +103,7 @@
             rs = db.executeQuery("SELECT * FROM timeslot where movieID=?", id);
             while (rs.next()) {
                 out.print("<td>" + rs.getString("moviedate") + "</td><td>" + rs.getString("movietime") + "</td>");
-                out.print("<td><form method=\"post\" action=\"/admin/updateTimeslot.jsp\">" +
-                        "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
-                        "<input class=\"btn btn-secondary\" type=\"submit\" value=\"Edit\"></form>" +
-                        "<form method=\"post\" action=\"/backend/admin/DeleteTimeslot\">" +
+                out.print("<td><form method=\"post\" action=\"/backend/admin/DeleteTimeslot\">" +
                         "<input type=\"hidden\" name=\"movietime\" value=\"" + rs.getString("movietime") + "\">" +
                         "<input type=\"hidden\" name=\"moviedate\" value=\"" + rs.getString("moviedate") + "\">" +
                         "<input type=\"hidden\" name=\"id\" value=\"" + id + "\">" +
