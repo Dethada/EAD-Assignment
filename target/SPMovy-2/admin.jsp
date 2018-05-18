@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/login.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
@@ -19,6 +20,7 @@
     <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <div class="g-recaptcha" data-sitekey="6Ld5D1oUAAAAAGkPcZ6GpeTvFA15pYZLTD6b6hTA"></div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <%
         String login = request.getParameter("login");
@@ -27,6 +29,8 @@
                 out.println("<p class=\"mt-5 mb-3 invalid-login\">You have entered an invalid ID/Password<p>");
             } else if (login.equals("Not")) {
                 out.println("<p class=\"mt-5 mb-3 invalid-login\">Not logged in.<p>");
+            } else if (login.equals("captcha")) {
+                out.println("<p class=\"mt-5 mb-3 invalid-login\">Captcha Failed.<p>");
             }
         }
     %>

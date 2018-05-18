@@ -12,49 +12,7 @@ import static org.junit.Assert.*;
 
 public class LoginTest extends Mockito {
 
-    @Test
-    public void LoginSuccess() throws Exception {
-        HttpServletRequest request = mock(HttpServletRequest.class);
-        HttpServletResponse response = mock(HttpServletResponse.class);
-        HttpSession session = mock(HttpSession.class);
-
-        when(request.getParameter("username")).thenReturn("admin");
-        when(request.getParameter("password")).thenReturn("admin");
-        when(request.getRemoteAddr()).thenReturn("127.0.0.1");
-        when(request.getSession()).thenReturn(session);
-
-        new Login().doPost(request, response);
-
-        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-        // verify get username and password is called
-        verify(request, atLeast(1)).getParameter("username");
-        verify(request, atLeast(1)).getParameter("password");
-        verify(response).sendRedirect(captor.capture());
-        assertEquals("/admin/adminPanel.jsp", captor.getValue());
-    }
-
-    @Test
-    public void LoginFail() throws Exception {
-        HttpServletRequest request = mock(HttpServletRequest.class);
-        HttpServletResponse response = mock(HttpServletResponse.class);
-        HttpSession session = mock(HttpSession.class);
-
-        when(request.getParameter("username")).thenReturn("admin");
-        when(request.getParameter("password")).thenReturn("idk");
-        when(request.getSession()).thenReturn(session);
-
-        new Login().doPost(request, response);
-
-        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-        // verify get username and password is called
-        verify(request, atLeast(1)).getParameter("username");
-        verify(request, atLeast(1)).getParameter("password");
-        verify(response).sendRedirect(captor.capture());
-        assertEquals("/admin/admin.jsp?login=Failed", captor.getValue());
-    }
-
-    @Test
-    public void MissingParam() throws Exception {
+    public void CaptchaFail() throws Exception {
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
         HttpSession session = mock(HttpSession.class);
@@ -70,6 +28,6 @@ public class LoginTest extends Mockito {
         verify(request, atLeast(1)).getParameter("username");
         verify(request, atLeast(1)).getParameter("password");
         verify(response).sendRedirect(captor.capture());
-        assertEquals("/admin/admin.jsp?login=Failed", captor.getValue());
+        assertEquals("/admin/admin.jsp?login=captcha", captor.getValue());
     }
 }
