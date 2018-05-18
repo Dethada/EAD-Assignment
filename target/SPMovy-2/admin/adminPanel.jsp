@@ -61,18 +61,26 @@
 <%  String ip = "";
     String lastlogintime = "";
     DatabaseUtils db = new DatabaseUtils();
-    ArrayList countreviewlist = new ArrayList();
-    ArrayList movielist = new ArrayList();
+    ArrayList countmovielist = new ArrayList();
+    ArrayList datelist = new ArrayList();
+    ArrayList genrelist = new ArrayList();
+    ArrayList reviewdatelist = new ArrayList();
     try {
-        ResultSet getreviews = db.executeFixedQuery("select count(reviewID), movieID from reviews group by movieID order by movieID asc");
-        ResultSet getmovietitle = db.executeFixedQuery("select title from movie order by ID asc");
-        while(getreviews.next()){
-            countreviewlist.add(getreviews.getInt(1));
+        ResultSet getmoviegenre = db.executeFixedQuery("SELECT count(movie.ID), Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID group by Genre.name");
+        ResultSet getdate = db.executeFixedQuery("select DATE(createdat) from reviews group by DATE(createdat)");
+        while(getmoviegenre.next()){
+            countmovielist.add(getmoviegenre.getInt(1));
+            genrelist.add("\"" + getmoviegenre.getString(2) + "\"");
         }
-        while(getmovietitle.next()){
-            movielist.add("\"" + getmovietitle.getString(1) + "\"");
+        while(getdate.next()){
+            datelist.add("\"" + getdate.getString(1) + "\"");
         }
-        System.out.println(movielist);
+        for(int i = 0; i < datelist.size(); i++){
+            ResultSet getreviewdata = db.executeQuery("select count(reviewID) from reviews where DATE(createdat) <=" + datelist.get(i));
+            while(getreviewdata.next()){
+                reviewdatelist.add(getreviewdata.getString(1));
+            }
+        }
         ResultSet rs = db.executeQuery("SELECT * FROM users where ID=?", (Integer) session.getAttribute("userid"));
         if (rs.next()) {
             ip = rs.getString("lastloginip");
@@ -86,107 +94,76 @@
     }
 %>
 <h2>Last login from <%= ip %> at <%= lastlogintime %></h2>
+
+
 <div class="row">
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-comments fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">26</div>
-                        <div>New Comments!</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
+    <div class="col">
+            <canvas id="myChart"></canvas>
     </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-green">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-tasks fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">12</div>
-                        <div>New Tasks!</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-yellow">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-shopping-cart fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">124</div>
-                        <div>New Orders!</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-support fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">13</div>
-                        <div>Support Tickets!</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
+    <div class="col">
+            <canvas id="myChart2"></canvas>
         </div>
 </div>
-    <div class="container">
-    <canvas id="myChart" width="100" height="100"></canvas>
-    </div>
-        <script>
-        var ctx = document.getElementById("myChart").getContext('2d');
+    <script>
+        var ctx = document.getElementById("myChart2").getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
-                labels: <%=movielist%>,
+                labels: <%=datelist%>,
                 datasets: [{
                     label: 'Number of reviews',
-                    data: <%=Arrays.toString(countreviewlist.toArray())%>,
+					backgroundColor: [
+                    'rgba(255,255,255, 0.1)'
+                        
+                    ],
+                    borderColor: [
+                    'rgba(255, 0, 0, 1)' 
+                    ],
+					data: <%=Arrays.toString(reviewdatelist.toArray())%>,
+                }]
+				},
+            options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Number of reviews per day'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+						
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+
+						}
+					}]
+				}
+			}
+		});
+    </script>
+    <script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: <%=genrelist%>,
+                datasets: [{
+                    label: 'Number of movies per genre',
+                    data: <%=Arrays.toString(countmovielist.toArray())%>,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -207,17 +184,21 @@
                 }]
             },
             options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Number of movies per genre'
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
                 }
             }
+
         });
     </script>
-</div>
-
 </body>
 <%@ include file="footer.html"%>
