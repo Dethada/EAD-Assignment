@@ -46,8 +46,16 @@
                     <a class="dropdown-item" href="/admin/addActor.jsp">Add Actor</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/admin/changePassword.jsp">Change Password</a>
+                </div>
+            </li>
         </ul>
-
         <div>
             <form class="form-inline my-2 my-lg-0" action="movies.jsp">
                 <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
