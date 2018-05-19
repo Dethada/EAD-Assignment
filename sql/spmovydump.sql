@@ -4,7 +4,7 @@ USE `spmovy`;
 --
 -- Host: spmovy.cago8emkqgze.ap-southeast-1.rds.amazonaws.com    Database: spmovy
 -- ------------------------------------------------------
--- Server version	5.7.21-log
+-- Server version 5.7.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `Genre` (
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `actor` (
   `Name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=293 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=304 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +138,7 @@ CREATE TABLE `movie` (
   `imagepath` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `movie` (
 
 LOCK TABLES `movie` WRITE;
 /*!40000 ALTER TABLE `movie` DISABLE KEYS */;
-INSERT INTO `movie` VALUES (1,'Avengers: Infinity War','2018-04-26','Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos. On a mission to collect all six Infinity Stones, Thanos plans to use the artifacts to inflict his twisted will on reality. The fate of the planet and existence itself has never been more uncertain as everything the Avengers have fought for has led up to this moment.?',160,'https://cdn.spmovy.xyz/upload_4ebd46fadf871d173458a0c7c1aa4517.jpg','Now Showing'),(3,'Deadpool 2','2018-05-17','After surviving a near fatal bovine attack, a disfigured cafeteria chef (Wade Wilson) struggles to fulfill his dream of becoming Mayberry\'s hottest bartender while also learning to cope with his lost sense of taste. Searching to regain his spice for life, as well as a flux capacitor, Wade must battle ninjas, the yakuza, and a pack of sexually aggressive canines, as he journeys around the world to discover the importance of family, friendship, and flavor - finding a new taste for adventure and earning the coveted coffee mug title of World\'s Best Lover. ',120,'https://cdn.spmovy.xyz/upload_d78301d5df1f4bc33a55b6ed9e60f92d.jpg','Now Showing'),(14,'Rampage','2018-04-12','Primatologist Davis Okoye (Johnson), a man who keeps people at a distance, shares an unshakable bond with George, the extraordinarily intelligent, silverback gorilla who has been in his care since birth. But a rogue genetic experiment gone awry mutates this gentle ape into a raging creature of enormous size. To make matters worse, it’s soon discovered there are other similarly altered animals. As these newly created alpha predators tear across North America, destroying everything in their path, Okoye teams with a discredited genetic engineer to secure an antidote, fighting his way through an ever-changing battlefield, not only to halt a global catastrophe but to save the fearsome creature that was once his friend.',107,'https://cdn.spmovy.xyz/upload_bf4ef60f3a3f5a727fe663afa9f9b7c8.jpg','Now Showing'),(15,'A Quiet Place','2018-04-05','In the modern horror thriller A QUIET PLACE, a family of four must navigate their lives in silence after mysterious creatures that hunt by sound threaten their survival. If they hear you, they hunt you.',90,'https://cdn.spmovy.xyz/upload_8e14118da2dae89afe34c33fff954f3f.jpg','Now Showing'),(47,'I Kill Giants','2018-05-10','Barbara Thorson (Madison Wolfe) is a teenage girl who escapes the realities of school and a troubled family life by retreating into her magical world of fighting evil giants. With the help of her new friend Sophia (Sydney Wade) and her school counselor (Zoe Saldana), Barbara learns to face her fears and battle the giants that threaten her world.',101,'https://cdn.spmovy.xyz/upload_c678f5769ac626600bce2a6c1be4882d.jpg','Now Showing'),(58,'Jurassic World: Fallen Kingdom','2018-06-07','It’s been four years since theme park and luxury resort Jurassic World was destroyed by dinosaurs out of containment. Isla Nublar now sits abandoned by humans while the surviving dinosaurs fend for themselves in the jungles.When the island’s dormant volcano begins roaring to life, Owen (Chris Pratt) and Claire (Bryce Dallas Howard) mount a campaign to rescue the remaining dinosaurs from this extinction-level event. Owen is driven to find Blue, his lead raptor who’s still missing in the wild, and Claire has grown a respect for these creatures she now makes her mission. Arriving on the unstable island as lava begins raining down, their expedition uncovers a conspiracy that could return our entire planet to a perilous order not seen since prehistoric times. ',120,'https://cdn.spmovy.xyz/upload_de382f79bd854bfb9f0a664e48265eff.jpg','Coming Soon'),(66,'test','1990-05-11','testing 1 2 3',10,'test','Over'),(67,'test','1990-05-11','testing 1 2 3',10,'test','Over'),(68,'test','1990-05-11','testing 1 2 3',10,'test','Over');
+INSERT INTO `movie` VALUES (1,'Avengers: Infinity War','2018-04-26','Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos. On a mission to collect all six Infinity Stones, Thanos plans to use the artifacts to inflict his twisted will on reality. The fate of the planet and existence itself has never been more uncertain as everything the Avengers have fought for has led up to this moment.?',160,'https://cdn.spmovy.xyz/upload_4ebd46fadf871d173458a0c7c1aa4517.jpg','Now Showing'),(3,'Deadpool 2','2018-05-17','After surviving a near fatal bovine attack, a disfigured cafeteria chef (Wade Wilson) struggles to fulfill his dream of becoming Mayberry\'s hottest bartender while also learning to cope with his lost sense of taste. Searching to regain his spice for life, as well as a flux capacitor, Wade must battle ninjas, the yakuza, and a pack of sexually aggressive canines, as he journeys around the world to discover the importance of family, friendship, and flavor - finding a new taste for adventure and earning the coveted coffee mug title of World\'s Best Lover. ',120,'https://cdn.spmovy.xyz/upload_d78301d5df1f4bc33a55b6ed9e60f92d.jpg','Now Showing'),(14,'Rampage','2018-04-12','Primatologist Davis Okoye (Johnson), a man who keeps people at a distance, shares an unshakable bond with George, the extraordinarily intelligent, silverback gorilla who has been in his care since birth. But a rogue genetic experiment gone awry mutates this gentle ape into a raging creature of enormous size. To make matters worse, it’s soon discovered there are other similarly altered animals. As these newly created alpha predators tear across North America, destroying everything in their path, Okoye teams with a discredited genetic engineer to secure an antidote, fighting his way through an ever-changing battlefield, not only to halt a global catastrophe but to save the fearsome creature that was once his friend.',107,'https://cdn.spmovy.xyz/upload_bf4ef60f3a3f5a727fe663afa9f9b7c8.jpg','Now Showing'),(15,'A Quiet Place','2018-04-05','In the modern horror thriller A QUIET PLACE, a family of four must navigate their lives in silence after mysterious creatures that hunt by sound threaten their survival. If they hear you, they hunt you.',90,'https://cdn.spmovy.xyz/upload_8e14118da2dae89afe34c33fff954f3f.jpg','Now Showing'),(47,'I Kill Giants','2018-05-10','Barbara Thorson (Madison Wolfe) is a teenage girl who escapes the realities of school and a troubled family life by retreating into her magical world of fighting evil giants. With the help of her new friend Sophia (Sydney Wade) and her school counselor (Zoe Saldana), Barbara learns to face her fears and battle the giants that threaten her world.',101,'https://cdn.spmovy.xyz/upload_c678f5769ac626600bce2a6c1be4882d.jpg','Now Showing'),(58,'Jurassic World: Fallen Kingdom','2018-06-07','It’s been four years since theme park and luxury resort Jurassic World was destroyed by dinosaurs out of containment. Isla Nublar now sits abandoned by humans while the surviving dinosaurs fend for themselves in the jungles.When the island’s dormant volcano begins roaring to life, Owen (Chris Pratt) and Claire (Bryce Dallas Howard) mount a campaign to rescue the remaining dinosaurs from this extinction-level event. Owen is driven to find Blue, his lead raptor who’s still missing in the wild, and Claire has grown a respect for these creatures she now makes her mission. Arriving on the unstable island as lava begins raining down, their expedition uncovers a conspiracy that could return our entire planet to a perilous order not seen since prehistoric times. ',120,'https://cdn.spmovy.xyz/upload_de382f79bd854bfb9f0a664e48265eff.jpg','Coming Soon');
 /*!40000 ALTER TABLE `movie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +169,7 @@ CREATE TABLE `reviews` (
   PRIMARY KEY (`reviewID`,`movieID`),
   KEY `movieID` (`movieID`),
   CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`movieID`) REFERENCES `movie` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +178,7 @@ CREATE TABLE `reviews` (
 
 LOCK TABLES `reviews` WRITE;
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
-INSERT INTO `reviews` VALUES (13,1,'Batman dies ?','Spoiler',5,'2018-05-19 15:35:08','172.17.0.1'),(14,3,'So funny!','Movie Reviewer',4,'2018-05-19 15:36:07','172.17.0.1'),(15,14,'Boring plot','Movie Reviewer',2,'2018-05-19 15:36:55','172.17.0.1'),(16,1,'nice one','tester',4,'2018-05-19 15:53:07','127.0.0.1');
+INSERT INTO `reviews` VALUES (14,3,'So funny!','Movie Reviewer',4,'2018-05-19 15:36:07','172.17.0.1'),(15,14,'Boring plot','Movie Reviewer',2,'2018-05-19 15:36:55','172.17.0.1'),(19,15,'Good Plot','Movie Reviewer',4,'2018-05-20 16:06:59','172.17.0.1'),(56,3,'Deadpool just want to have fun,so the movie can be quite crazy.Entertaining but not really my cup of tea?.','John',3,'2018-05-20 01:25:35','172.17.0.1'),(57,1,'This movie is fantastic. The way the creators bring all the characters together in this story is excellent. Cannot wait for Part 2 to come.','Jess',5,'2018-05-20 01:26:09','172.17.0.1'),(61,47,'Interesting concept','Anon',3,'2018-05-20 01:26:53','172.17.0.1'),(62,1,'Best movie so far?','Elliot',5,'2018-05-20 01:26:56','172.17.0.1'),(63,14,'Typical plot','Jason',2,'2018-05-20 01:27:33','172.17.0.1'),(64,15,'Was at the edge of my seat for most of the movie!','Emily',4,'2018-05-20 01:28:11','172.17.0.1'),(65,47,'Cool plot but could be better','White Rose',3,'2018-05-20 01:28:54','172.17.0.1');
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,4 +245,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-19 23:53:13
+
+-- Dump completed on 2018-05-20  1:30:00
