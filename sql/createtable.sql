@@ -29,7 +29,8 @@ CREATE TABLE MovieActor(
 );
 
 CREATE TABLE timeslot(
-    timing datetime NOT NULL,
+    movietime time NOT NULL,
+    moviedate date NOT NULL,
     movieID int NOT NULL,
     PRIMARY KEY (timing),
     FOREIGN KEY (movieID) REFERENCES movie(ID)
