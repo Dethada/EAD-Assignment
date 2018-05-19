@@ -103,7 +103,7 @@
                 out.print("<td>" + StringEscapeUtils.escapeHtml4(rs.getString("name")) + "</td><td>" +
                         rs.getInt("rating") + "</td><td>" + StringEscapeUtils.escapeHtml4(rs.getString("reviewSentence")) +
                         "</td><td>" + rs.getTimestamp("createdat") + "</td><td>" + StringEscapeUtils.escapeHtml4(rs.getString("ip")) + "</td>");
-                out.print("<td><form method=\"post\" action=\"/backend/admin/DeleteReview\">" +
+                out.print("<td><form style=\"padding: 0;\" method=\"post\" action=\"/backend/admin/DeleteReview\">" +
                         "<input type=\"hidden\" name=\"table\" value=\"reviews\">" +
                         "<input type=\"hidden\" name=\"movieid\" value=\"" + movieid + "\">" +
                         "<input type=\"hidden\" name=\"reviewid\" value=\"" + rs.getInt("reviewID") + "\">" +

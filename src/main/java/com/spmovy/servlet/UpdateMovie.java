@@ -60,7 +60,7 @@ public class UpdateMovie extends HttpServlet {
             int movieid = movieIDResult.getInt("ID");
             // get list of current genres/actors
             ArrayList<Integer> currentGenres = getcList(db.executeQuery("SELECT genreID FROM MovieGenre WHERE movieID=?", movieid));
-            ArrayList<Integer> currentActors = getcList(db.executeQuery("SELECT movieID FROM MovieActor WHERE movieID=?", movieid));
+            ArrayList<Integer> currentActors = getcList(db.executeQuery("SELECT actorID FROM MovieActor WHERE movieID=?", movieid));
             // prepare prepared statements
             PreparedStatement getGenreID = connection.prepareStatement("SELECT ID FROM Genre WHERE name=?");
             PreparedStatement getActorID = connection.prepareStatement("SELECT ID FROM actor WHERE name=?");
@@ -96,8 +96,8 @@ public class UpdateMovie extends HttpServlet {
      */
     private void updateManytoMany(String[] list, ArrayList<Integer> cList, PreparedStatement getID, PreparedStatement insertStmt, PreparedStatement deleteStmt) throws SQLException {
         // add actors/genres for movie
-        for (String actor : list) {
-            getID.setString(1, actor);
+        for (String item : list) {
+            getID.setString(1, item);
             ResultSet rs = getID.executeQuery();
             if (rs.next()) {
                 int tmpID = rs.getInt("ID");
