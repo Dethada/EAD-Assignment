@@ -77,7 +77,7 @@ CREATE TABLE users(
     password char(60) NOT NULL,
     role varchar(50) NOT NULL,
     UNIQUE (username),
-    PRIMARY KEY(userID)
+    PRIMARY KEY(ID)
 );
 
 DELIMITER //
