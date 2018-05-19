@@ -23,6 +23,7 @@ public class AddMovieTest extends Mockito {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.closeConnection();
     }
 
     @Test

@@ -23,6 +23,7 @@ public class AddGenreTest extends Mockito {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.closeConnection();
     }
 
     @Test

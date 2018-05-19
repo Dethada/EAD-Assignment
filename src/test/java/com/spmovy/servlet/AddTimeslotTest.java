@@ -25,6 +25,7 @@ public class AddTimeslotTest extends Mockito {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.closeConnection();
     }
 
     @Test
