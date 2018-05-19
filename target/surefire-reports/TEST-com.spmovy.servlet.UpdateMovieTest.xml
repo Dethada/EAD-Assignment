@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="10" failures="0" name="com.spmovy.servlet.UpdateMovieTest" time="1.805" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="com.spmovy.servlet.UpdateMovieTest" time="1.759" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_131\jre\bin"/>
@@ -66,13 +66,13 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="UpdateImagePathInvalidPath" time="0.149"/>
-  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="MissingDuration" time="0.147"/>
-  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="MissingID" time="0.146"/>
-  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="MissingParams" time="0.145"/>
-  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="UpdateImagePathInvalidID" time="0.142"/>
-  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="ValidParams" time="0.283"/>
-  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="DeleteMovie" time="0.227"/>
-  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="DeleteMovieMissingID" time="0.2"/>
-  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="DeleteMovieMissingTable" time="0.15"/>
-  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="UpdateImagePathValid" time="0.216"/>
+  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="MissingDuration" time="0.143"/>
+  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="MissingID" time="0.149"/>
+  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="MissingParams" time="0.137"/>
+  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="UpdateImagePathInvalidID" time="0.149"/>
+  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="ValidParams" time="0.265"/>
+  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="DeleteMovie" time="0.218"/>
+  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="DeleteMovieMissingID" time="0.198"/>
+  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="DeleteMovieMissingTable" time="0.145"/>
+  <testcase classname="com.spmovy.servlet.UpdateMovieTest" name="UpdateImagePathValid" time="0.206"/>
 </testsuite>

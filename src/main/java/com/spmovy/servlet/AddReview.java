@@ -33,12 +33,11 @@ public class AddReview extends HttpServlet {
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return; // return if database connection failed
         try {
-            int updateCount = db.executeUpdate("INSERT INTO reviews(movieID,reviewSentence,name,rating,createdat,ip) VALUES (?,?,?,?,?,?)",
+            int updateCount = db.executeUpdate("INSERT INTO reviews(movieID,reviewSentence,name,rating,createdat,ip) VALUES (?,?,?,?,NOW(),?)",
                     movieid,
                     review,
                     name,
                     rating,
-                    new Timestamp(System.currentTimeMillis()),
                     request.getRemoteAddr());
             if (updateCount != 1) { // checks if insert is successful
                 response.sendRedirect("/errors/error.html");
