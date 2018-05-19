@@ -1,5 +1,6 @@
 package com.spmovy;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,5 +38,10 @@ public class DatabaseUtilsTest {
     @Test
     public void getConnection() {
         assertNotNull(this.db.getConnection());
+    }
+
+    @After
+    public void tearDown() {
+        this.db.closeConnection();
     }
 }

@@ -5,6 +5,7 @@ com\spmovy\servlet\AddReview.class
 com\spmovy\servlet\Logout.class
 com\spmovy\DatabaseUtils.class
 com\spmovy\servlet\AddGenre.class
+com\spmovy\filters\CharsetFilter.class
 com\spmovy\servlet\UpdateActor.class
 com\spmovy\servlet\DeleteTimeslot.class
 com\spmovy\servlet\UpdateMovieImagePath.class
