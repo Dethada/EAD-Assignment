@@ -1,0 +1,28 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "SPMovy",
+                "projectName": "SPMovy",
+                "workingDirectory": "e:\\Course stuff\\AY2S1\\EAD\\EAD-Assignment",
+                "args": [],
+                "vmargs": [],
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "SPMovy",
+                "projectName": "SPMovy",
+                "workingDirectory": "e:\\Course stuff\\AY2S1\\EAD\\EAD-Assignment",
+                "args": [],
+                "vmargs": [],
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

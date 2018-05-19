@@ -1,19 +1,20 @@
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\Delete.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\AddReview.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\AddGenre.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\Login.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\DeleteReview.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\filters\SessionCheckFilter.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\BCryptUtil.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\UpdateMovie.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\UpdateActor.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\DeleteTimeslot.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\AddTimeslot.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\AddActor.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\Utils.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\DeleteMovie.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\DatabaseUtils.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\Logout.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\AddMovie.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\UpdateGenre.java
-C:\Users\Javiery\EAD-Assignment\src\main\java\com\spmovy\servlet\UpdateMovieImagePath.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\UpdateActor.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\AddGenre.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\UpdateMovieImagePath.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\AddTimeslot.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\ChangePassword.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\Login.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\DeleteReview.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\Delete.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\BCryptUtil.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\DeleteTimeslot.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\filters\SessionCheckFilter.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\AddMovie.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\UpdateGenre.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\Utils.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\UpdateMovie.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\DeleteMovie.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\AddActor.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\Logout.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\DatabaseUtils.java
+E:\Course stuff\AY2S1\EAD\EAD-Assignment\src\main\java\com\spmovy\servlet\AddReview.java

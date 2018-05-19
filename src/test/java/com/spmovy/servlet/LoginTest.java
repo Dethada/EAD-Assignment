@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 
 public class LoginTest extends Mockito {
 
+    @Test
     public void CaptchaFail() throws Exception {
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
@@ -28,6 +29,6 @@ public class LoginTest extends Mockito {
         verify(request, atLeast(1)).getParameter("username");
         verify(request, atLeast(1)).getParameter("password");
         verify(response).sendRedirect(captor.capture());
-        assertEquals("/admin/admin.jsp?login=captcha", captor.getValue());
+        assertEquals("/admin.jsp?login=captcha", captor.getValue());
     }
 }

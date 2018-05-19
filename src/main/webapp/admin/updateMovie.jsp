@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="header.html" %>
-<link rel="stylesheet" href="/css/awesomplete.css"/>
-<script src="/js/awesomplete.js" async></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.js" async></script>
 <title>Update Movie</title>
 </head>
 <body>
@@ -42,6 +42,15 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/admin/actors.jsp">List Actors</a>
                     <a class="dropdown-item" href="/admin/addActor.jsp">Add Actor</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
+                    Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/admin/changePassword.jsp">Change Password</a>
                 </div>
             </li>
         </ul>
