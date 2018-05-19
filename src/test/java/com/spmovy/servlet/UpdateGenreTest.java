@@ -32,6 +32,7 @@ public class UpdateGenreTest extends Mockito {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.closeConnection();
     }
 
     @After
@@ -42,6 +43,7 @@ public class UpdateGenreTest extends Mockito {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.closeConnection();
     }
 
     @Test

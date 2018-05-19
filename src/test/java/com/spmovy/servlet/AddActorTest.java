@@ -57,6 +57,7 @@ public class AddActorTest extends Mockito {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.closeConnection();
     }
 
 }

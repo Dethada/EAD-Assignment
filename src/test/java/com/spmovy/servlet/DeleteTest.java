@@ -34,6 +34,7 @@ public class DeleteTest extends Mockito {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.closeConnection();
     }
 
     @After
@@ -44,6 +45,7 @@ public class DeleteTest extends Mockito {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.closeConnection();
     }
 
     @Test
