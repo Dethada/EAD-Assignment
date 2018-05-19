@@ -76,10 +76,6 @@ CREATE TABLE users(
     username varchar(50) NOT NULL,
     password char(60) NOT NULL,
     role varchar(50) NOT NULL,
-    lastloginip varchar(39) NULL,
-    lastlogintime datetime NULL,
-    currentloginip varchar(39) NULL,
-    currentlogintime datetime NULL,
     UNIQUE (username),
     PRIMARY KEY(userID)
 );
