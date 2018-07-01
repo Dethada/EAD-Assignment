@@ -1,10 +1,10 @@
 # EAD-Assignment ST0291 [![Build Status](https://travis-ci.com/PotatoDrug/EAD-Assignment.svg?token=6u9dQjLz7vCpD1gzxyL5&branch=master)](https://travis-ci.com/PotatoDrug/EAD-Assignment) [![Codecov private](https://img.shields.io/codecov/c/token/kjqDtFyGLg/github/PotatoDrug/EAD-Assignment.svg)](https://codecov.io/gh/PotatoDrug/EAD-Assignment)
 
-Due Date: 21st May 1000hrs
+Due Date: 6th August 10AM
 
 Provide README file to provide instructions on how to setup the project.
 
-> The assignment should be implemented using JSPs, HTML, Apache Tomcat, Eclipse and MySql.
+> The assignment should be implemented using MVC Architecture. It must be completed using Java Servlets, JSPs, Java Beans, HTML, Tomcat, Eclipse and MySQL.
 
 ## Deployment
 
@@ -26,61 +26,38 @@ Provide README file to provide instructions on how to setup the project.
 # stop tomcat server
 >.\shutdown.bat
 ```
+[Plugin Documentation](http://tomcat.apache.org/maven-plugin-trunk/tomcat7-maven-plugin/plugin-info.html)
+[Plugin Usage](http://tomcat.apache.org/maven-plugin-trunk/tomcat7-maven-plugin/usage.html)
 
 ## Overview
 
-**SPMovy** is considering to create an online movie booking portal to allow the public to book for movie tickets online. Before it launches its online booking service, it requires a web application to computerize its movie database and allow the public to view its movies details online.
+**With the successful completion of SPMovy** in Assignment 1, the company would require the implementation of shopping cart features in order for the website to conduct e-business on the web. 
 
-For the time being, the system only allows the following roles:
-
-* Administrator
-* General Public (does not require login)
-
-It is expected that more roles will be added in the near future, and the database may have changes to cater to additional requirements in the 2nd phase.
-
-You are tasked to design and develop a web application for the company to maintain its movie database and to allow viewers to access the movie information online.
+You are required to modify your Assignment 1 to incorporate the requirements stated below.
+Note that **MVC** is only required to be implemented for the new functional specs stated in Assignment 2. The following requirements are to be implemented using **MVC Architecture**.
 
 ## Functional Specification
 
 ### Admin
 
-* ~~Can maintain the movies database. The login credentials are to be stored in a database table, which you are required to use this table to authenticate the administrator.~~
-
-* ~~He must be able to add new movie genre categories to the database. A database **genre table is required** for management of genre info and details.~~
-
-* ~~He must be able to add new movie data to the database. For each movie, the~~
-  ~~following minimum information must be recorded~~
-
-  * Movie ID (PK, Auto-Increment, Int)
-  * Movie Title
-  * Actor List
-  * Release Date
-  * Synopsis
-  * Genre (1 movie can have multiple genres, set a FK to link with genre table)
-  * Duration (in mins)
-  * Movie Time slots
-
-  > We can suggest other fields to be included.
-
-* ~~Must be able to update and delete movies from the database.~~
-
-* ~~Must be able to delete movie genres created previously~~
-
-* ~~Each movie should have an image associated. The system will assign a default image if there is no existing image.~~
+* He must be able to view a report
+  * List of top 10 selling movies for a month by ticket number sales.
+  * View transaction details of a particular user (username supplied by admin)
 
 ### General Public
 
-* ~~There should be a movies page which allows users to see current movies. This page should~~
-  ~~show the movie picture and the title and duration as summary. Clicking the~~
-  ~~movie picture would display the full details of the movie in another separate~~
-  ~~page, including the reviews of the movie.~~ 
-* ~~Users can choose to filter current movies based on the available genres. This can be~~
-  ~~through usage of a dropdown box with the available movie genres (retrieved from~~
-  ~~database table).~~
-* ~~Users can write reviews on the movie by giving it a rating and entering the comments~~
-  ~~and name. The ‘write review’ button should be shown on the movie details page.~~
-  ~~A review table with the review details and foreign key linking to the movie table should be created in the database.~~
-* ~~Login not required~~
+* Public is able to search for movies using either one of the search criteria to be displayed as a dropdown box (results should be **sorted by release date, latest released movies appear at the top of the list**):
+  * Title
+  * Genre
+  * Actor
+* Public can register for an account to become a member. A member needs to have personal particulars that include username(unique), name, email, contact number, credit card number, password. **Only Members** can purchase movie tickets. Public (Non-members) can still continue to browse the movies showing.(Use sessions/cookies to help you accomplish this)
+* Client side(eg javascript) validation must be done on the registration page. All fields must be entered. Ensure appropriate validation for email, contact number and password. For example, Password must contain both alphabets and numbers and be of length 8 to 16, contact number must be valid characters etc.
+* Members will be able to update their personal details
+* Members will be able to book 1 or more movie tickets for a particular Movie Title on a particular date and time Slot.  Take note that you have to keep track of the total seats still available for a movie on a certain time slot.  For simplicity, price of a ticket will be either $8.50 on weekdays, or $13 on weekends and we can assume there’s only **1 theatre** in this application with seats from **row A-J** and **20 seats per row**. When booking the ticket(s), the user will be allowed to select the actual date and timeslot of the movie. The booking data must be stored in a **session**.
+* After selection of the movie, ticket quantity, date and timeslot, members would be allowed to select available seats for the movie.
+* Upon check out, your application should display the details of the ticket booking(including seat numbers, movie title, time, date), the personal particulars (i.e. name, email, contact number, credit card number), and total price as a transaction summary for users to confirm. Upon confirmation, the transaction details will be stored in the database. 
+
+> Advanced features are worth 10%. You are allowed to suggest new functionalities for your web application. Examples include but not limited to features like forget password(email), facebook/google login, hosting of application online, usage of transaction API for database transactions, password encryption, online e-payment such as use of Stripe or PayPal testing api etc.
 
 ## System Specification
 
@@ -98,6 +75,7 @@ You are tasked to design and develop a web application for the company to mainta
 
 ### Program Design
 
+* Your program must be object-oriented with proper classes.
 * Ease of maintenance and enhancements will be very important
 
 ## Assessment Guidelines
