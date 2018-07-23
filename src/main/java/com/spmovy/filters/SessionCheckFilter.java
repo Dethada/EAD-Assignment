@@ -1,5 +1,7 @@
 package com.spmovy.filters;
 
+import com.spmovy.beans.UserJB;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,11 +18,11 @@ public class SessionCheckFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        if (req.getSession().getAttribute("role") == null) {
+        UserJB user = (UserJB) req.getSession().getAttribute("user");
+        if (user == null) {
             res.sendRedirect("/admin.jsp?login=Not");
         } else {
-            String role = (String) req.getSession().getAttribute("role");
-            if (!role.equals("admin")){ //check if user type is not admin
+            if (!user.getRole().equals("admin")){ //check if user type is not admin
                 res.sendRedirect("/admin.jsp?login=Not");
             }
             fc.doFilter(request, response);
