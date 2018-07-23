@@ -4,18 +4,21 @@ public class UserJB {
     private int ID;
     private String username;
     private String role;
+    private String name;
     private String email;
     private String contact;
     private String creditcard;
+
     private String password;
 
     public UserJB() {
     }
 
-    public UserJB(int ID, String username, String role, String email, String contact, String creditcard, String password) {
+    public UserJB(int ID, String username, String role, String name, String email, String contact, String creditcard, String password) {
         this.ID = ID;
         this.username = username;
         this.role = role;
+        this.name = name;
         this.email = email;
         this.contact = contact;
         this.creditcard = creditcard;
@@ -44,6 +47,14 @@ public class UserJB {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
