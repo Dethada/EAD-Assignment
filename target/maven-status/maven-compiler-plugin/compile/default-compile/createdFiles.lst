@@ -7,6 +7,7 @@ com/spmovy/servlet/UpdateMovieImagePath.class
 com/spmovy/filters/CharsetFilter.class
 com/spmovy/servlet/AddReview.class
 com/spmovy/servlet/DeleteMovie.class
+com/spmovy/servlet/RegisterUser.class
 com/spmovy/servlet/UpdateMovie.class
 com/spmovy/Utils.class
 com/spmovy/servlet/AddTimeslot.class

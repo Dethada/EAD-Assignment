@@ -12,13 +12,11 @@ public class UserJBDB {
     public static UserJB authenticate(String username, String password) throws SQLException {
         ResultSet rs;
         DatabaseUtils db = new DatabaseUtils();
-        if (db == null) return null;
         try {
             rs = db.executeQuery("SELECT * FROM users where username=?", username);
             if (rs.next()) {
                 if (checkPassword(password, rs.getString("password"))) {
-                    // login sucessful
-//                    return getUserByID(rs.getInt("ID"));
+                    // auth sucessful
                     return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
                             rs.getString("name"), rs.getString("email"), rs.getString("contact"),
                             rs.getString("creditcard"), rs.getString("password"));
@@ -26,7 +24,7 @@ public class UserJBDB {
                     return null;
                 }
             } else {
-                // login failed
+                // auth failed
                 return null;
             }
         } catch (SQLException e) {
@@ -42,7 +40,6 @@ public class UserJBDB {
             return false;
         }
         DatabaseUtils db = new DatabaseUtils();
-        if (db == null) return false;
         ResultSet rs = db.executeQuery("select password from users where ID=?", ID);
         if (rs.next()) {
             if (checkPassword(currentpass, rs.getString("password"))) {
@@ -63,9 +60,7 @@ public class UserJBDB {
         DatabaseUtils db = new DatabaseUtils();
         int count = db.executeUpdate("INSERT INTO users(username, role, name, email, contact, creditcard, password) " +
                 "VALUES (?,?,?,?,?,?,?)", username, role, name, email, contact, creditcard, hashPassword(password));
-        if (count == 1) {
-            return true;
-        }
-        return false;
+        db.closeConnection();
+        return count == 1;
     }
 }
