@@ -20,8 +20,8 @@ public class UserJBDB {
                     // login sucessful
 //                    return getUserByID(rs.getInt("ID"));
                     return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
-                            rs.getString("email"), rs.getString("contact"), rs.getString("creditcard"),
-                            rs.getString("password"));
+                            rs.getString("name"), rs.getString("email"), rs.getString("contact"),
+                            rs.getString("creditcard"), rs.getString("password"));
                 } else {
                     return null;
                 }
@@ -55,6 +55,17 @@ public class UserJBDB {
             }
         }
         db.closeConnection();
+        return false;
+    }
+
+    public static boolean register(String username, String role, String name, String email,
+                                   String contact, String creditcard, String password) throws SQLException {
+        DatabaseUtils db = new DatabaseUtils();
+        int count = db.executeUpdate("INSERT INTO users(username, role, name, email, contact, creditcard, password) " +
+                "VALUES (?,?,?,?,?,?,?)", username, role, name, email, contact, creditcard, hashPassword(password));
+        if (count == 1) {
+            return true;
+        }
         return false;
     }
 }
