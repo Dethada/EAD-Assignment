@@ -56,11 +56,11 @@
                 </div>
             </li>
         </ul>
-        <div>
-            <form class="form-inline my-2 my-lg-0" action="movies.jsp">
+        <div class="w-50">
+            <form class="form-inline mt-2 mb-2 float-right" action="movies.jsp">
                 <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
                        aria-label="Search">
-                <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Search</button>
+                <button class="btn btn-outline-dark my-2 my-sm-0 mr-1" type="submit">Search</button>
                 <a class="btn btn-outline-danger" href="/backend/Logout">Logout</a>
             </form>
         </div>
@@ -71,25 +71,25 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.spmovy.Utils" %>
-<% DatabaseUtils db = Utils.getDatabaseUtils(response);
-    ArrayList countreviewlist = new ArrayList();
-    ArrayList movielist = new ArrayList();
+<%@ page import="java.util.Calendar"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.spmovy.beans.ToptenJB" %>
+<%
+    DatabaseUtils db = Utils.getDatabaseUtils(response);
     ArrayList countmovielist = new ArrayList();
     ArrayList datelist = new ArrayList();
     ArrayList genrelist = new ArrayList();
     ArrayList reviewdatelist = new ArrayList();
+    ArrayList toptenmovielist = new ArrayList();
+    ArrayList toptenticketlist = new ArrayList();
+    ArrayList <ToptenJB> beanlist = (ArrayList<ToptenJB>)request.getAttribute("beanlist");
+    out.print(beanlist);
+
     try {
-        ResultSet getreviews = db.executeFixedQuery("select count(reviewID), movieID from reviews group by movieID order by movieID asc");
-        ResultSet getmovietitle = db.executeFixedQuery("select title from movie order by ID asc");
         ResultSet getmoviegenre = db.executeFixedQuery("SELECT count(movie.ID), Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID group by Genre.name");
         ResultSet getdate = db.executeFixedQuery("select DATE(createdat) from reviews group by DATE(createdat)");
-        while (getmovietitle.next()) {
-            movielist.add("\"" + getmovietitle.getString(1) + "\"");
-        }
-        while (getreviews.next()) {
-            countreviewlist.add(getreviews.getInt(1));
+        ResultSet gettopten = db.executeFixedQuery("select count(movieID), movie.title,month(moviedate) from bookseats inner join movie on bookseats.movieID = movie.ID where month(moviedate) = month(current_date()) group by movieid LIMIT 10");
 
-        }
         while (getmoviegenre.next()) {
             countmovielist.add(getmoviegenre.getInt(1));
             genrelist.add("\"" + getmoviegenre.getString(2) + "\"");
@@ -104,6 +104,11 @@
                 reviewdatelist.add(getreviewdata.getString(1));
             }
         }
+
+        while (gettopten.next()){
+            toptenmovielist.add("\"" + gettopten.getString(2) + "\"");
+            toptenticketlist.add(gettopten.getInt(1));
+        }
     } catch (SQLException e) {
         e.printStackTrace();
         response.sendRedirect("/errors/error.html");
@@ -112,6 +117,18 @@
     }
 %>
 
+<div class="row mt-2 px-2">
+    <div class="col-7 mx-auto">
+        <canvas id="bar-chart"></canvas>
+    </div>
+    <div class="col-2">
+        <form action="/admin/adminPanel" method="POST">
+            <input type="number" name="month" placeholder="month" min="1" max="12" class="form-control">
+            <input type="text" name="year" placeholder="year" class="form-control">
+            <button type="submit" class="btn btn-primary"></button>
+        </form>
+    </div>
+</div>
 
 <div class="row mt-2 px-2">
     <div class="col mr-1">
@@ -122,6 +139,53 @@
     </div>
 </div>
 <script>
+    <%
+        Calendar cal = Calendar.getInstance();
+        String currmonth = new SimpleDateFormat("MMM").format(cal.getTime());
+    %>
+
+
+    // Bar chart
+    var ctx= new Chart(document.getElementById("bar-chart"), {
+        type: 'bar',
+        data: {
+                labels: <%=toptenmovielist%>,
+            datasets: [
+                {
+
+                    label: "Number of tickets this month",
+                    backgroundColor: ['rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)'
+                    ,'rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)'],
+                    borderColor:[
+                        'rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)'
+                        ,'rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)'
+                    ],
+                    data: <%=toptenticketlist%>
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Top ten selling movies in <%=currmonth%>',
+                fontSize: 20
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+<script>
     var ctx = document.getElementById("myChart2").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -130,12 +194,9 @@
             datasets: [{
                 label: 'Number of reviews',
                 backgroundColor: [
-                    'rgba(255,255,255, 0.1)'
-
-                ],
+                    'rgba(255,255,255, 0.1)'],
                 borderColor: [
-                    'rgba(255, 0, 0, 1)'
-                ],
+                    'rgba(255, 0, 0, 1)'],
                 data: <%=Arrays.toString(reviewdatelist.toArray())%>,
             }]
         },
@@ -159,7 +220,6 @@
                     display: true,
                     scaleLabel: {
                         display: true,
-
                     }
                 }],
                 yAxes: [{
