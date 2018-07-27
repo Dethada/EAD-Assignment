@@ -177,7 +177,7 @@
 %>
 <div class="alert alert-danger alert-dismissible">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Sorry</strong> Please enter a valid month and year.
+    <strong>Sorry</strong> Please enter a valid month (MM) and year (YYYY) format.
 </div>
 <div class="row mt-2 px-2">
     <div class="col-7 ml-auto">

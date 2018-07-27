@@ -22,17 +22,29 @@ public class GetTopTen extends HttpServlet {
         try {
             int month = Integer.parseInt(request.getParameter("month"));
             int year = Integer.parseInt(request.getParameter("year"));
-            ToptenJBDB beandb = new ToptenJBDB();
-            beanlist = beandb.getcurrentMonthSales(month, year);
-            if (beanlist.isEmpty()) {
-                request.setAttribute("isempty", "true");
-                request.setAttribute("month", month);
-                request.setAttribute("year", year);
-            } else {
-                request.setAttribute("beanlist", beanlist);
+            Calendar cal = Calendar.getInstance();
+            int curryear = Integer.parseInt(new SimpleDateFormat("yyyy").format(cal.getTime()));
+
+            if (month > 12 || month < 1){
+                request.setAttribute("inputformat", "false");
+            }
+            else if (year < 2018 || year > curryear) {
+                request.setAttribute("inputformat", "false");
+            }
+            else {
+                ToptenJBDB beandb = new ToptenJBDB();
+                beanlist = beandb.getcurrentMonthSales(month, year);
+                if (beanlist.isEmpty()) {
+                    request.setAttribute("isempty", "true");
+                    request.setAttribute("month", month);
+                    request.setAttribute("year", year);
+                } else {
+                    request.setAttribute("beanlist", beanlist);
+                }
             }
             RequestDispatcher rd = request.getRequestDispatcher("/admin/adminPanel.jsp");
             rd.forward(request, response);
+
             //catching for invalid inputs that are not integers
         } catch (NumberFormatException e) {
             request.setAttribute("inputformat", "false");
