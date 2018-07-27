@@ -106,14 +106,15 @@
     } finally {
         db.closeConnection();
     }
+    String errormsg = (String)request.getAttribute("inputformat");
 
-    if (request.getAttribute("isempty") != null) {
+    if (request.getAttribute("nosales") != null) {
         String month = new DateFormatSymbols().getMonths()[(Integer) request.getAttribute("month") - 1];
         String year = Integer.toString((Integer) request.getAttribute("year"));
 %>
 <div class="alert alert-danger alert-dismissible">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Sorry!</strong> There are no ticket sales in the entered month and year.
+    <strong>Sorry!</strong> There are currently no ticket sales recorded in the  <%=month%>, <%=year%>.
 </div>
 <div class="row mt-2 px-2">
     <div class="col-7 ml-auto">
@@ -173,11 +174,22 @@
         }
     });
 </script>
-<% } else if (request.getAttribute("inputformat") != null) {
+<% }
+    else if (errormsg != null) {
 %>
 <div class="alert alert-danger alert-dismissible">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Sorry</strong> Please enter a valid month (MM) and year (YYYY) format.
+    <%
+        if (errormsg.equals("invalidmonth")){
+            out.print(" <strong>Sorry</strong> The month entered is invalid, please enter a valid month in the (MM) format");
+        }
+        else if (errormsg.equals("invalidyear")) {
+            out.print(" <strong>Sorry</strong> The year entered is invalid, please enter a year from 2018 to the current year");
+        }
+        else {
+           out.print("<strong>Sorry</strong> Please enter a valid month (MM) and year (YYYY) format.");
+        }
+    %>
 </div>
 <div class="row mt-2 px-2">
     <div class="col-7 ml-auto">

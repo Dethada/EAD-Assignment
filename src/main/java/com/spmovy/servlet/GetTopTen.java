@@ -26,16 +26,17 @@ public class GetTopTen extends HttpServlet {
             int curryear = Integer.parseInt(new SimpleDateFormat("yyyy").format(cal.getTime()));
 
             if (month > 12 || month < 1){
-                request.setAttribute("inputformat", "false");
+                request.setAttribute("inputformat", "invalidmonth");
             }
             else if (year < 2018 || year > curryear) {
-                request.setAttribute("inputformat", "false");
+                request.setAttribute("inputformat", "invalidyear");
             }
+
             else {
                 ToptenJBDB beandb = new ToptenJBDB();
                 beanlist = beandb.getcurrentMonthSales(month, year);
                 if (beanlist.isEmpty()) {
-                    request.setAttribute("isempty", "true");
+                    request.setAttribute("nosales", "true");
                     request.setAttribute("month", month);
                     request.setAttribute("year", year);
                 } else {
@@ -47,7 +48,7 @@ public class GetTopTen extends HttpServlet {
 
             //catching for invalid inputs that are not integers
         } catch (NumberFormatException e) {
-            request.setAttribute("inputformat", "false");
+            request.setAttribute("inputformat", "invalidformat");
             RequestDispatcher rd = request.getRequestDispatcher("/admin/adminPanel.jsp");
             rd.forward(request, response);
         } catch (SQLException e) {
