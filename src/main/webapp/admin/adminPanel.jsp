@@ -48,7 +48,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                   aria-expanded="false">
                     Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -71,9 +71,8 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.spmovy.Utils" %>
-<%@ page import="java.util.Calendar"%>
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.spmovy.beans.ToptenJB" %>
+<%@ page import="java.text.DateFormatSymbols" %>
 <%
     DatabaseUtils db = Utils.getDatabaseUtils(response);
     ArrayList countmovielist = new ArrayList();
@@ -82,13 +81,9 @@
     ArrayList reviewdatelist = new ArrayList();
     ArrayList toptenmovielist = new ArrayList();
     ArrayList toptenticketlist = new ArrayList();
-    ArrayList <ToptenJB> beanlist = (ArrayList<ToptenJB>)request.getAttribute("beanlist");
-    out.print(beanlist);
-
     try {
         ResultSet getmoviegenre = db.executeFixedQuery("SELECT count(movie.ID), Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID group by Genre.name");
         ResultSet getdate = db.executeFixedQuery("select DATE(createdat) from reviews group by DATE(createdat)");
-        ResultSet gettopten = db.executeFixedQuery("select count(movieID), movie.title,month(moviedate) from bookseats inner join movie on bookseats.movieID = movie.ID where month(moviedate) = month(current_date()) group by movieid LIMIT 10");
 
         while (getmoviegenre.next()) {
             countmovielist.add(getmoviegenre.getInt(1));
@@ -105,70 +100,64 @@
             }
         }
 
-        while (gettopten.next()){
-            toptenmovielist.add("\"" + gettopten.getString(2) + "\"");
-            toptenticketlist.add(gettopten.getInt(1));
-        }
     } catch (SQLException e) {
         e.printStackTrace();
         response.sendRedirect("/errors/error.html");
     } finally {
         db.closeConnection();
     }
-%>
 
+    if (request.getAttribute("isempty") != null) {
+        String month = new DateFormatSymbols().getMonths()[(Integer) request.getAttribute("month") - 1];
+        String year = Integer.toString((Integer) request.getAttribute("year"));
+%>
+<div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Sorry!</strong> There are no ticket sales in the entered month and year.
+</div>
 <div class="row mt-2 px-2">
-    <div class="col-7 mx-auto">
-        <canvas id="bar-chart"></canvas>
+    <div class="col-7 ml-auto">
+        <canvas id="bar-chart2"></canvas>
     </div>
-    <div class="col-2">
+    <div class="col-2 mr-auto mt-4">
+        Enter month and year for ticket sales summary:
         <form action="/admin/adminPanel" method="POST">
-            <input type="number" name="month" placeholder="month" min="1" max="12" class="form-control">
-            <input type="text" name="year" placeholder="year" class="form-control">
-            <button type="submit" class="btn btn-primary"></button>
+            Month: <input type="text" name="month" placeholder="MM" class="form-control" maxlength="2" required>
+            <br>
+            Year: <input type="text" name="year" placeholder="YYYY" class="form-control" maxlength="4" required>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
 
-<div class="row mt-2 px-2">
-    <div class="col mr-1">
-        <canvas id="myChart"></canvas>
-    </div>
-    <div class="col">
-        <canvas id="myChart2"></canvas>
-    </div>
-</div>
-<script>
-    <%
-        Calendar cal = Calendar.getInstance();
-        String currmonth = new SimpleDateFormat("MMM").format(cal.getTime());
-    %>
 
+<script>
 
     // Bar chart
-    var ctx= new Chart(document.getElementById("bar-chart"), {
+    var ctx = new Chart(document.getElementById("bar-chart2"), {
         type: 'bar',
         data: {
-                labels: <%=toptenmovielist%>,
+            labels: [],
             datasets: [
                 {
 
                     label: "Number of tickets this month",
-                    backgroundColor: ['rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)'
-                    ,'rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)','rgba(54, 162, 235, 0.4)'],
-                    borderColor:[
-                        'rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)'
-                        ,'rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)'
+                    backgroundColor: ['rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)'
+                        , 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)'],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'
+                        , 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'
                     ],
-                    data: <%=toptenticketlist%>
+                    data: []
                 }
             ]
         },
         options: {
-            legend: { display: false },
+            legend: {display: false},
             title: {
                 display: true,
-                text: 'Top ten selling movies in <%=currmonth%>',
+                text: 'Top ten selling movies in <%=month%>, <%=year%>',
                 fontSize: 20
             },
             scales: {
@@ -184,6 +173,151 @@
         }
     });
 </script>
+<% } else if (request.getAttribute("inputformat") != null) {
+%>
+<div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Sorry</strong> Please enter a valid month and year.
+</div>
+<div class="row mt-2 px-2">
+    <div class="col-7 ml-auto">
+        <canvas id="empty"></canvas>
+    </div>
+    <div class="col-2 mr-auto mt-4">
+        Enter month and year for ticket sales summary:
+        <form action="/admin/adminPanel" method="POST">
+            Month: <input type="text" name="month" placeholder="MM" class="form-control" maxlength="2" required>
+            <br>
+            Year: <input type="text" name="year" placeholder="YYYY" class="form-control" maxlength="4" required>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+<script>
+
+    // Bar chart
+    var ctx = new Chart(document.getElementById("empty"), {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [
+                {
+
+                    label: "Number of tickets this month",
+                    backgroundColor: ['rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)'
+                        , 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)'],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'
+                        , 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'
+                    ],
+                    data: []
+                }
+            ]
+        },
+        options: {
+            legend: {display: false},
+            title: {
+                display: true,
+                text: 'Top ten selling movies in ',
+                fontSize: 20
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+<%
+} else {
+    ArrayList<ToptenJB> beanlist = (ArrayList<ToptenJB>) request.getAttribute("beanlist");
+    for (ToptenJB bean : beanlist) {
+        toptenticketlist.add(bean.getMoviecount());
+        toptenmovielist.add("\"" + bean.getMovietitle() + "\"");
+    }
+    int monthnumber = beanlist.get(1).getMonth();
+    String year = beanlist.get(1).getYear();
+    String currmonth = new DateFormatSymbols().getMonths()[monthnumber - 1];
+
+%>
+<div class="row mt-2 px-2">
+    <div class="col-7 ml-auto">
+        <canvas id="bar-chart"></canvas>
+    </div>
+    <div class="col-2 mr-auto mt-4">
+        Enter month and year for ticket sales summary:
+        <form action="/admin/adminPanel" method="POST">
+            Month: <input type="text" name="month" placeholder="MM" class="form-control" maxlength="2" required>
+            <br>
+            Year: <input type="text" name="year" placeholder="YYYY" class="form-control" maxlength="4" required>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    // Bar chart
+    var ctx = new Chart(document.getElementById("bar-chart"), {
+        type: 'bar',
+        data: {
+            labels: <%=toptenmovielist%>,
+            datasets: [
+                {
+
+                    label: "Number of tickets this month",
+                    backgroundColor: ['rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)'
+                        , 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(54, 162, 235, 0.4)'],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'
+                        , 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'
+                    ],
+                    data: <%=toptenticketlist%>
+                }
+            ]
+        },
+        options: {
+            legend: {display: false},
+            title: {
+                display: true,
+                text: 'Top ten selling movies in <%=currmonth%>, <%=year%>',
+                fontSize: 20
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+<%
+    }
+%>
+
+<div class="row mt-2 px-2">
+    <div class="col mr-1">
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="col">
+        <canvas id="myChart2"></canvas>
+    </div>
+</div>
 
 <script>
     var ctx = document.getElementById("myChart2").getContext('2d');
