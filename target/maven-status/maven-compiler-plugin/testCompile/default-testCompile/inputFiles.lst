@@ -1,17 +1,17 @@
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/AddTimeslotTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/AddActorTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/UtilsTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/ChangePasswordTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/BCryptUtilTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/UpdateGenreTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/UpdateMovieTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/DeleteTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/AddGenreTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/AddReviewTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/DatabaseUtilsTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/DeleteTimeslotTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/DeleteReviewTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/AddMovieTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/LoginTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/UpdateActorTest.java
-/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/test/java/com/spmovy/servlet/LogoutTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\ChangePasswordTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\LoginTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\UpdateActorTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\AddActorTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\AddTimeslotTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\DatabaseUtilsTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\UpdateMovieTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\DeleteTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\BCryptUtilTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\AddGenreTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\AddMovieTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\DeleteTimeslotTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\LogoutTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\UpdateGenreTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\UtilsTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\AddReviewTest.java
+C:\Users\Javiery\EAD-Assignment\src\test\java\com\spmovy\servlet\DeleteReviewTest.java

@@ -33,10 +33,9 @@ public class Login extends HttpServlet {
                     // login success
                     HttpSession session = request.getSession();
                     session.setAttribute("user", user);
-                    RequestDispatcher rd = request.getRequestDispatcher("/admin/adminPanel.jsp");
                     try {
-                        rd.forward(request, response);
-                    } catch (ServletException e) {
+                        response.sendRedirect("/admin/adminPanel");
+                    } catch (Exception e) {
                         e.printStackTrace();
                         response.sendRedirect("/errors/error.html");
                     }
