@@ -18,7 +18,7 @@ public class SessionCheckFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        UserJB user = (UserJB) req.getSession().getAttribute("user");
+        UserJB user = (UserJB) req.getSession().getAttribute("admin");
         if (user == null) {
             res.sendRedirect("/admin.jsp?login=Not");
         } else {

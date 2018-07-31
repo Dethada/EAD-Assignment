@@ -1,5 +1,6 @@
 /mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/beans/ToptenJBDB.java
 /mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/beans/UserJB.java
+/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/filters/MemberCheckFilter.java
 /mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/servlet/UpdateActor.java
 /mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/Utils.java
 /mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/servlet/UpdateMovieImagePath.java
@@ -24,5 +25,6 @@
 /mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/servlet/DeleteReview.java
 /mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/servlet/Logout.java
 /mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/beans/UserJBDB.java
+/mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/servlet/Profile.java
 /mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/servlet/Delete.java
 /mnt/e/Course stuff/AY2S1/EAD/EAD-Assignment/src/main/java/com/spmovy/servlet/RegisterUser.java
