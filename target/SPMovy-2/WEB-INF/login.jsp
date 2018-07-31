@@ -10,12 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
-    <title>Admin Login</title>
+    <title>Login</title>
 </head>
 <body class="text-center">
-<form class="form-signin" method="post" action="/backend/AdminLogin">
-    <img class="mb-4" src="image/movie.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Admin Login</h1>
+<form class="form-signin" method="post" action="/backend/Login">
+    <img class="mb-4" src="../image/movie.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please login</h1>
     <label for="username" class="sr-only">Username</label>
     <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>

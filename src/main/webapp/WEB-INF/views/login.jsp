@@ -10,12 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
-    <title>Admin Login</title>
+    <title>Login</title>
 </head>
 <body class="text-center">
-<form class="form-signin" method="post" action="/backend/AdminLogin">
-    <img class="mb-4" src="image/movie.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Admin Login</h1>
+<form class="form-signin" method="post" action="/Login">
+    <img class="mb-4" src="../../image/movie.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please login</h1>
     <label for="username" class="sr-only">Username</label>
     <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
@@ -23,9 +23,9 @@
     <div class="g-recaptcha" data-sitekey="6Ld5D1oUAAAAAGkPcZ6GpeTvFA15pYZLTD6b6hTA"></div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <%
-        String login = request.getParameter("login");
+        String login = (String) request.getAttribute("login");
         if (login != null) {
-            if (login.equals("Failed")) {
+            if (login.equals("failed")) {
                 out.println("<p class=\"mt-5 mb-3 invalid-login\">You have entered an invalid ID/Password<p>");
             } else if (login.equals("Not")) {
                 out.println("<p class=\"mt-5 mb-3 invalid-login\">Not logged in.<p>");

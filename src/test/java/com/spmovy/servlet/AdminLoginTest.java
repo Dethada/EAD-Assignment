@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import static org.junit.Assert.*;
 
-public class LoginTest extends Mockito {
+public class AdminLoginTest extends Mockito {
 
     @Test
     public void CaptchaFail() throws Exception {
@@ -22,7 +22,7 @@ public class LoginTest extends Mockito {
         when(request.getParameter("password")).thenReturn(null);
         when(request.getSession()).thenReturn(session);
 
-        new Login().doPost(request, response);
+        new AdminLogin().doPost(request, response);
 
         ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
         // verify get username and password is called

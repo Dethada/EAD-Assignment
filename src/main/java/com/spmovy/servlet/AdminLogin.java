@@ -4,8 +4,6 @@ import com.spmovy.beans.UserJB;
 import com.spmovy.beans.UserJBDB;
 import de.triology.recaptchav2java.ReCaptcha;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +12,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/backend/AdminLogin")
+public class AdminLogin extends HttpServlet {
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/login.jsp");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -29,15 +27,14 @@ public class Login extends HttpServlet {
         if (verify) {
             try {
                 UserJB user = UserJBDB.authenticate(username, password);
-                if (user != null && user.getRole().equals("member")) {
+                if (user != null && user.getRole().equals("admin")) {
                     // login success
                     HttpSession session = request.getSession();
                     session.setAttribute("user", user);
-                    response.sendRedirect("/");
+                    response.sendRedirect("/admin/adminPanel");
                 } else {
                     // login failed
-                    request.setAttribute("login", "failed");
-                    rd.include(request, response);
+                    response.sendRedirect("/admin.jsp?login=Failed");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -45,14 +42,7 @@ public class Login extends HttpServlet {
             }
         } else {
             // recaptcha failed
-            request.setAttribute("login", "captcha");
-            rd.include(request, response);
+            response.sendRedirect("/admin.jsp?login=captcha");
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/login.jsp");
-        rd.forward(request, response);
     }
 }
