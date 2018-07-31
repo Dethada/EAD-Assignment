@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.html" %>
+<%@ include file="../../../admin/header.html" %>
 <title>Admin Panel</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/admin/adminPanel.jsp">SPMovy Admin</a>
+    <a class="navbar-brand" href="/admin/adminPanel">SPMovy Admin</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -57,7 +57,7 @@
             </li>
         </ul>
         <div class="w-50">
-            <form class="form-inline mt-2 mb-2 float-right" action="movies.jsp">
+            <form class="form-inline mt-2 mb-2 float-right" action="../../../admin/movies.jsp">
                 <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
                        aria-label="Search">
                 <button class="btn btn-outline-dark my-2 my-sm-0 mr-1" type="submit">Search</button>
@@ -428,4 +428,4 @@
     });
 </script>
 </body>
-<%@ include file="footer.html" %>
+<%@ include file="../../../admin/footer.html" %>

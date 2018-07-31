@@ -13,6 +13,20 @@
     <title>Login</title>
 </head>
 <body class="text-center">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+    <div class="container">
+        <a class="navbar-brand" href="/">SPMovy</a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+            &#9776;
+        </button>
+        <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+            <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                <li class="dropdown order-1">
+                <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <form class="form-signin" method="post" action="/Login">
     <img class="mb-4" src="../../image/movie.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please login</h1>
@@ -22,6 +36,7 @@
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
     <div class="g-recaptcha" data-sitekey="6Ld5D1oUAAAAAGkPcZ6GpeTvFA15pYZLTD6b6hTA"></div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <a class="mt-5 mb-3" href="/RegisterUser">Not registered? Click here.</a>
     <%
         String login = (String) request.getAttribute("login");
         if (login != null) {

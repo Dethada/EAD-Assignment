@@ -49,7 +49,7 @@ public class GetTopTen extends HttpServlet {
             //catching for invalid inputs that are not integers
         } catch (NumberFormatException e) {
             request.setAttribute("inputformat", "invalidformat");
-            RequestDispatcher rd = request.getRequestDispatcher("/admin/adminPanel.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admin/adminPanel.jsp");
             rd.forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ public class GetTopTen extends HttpServlet {
             ToptenJBDB beandb = new ToptenJBDB();
             beanlist = beandb.getcurrentMonthSales(currmonth, curryear);
             request.setAttribute("beanlist", beanlist);
-            RequestDispatcher rd = request.getRequestDispatcher("/admin/adminPanel.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admin/adminPanel.jsp");
             rd.forward(request, response);
 
         } catch (Exception e) {

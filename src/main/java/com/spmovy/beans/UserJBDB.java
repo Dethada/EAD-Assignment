@@ -19,7 +19,7 @@ public class UserJBDB {
                     // auth sucessful
                     return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
                             rs.getString("name"), rs.getString("email"), rs.getString("contact"),
-                            rs.getString("creditcard"), rs.getString("password"));
+                            rs.getString("creditcard"), rs.getString("cvv"), rs.getString("exp"), rs.getString("password"));
                 } else {
                     return null;
                 }
@@ -35,6 +35,7 @@ public class UserJBDB {
         }
     }
 
+//    non tested
     public static boolean changePassword(int ID, String currentpass, String newpass) throws SQLException {
         if (currentpass == null || newpass == null) {
             return false;
@@ -55,11 +56,17 @@ public class UserJBDB {
         return false;
     }
 
-    public static boolean register(String username, String role, String name, String email,
-                                   String contact, String creditcard, String password) throws SQLException {
+    public static boolean updateProfile(int userid, String column, String newval) throws SQLException{
         DatabaseUtils db = new DatabaseUtils();
-        int count = db.executeUpdate("INSERT INTO users(username, role, name, email, contact, creditcard, password) " +
-                "VALUES (?,?,?,?,?,?,?)", username, role, name, email, contact, creditcard, hashPassword(password));
+        int c = db.executeUpdate("update users set ?=? where ID=?", column, newval, userid);
+        return c == 1;
+    }
+
+    public static boolean register(String username, String role, String name, String email,
+                                   String contact, String creditcard, String cvv, String exp, String password) throws SQLException {
+        DatabaseUtils db = new DatabaseUtils();
+        int count = db.executeUpdate("INSERT INTO users(username, role, name, email, contact, creditcard, cvv, exp, password) " +
+                "VALUES (?,?,?,?,?,?,?,?,?)", username, role, name, email, contact, creditcard, cvv, exp, hashPassword(password));
         db.closeConnection();
         return count == 1;
     }

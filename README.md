@@ -10,8 +10,7 @@ Provide README file to provide instructions on how to setup the project.
 
 ### Windows
 
-[Install Maven](https://www.mkyong.com/maven/how-to-install-maven-in-windows/)
-
+[Install Maven](https://www.mkyong.com/maven/how-to-install-maven-in-windows/)  
 [Set ENV Variable Windows 10](https://superuser.com/questions/949560/how-do-i-set-system-environment-variables-in-windows-10)
 
 ```powershell
@@ -26,7 +25,7 @@ Provide README file to provide instructions on how to setup the project.
 # stop tomcat server
 >.\shutdown.bat
 ```
-[Plugin Documentation](http://tomcat.apache.org/maven-plugin-trunk/tomcat7-maven-plugin/plugin-info.html)
+[Plugin Documentation](http://tomcat.apache.org/maven-plugin-trunk/tomcat7-maven-plugin/plugin-info.html)  
 [Plugin Usage](http://tomcat.apache.org/maven-plugin-trunk/tomcat7-maven-plugin/usage.html)
 
 ## Overview
@@ -41,7 +40,7 @@ Note that **MVC** is only required to be implemented for the new functional spec
 ### Admin
 
 * He must be able to view a report
-  * List of top 10 selling movies for a month by ticket number sales.
+  * ~~List of top 10 selling movies for a month by ticket number sales.~~
   * View transaction details of a particular user (username supplied by admin)
 
 ### General Public

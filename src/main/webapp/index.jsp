@@ -2,6 +2,7 @@
          import="org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
 <%@ page import="com.spmovy.Utils" %>
+<%@ page import="com.spmovy.beans.UserJB" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,44 +16,38 @@
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
     <title>SPMovy</title>
-
-
 </head>
 
 <body>
 
-<header>
-    <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">About</h4>
-                    <p class="text-muted">SPMovy is an online movie booking portal to allow the public to book for movie
-                        tickets online.</p>
-                </div>
-                <div class="col-sm-4 offset-md-1 py-4">
-                    <h4 class="text-white">Contact</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="https://twitter.com" class="text-white">Follow on Twitter</a></li>
-                        <li><a href="https://facebook.com" class="text-white">Like on Facebook</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+    <div class="container">
+        <a class="navbar-brand" href="#">SPMovy</a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+            &#9776;
+        </button>
+        <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="#" class="nav-link">More</a></li>
+            </ul>
+            <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+                <li class="dropdown order-1">
+                <% UserJB user = (UserJB) session.getAttribute("user");
+                if (user == null) { %>
+                <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
+                <% } else { %>
+                <li class="dropdown order-1">
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= user.getName() %><span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right mt-2">
+                        <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
-                </div>
-            </div>
+                </li>
+                <% } %>
+            </ul>
         </div>
     </div>
-    <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-            <a href="index.jsp" class="navbar-brand d-flex align-items-center">
-
-                <strong>SPMovy</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </div>
-</header>
+</nav>
 
 <main role="main">
 
@@ -208,7 +203,7 @@
         <p class="float-right">
             <a href="#">Back to top</a>
         </p>
-        <p>Singapore Polytechnic &copy; 2018</p>
+        <p>SPMovy &copy; 2018</p>
     </div>
 </footer>
 

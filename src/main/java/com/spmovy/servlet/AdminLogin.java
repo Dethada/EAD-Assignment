@@ -30,7 +30,7 @@ public class AdminLogin extends HttpServlet {
                 if (user != null && user.getRole().equals("admin")) {
                     // login success
                     HttpSession session = request.getSession();
-                    session.setAttribute("user", user);
+                    session.setAttribute("admin", user);
                     response.sendRedirect("/admin/adminPanel");
                 } else {
                     // login failed
