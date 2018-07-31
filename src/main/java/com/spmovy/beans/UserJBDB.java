@@ -9,6 +9,22 @@ import static com.spmovy.BCryptUtil.checkPassword;
 import static com.spmovy.BCryptUtil.hashPassword;
 
 public class UserJBDB {
+    private static UserJB initUser(ResultSet rs) throws SQLException {
+        UserJB user = new UserJB();
+        user.setID(rs.getInt("ID"));
+        user.setUsername(rs.getString("username"));
+        user.setRole(rs.getString("role"));
+        user.setName(rs.getString("name"));
+        user.setEmail(rs.getString("email"));
+        user.setContact(rs.getString("contact"));
+        user.setCardname(rs.getString("cardname"));
+        user.setCreditcard(rs.getString("creditcard"));
+        user.setCvv(rs.getString("cvv"));
+        user.setExp(rs.getString("exp"));
+        user.setPassword(rs.getString("password"));
+        return user;
+    }
+
     public static UserJB authenticate(String username, String password) throws SQLException {
         ResultSet rs;
         DatabaseUtils db = new DatabaseUtils();
@@ -17,9 +33,7 @@ public class UserJBDB {
             if (rs.next()) {
                 if (checkPassword(password, rs.getString("password"))) {
                     // auth sucessful
-                    return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
-                            rs.getString("name"), rs.getString("email"), rs.getString("contact"), rs.getString("cardname"),
-                            rs.getString("creditcard"), rs.getString("cvv"), rs.getString("exp"), rs.getString("password"));
+                    return initUser(rs);
                 } else {
                     return null;
                 }
@@ -60,9 +74,7 @@ public class UserJBDB {
         DatabaseUtils db = new DatabaseUtils();
         ResultSet rs = db.executeQuery("select * from users where username=?", username);
         if (rs.next()) {
-            return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
-                    rs.getString("name"), rs.getString("email"), rs.getString("contact"), rs.getString("cardname"),
-                    rs.getString("creditcard"), rs.getString("cvv"), rs.getString("exp"), rs.getString("password"));
+            return initUser(rs);
         }
         db.closeConnection();
         return null;
@@ -72,9 +84,7 @@ public class UserJBDB {
         DatabaseUtils db = new DatabaseUtils();
         ResultSet rs = db.executeQuery("select * from users where email=?", email);
         if (rs.next()) {
-            return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
-                    rs.getString("name"), rs.getString("email"), rs.getString("contact"), rs.getString("cardname"),
-                    rs.getString("creditcard"), rs.getString("cvv"), rs.getString("exp"), rs.getString("password"));
+            return initUser(rs);
         }
         db.closeConnection();
         return null;
@@ -84,9 +94,7 @@ public class UserJBDB {
         DatabaseUtils db = new DatabaseUtils();
         ResultSet rs = db.executeQuery("select * from users where contact=?", contact);
         if (rs.next()) {
-            return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
-                    rs.getString("name"), rs.getString("email"), rs.getString("contact"), rs.getString("cardname"),
-                    rs.getString("creditcard"), rs.getString("cvv"), rs.getString("exp"), rs.getString("password"));
+            return initUser(rs);
         }
         db.closeConnection();
         return null;

@@ -1,6 +1,6 @@
 package com.spmovy.beans;
 
-public class ToptenJB {
+public class ToptenJB implements java.io.Serializable {
     private int moviecount;
     private String movietitle;
     private int month;
@@ -9,13 +9,6 @@ public class ToptenJB {
 
     public ToptenJB() {
 
-    }
-
-    public ToptenJB(int moviecount, String movietitle, int month, String year) {
-        this.moviecount = moviecount;
-        this.movietitle = movietitle;
-        this.month = month;
-        this.year = year;
     }
 
     public int getMoviecount() {
