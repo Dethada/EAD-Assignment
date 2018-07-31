@@ -13,7 +13,11 @@ public class ToptenJBDB {
         DatabaseUtils db = new DatabaseUtils();
         ResultSet rs = db.executeQuery("select count(movieID), movie.title, MONTH(moviedate), YEAR(moviedate) from bookseats inner join movie on bookseats.movieID = movie.ID where month(moviedate) = ? and year(moviedate) = ? group by movieid LIMIT 10", salesmonth, salesyear);
         while (rs.next()) {
-            toptenbean = new ToptenJB(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
+            toptenbean = new ToptenJB();
+            toptenbean.setMoviecount(rs.getInt(1));
+            toptenbean.setMovietitle(rs.getString(2));
+            toptenbean.setMonth(rs.getInt(3));
+            toptenbean.setYear(rs.getString(4));
             beanlist.add(toptenbean);
         }
         db.closeConnection();

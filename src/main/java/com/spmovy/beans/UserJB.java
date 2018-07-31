@@ -1,6 +1,6 @@
 package com.spmovy.beans;
 
-public class UserJB {
+public class UserJB implements java.io.Serializable {
     private int ID;
     private String username;
     private String role;
@@ -14,21 +14,6 @@ public class UserJB {
     private String password;
 
     public UserJB() {
-    }
-
-    public UserJB(int ID, String username, String role, String name, String email, String contact, String cardname, String creditcard, String cvv, String exp, String password) {
-        this.ID = ID;
-        this.username = username;
-        this.role = role;
-        this.name = name;
-        this.email = email;
-        this.contact = contact;
-        this.cardname = cardname;
-        this.creditcard = creditcard;
-        this.cvv = cvv;
-        this.exp = exp;
-        this.password = password;
-
     }
 
     public int getID() {
