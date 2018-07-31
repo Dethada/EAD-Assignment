@@ -25,7 +25,7 @@ public class Profile extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String contact = request.getParameter("contact");
-//        String cardname = request.getParameter("cardname");
+        String cardname = request.getParameter("cardname");
         String creditcard = request.getParameter("creditcard");
         String cvv = request.getParameter("cvv");
         String exp = request.getParameter("exp");
@@ -54,12 +54,12 @@ public class Profile extends HttpServlet {
                     response.sendRedirect("/errors/error.html");
                 }
             }
-//            if (cardname != null) {
-//                if (!UserJBDB.updateProfile(userid, "cardname", cardname)) {
-//                    // update failed
-//                    response.sendRedirect("/errors/error.html");
-//                }
-//            }
+            if (cardname != null) {
+                if (!UserJBDB.updateProfile(userid, "cardname", cardname)) {
+                    // update failed
+                    response.sendRedirect("/errors/error.html");
+                }
+            }
             if (creditcard != null && !creditcard.equals(user.getCreditcard())) {
                 if (!UserJBDB.updateProfile(userid, "creditcard", creditcard)) {
                     // update failed

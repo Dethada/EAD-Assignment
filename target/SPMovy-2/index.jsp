@@ -3,6 +3,7 @@
 <%@ page import="com.spmovy.DatabaseUtils" %>
 <%@ page import="com.spmovy.Utils" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
+<% UserJB user = (UserJB) session.getAttribute("user"); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,14 +28,15 @@
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-            <ul class="nav navbar-nav">
-                <li class="nav-item"><a href="#" class="nav-link">More</a></li>
-            </ul>
+            <% if (user != null) { %>
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
+            </ul >
+            <% } %>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
                 <li class="dropdown order-1">
-                <% UserJB user = (UserJB) session.getAttribute("user");
-                if (user == null) { %>
+                <% if (user == null) { %>
                 <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
                 <% } else { %>
                 <li class="dropdown order-1">

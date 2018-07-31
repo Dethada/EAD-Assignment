@@ -18,7 +18,7 @@ public class UserJBDB {
                 if (checkPassword(password, rs.getString("password"))) {
                     // auth sucessful
                     return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
-                            rs.getString("name"), rs.getString("email"), rs.getString("contact"),
+                            rs.getString("name"), rs.getString("email"), rs.getString("contact"), rs.getString("cardname"),
                             rs.getString("creditcard"), rs.getString("cvv"), rs.getString("exp"), rs.getString("password"));
                 } else {
                     return null;
@@ -56,17 +56,56 @@ public class UserJBDB {
         return false;
     }
 
+    public static UserJB searchUserByUsername(String username) throws SQLException {
+        DatabaseUtils db = new DatabaseUtils();
+        ResultSet rs = db.executeQuery("select * from users where username=?", username);
+        if (rs.next()) {
+            return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
+                    rs.getString("name"), rs.getString("email"), rs.getString("contact"), rs.getString("cardname"),
+                    rs.getString("creditcard"), rs.getString("cvv"), rs.getString("exp"), rs.getString("password"));
+        }
+        db.closeConnection();
+        return null;
+    }
+
+    public static UserJB searchUserByEmail(String email) throws SQLException {
+        DatabaseUtils db = new DatabaseUtils();
+        ResultSet rs = db.executeQuery("select * from users where email=?", email);
+        if (rs.next()) {
+            return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
+                    rs.getString("name"), rs.getString("email"), rs.getString("contact"), rs.getString("cardname"),
+                    rs.getString("creditcard"), rs.getString("cvv"), rs.getString("exp"), rs.getString("password"));
+        }
+        db.closeConnection();
+        return null;
+    }
+
+    public static UserJB searchUserByContact(String contact) throws SQLException {
+        DatabaseUtils db = new DatabaseUtils();
+        ResultSet rs = db.executeQuery("select * from users where contact=?", contact);
+        if (rs.next()) {
+            return new UserJB(rs.getInt("ID"), rs.getString("username"), rs.getString("role"),
+                    rs.getString("name"), rs.getString("email"), rs.getString("contact"), rs.getString("cardname"),
+                    rs.getString("creditcard"), rs.getString("cvv"), rs.getString("exp"), rs.getString("password"));
+        }
+        db.closeConnection();
+        return null;
+    }
+
+
+    // non tested
     public static boolean updateProfile(int userid, String column, String newval) throws SQLException{
         DatabaseUtils db = new DatabaseUtils();
         int c = db.executeUpdate("update users set ?=? where ID=?", column, newval, userid);
+        db.closeConnection();
         return c == 1;
     }
 
-    public static boolean register(String username, String role, String name, String email,
-                                   String contact, String creditcard, String cvv, String exp, String password) throws SQLException {
+    public static boolean register(String username, String role, String name, String email, String contact,
+                                   String cardname, String creditcard, String cvv, String exp, String password) throws SQLException {
         DatabaseUtils db = new DatabaseUtils();
-        int count = db.executeUpdate("INSERT INTO users(username, role, name, email, contact, creditcard, cvv, exp, password) " +
-                "VALUES (?,?,?,?,?,?,?,?,?)", username, role, name, email, contact, creditcard, cvv, exp, hashPassword(password));
+        int count = db.executeUpdate("INSERT INTO users(username, role, name, email, contact, cardname, creditcard, cvv, exp, password) " +
+                "VALUES (?,?,?,?,?,?,?,?,?,?)", username, role, name, email, contact, cardname, creditcard, cvv, exp, hashPassword(password));
         db.closeConnection();
         return count == 1;
     }

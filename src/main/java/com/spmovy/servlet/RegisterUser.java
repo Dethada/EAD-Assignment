@@ -21,26 +21,70 @@ public class RegisterUser extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String contact = request.getParameter("contact");
-//        String cardname = request.getParameter("cardname");
+        String cardname = request.getParameter("cardname");
         String creditcard = request.getParameter("creditcard");
         String cvv = request.getParameter("cvv");
         String exp = request.getParameter("exp");
         String password = request.getParameter("password");
         String role = "member";
+        String message = "";
+        boolean invalid = false;
 
-        String message;
-        try {
-            if (UserJBDB.register(username, role, name, email, contact, creditcard, cvv, exp, password)) {
-                message = "Successfully Registered!";
-            } else {
-                message = "Registration failed!";
-            }
+        if (!username.matches("^[A-z\\d]{1,50}$")) {
+            message += "Invalid username<br>";
+            invalid = true;
+        }
+        if (!name.matches("^[A-z ]{1,255}$")) {
+            message += "Invalid Name<br>";
+            invalid = true;
+        }
+        // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+        if (!email.matches("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")) {
+            message += "Invalid email<br>";
+            invalid = true;
+        }
+        if (!contact.matches("^[89]\\d{7}$")) {
+            message += "Invalid contact number<br>";
+            invalid = true;
+        }
+        if (!cardname.matches("^[A-z ]{1,26}$")) {
+            message += "Invalid Card Name<br>";
+            invalid = true;
+        }
+        if (!creditcard.matches("^\\d{14,19}$") || !cvv.matches("^\\d{3}$") || !exp.matches("^\\d{2}/\\d{2}$")) {
+            message += "Invalid card details<br>";
+            invalid = true;
+        }
+        if (!password.matches("^(\\d+[A-z]+|[A-z]+\\d+)[\\dA-z]*$") || password.length() < 8 || password.length() > 16) {
+            message += "Invalid password<br>";
+            invalid = true;
+        }
+        if (invalid) {
+            request.setAttribute("failed", "true");
             request.setAttribute("message", message);
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/register/result.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/register/register.jsp");
             rd.forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            response.sendRedirect("/errors/error.html");
+        } else {
+            try {
+                if (UserJBDB.searchUserByUsername(username) != null
+                        || UserJBDB.searchUserByEmail(email) != null
+                        || UserJBDB.searchUserByContact(contact) != null) {
+                    message = "Username or email or contact number already taken.";
+                    request.setAttribute("failed", "true");
+                } else if (UserJBDB.register(username.trim(), role, name.trim(), email.trim(), contact, cardname.trim(), creditcard, cvv, exp, password)) {
+                    request.setAttribute("failed", "false");
+                    message = "Successfully Registered!";
+                } else {
+                    request.setAttribute("failed", "true");
+                    message = "Registration failed!";
+                }
+                request.setAttribute("message", message);
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/register/register.jsp");
+                rd.forward(request, response);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                response.sendRedirect("/errors/error.html");
+            }
         }
     }
 

@@ -34,17 +34,25 @@
 
 <main role="main">
     <div class="container">
+        <% String msg = (String) request.getAttribute("message");
+            String invalid = (String) request.getAttribute("failed");
+        if (msg != null && invalid != null) {
+            if (invalid.equals("true")) {%>
+        <p class="alert alert-danger">${message}</p>
+        <% } else { %>
+        <p class="alert alert-success">${message}</p>
+        <% }} %>
         <form method="post" action="/RegisterUser" onsubmit="return validateform()">
             <div class="form-group row">
                 <label for="username" class="col-sm-2 col-form-label">Username</label>
                 <div class="col-md-3">
-                    <input id="username" pattern="^[A-z\d]+$" class="form-control" type="text" name="username" placeholder="Username" required>
+                    <input id="username" pattern="^[A-z\d]{1,50}$" class="form-control" type="text" name="username" placeholder="Username" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-md-3">
-                    <input id="name" pattern="^[A-z ]+$" class="form-control" type="text" name="name" placeholder="Name" required>
+                    <input id="name" pattern="^[A-z ]{1,255}$" class="form-control" type="text" name="name" placeholder="Name" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -71,7 +79,7 @@
             <div class="form-group row">
                 <label for="cardname" class="col-sm-2 col-form-label">Full Name (on card)</label>
                 <div class="col-md-3">
-                    <input id="cardname" pattern="^[A-z ]+$" class="form-control" type="text" name="cardname" placeholder="Full Name" required>
+                    <input id="cardname" pattern="^[A-z ]{1,26}$" class="form-control" type="text" name="cardname" placeholder="Full Name" required>
                 </div>
             </div>
             <div class="form-group row">

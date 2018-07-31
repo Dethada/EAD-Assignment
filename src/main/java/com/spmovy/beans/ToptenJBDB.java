@@ -16,7 +16,7 @@ public class ToptenJBDB {
             toptenbean = new ToptenJB(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
             beanlist.add(toptenbean);
         }
-
+        db.closeConnection();
         return beanlist;
     }
 }

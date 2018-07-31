@@ -7,6 +7,7 @@ public class UserJB {
     private String name;
     private String email;
     private String contact;
+    private String cardname;
     private String creditcard;
     private String cvv;
     private String exp;
@@ -15,17 +16,19 @@ public class UserJB {
     public UserJB() {
     }
 
-    public UserJB(int ID, String username, String role, String name, String email, String contact, String creditcard, String cvv, String exp, String password) {
+    public UserJB(int ID, String username, String role, String name, String email, String contact, String cardname, String creditcard, String cvv, String exp, String password) {
         this.ID = ID;
         this.username = username;
         this.role = role;
         this.name = name;
         this.email = email;
         this.contact = contact;
+        this.cardname = cardname;
         this.creditcard = creditcard;
         this.cvv = cvv;
         this.exp = exp;
         this.password = password;
+
     }
 
     public int getID() {
@@ -74,6 +77,14 @@ public class UserJB {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public String getCardname() {
+        return cardname;
+    }
+
+    public void setCardname(String cardname) {
+        this.cardname = cardname;
     }
 
     public String getCreditcard() {
