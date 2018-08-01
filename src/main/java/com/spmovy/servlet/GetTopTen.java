@@ -66,7 +66,13 @@ public class GetTopTen extends HttpServlet {
 
             ToptenJBDB beandb = new ToptenJBDB();
             beanlist = beandb.getcurrentMonthSales(currmonth, curryear);
-            request.setAttribute("beanlist", beanlist);
+            if (beanlist.isEmpty()) {
+                request.setAttribute("nosales", "true");
+                request.setAttribute("month", currmonth);
+                request.setAttribute("year", curryear);
+            } else {
+                request.setAttribute("beanlist", beanlist);
+            }
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admin/adminPanel.jsp");
             rd.forward(request, response);
 
