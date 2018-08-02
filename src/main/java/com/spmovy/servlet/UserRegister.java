@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/RegisterUser")
-public class RegisterUser extends HttpServlet {
+public class UserRegister extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
@@ -66,10 +66,14 @@ public class RegisterUser extends HttpServlet {
             rd.forward(request, response);
         } else {
             try {
-                if (UserJBDB.searchUserByUsername(username) != null
-                        || UserJBDB.searchUserByEmail(email) != null
-                        || UserJBDB.searchUserByContact(contact) != null) {
-                    message = "Username or email or contact number already taken.";
+                if (UserJBDB.searchUserByUsername(username) != null) {
+                    message = "Username already taken.";
+                    request.setAttribute("failed", "true");
+                } else if (UserJBDB.searchUserByEmail(email) != null) {
+                    message = "Email already taken.";
+                    request.setAttribute("failed", "true");
+                } else if (UserJBDB.searchUserByContact(contact) != null) {
+                    message = "Contact number already taken.";
                     request.setAttribute("failed", "true");
                 } else if (UserJBDB.register(username.trim(), role, name.trim(), email.trim(), contact, cardname.trim(), creditcard, cvv, exp, password)) {
                     request.setAttribute("failed", "false");

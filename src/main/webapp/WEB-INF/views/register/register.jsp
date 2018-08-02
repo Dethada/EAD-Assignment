@@ -68,9 +68,17 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <label for="pw1" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-md-3">
-                    <input id="password" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password" name="password" placeholder="Password" required>
+                    <input id="pw1" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password" name="password" placeholder="Password" required>
+                    <div class="invalid-feedback">Does not meet password requirement of 8 to 16 chars and alphanumeric.</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Confirm Password</label>
+                <div class="col-md-3">
+                    <input id="pw2" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password" placeholder="Confirm password" required>
+                    <div class="invalid-feedback">Passwords do not match.</div>
                 </div>
             </div>
             <div class="form-group row">
@@ -130,10 +138,13 @@
         crossorigin="anonymous"></script>
 <script>
     function validateform() {
-        var pass = document.getElementById('password').value;
-        if (pass.length < 8 || pass.length > 16) {
+        var pw1 = document.getElementById('pw1').value;
+        var pw2 = document.getElementById('pw2').value;
+        if (pw1.length < 8 || pw1.length > 16) {
+            document.getElementById('pw1').className += " is-invalid";
             return false;
-        } else if (!(/\d/.test(pass) && /[a-z]/i.test(pass))) {
+        } else if (pw1 !== pw2) {
+            document.getElementById('pw2').className += " is-invalid";
             return false;
         }
         return true;

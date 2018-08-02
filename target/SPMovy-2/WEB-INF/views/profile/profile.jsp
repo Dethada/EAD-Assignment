@@ -16,7 +16,7 @@
 </head>
 <style>
     body {
-        margin-top:50px;
+        margin-top:100px;
     }
 </style>
 
@@ -49,67 +49,79 @@
 </nav>
 
 <main role="main">
-    <div class="album py-4">
-        <div class="container">
-            <form method="post" action="/user/Profile">
-                <div class="form-group row">
-                    <label for="username" class="col-sm-2 col-form-label">Username</label>
-                    <div class="col-md-3">
-                        <input id="username" class="form-control" type="text" name="username" placeholder="Username" value="<%= user.getUsername() %>" required>
-                    </div>
+    <div class="container">
+        <% String msg = (String) request.getAttribute("message");
+            String invalid = (String) request.getAttribute("failed");
+            if (msg != null && invalid != null) {
+                if (invalid.equals("true")) {%>
+        <p class="alert alert-danger">${message}</p>
+        <% } else { %>
+        <p class="alert alert-success">${message}</p>
+        <% }} %>
+        <form method="post" action="/user/Profile">
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label">Username</label>
+                <div class="col-md-3">
+                    <input id="username" pattern="^[A-z\d]{1,50}$" class="form-control" type="text" name="username" placeholder="Username" value="<%= user.getUsername() %>" required>
                 </div>
-                <div class="form-group row">
-                    <label for="name" class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-md-3">
-                        <input id="name" class="form-control" type="text" name="name" placeholder="Name" value="<%= user.getName() %>" required>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-md-3">
+                    <input id="name" pattern="^[A-z ]{1,255}$" class="form-control" type="text" name="name" placeholder="Name" value="<%= user.getName() %>" required>
                 </div>
-                <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-md-3">
-                        <input id="email" class="form-control" type="email" name="email" placeholder="Email" value="<%= user.getEmail() %>" required>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-md-3">
+                    <input id="email" class="form-control" type="email" name="email" placeholder="Email" value="<%= user.getEmail() %>" required>
                 </div>
-                <div class="form-group row">
-                    <label for="contact" class="col-sm-2 col-form-label">Contact</label>
-                    <div class="col-md-3">
-                        <input id="contact" class="form-control" type="tel" name="contact" placeholder="Contact number" value="<%= user.getContact() %>" required>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="contact" class="col-sm-2 col-form-label">Contact</label>
+                <div class="col-md-3">
+                    <input id="contact" pattern="^[89]\d{7}$" class="form-control" type="tel" name="contact" placeholder="Contact number" value="<%= user.getContact() %>" required>
                 </div>
-                <div class="form-group row">
-                    <h3>Credit Card</h3>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-md-3">
+                    <a href="/user/ChangePassword" class="btn btn-secondary btn-lg" id="password" role="button" aria-pressed="true">Change Password</a>
                 </div>
-                <div class="form-group row">
-                    <label for="cardname" class="col-sm-2 col-form-label">Full Name (on card)</label>
-                    <div class="col-md-3">
-                        <input id="cardname" class="form-control" type="text" name="cardname" placeholder="Full Name" value="<%= user.getCardname() %>" required>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <h3>Credit Card</h3>
+            </div>
+            <div class="form-group row">
+                <label for="cardname" class="col-sm-2 col-form-label">Full Name (on card)</label>
+                <div class="col-md-3">
+                    <input id="cardname" pattern="^[A-z ]{1,26}$" class="form-control" type="text" name="cardname" placeholder="Full Name" value="<%= user.getCardname() %>" required>
                 </div>
-                <div class="form-group row">
-                    <label for="creditcard" class="col-sm-2 col-form-label">Credit Card</label>
-                    <div class="col-md-3">
-                        <input id="creditcard" class="form-control" type="text" name="creditcard" placeholder="Card number" value="<%= user.getCreditcard() %>" required>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="creditcard" class="col-sm-2 col-form-label">Credit Card</label>
+                <div class="col-md-3">
+                    <input id="creditcard" pattern="^\d{14,19}$" class="form-control" type="text" name="creditcard" placeholder="Card number" value="<%= user.getCreditcard() %>" required>
                 </div>
-                <div class="form-group row">
-                    <label for="cvv" class="col-sm-2 col-form-label">CVV</label>
-                    <div class="col-md-3">
-                        <input id="cvv" class="form-control" type="number" name="cvv" placeholder="CVV" value="<%= user.getCvv() %>" required>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="cvv" class="col-sm-2 col-form-label">CVV</label>
+                <div class="col-md-3">
+                    <input id="cvv" pattern="^\d{3}$" class="form-control" type="number" name="cvv" placeholder="CVV" value="<%= user.getCvv() %>" required>
                 </div>
-                <div class="form-group row">
-                    <label for="exp" class="col-sm-2 col-form-label">Expiry Date</label>
-                    <div class="col-md-3">
-                        <input id="exp" class="form-control" type="text" name="exp" placeholder="MM/YY" value="<%= user.getExp() %>" required>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="exp" class="col-sm-2 col-form-label">Expiry Date</label>
+                <div class="col-md-3">
+                    <input id="exp" pattern="^\d{2}/\d{2}$" class="form-control" type="text" name="exp" placeholder="MM/YY" value="<%= user.getExp() %>" required>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Update Profile</button>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </main>
 
@@ -132,7 +144,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-<script src="js/MovieStatus.js"></script>
 </body>
 </html>
 
