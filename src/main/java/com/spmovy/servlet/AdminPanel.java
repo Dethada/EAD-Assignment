@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 @WebServlet("/admin/adminPanel")
-public class GetTopTen extends HttpServlet {
+public class AdminPanel extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<ToptenJB> beanlist = null;
         try {
@@ -43,7 +43,7 @@ public class GetTopTen extends HttpServlet {
                     request.setAttribute("beanlist", beanlist);
                 }
             }
-            RequestDispatcher rd = request.getRequestDispatcher("/admin/adminPanel.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admin/adminPanel.jsp");
             rd.forward(request, response);
 
             //catching for invalid inputs that are not integers
@@ -66,11 +66,17 @@ public class GetTopTen extends HttpServlet {
 
             ToptenJBDB beandb = new ToptenJBDB();
             beanlist = beandb.getcurrentMonthSales(currmonth, curryear);
-            request.setAttribute("beanlist", beanlist);
+            if (beanlist.isEmpty()) {
+                request.setAttribute("nosales", "true");
+                request.setAttribute("month", currmonth);
+                request.setAttribute("year", curryear);
+            } else {
+                request.setAttribute("beanlist", beanlist);
+            }
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admin/adminPanel.jsp");
             rd.forward(request, response);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
         }

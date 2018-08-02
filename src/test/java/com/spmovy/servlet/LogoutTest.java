@@ -24,6 +24,6 @@ public class LogoutTest extends Mockito {
 
         ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
         verify(response).sendRedirect(captor.capture());
-        assertEquals("/admin.jsp", captor.getValue());
+        assertEquals("/", captor.getValue());
     }
 }

@@ -112,7 +112,7 @@
         String month = new DateFormatSymbols().getMonths()[(Integer) request.getAttribute("month") - 1];
         String year = Integer.toString((Integer) request.getAttribute("year"));
 %>
-<div class="alert alert-danger alert-dismissible">
+<div class="alert alert-info alert-dismissible">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Sorry!</strong> There are currently no ticket sales recorded in the  <%=month%>, <%=year%>.
 </div>
