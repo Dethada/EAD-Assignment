@@ -41,7 +41,7 @@ Note that **MVC** is only required to be implemented for the new functional spec
 
 * He must be able to view a report
   * ~~List of top 10 selling movies for a month by ticket number sales.~~
-  * View transaction details of a particular user (username supplied by admin)
+  * ~~View transaction details of a particular user (username supplied by admin)~~
 
 ### General Public
 
