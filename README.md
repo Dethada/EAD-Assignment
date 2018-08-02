@@ -45,10 +45,10 @@ Note that **MVC** is only required to be implemented for the new functional spec
 
 ### General Public
 
-* Public is able to search for movies using either one of the search criteria to be displayed as a dropdown box (results should be **sorted by release date, latest released movies appear at the top of the list**):
-  * Title
-  * Genre
-  * Actor
+* ~~Public is able to search for movies using either one of the search criteria to be displayed as a dropdown box (results should be **sorted by release date, latest released movies appear at the top of the list**):~~
+* ~~Title~~
+* ~~Genre~~
+* ~~Actor~~
 * ~~Public can register for an account to become a member. A member needs to have personal particulars that include username(unique), name, email, contact number, credit card number, password.~~ **Only Members** can purchase movie tickets. Public (Non-members) can still continue to browse the movies showing.(Use sessions/cookies to help you accomplish this)
 * ~~Client side(eg javascript) validation must be done on the registration page. All fields must be entered. Ensure appropriate validation for email, contact number and password. For example, Password must contain both alphabets and numbers and be of length 8 to 16, contact number must be valid characters etc.~~
 * ~~Members will be able to update their personal details~~
