@@ -8,9 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.spmovy.beans.UserJBDB;
+import com.spmovy.beans.UserTransactionJB;
+import com.spmovy.beans.UserTransactionJBDB;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet("/admin/userdetail")
 public class UserDetail extends HttpServlet {
@@ -26,6 +29,8 @@ public class UserDetail extends HttpServlet {
         }
         try {
             request.setAttribute("userbean", UserJBDB.searchUserByID(userid));
+            ArrayList<UserTransactionJB> transactionlist = UserTransactionJBDB.getUserTransactions(userid);
+            request.setAttribute("transactionlist", transactionlist);
         } catch(SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

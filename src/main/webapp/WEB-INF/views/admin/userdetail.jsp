@@ -1,7 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/admin/header.html" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
-<% UserJB userbean = (UserJB)request.getAttribute("userbean"); %>
+<%@ page import="com.spmovy.beans.UserTransactionJB" %>
+<%@ page import="java.util.ArrayList" %>
+<% 
+UserJB userbean = (UserJB)request.getAttribute("userbean");
+ArrayList<UserTransactionJB> transactionlist = (ArrayList<UserTransactionJB>)request.getAttribute("transactionlist");
+%>
 <title>Users</title>
 </head>
 <body>
@@ -72,17 +77,45 @@
         </div>
     </div>
 </nav>
+<h2>User Details</h2>
 <table class="table">
     <tbody>
-        <tr><td>Username</td><td><%= userbean.getUsername() %></td></tr>
-        <tr><td>Role</td><td><%= userbean.getRole() %></td></tr>
-        <tr><td>Name</td><td><%= userbean.getName() %></td></tr>
-        <tr><td>Email</td><td><%= userbean.getEmail() %></td></tr>
-        <tr><td>Contact</td><td><%= userbean.getContact() %></td></tr>
-        <tr><td>Card Name</td><td><%= userbean.getCardname() %></td></tr>
-        <tr><td>Card Number</td><td><%= userbean.getCreditcard() %></td></tr>
-        <tr><td>CVV</td><td><%= userbean.getCvv() %></td></tr>
-        <tr><td>Expiery</td><td><%= userbean.getExp() %></td></tr>
+        <tr><td><b>Username</b></td><td><%= userbean.getUsername() %></td></tr>
+        <tr><td><b>Role</b></td><td><%= userbean.getRole() %></td></tr>
+        <tr><td><b>Name</b></td><td><%= userbean.getName() %></td></tr>
+        <tr><td><b>Email</b></td><td><%= userbean.getEmail() %></td></tr>
+        <tr><td><b>Contact</b></td><td><%= userbean.getContact() %></td></tr>
+        <tr><td><b>Card Name</b></td><td><%= userbean.getCardname() %></td></tr>
+        <tr><td><b>Card Number</b></td><td><%= userbean.getCreditcard() %></td></tr>
+        <tr><td><b>CVV</b></td><td><%= userbean.getCvv() %></td></tr>
+        <tr><td><b>Expiery</b></td><td><%= userbean.getExp() %></td></tr>
+    </tbody>
+</table>
+<h2>Transaction Details</h2>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Transaction ID</th>
+        <th scope="col">Transaction Time</th>
+        <th scope="col">Ticket ID</th>
+        <th scope="col">Price</th>
+        <th scope="col">Seat</th>
+        <th scope="col">Movie Time</th>
+        <th scope="col">Movie Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for (UserTransactionJB transaction: transactionlist) { %>
+        <tr>
+        <td><%= transaction.getID() %></td>
+        <td><%= transaction.getAt() %></td>
+        <td><%= transaction.getTicketID() %></td>
+        <td><%= transaction.getPrice() %></td>
+        <td><%= transaction.getHall_row() + transaction.getHall_column() %></td>
+        <td><%= transaction.getMoviedate().toString() + " " + transaction.getMovietime().toString() %></td>
+        <td><%= transaction.getMovietitle() %></td>
+        </tr>
+    <% } %>
     </tbody>
 </table>
 </body>
