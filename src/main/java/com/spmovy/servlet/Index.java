@@ -12,7 +12,7 @@ import com.spmovy.beans.MovieJBDB;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/")
+@WebServlet("/index.html")
 public class Index extends HttpServlet {
 
     @Override

@@ -4,6 +4,7 @@ import com.spmovy.DatabaseUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import static com.spmovy.BCryptUtil.checkPassword;
 import static com.spmovy.BCryptUtil.hashPassword;
@@ -67,6 +68,27 @@ public class UserJBDB {
         }
         db.closeConnection();
         return false;
+    }
+
+    public static ArrayList<UserJB> getAllUsers() throws SQLException {
+        ArrayList<UserJB> userlist = new ArrayList<>();
+        DatabaseUtils db = new DatabaseUtils();
+        ResultSet rs = db.executeFixedQuery("select * from users");
+        while (rs.next()) {
+            userlist.add(initUser(rs));
+        }
+        db.closeConnection();
+        return userlist;
+    }
+
+    public static UserJB searchUserByID(int ID) throws SQLException {
+        DatabaseUtils db = new DatabaseUtils();
+        ResultSet rs = db.executeQuery("select * from users where ID=?", ID);
+        if (rs.next()) {
+            return initUser(rs);
+        }
+        db.closeConnection();
+        return null;
     }
 
     public static UserJB searchUserByUsername(String username) throws SQLException {
