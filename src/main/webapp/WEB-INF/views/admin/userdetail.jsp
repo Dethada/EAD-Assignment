@@ -1,6 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/admin/header.html" %>
-<title>Add Actor</title>
+<%@ page import="com.spmovy.beans.UserJB" %>
+<%@ page import="com.spmovy.beans.UserTransactionJB" %>
+<%@ page import="java.util.ArrayList" %>
+<% 
+UserJB userbean = (UserJB)request.getAttribute("userbean");
+ArrayList<UserTransactionJB> transactionlist = (ArrayList<UserTransactionJB>)request.getAttribute("transactionlist");
+%>
+<title>Users</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -32,7 +39,7 @@
                     <a class="dropdown-item" href="/admin/addGenre.jsp">Add Genre</a>
                 </div>
             </li>
-            <li class="nav-item dropdown active">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
                     Actors
@@ -42,7 +49,7 @@
                     <a class="dropdown-item" href="/admin/addActor.jsp">Add Actor</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
                     Users
@@ -62,36 +69,54 @@
             </li>
         </ul>
         <div>
-            <form class="form-inline my-2 my-lg-0" action="actors.jsp">
-                <input class="form-control mr-sm-2" name="actorname" type="search" placeholder="Actors" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" action="/admin/Users">
+                <input class="form-control mr-sm-2" name="username" type="search" placeholder="Users" aria-label="Search">
                 <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Search</button>
                 <a class="btn btn-outline-danger" href="/backend/Logout">Logout</a>
             </form>
         </div>
     </div>
 </nav>
-<div class="container-fluid mt-2">
-    <h1>Actor</h1>
-    <form method="post" action="/backend/admin/AddActor">
-        <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Name</label>
-            <div class="col-md-3">
-                <input id="name" class="form-control" type="text" name="name" placeholder="Name" required>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="description" class="col-sm-2 col-form-label">Description</label>
-            <div class="col-md-3">
-                <textarea id="description" rows="6" class="form-control" type="text" name="description"
-                          placeholder="Description" required></textarea>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Add Actor</button>
-            </div>
-        </div>
-    </form>
-</div>
+<h2>User Details</h2>
+<table class="table">
+    <tbody>
+        <tr><td><b>Username</b></td><td><%= userbean.getUsername() %></td></tr>
+        <tr><td><b>Role</b></td><td><%= userbean.getRole() %></td></tr>
+        <tr><td><b>Name</b></td><td><%= userbean.getName() %></td></tr>
+        <tr><td><b>Email</b></td><td><%= userbean.getEmail() %></td></tr>
+        <tr><td><b>Contact</b></td><td><%= userbean.getContact() %></td></tr>
+        <tr><td><b>Card Name</b></td><td><%= userbean.getCardname() %></td></tr>
+        <tr><td><b>Card Number</b></td><td><%= userbean.getCreditcard() %></td></tr>
+        <tr><td><b>CVV</b></td><td><%= userbean.getCvv() %></td></tr>
+        <tr><td><b>Expiery</b></td><td><%= userbean.getExp() %></td></tr>
+    </tbody>
+</table>
+<h2>Transaction Details</h2>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Transaction ID</th>
+        <th scope="col">Transaction Time</th>
+        <th scope="col">Ticket ID</th>
+        <th scope="col">Price</th>
+        <th scope="col">Seat</th>
+        <th scope="col">Movie Time</th>
+        <th scope="col">Movie Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for (UserTransactionJB transaction: transactionlist) { %>
+        <tr>
+        <td><%= transaction.getID() %></td>
+        <td><%= transaction.getAt() %></td>
+        <td><%= transaction.getTicketID() %></td>
+        <td><%= transaction.getPrice() %></td>
+        <td><%= transaction.getHall_row() + transaction.getHall_column() %></td>
+        <td><%= transaction.getMoviedate().toString() + " " + transaction.getMovietime().toString() %></td>
+        <td><%= transaction.getMovietitle() %></td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
 </body>
 <%@ include file="/admin/footer.html" %>

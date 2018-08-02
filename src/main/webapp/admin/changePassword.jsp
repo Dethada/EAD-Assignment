@@ -43,6 +43,15 @@
                     <a class="dropdown-item" href="/admin/addActor.jsp">Add Actor</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
+                    Users
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/admin/Users">List Users</a>
+                </div>
+            </li>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
