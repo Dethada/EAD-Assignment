@@ -2,6 +2,7 @@ com/spmovy/beans/UserJB.class
 com/spmovy/servlet/ChangePassword.class
 com/spmovy/servlet/DeleteMovie.class
 com/spmovy/servlet/AddTimeslot.class
+com/spmovy/servlet/UserChangePW.class
 com/spmovy/servlet/Login.class
 com/spmovy/servlet/Delete.class
 com/spmovy/servlet/DeleteTimeslot.class
@@ -21,10 +22,10 @@ com/spmovy/servlet/UpdateGenre.class
 com/spmovy/servlet/UpdateMovieImagePath.class
 com/spmovy/filters/CharsetFilter.class
 com/spmovy/servlet/AddReview.class
-com/spmovy/servlet/RegisterUser.class
 com/spmovy/servlet/UpdateMovie.class
 com/spmovy/Utils.class
 com/spmovy/servlet/AddGenre.class
 com/spmovy/filters/MemberCheckFilter.class
+com/spmovy/servlet/UserRegister.class
 com/spmovy/servlet/AdminPanel.class
 com/spmovy/servlet/AdminLogin.class

@@ -29,55 +29,98 @@ public class Profile extends HttpServlet {
         String creditcard = request.getParameter("creditcard");
         String cvv = request.getParameter("cvv");
         String exp = request.getParameter("exp");
+        String message = "";
+        boolean failed = false;
+
         try {
             if (username != null && !username.equals(user.getUsername())) {
-                if (!UserJBDB.updateProfile(userid, "username", username)) {
-                    // update failed
-                    response.sendRedirect("/errors/error.html");
+                if (UserJBDB.searchUserByUsername(username) == null) {
+                    if (UserJBDB.updateProfile(userid, "username", username)) {
+                        user.setUsername(username);
+                    } else {
+                        failed = true;
+                        message += "Username update failed<br>";
+                    }
+                } else {
+                    failed = true;
+                    message += "Username taken<br>";
                 }
             }
             if (name != null && !name.equals(user.getName())) {
-                if (!UserJBDB.updateProfile(userid, "name", name)) {
-                    // update failed
-                    response.sendRedirect("/errors/error.html");
+                if (UserJBDB.updateProfile(userid, "name", name)) {
+                    user.setName(name);
+                } else {
+                    failed = true;
+                    message += "Name update failed<br>";
                 }
             }
             if (email != null && !email.equals(user.getEmail())) {
-                if (!UserJBDB.updateProfile(userid, "email", email)) {
-                    // update failed
-                    response.sendRedirect("/errors/error.html");
+                if (UserJBDB.searchUserByEmail(email) == null) {
+                    if (UserJBDB.updateProfile(userid, "email", email)) {
+                        user.setEmail(email);
+                    } else {
+                        failed = true;
+                        message += "Email update failed<br>";
+                    }
+                } else {
+                    failed = true;
+                    message += "Email taken<br>";
                 }
             }
             if (contact != null && !contact.equals(user.getContact())) {
-                if (!UserJBDB.updateProfile(userid, "contact", contact)) {
-                    // update failed
-                    response.sendRedirect("/errors/error.html");
+                if (UserJBDB.searchUserByContact(contact) == null) {
+                    if (UserJBDB.updateProfile(userid, "contact", contact)) {
+                        user.setContact(contact);
+                    } else {
+                        failed = true;
+                        message += "Contact update failed<br>";
+                    }
+                } else {
+                    failed = true;
+                    message += "Contact number taken<br>";
                 }
             }
-            if (cardname != null) {
-                if (!UserJBDB.updateProfile(userid, "cardname", cardname)) {
-                    // update failed
-                    response.sendRedirect("/errors/error.html");
+            if (cardname != null && !cardname.equals(user.getCardname())) {
+                if (UserJBDB.updateProfile(userid, "cardname", cardname)) {
+                    user.setCardname(cardname);
+                } else {
+                    failed = true;
+                    message += "Credit Card update failed<br>";
                 }
             }
             if (creditcard != null && !creditcard.equals(user.getCreditcard())) {
-                if (!UserJBDB.updateProfile(userid, "creditcard", creditcard)) {
-                    // update failed
-                    response.sendRedirect("/errors/error.html");
+                if (UserJBDB.updateProfile(userid, "creditcard", creditcard)) {
+                    user.setCreditcard(creditcard);
+                } else {
+                    failed = true;
+                    message += "Credit Card update failed<br>";
                 }
             }
             if (cvv != null && !cvv.equals(user.getCvv())) {
-                if (!UserJBDB.updateProfile(userid, "cvv", cvv)) {
-                    // update failed
-                    response.sendRedirect("/errors/error.html");
+                if (UserJBDB.updateProfile(userid, "cvv", cvv)) {
+                    user.setCvv(cvv);
+                } else {
+                    failed = true;
+                    message += "Credit Card update failed<br>";
                 }
             }
             if (exp != null && !exp.equals(user.getExp())) {
-                if (!UserJBDB.updateProfile(userid, "exp", exp)) {
-                    // update failed
-                    response.sendRedirect("/errors/error.html");
+                if (UserJBDB.updateProfile(userid, "exp", exp)) {
+                    user.setExp(exp);
+                } else {
+                    failed = true;
+                    message += "Credit Card update failed<br>";
                 }
             }
+            if (failed) {
+                request.setAttribute("failed", "true");
+            } else {
+                request.setAttribute("failed", "false");
+                message = "Profile updated.";
+            }
+            request.setAttribute("message", message);
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/profile/profile.jsp");
+            rd.forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");

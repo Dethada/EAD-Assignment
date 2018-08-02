@@ -49,7 +49,6 @@ public class UserJBDB {
         }
     }
 
-//    non tested
     public static boolean changePassword(int ID, String currentpass, String newpass) throws SQLException {
         if (currentpass == null || newpass == null) {
             return false;
@@ -100,11 +99,9 @@ public class UserJBDB {
         return null;
     }
 
-
-    // non tested
     public static boolean updateProfile(int userid, String column, String newval) throws SQLException{
         DatabaseUtils db = new DatabaseUtils();
-        int c = db.executeUpdate("update users set ?=? where ID=?", column, newval, userid);
+        int c = db.executeUpdate("update users set " + column + "=? where ID=?", newval, userid);
         db.closeConnection();
         return c == 1;
     }

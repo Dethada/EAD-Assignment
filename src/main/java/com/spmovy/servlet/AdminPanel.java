@@ -76,7 +76,7 @@ public class AdminPanel extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admin/adminPanel.jsp");
             rd.forward(request, response);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
         }
