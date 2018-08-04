@@ -106,7 +106,7 @@
             <div class="form-group row">
                 <label for="exp" class="col-sm-2 col-form-label">Expiry Date</label>
                 <div class="col-md-3">
-                    <input id="exp" pattern="^\d{2}/\d{2}$" class="form-control" type="text" name="exp" placeholder="MM/YY" required>
+                    <input id="exp" pattern="^(0[1-9]|1[012])\/\d{2}$" class="form-control" type="text" name="exp" placeholder="MM/YY" required>
                 </div>
             </div>
             <div class="g-recaptcha" data-sitekey="6Ld5D1oUAAAAAGkPcZ6GpeTvFA15pYZLTD6b6hTA"></div>
