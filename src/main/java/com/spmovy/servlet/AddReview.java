@@ -29,6 +29,10 @@ public class AddReview extends HttpServlet {
             response.sendRedirect("/errors/error.html");
             return;
         }
+        if (name.length() > 70 || review.length() > 65535) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return; // return if database connection failed
         try {
