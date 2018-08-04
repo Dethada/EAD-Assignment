@@ -27,8 +27,6 @@
         if (login != null) {
             if (login.equals("Failed")) {
                 out.println("<p class=\"mt-5 mb-3 invalid-login\">You have entered an invalid ID/Password<p>");
-            } else if (login.equals("Not")) {
-                out.println("<p class=\"mt-5 mb-3 invalid-login\">Not logged in.<p>");
             } else if (login.equals("captcha")) {
                 out.println("<p class=\"mt-5 mb-3 invalid-login\">Captcha Failed.<p>");
             }

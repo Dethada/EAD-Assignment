@@ -20,10 +20,10 @@ public class SessionCheckFilter implements Filter {
 
         UserJB user = (UserJB) req.getSession().getAttribute("admin");
         if (user == null) {
-            res.sendRedirect("/admin.jsp?login=Not");
+            res.sendRedirect("/AdminLogin");
         } else {
             if (!user.getRole().equals("admin")){ //check if user type is not admin
-                res.sendRedirect("/admin.jsp?login=Not");
+                res.sendRedirect("/AdminLogin");
             }
             fc.doFilter(request, response);
         }
