@@ -3,6 +3,7 @@
 <%@ page import="com.spmovy.DatabaseUtils" %>
 <%@ page import="com.spmovy.Utils" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
+<% UserJB user = (UserJB) session.getAttribute("user"); %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -24,26 +25,29 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
     <div class="container">
-        <a class="navbar-brand" href="#">SPMovy</a>
+        <a class="navbar-brand" href="/">SPMovy</a>
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-            <ul class="nav navbar-nav">
-                <li class="nav-item"><a href="#" class="nav-link">More</a></li>
-            </ul>
+            <% if (user != null) { %>
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
+            </ul >
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
+            </ul >
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
+            </ul >
+            <% } %>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i
-                        class="fa fa-cog fa-fw fa-lg"></i></a></li>
                 <li class="dropdown order-1">
-                        <% UserJB user = (UserJB) session.getAttribute("user");
-                if (user == null) { %>
+                <% if (user == null) { %>
                 <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
                 <% } else { %>
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
-                            class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= user.getName() %><span
-                            class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
@@ -60,6 +64,7 @@
             <div>
                 <%
                     int movieID;
+                    int count = 0;
                     try {
                         movieID = Integer.parseInt(request.getParameter("movieid"));
                     } catch (NumberFormatException e) {
@@ -150,12 +155,14 @@
 
                     }
                     for (int i = 0; i < datelist.size(); i++) {
+                        count+=1;
                         ResultSet timeslotset = db.executeQuery("SELECT movietime, time_format(movietime,\"%h:%i %p\") from timeslot where movieID = ? and moviedate = ?"
                                 , movieID, datelist.get(i));
                         out.println("<div class=\"mb-3\"><p class=\"mb-2\">" + formatteddatelist.get(i) + "</p>");
                 %>
-                <% while (timeslotset.next()) {
-
+                <%
+                while (timeslotset.next()) {
+                    count+=1;
                     if (user == null) {%>
                 <button type="button" class="btn btn-primary btn-sm d-inline mt-2" data-toggle="modal"
                         data-target="#loginmodal"><span style="color:#ffffff"><%=timeslotset.getString(2)%></span>
@@ -164,9 +171,9 @@
 
                 <% } else {%>
                 <button type="button" class="btn btn-primary btn-sm d-inline mt-2" data-toggle="modal"
-                        data-target="#seatqtymodal"><span style="color:#ffffff"><%=timeslotset.getString(2)%></span>
+                        data-target="#seatqtymodal<%=count%>"><span style="color:#ffffff"><%=timeslotset.getString(2)%></span>
                 </button>
-                <div class="modal fade" id="seatqtymodal" tabindex="-1" role="dialog" aria-labelledby="seatqtyLabel"
+                <div class="modal fade" id="seatqtymodal<%=count%>" tabindex="-1" role="dialog" aria-labelledby="seatqtyLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -179,13 +186,13 @@
                             <div class="modal-body">
                                 Movie Title: <%=movietitle%> <br>
                                 Movie Date: <%=datelist.get(i)%> <br>
-                                Movie Time: <%=timeslotset.getString(1)%> <br>
+                                Movie Time: <%=timeslotset.getString(2)%> <br>
                                 <form action="/user/DisplaySeats" method="GET" style="display: inline" class="mt-4">
                                     Number of seats: <input type="number" name="qty" min="1" max="10" class="mt-4"> <br>
                                     <input type="hidden" name="movieid" value="<%=movieID%>">
                                     <input type="hidden" name="movietitle" value="<%=movietitle%>">
                                     <input type="hidden" name="moviedate" value="<%=datelist.get(i)%>">
-                                    <input type="hidden" name="movietime" value="<%=timeslotset.getString(1)%>">
+                                    <input type="hidden" name="movietime" value="<%=timeslotset.getString(2)%>">
                                     <input type="submit" class="btn btn-primary btn-sm mt-2" value="Submit">
                             </form>
                         </div>

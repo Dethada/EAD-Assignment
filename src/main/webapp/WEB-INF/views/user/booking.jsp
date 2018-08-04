@@ -2,9 +2,10 @@
 <%@ page import="com.spmovy.beans.SeatsJB" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
-<%@ page import="com.spmovy.beans.SeatPriceJB" %>
 <%@ page import="com.spmovy.beans.BookingJB" %>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="java.util.HashSet" %>
+<% UserJB user = (UserJB) session.getAttribute("user"); %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -24,31 +25,28 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
     <div class="container">
-        <a class="navbar-brand" href="#">SPMovy</a>
+        <a class="navbar-brand" href="/">SPMovy</a>
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-            <ul class="nav navbar-nav">
-                <li class="nav-item"><a href="#" class="nav-link">More</a></li>
-            </ul>
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
+            </ul >
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
+            </ul >
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
+            </ul >
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i
-                        class="fa fa-cog fa-fw fa-lg"></i></a></li>
                 <li class="dropdown order-1">
-                        <% UserJB user = (UserJB) session.getAttribute("user");
-                if (user == null) { %>
-                <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
-                <% } else { %>
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
-                            class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= user.getName() %><span
-                            class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
                 </li>
-                <% } %>
             </ul>
         </div>
     </div>
@@ -71,7 +69,6 @@
         ArrayList<SeatsJB> seatbeanlist = (ArrayList<SeatsJB>) request.getAttribute("seatbeanlist");
         for (SeatsJB seatbean : seatbeanlist) {
             occupiedseatslist.add("\"" + seatbean.getRow() + "_" + seatbean.getCol()+ "\"");
-            occupiedseatslist.add("\"" + seatbean.getRow() + "_" + seatbean.getCol() + "\"");
         }
         float seatprice = bookjb.getPrice();
     %>
@@ -93,12 +90,7 @@
             <ul id="selected-seats"></ul>
 
             Total: <b>$<span id="total">0</span></b>
-
-            <form name="checkout" action="/user/Checkout" id="checkout" onsubmit="return check()">
-                <input type="hidden" name="bookingid" value="<%=bookingid%>" id="bookingid">
-                <button class="btn btn-primary" type="submit">Checkout &raquo;</button>
-            </form>
-            <%-- <a href="/user/Checkout" id="checkout" class="btn btn-primary">Checkout &raquo;</a> --%>
+            <a href="/user/Checkout" id="checkout" onclick="return check()" class="btn btn-primary">Checkout &raquo;</a>
             <div id="legend"></div>
         </div>
     </div>

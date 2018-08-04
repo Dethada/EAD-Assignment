@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.spmovy.beans.UserJB" %>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
+<% UserJB user = (UserJB) session.getAttribute("user"); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,9 +28,29 @@
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+            <% if (user != null) { %>
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
+            </ul >
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
+            </ul >
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
+            </ul >
+            <% } %>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 <li class="dropdown order-1">
+                <% if (user == null) { %>
                 <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
+                <% } else { %>
+                <li class="dropdown order-1">
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right mt-2">
+                        <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
+                    </ul>
+                </li>
+                <% } %>
             </ul>
         </div>
     </div>

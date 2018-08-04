@@ -1,10 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.*"
-         import="org.apache.commons.lang3.StringEscapeUtils" %>
-<%@ page import="com.spmovy.DatabaseUtils" %>
-<%@ page import="com.spmovy.Utils" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
-<%@ page import="com.spmovy.beans.MovieJB" %>
+<%@ page import="com.spmovy.beans.UserTransactionJB" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <% UserJB user = (UserJB) session.getAttribute("user"); %>
 <!doctype html>
 <html lang="en">
@@ -15,11 +13,15 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link href="css/album.css" rel="stylesheet">
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
     <title>SPMovy</title>
 </head>
+<style>
+    body {
+        margin-top:100px;
+    }
+</style>
 
 <body>
 
@@ -30,7 +32,6 @@
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-            <% if (user != null) { %>
             <ul class="nav navbar-nav" >
                 <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
             </ul >
@@ -40,76 +41,50 @@
             <ul class="nav navbar-nav" >
                 <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
             </ul >
-            <% } %>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 <li class="dropdown order-1">
-                <% if (user == null) { %>
-                <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
-                <% } else { %>
                 <li class="dropdown order-1">
                     <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
                 </li>
-                <% } %>
             </ul>
         </div>
     </div>
 </nav>
 
 <main role="main">
-
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">SPMovy</h1>
-            <p class="lead text-muted">SPMovy is an online movie booking portal to allow the public to book for movie
-                tickets online.</p>
-        </div>
-    </section>
-    <div class="album py-4 bg-light">
-        <div class="container">
-            <h5>Find movies!</h5>
-            <div>
-                <form action="" method="get">
-                <div class="form-group row">
-                    <div class="col-md-3">
-                    <select name="target" class="form-control">
-                        <option value="title">Title</option>
-                        <option value="genre">Genre</option>
-                        <option value="actor">Actor</option>
-                    </select>
-                    </div>
-                    <div class="col-md-3">
-                    <input name="query" class="form-control" type="text" requried>
-                    </div>
-                    <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                    </div>
-                </div>
-                </form>
-            </div>
-            <div class="row">
-                <%
-                    ArrayList<MovieJB> movielist = (ArrayList<MovieJB>)request.getAttribute("movielist");
-                    for (MovieJB movie: movielist) {
-                %>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                    <a href="moviedetails.jsp?movieid=<%= movie.getID() %>"><img class="card-img-top" src="<%= StringEscapeUtils.escapeHtml4(movie.getImagepath()) %>"/></a>
-                    <div class="card-body"><p class="card-text"><%= StringEscapeUtils.escapeHtml4(movie.getTitle()) %></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                            <a class="btn btn-sm btn-outline-secondar" href="/moviedetails.jsp?movieid=<%= movie.getID() %>">View</a>
-                            </div>
-                            <small class="text-muted"><%= movie.getDuration() %> mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <% } %>
-    </div>
-
+    <h2>Transactions</h2>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Transaction ID</th>
+            <th scope="col">Transaction Time</th>
+            <th scope="col">Ticket ID</th>
+            <th scope="col">Price</th>
+            <th scope="col">Seat</th>
+            <th scope="col">Movie Time</th>
+            <th scope="col">Movie Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% 
+        ArrayList<UserTransactionJB> transactionlist = (ArrayList<UserTransactionJB>)request.getAttribute("transactionlist");
+        for (UserTransactionJB transaction: transactionlist) { 
+        %>
+            <tr>
+            <td><%= transaction.getID() %></td>
+            <td><%= transaction.getAt() %></td>
+            <td><%= transaction.getTicketID() %></td>
+            <td><%= transaction.getPrice() %></td>
+            <td><%= transaction.getHall_row() + transaction.getHall_column() %></td>
+            <td><%= transaction.getMoviedate().toString() + " " + transaction.getMovietime().toString() %></td>
+            <td><%= StringEscapeUtils.escapeHtml4(transaction.getMovietitle()) %></td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
 </main>
 
 <footer class="text-muted">
@@ -133,4 +108,3 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
-
