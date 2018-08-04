@@ -22,19 +22,6 @@ import java.util.Calendar;
 
 @WebServlet("/user/DisplaySeats")
 public class DisplaySeats extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession bookingsession = request.getSession(false);
-        // String seatarr = request.getParameter("seatarr");
-        double seatprice = Double.parseDouble(request.getParameter("seatprice"));
-        int seatqty = Integer.parseInt(request.getParameter("seatqty"));
-        double grandtotal = seatprice * seatqty;
-        bookingsession.setAttribute("grandtotal",grandtotal);
-        // bookingsession.setAttribute("seatarr",seatarr);
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/checkout.jsp");
-        rd.forward(request,response);
-
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession bookingsession = request.getSession(false);
         ArrayList<SeatsJB> beanlist;
@@ -45,6 +32,7 @@ public class DisplaySeats extends HttpServlet {
             String moviedate = request.getParameter("moviedate");
             String movietime = request.getParameter("movietime");
             String id = movieid+moviedate+movietime;
+            
             if (bookingsession.getAttribute(id) == null) {
                 BookingJB book = new BookingJB();
                 book.setMovieID(movieid);
@@ -52,22 +40,19 @@ public class DisplaySeats extends HttpServlet {
                 book.setSlotdate(moviedate);
                 book.setSlottime(movietime);
                 book.setQty(qty);
+
+                Calendar c = Calendar.getInstance();
+                c.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(moviedate));
+                SeatPriceJB pricebean = SeatPriceJBDB.getSeatPrice((c.get(Calendar.DAY_OF_WEEK) < 6) ? "weekday" : "weekend");
+                float price = pricebean.getPrice();
+                book.setPrice(price);
+                book.setGrandtotal(price * qty);
+
                 bookingsession.setAttribute(id,book);
             }
-            Calendar c = Calendar.getInstance();
-            c.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(moviedate));
-            int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-            if (dayOfWeek < 6){
-                String day = "weekday";
-                SeatPriceJB pricebean = SeatPriceJBDB.getSeatPrice(day);
-                request.setAttribute("seatpricebean",pricebean);
-            } else{
-                String day = "weekend";
-                SeatPriceJB pricebean = SeatPriceJBDB.getSeatPrice(day);
-                request.setAttribute("seatpricebean",pricebean);
-            }
+
             beanlist = SeatsJBDB.getOccupiedSeats(movieid,moviedate,movietime);
-            
+
             request.setAttribute("seatbeanlist",beanlist);
             request.setAttribute("bookingid", id);
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/booking.jsp");

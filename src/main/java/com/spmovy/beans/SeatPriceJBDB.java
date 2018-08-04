@@ -14,7 +14,7 @@ public class SeatPriceJBDB {
 
         if (rs.next()) {
             seatpricebean = new SeatPriceJB();
-            seatpricebean.setPrice(rs.getDouble(1));
+            seatpricebean.setPrice(rs.getFloat(1));
         }
         db.closeConnection();
         return seatpricebean;
