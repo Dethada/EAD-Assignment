@@ -32,13 +32,16 @@
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-            <% if (user != null) { %>
             <ul class="nav navbar-nav" >
                 <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
             </ul >
-            <% } %>
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
+            </ul >
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
+            </ul >
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
                 <li class="dropdown order-1">
                 <li class="dropdown order-1">
                     <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>

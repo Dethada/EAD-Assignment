@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.spmovy.beans.BookingJB" %>
 <%@ page import="java.util.HashSet" %>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page import="java.util.ArrayList" %>
+<% UserJB user = (UserJB) session.getAttribute("user"); %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -25,77 +26,93 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
     <div class="container">
-        <a class="navbar-brand" href="#">SPMovy</a>
+        <a class="navbar-brand" href="/">SPMovy</a>
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-            <ul class="nav navbar-nav">
-                <li class="nav-item"><a href="#" class="nav-link">More</a></li>
-            </ul>
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
+            </ul >
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
+            </ul >
+            <ul class="nav navbar-nav" >
+                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
+            </ul >
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i
-                        class="fa fa-cog fa-fw fa-lg"></i></a></li>
                 <li class="dropdown order-1">
-                        <% UserJB user = (UserJB) session.getAttribute("user");
-                if (user == null) { %>
-                <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
-                <% } else { %>
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
-                            class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= user.getName() %><span
-                            class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
                 </li>
-                <% } %>
             </ul>
         </div>
     </div>
 </nav>
 
-<%
-    String bookingid = request.getParameter("bookingid");
-    BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
-    float grandtotal = bookjb.getGrandtotal();
-    String movietitle = bookjb.getMovietitle();
-    String moviedate = bookjb.getSlotdate();
-    String movietime = bookjb.getSlottime();
-    int qty = bookjb.getQty();
-    HashSet<String> seatset = bookjb.getSeatset();
-    String seatstr = "";
-    if (seatset != null) {
-        seatstr = String.join(",", seatset);
-    }
-%>
-
 <main role="main">
     <div class="container">
-            <h2 class="mb-2">Confirm payment &amp; checkout</h2>
-            <h3 class="mb-2">Booking details</h3>
-            <p class="mb-2">Movie title: <%=movietitle%></p>
-            <p class="mb-2">Movie Date: <%=moviedate%></p>
-            <p class="mb-2">Movie Time: <%=movietime%></p>
-            <p class="mb-2">Ticket Quantity: <%=qty%></p>
-            <p class="mb-2 pb-2">Seat Number: <%=seatstr%></p>
-            <p class="mb-2" style="border-bottom: solid 1px">Grand Total: <%=grandtotal%></p>
-            
-            <h3 class="mt-2">Personal details</h3>
-            <p class="mb-2">Name: <%=user.getName()%></p>
-            <p class="mb-2">Email: <%=user.getEmail()%></p>
-            <p class="mb-2">Contact Number: <%=user.getContact()%></p>
-            <%
-                String creditcard = user.getCreditcard();
-                String replace = creditcard.substring(0,creditcard.length()-5).replaceAll(".","•");
-                String lastfour = creditcard.substring(creditcard.length()-4,creditcard.length());
-            %>
-            <p class="mb-2">Credit Card Number (Last four digits): <%=replace%>-<%=lastfour%></p>
-            <form action="/user/Checkout" method="post">
-                <input type="hidden" name="userid" value="<%=user.getID()%>">
-                <input type="submit" class="btn btn-primary" value="Confirm checkout">
-            </form>
+        <h2 class="mb-2">Confirm payment &amp; checkout</h2>
+        <h3 class="mb-2">Booking details</h3>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Movie Title</th>
+                <th scope="col">Movie Date</th>
+                <th scope="col">Movie Time</th>
+                <th scope="col">Seat Number</th>
+            </tr>
+            </thead>
+            <tbody>
+<%
+    ArrayList<String> allbookingids = (ArrayList<String>) session.getAttribute("allbookingids");
+    if (allbookingids != null) {
+    float totalgrandtotal = 0;
+    System.out.println(allbookingids.toString());
+    for (String bookingid: allbookingids) {
+        System.out.println(bookingid);
+        BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
+        float grandtotal = bookjb.getGrandtotal();
+        totalgrandtotal += grandtotal;
+        String movietitle = bookjb.getMovietitle();
+        String moviedate = bookjb.getSlotdate();
+        String movietime = bookjb.getSlottime();
+        int qty = bookjb.getQty();
+        HashSet<String> seatset = bookjb.getSeatset();
+        for (String seat: seatset) {
+            System.out.println(seat);
+%>
+                <tr>
+                <td><%=movietitle%></td>
+                <td><%=moviedate%></td>
+                <td><%=movietime%></td>
+                <td><%=seat%></td>
+                </tr>
+<%  }} %>
+            </tbody>
+        </table>
+        <p class="mb-2" style="border-bottom: solid 1px">Grand Total: <%=totalgrandtotal%></p>
+        <h3 class="mt-2">Personal details</h3>
+        <p class="mb-2">Name: <%=user.getName()%></p>
+        <p class="mb-2">Email: <%=user.getEmail()%></p>
+        <p class="mb-2">Contact Number: <%=user.getContact()%></p>
+        <%
+            String creditcard = user.getCreditcard();
+            String replace = creditcard.substring(0,creditcard.length()-5).replaceAll(".","•");
+            String lastfour = creditcard.substring(creditcard.length()-4,creditcard.length());
+        %>
+        <p class="mb-2">Credit Card Number (Last four digits): <%=replace%>-<%=lastfour%></p>
+        <form action="/user/Checkout" method="post">
+            <input type="hidden" name="userid" value="<%=user.getID()%>">
+            <input type="submit" class="btn btn-primary" value="Confirm checkout">
+        </form>
     </div>
+<%  } else { %>
+<h3 class="mt-2">You have no tickets selected.</h3>
+<%  } %>
 </main>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

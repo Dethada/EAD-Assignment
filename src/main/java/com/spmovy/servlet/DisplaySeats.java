@@ -49,6 +49,14 @@ public class DisplaySeats extends HttpServlet {
                 book.setGrandtotal(price * qty);
 
                 bookingsession.setAttribute(id,book);
+                ArrayList<String> allbookingids = (ArrayList<String>) bookingsession.getAttribute("allbookingids");
+                if (allbookingids == null) {
+                    allbookingids = new ArrayList<>();
+                    allbookingids.add(id);
+                    bookingsession.setAttribute("allbookingids",allbookingids);
+                } else {
+                    allbookingids.add(id);
+                }
             }
 
             beanlist = SeatsJBDB.getOccupiedSeats(movieid,moviedate,movietime);
