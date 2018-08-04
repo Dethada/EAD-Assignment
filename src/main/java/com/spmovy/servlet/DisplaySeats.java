@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -19,12 +20,28 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-@WebServlet("/DisplaySeats")
+@WebServlet("/user/DisplaySeats")
 public class DisplaySeats extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession bookingsession = request.getSession(false);
+        String seatarr = request.getParameter("seatarr");
+        double seatprice = Double.parseDouble(request.getParameter("seatprice"));
+        int seatqty = Integer.parseInt(request.getParameter("seatqty"));
+        double grandtotal = seatprice * seatqty;
+        bookingsession.setAttribute("grandtotal",grandtotal);
+        bookingsession.setAttribute("seatarr",seatarr);
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/checkout.jsp");
+        rd.forward(request,response);
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession bookingsession = request.getSession(false);
         ArrayList<SeatsJB> beanlist;
         try{
+            int qty = Integer.parseInt(request.getParameter("qty"));
             int movieid = Integer.parseInt(request.getParameter("movieid"));
+            String movietitle = request.getParameter("movietitle");
             String moviedate = request.getParameter("moviedate");
             String movietime = request.getParameter("movietime");
             Calendar c = Calendar.getInstance();
@@ -42,17 +59,17 @@ public class DisplaySeats extends HttpServlet {
 
             beanlist = SeatsJBDB.getOccupiedSeats(movieid,moviedate,movietime);
             request.setAttribute("seatbeanlist",beanlist);
-            RequestDispatcher rd = request.getRequestDispatcher("booking.jsp");
+            bookingsession.setAttribute("qty",qty);
+            bookingsession.setAttribute("movietitle",movietitle);
+            bookingsession.setAttribute("moviedate",moviedate);
+            bookingsession.setAttribute("movietime",movietime);
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/booking.jsp");
             rd.forward(request,response);
 
         } catch (SQLException | ParseException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
         }
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

@@ -33,14 +33,17 @@
                 <li class="nav-item"><a href="#" class="nav-link">More</a></li>
             </ul>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+                <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i
+                        class="fa fa-cog fa-fw fa-lg"></i></a></li>
                 <li class="dropdown order-1">
                         <% UserJB user = (UserJB) session.getAttribute("user");
                 if (user == null) { %>
                 <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
                 <% } else { %>
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= user.getName() %><span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= user.getName() %><span
+                            class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
@@ -152,14 +155,49 @@
                         out.println("<div class=\"mb-3\"><p class=\"mb-2\">" + formatteddatelist.get(i) + "</p>");
                 %>
                 <% while (timeslotset.next()) {
+
+                    if (user == null) {%>
+                <button type="button" class="btn btn-primary btn-sm d-inline mt-2" data-toggle="modal"
+                        data-target="#loginmodal"><span style="color:#ffffff"><%=timeslotset.getString(2)%></span>
+                </button>
+
+
+                <% } else {%>
+                <button type="button" class="btn btn-primary btn-sm d-inline mt-2" data-toggle="modal"
+                        data-target="#seatqtymodal"><span style="color:#ffffff"><%=timeslotset.getString(2)%></span>
+                </button>
+                <div class="modal fade" id="seatqtymodal" tabindex="-1" role="dialog" aria-labelledby="seatqtyLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="seatqtyLabel">Select ticket quantity</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Movie Title: <%=movietitle%> <br>
+                                Movie Date: <%=datelist.get(i)%> <br>
+                                Movie Time: <%=timeslotset.getString(1)%> <br>
+                                <form action="/user/DisplaySeats" method="GET" style="display: inline" class="mt-4">
+                                    Number of seats: <input type="number" name="qty" min="1" max="10" class="mt-4"> <br>
+                                    <input type="hidden" name="movieid" value="<%=movieID%>">
+                                    <input type="hidden" name="movietitle" value="<%=movietitle%>">
+                                    <input type="hidden" name="moviedate" value="<%=datelist.get(i)%>">
+                                    <input type="hidden" name="movietime" value="<%=timeslotset.getString(1)%>">
+                                    <input type="submit" class="btn btn-primary btn-sm mt-2" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <%
+                        }
+                    }
                 %>
-                <form action="/DisplaySeats" method="POST" style="display: inline">
-                    <input type="hidden" name="movieid" value="<%=movieID%>">
-                    <input type="hidden" name="moviedate" value="<%=datelist.get(i)%>">
-                    <input type="hidden" name="movietime" value="<%=timeslotset.getString(1)%>">
-                    <button type="submit" class="btn btn-primary btn-sm d-inline mt-3"><span style="color:#ffffff"><%=timeslotset.getString(2)%></span></button>
-                </form>
-                <%}%>
+
             </div>
             <%
                     }
@@ -209,6 +247,27 @@
 
                 %>
             </div>
+
+            <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="loginLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="loginLabel">Members only</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Sorry only members are allowed to purchase movie tickets, please login first.
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/Login" class="btn btn-primary btn-sm float-right mb-2">Click me to login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
