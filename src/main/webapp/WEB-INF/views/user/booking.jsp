@@ -1,14 +1,10 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.spmovy.beans.SeatsJB" %><%--
-  Created by IntelliJ IDEA.
-  User: Javiery
-  Date: 31-Jul-18
-  Time: 7:27 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.spmovy.beans.SeatsJB" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page import="com.spmovy.beans.SeatPriceJB" %>
+<%@ page import="com.spmovy.beans.BookingJB" %>
+<%@ page import="java.util.HashSet" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -59,10 +55,18 @@
 </nav>
 
     <%
-        Integer qty = (Integer) session.getAttribute("qty");
-        String movietitle = (String) session.getAttribute("movietitle");
-        String moviedate = (String) session.getAttribute("moviedate");
-        String movietime = (String) session.getAttribute("movietime");
+        String bookingid = (String) request.getAttribute("bookingid");
+        BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
+        int qty = bookjb.getQty();
+        int movieid = bookjb.getMovieID();
+        String movietitle = bookjb.getMovietitle();
+        String moviedate = bookjb.getSlotdate();
+        String movietime = bookjb.getSlottime();
+        HashSet<String> seatset = bookjb.getSeatset();
+        String seatstr = "";
+        if (seatset != null) {
+            seatstr = String.join(",", seatset);
+        }
         ArrayList<String> occupiedseatslist = new ArrayList<String>();
         ArrayList<SeatsJB> seatbeanlist = (ArrayList<SeatsJB>) request.getAttribute("seatbeanlist");
         for (SeatsJB seatbean : seatbeanlist) {
@@ -101,15 +105,22 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
 <script src="/js/jquery.seat-charts.min.js"></script>
 
 
 <script>
     var firstSeatLabel = 1;
-    var selectedseats = [];
+    <% if (seatstr.isEmpty()) { %>
+        var selectedseats = [];
+    <% } else { %>
+        var selectedseats = "<%=seatstr%>".split(",");
+        if (typeof selectedseats == "string") {
+            selectedseats = [selectedseats];
+        }
+        console.log(selectedseats);
+    <% } %>
     $(document).ready(function () {
         var seatarr = [];
         for (var i = 0; i < 10; i++) {
@@ -168,12 +179,29 @@
                              * .find function will not find the current seat, because it will change its stauts only after return
                              * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
                              */
+                            $.ajax({
+                                type: 'POST',
+                                url: "/user/SelectSeat",
+                                data: {
+                                    'action': 'add',
+                                    'seat': seatno,
+                                    'bookingid': '<%=bookingid%>'
+                                },
+                                success: (msg) => { 
+                                    console.log(msg);
+                                },
+                                error: (e) => { 
+                                    console.log("ERROR : ", e);
+                                    alert("Failed to add seat");
+                                }
+                            });
                             $counter.text(sc.find('selected').length + 1);
                             $total.text(recalculateTotal(sc) + this.data().price);
                             selectedseats.push(seatno);
                             $("#seatarr").val(selectedseats);
                             console.log(selectedseats);
                             return 'selected';
+
                         }
                     } else if (this.status() == 'selected') {
                         //update the counter
@@ -181,6 +209,22 @@
                         //and total
                         $total.text(recalculateTotal(sc) - this.data().price);
 
+                        $.ajax({
+                            type: 'POST',
+                            url: "/user/SelectSeat",
+                            data: {
+                                'action': 'del',
+                                'seat': this.settings.id.replace(/[_-]/g, ""),
+                                'bookingid': '<%=bookingid%>'
+                            },
+                            success: (msg) => {
+                                console.log(msg); 
+                            },
+                            error: (e) => { 
+                                console.log("ERROR : ", e);
+                                alert("Failed to remove seat");
+                            }
+                        });
                         //remove the item from our cart
                         $('#cart-item-' + this.settings.id).remove();
                         selectedseats.pop();
@@ -205,8 +249,13 @@
         });
 
         // some seats have already been booked
+        for (var i=0;i<selectedseats.length;i++) {
+            var seat = document.getElementById(selectedseats[i][0] + "_" + selectedseats[i].slice(1));
+            seat.classList.remove('available');
+            seat.classList.add('selected');
+        }
+        // sc.get(preselectedseats).status('selected');
         sc.get(<%=occupiedseatslist%>).status('unavailable');
-
     });
 
     function recalculateTotal(sc) {
@@ -216,7 +265,6 @@
             total += this.data().price;
         });
         return total;
-
     }
 </script>
 <script>

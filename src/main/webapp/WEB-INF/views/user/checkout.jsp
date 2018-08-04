@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Javiery
-  Date: 31-Jul-18
-  Time: 7:27 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page import="java.util.Arrays" %>
@@ -67,7 +60,7 @@
     String movietime = (String) session.getAttribute("movietime");
     Integer qty = (Integer)session.getAttribute("qty");
     String seatstr = (String) session.getAttribute("seatarr");
-    List<String> items = Arrays.asList(seatstr.split("\\s*,\\s*"));
+    // List<String> items = Arrays.asList(seatstr.split("\\s*,\\s*"));
 
 %>
 
