@@ -1,5 +1,6 @@
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <% UserJB user = (UserJB) session.getAttribute("user"); %>
 <!doctype html>
 <html lang="en">
@@ -40,7 +41,7 @@
                 <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
                 <li class="dropdown order-1">
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= user.getName() %><span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>

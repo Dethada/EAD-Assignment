@@ -124,7 +124,7 @@ public class UpdateMovie extends HttpServlet {
      * @throws SQLException
      */
     private ArrayList<Integer> getcList(ResultSet rs) throws SQLException {
-        ArrayList<Integer> cList = new ArrayList();
+        ArrayList<Integer> cList = new ArrayList<>();
         while (rs.next()) {
             cList.add(rs.getInt(1));
         }

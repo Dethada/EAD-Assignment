@@ -223,7 +223,8 @@
 <h3 class="ml-4">Movie Poster Upload:</h3>
 <p class="ml-4">Select an image file to upload:</p><br/>
 <form class="pt-0 mb-2" method="post" enctype="multipart/form-data" id="fileUploadForm">
-    <input type="file" name="file" multiple="true"/><br/><br/>
+    <input type="file" name="file" id="imgInp" multiple="true"/>
+    <img id="imgPreview" src="<%= imagepath %>" alt="Movie Poster" /><br/><br/>
     <input type="submit" class="btn btn-outline-success" value="Upload Movie Poster" id="btnSubmit"/>
 </form>
 <datalist id="GenreList">
@@ -326,6 +327,20 @@
                 }
             });
         });
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#imgPreview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#imgInp").change(function(){
+        readURL(this);
     });
 
 </script>

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Timestamp;
 
 @WebServlet("/backend/AddReview")
 public class AddReview extends HttpServlet {
@@ -27,6 +26,10 @@ public class AddReview extends HttpServlet {
             return;
         }
         if (name == null || review == null || rating > 5 || rating < 1) {
+            response.sendRedirect("/errors/error.html");
+            return;
+        }
+        if (name.length() > 70 || review.length() > 65535) {
             response.sendRedirect("/errors/error.html");
             return;
         }
