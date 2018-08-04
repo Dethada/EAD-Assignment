@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
 </head>
@@ -108,6 +109,7 @@
                     <input id="exp" pattern="^\d{2}/\d{2}$" class="form-control" type="text" name="exp" placeholder="MM/YY" required>
                 </div>
             </div>
+            <div class="g-recaptcha" data-sitekey="6Ld5D1oUAAAAAGkPcZ6GpeTvFA15pYZLTD6b6hTA"></div>
             <%--https://bootsnipp.com/snippets/5Mkl8--%>
             <div class="form-group row">
                 <div class="col-sm-10">
