@@ -3,6 +3,7 @@
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page import="com.spmovy.beans.UserTransactionJB" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <% 
 UserJB userbean = (UserJB)request.getAttribute("userbean");
 ArrayList<UserTransactionJB> transactionlist = (ArrayList<UserTransactionJB>)request.getAttribute("transactionlist");
@@ -80,15 +81,15 @@ ArrayList<UserTransactionJB> transactionlist = (ArrayList<UserTransactionJB>)req
 <h2>User Details</h2>
 <table class="table">
     <tbody>
-        <tr><td><b>Username</b></td><td><%= userbean.getUsername() %></td></tr>
-        <tr><td><b>Role</b></td><td><%= userbean.getRole() %></td></tr>
-        <tr><td><b>Name</b></td><td><%= userbean.getName() %></td></tr>
-        <tr><td><b>Email</b></td><td><%= userbean.getEmail() %></td></tr>
-        <tr><td><b>Contact</b></td><td><%= userbean.getContact() %></td></tr>
-        <tr><td><b>Card Name</b></td><td><%= userbean.getCardname() %></td></tr>
-        <tr><td><b>Card Number</b></td><td><%= userbean.getCreditcard() %></td></tr>
-        <tr><td><b>CVV</b></td><td><%= userbean.getCvv() %></td></tr>
-        <tr><td><b>Expiery</b></td><td><%= userbean.getExp() %></td></tr>
+        <tr><td><b>Username</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getUsername()) %></td></tr>
+        <tr><td><b>Role</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getRole()) %></td></tr>
+        <tr><td><b>Name</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getName()) %></td></tr>
+        <tr><td><b>Email</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getEmail()) %></td></tr>
+        <tr><td><b>Contact</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getContact()) %></td></tr>
+        <tr><td><b>Card Name</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getCardname()) %></td></tr>
+        <tr><td><b>Card Number</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getCreditcard()) %></td></tr>
+        <tr><td><b>CVV</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getCvv()) %></td></tr>
+        <tr><td><b>Expiery</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getExp()) %></td></tr>
     </tbody>
 </table>
 <h2>Transaction Details</h2>
@@ -113,7 +114,7 @@ ArrayList<UserTransactionJB> transactionlist = (ArrayList<UserTransactionJB>)req
         <td><%= transaction.getPrice() %></td>
         <td><%= transaction.getHall_row() + transaction.getHall_column() %></td>
         <td><%= transaction.getMoviedate().toString() + " " + transaction.getMovietime().toString() %></td>
-        <td><%= transaction.getMovietitle() %></td>
+        <td><%= StringEscapeUtils.escapeHtml4(transaction.getMovietitle()) %></td>
         </tr>
     <% } %>
     </tbody>
