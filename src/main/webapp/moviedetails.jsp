@@ -2,6 +2,7 @@
          import="org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
 <%@ page import="com.spmovy.Utils" %>
+<%@ page import="com.spmovy.beans.UserJB" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -21,39 +22,40 @@
     <title>Title</title>
 </head>
 <body>
-<header>
-    <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">About</h4>
-                    <p class="text-muted">SPMovy is an online movie booking portal to allow the public to book for movie
-                        tickets online.</p>
-                </div>
-                <div class="col-sm-4 offset-md-1 py-4">
-                    <h4 class="text-white">Contact</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="https://twitter.com" class="text-white">Follow on Twitter</a></li>
-                        <li><a href="https://facebook.com" class="text-white">Like on Facebook</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+    <div class="container">
+        <a class="navbar-brand" href="#">SPMovy</a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+            &#9776;
+        </button>
+        <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="#" class="nav-link">More</a></li>
+            </ul>
+            <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i
+                        class="fa fa-cog fa-fw fa-lg"></i></a></li>
+                <li class="dropdown order-1">
+                        <% UserJB user = (UserJB) session.getAttribute("user");
+                if (user == null) { %>
+                <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
+                <% } else { %>
+                <li class="dropdown order-1">
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= user.getName() %><span
+                            class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right mt-2">
+                        <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
-                </div>
-            </div>
+                </li>
+                <% } %>
+            </ul>
         </div>
     </div>
-    <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-            <a href="index.jsp" class="navbar-brand d-flex align-items-center">
-                <strong>SPMovy</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </div>
-</header>
+</nav>
+
 <main role="main">
-    <div class="album py-5 bg-light">
+    <div class="album py-5 mt-4 bg-light">
         <div class="container">
             <div>
                 <%
@@ -94,40 +96,36 @@
                             response.sendRedirect("/index.jsp");
                             return;
                         }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                        response.sendRedirect("/errors/error.html");
-                        return;
-                    }
 
-                    ArrayList actorlist = new ArrayList();
-                    rs = db.executeQuery("SELECT actor.name from MovieActor inner join movie on MovieActor.movieID = movie.ID inner join actor on MovieActor.actorID = actor.ID where movie.id = ?"
-                            , movieID);
 
-                    while (rs.next()) {
-                        actorlist.add(rs.getString(1));
-                    }
-                    String actor = actorlist.toString();
-                    actor = actor.replaceAll("[\\[\\]]", "");
+                        ArrayList actorlist = new ArrayList();
+                        rs = db.executeQuery("SELECT actor.name from MovieActor inner join movie on MovieActor.movieID = movie.ID inner join actor on MovieActor.actorID = actor.ID where movie.id = ?"
+                                , movieID);
 
-                    ArrayList genrelist = new ArrayList();
-                    rs = db.executeQuery("select Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID where movie.id=?"
-                            , movieID);
-                    while (rs.next()) {
-                        genrelist.add(rs.getString(1));
+                        while (rs.next()) {
+                            actorlist.add(rs.getString(1));
+                        }
+                        String actor = actorlist.toString();
+                        actor = actor.replaceAll("[\\[\\]]", "");
 
-                    }
-                    String genre = genrelist.toString();
-                    genre = genre.replaceAll("[\\[\\]]", "");
+                        ArrayList genrelist = new ArrayList();
+                        rs = db.executeQuery("select Genre.name from MovieGenre inner join movie on MovieGenre.movieID = movie.ID inner join Genre on MovieGenre.genreID = Genre.ID where movie.id=?"
+                                , movieID);
+                        while (rs.next()) {
+                            genrelist.add(rs.getString(1));
 
-                    out.print("<div class=\"col-md-6\"><h3>Movie Details</h3>");
-                    out.print("<div class=\"col-md\"><h4>Cast</h4><p>" + StringEscapeUtils.escapeHtml4(actor) + "</p></div>");
-                    out.print("<div class=\"col-md\"><h4>Duration</h4><p>" + duration + " mins</p></div>");
-                    out.print("<div class=\"col-md\"><h4>Genre</h4><p>" + StringEscapeUtils.escapeHtml4(genre) + "</p></div>");
-                    out.print("<div class=\"col-md\"><h4>Release Date</h4><p>" + StringEscapeUtils.escapeHtml4(releasedate) + "</p></div>");
+                        }
+                        String genre = genrelist.toString();
+                        genre = genre.replaceAll("[\\[\\]]", "");
 
-                    out.print("<h3>Synopsis</h3>");
-                    out.print("<div class=\"col-md\"<p>" + StringEscapeUtils.escapeHtml4(synopsis) + "</p></div></div></div>");
+                        out.print("<div class=\"col-md-6\"><h3>Movie Details</h3>");
+                        out.print("<div class=\"col-md\"><h4>Cast</h4><p>" + StringEscapeUtils.escapeHtml4(actor) + "</p></div>");
+                        out.print("<div class=\"col-md\"><h4>Duration</h4><p>" + duration + " mins</p></div>");
+                        out.print("<div class=\"col-md\"><h4>Genre</h4><p>" + StringEscapeUtils.escapeHtml4(genre) + "</p></div>");
+                        out.print("<div class=\"col-md\"><h4>Release Date</h4><p>" + StringEscapeUtils.escapeHtml4(releasedate) + "</p></div>");
+
+                        out.print("<h3>Synopsis</h3>");
+                        out.print("<div class=\"col-md\"<p>" + StringEscapeUtils.escapeHtml4(synopsis) + "</p></div></div></div>");
 
 
                 %>
@@ -152,14 +150,54 @@
 
                     }
                     for (int i = 0; i < datelist.size(); i++) {
-                        ResultSet timeslotset = db.executeQuery("SELECT time_format(movietime,\"%h:%i %p\") from timeslot where movieID = ? and moviedate = ?"
+                        ResultSet timeslotset = db.executeQuery("SELECT movietime, time_format(movietime,\"%h:%i %p\") from timeslot where movieID = ? and moviedate = ?"
                                 , movieID, datelist.get(i));
                         out.println("<div class=\"mb-3\"><p class=\"mb-2\">" + formatteddatelist.get(i) + "</p>");
                 %>
                 <% while (timeslotset.next()) {
-                    out.println("<a class=\" btn btn-primary btn-sm d-inline mt-3\"><span style=\"color:#ffffff\">" + timeslotset.getString(1) + "</span></a>");
 
-                }%>
+                    if (user == null) {%>
+                <button type="button" class="btn btn-primary btn-sm d-inline mt-2" data-toggle="modal"
+                        data-target="#loginmodal"><span style="color:#ffffff"><%=timeslotset.getString(2)%></span>
+                </button>
+
+
+                <% } else {%>
+                <button type="button" class="btn btn-primary btn-sm d-inline mt-2" data-toggle="modal"
+                        data-target="#seatqtymodal"><span style="color:#ffffff"><%=timeslotset.getString(2)%></span>
+                </button>
+                <div class="modal fade" id="seatqtymodal" tabindex="-1" role="dialog" aria-labelledby="seatqtyLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="seatqtyLabel">Select ticket quantity</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Movie Title: <%=movietitle%> <br>
+                                Movie Date: <%=datelist.get(i)%> <br>
+                                Movie Time: <%=timeslotset.getString(1)%> <br>
+                                <form action="/user/DisplaySeats" method="GET" style="display: inline" class="mt-4">
+                                    Number of seats: <input type="number" name="qty" min="1" max="10" class="mt-4"> <br>
+                                    <input type="hidden" name="movieid" value="<%=movieID%>">
+                                    <input type="hidden" name="movietitle" value="<%=movietitle%>">
+                                    <input type="hidden" name="moviedate" value="<%=datelist.get(i)%>">
+                                    <input type="hidden" name="movietime" value="<%=timeslotset.getString(1)%>">
+                                    <input type="submit" class="btn btn-primary btn-sm mt-2" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <%
+                        }
+                    }
+                %>
+
             </div>
             <%
                     }
@@ -186,33 +224,50 @@
                     String name;
                     int rating;
                     String createat;
-                    try {
-                        ResultSet getreviews = db.executeQuery("SELECT reviewSentence,name,rating, DATE_FORMAT(createdat,\"%d/%m/%Y %r\") FROM reviews WHERE movieid=?", movieID);
-                        while (getreviews.next()) {
-                            reviewSentence = getreviews.getString(1);
-                            name = getreviews.getString(2);
-                            rating = getreviews.getInt(3);
-                            createat = getreviews.getString(4);
 
-                            out.println("<div class=\"row mt-4\">");
-                            out.println("<div class=\"col-sm-3\"><p class=\"text-center\"><strong>" + StringEscapeUtils.escapeHtml4(name) + "</strong></p><p class=\"text-center\">" + createat + "</p></div>");
-                            out.println("<div class=\"col-md-6\"><p>" + StringEscapeUtils.escapeHtml4(reviewSentence) + "</p></div>");
-                            out.println("<div class=\"col-sm\"><div class=\"stars stars-example-fontawesome-o\">" +
-                                    "<select class=\"example-fontawesome-o\" name=\"rating\" data-current-rating=\"" + rating + "\">" +
-                                    "<option value=\"1\">1</option>" +
-                                    "<option value=\"2\">2</option>" +
-                                    "<option value=\"3\">3</option>" +
-                                    "<option value=\"4\">4</option>" +
-                                    "<option value=\"5\">5</option>" +
-                                    "</select></div></div></div>");
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                        response.sendRedirect("/errors/error.html");
-                        return;
+                    ResultSet getreviews = db.executeQuery("SELECT reviewSentence,name,rating, DATE_FORMAT(createdat,\"%d/%m/%Y %r\") FROM reviews WHERE movieid=?", movieID);
+                    while (getreviews.next()) {
+                        reviewSentence = getreviews.getString(1);
+                        name = getreviews.getString(2);
+                        rating = getreviews.getInt(3);
+                        createat = getreviews.getString(4);
+
+                        out.println("<div class=\"row mt-4\">");
+                        out.println("<div class=\"col-sm-3\"><p class=\"text-center\"><strong>" + StringEscapeUtils.escapeHtml4(name) + "</strong></p><p class=\"text-center\">" + createat + "</p></div>");
+                        out.println("<div class=\"col-md-6\"><p>" + StringEscapeUtils.escapeHtml4(reviewSentence) + "</p></div>");
+                        out.println("<div class=\"col-sm\"><div class=\"stars stars-example-fontawesome-o\">" +
+                                "<select class=\"example-fontawesome-o\" name=\"rating\" data-current-rating=\"" + rating + "\">" +
+                                "<option value=\"1\">1</option>" +
+                                "<option value=\"2\">2</option>" +
+                                "<option value=\"3\">3</option>" +
+                                "<option value=\"4\">4</option>" +
+                                "<option value=\"5\">5</option>" +
+                                "</select></div></div></div>");
                     }
+
                 %>
             </div>
+
+            <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="loginLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="loginLabel">Members only</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Sorry only members are allowed to purchase movie tickets, please login first.
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/Login" class="btn btn-primary btn-sm float-right mb-2">Click me to login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -263,6 +318,11 @@
         </div>
 
         <%
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                response.sendRedirect("/errors/error.html");
+                return;
             }
             db.closeConnection();
         %>
