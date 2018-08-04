@@ -2,10 +2,10 @@ package com.spmovy.beans;
 
 public class SeatPriceJB {
 
-    private double price;
+    private float price;
     private String day;
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -13,7 +13,7 @@ public class SeatPriceJB {
         this.day = day;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 

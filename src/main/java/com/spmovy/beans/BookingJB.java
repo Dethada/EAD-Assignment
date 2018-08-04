@@ -10,6 +10,7 @@ public class BookingJB implements java.io.Serializable {
     private float price;
     private int qty;
     private String movietitle;
+    private float grandtotal;
 
     public BookingJB() {
     }
@@ -68,5 +69,13 @@ public class BookingJB implements java.io.Serializable {
 
     public void setMovietitle(String movietitle) {
         this.movietitle = movietitle;
+    }
+
+    public float getGrandtotal() {
+        return grandtotal;
+    }
+
+    public void setGrandtotal(float grandtotal) {
+        this.grandtotal = grandtotal;
     }
 }

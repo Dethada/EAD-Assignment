@@ -2,6 +2,8 @@
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.spmovy.beans.BookingJB" %>
+<%@ page import="java.util.HashSet" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -54,14 +56,18 @@
 </nav>
 
 <%
-    Double grandtotal = (Double) session.getAttribute("grandtotal");
-    String movietitle = (String) session.getAttribute("movietitle");
-    String moviedate = (String)session.getAttribute("moviedate");
-    String movietime = (String) session.getAttribute("movietime");
-    Integer qty = (Integer)session.getAttribute("qty");
-    String seatstr = (String) session.getAttribute("seatarr");
-    // List<String> items = Arrays.asList(seatstr.split("\\s*,\\s*"));
-
+    String bookingid = request.getParameter("bookingid");
+    BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
+    float grandtotal = bookjb.getGrandtotal();
+    String movietitle = bookjb.getMovietitle();
+    String moviedate = bookjb.getSlotdate();
+    String movietime = bookjb.getSlottime();
+    int qty = bookjb.getQty();
+    HashSet<String> seatset = bookjb.getSeatset();
+    String seatstr = "";
+    if (seatset != null) {
+        seatstr = String.join(",", seatset);
+    }
 %>
 
 <main role="main">
@@ -72,10 +78,23 @@
             <p class="mb-2">Movie Date: <%=moviedate%></p>
             <p class="mb-2">Movie Time: <%=movietime%></p>
             <p class="mb-2">Ticket Quantity: <%=qty%></p>
-            <p class="mb-2">Seat Number: <%=seatstr%></p>
-            <p class="mb-2" style="border-bottom: solid 1px"><b class="class="mb-2" ">Grand Total: <%=grandtotal%></b></p>
-
-            <h2 class="mt-2">Personal details</h2>
+            <p class="mb-2 pb-2">Seat Number: <%=seatstr%></p>
+            <p class="mb-2" style="border-bottom: solid 1px">Grand Total: <%=grandtotal%></p>
+            
+            <h3 class="mt-2">Personal details</h3>
+            <p class="mb-2">Name: <%=user.getName()%></p>
+            <p class="mb-2">Email: <%=user.getEmail()%></p>
+            <p class="mb-2">Contact Number: <%=user.getContact()%></p>
+            <%
+                String creditcard = user.getCreditcard();
+                String replace = creditcard.substring(0,creditcard.length()-5).replaceAll(".","•");
+                String lastfour = creditcard.substring(creditcard.length()-4,creditcard.length());
+            %>
+            <p class="mb-2">Credit Card Number (Last four digits): <%=replace%>-<%=lastfour%></p>
+            <form action="/user/Checkout" method="post">
+                <input type="hidden" name="userid" value="<%=user.getID()%>">
+                <input type="submit" class="btn btn-primary" value="Confirm checkout">
+            </form>
     </div>
 </main>
 

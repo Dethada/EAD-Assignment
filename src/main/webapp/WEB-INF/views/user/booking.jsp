@@ -71,9 +71,9 @@
         ArrayList<SeatsJB> seatbeanlist = (ArrayList<SeatsJB>) request.getAttribute("seatbeanlist");
         for (SeatsJB seatbean : seatbeanlist) {
             occupiedseatslist.add("\"" + seatbean.getRow() + "_" + seatbean.getCol()+ "\"");
+            occupiedseatslist.add("\"" + seatbean.getRow() + "_" + seatbean.getCol() + "\"");
         }
-        SeatPriceJB seatpricebean = (SeatPriceJB) request.getAttribute("seatpricebean");
-        double seatprice = seatpricebean.getPrice();
+        float seatprice = bookjb.getPrice();
     %>
 
 <div class="wrapper">
@@ -94,12 +94,11 @@
 
             Total: <b>$<span id="total">0</span></b>
 
-            <form name="checkout" method="post" action="/user/DisplaySeats" id="checkout">
-                <input type="hidden" name="seatarr" id="seatarr">
-                <input type="hidden" name="seatprice" value="<%=seatprice%>">
-                <input type="hidden" name="seatqty" value="<%=qty%>">
+            <form name="checkout" action="/user/Checkout" id="checkout" onsubmit="return check()">
+                <input type="hidden" name="bookingid" value="<%=bookingid%>" id="bookingid">
+                <button class="btn btn-primary" type="submit">Checkout &raquo;</button>
             </form>
-            <button class="btn btn-primary" onclick="check()" type="button">Checkout &raquo;</button>
+            <%-- <a href="/user/Checkout" id="checkout" class="btn btn-primary">Checkout &raquo;</a> --%>
             <div id="legend"></div>
         </div>
     </div>
@@ -253,6 +252,18 @@
             var seat = document.getElementById(selectedseats[i][0] + "_" + selectedseats[i].slice(1));
             seat.classList.remove('available');
             seat.classList.add('selected');
+            $('<li>' + selectedseats[i] + ': <b>$' + <%=seatprice%> + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+                .attr('id', 'cart-item-' + selectedseats[i][0] + "_" + selectedseats[i].slice(1))
+                .data('seatId', selectedseats[i][0] + "_" + selectedseats[i].slice(1))
+                .appendTo($cart);
+            /*
+            * Lets update the counter and total
+            *
+            * .find function will not find the current seat, because it will change its stauts only after return
+            * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
+            */
+            $counter.text(sc.find('selected').length + 1);
+            $total.text(recalculateTotal(sc) + <%=seatprice%>);
         }
         // sc.get(preselectedseats).status('selected');
         sc.get(<%=occupiedseatslist%>).status('unavailable');
@@ -266,16 +277,12 @@
         });
         return total;
     }
-</script>
-<script>
     function check(){
-        var span = document.getElementById("counter");
-        var counter = span.innerHTML;
-        if (counter != <%=qty%>){
+        if (document.getElementById("counter").innerHTML != <%=qty%>){
             $(".alert").show();
-        }
-        else{
-            document.getElementById("checkout").submit();
+            return false;
+        } else{
+            return true;
         }
     }
 </script>
