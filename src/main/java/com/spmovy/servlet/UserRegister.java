@@ -56,7 +56,7 @@ public class UserRegister extends HttpServlet {
                 message += "Invalid Card Name<br>";
                 invalid = true;
             }
-            if (!creditcard.matches("^\\d{14,19}$") || !cvv.matches("^(0[1-9]|1[012])\\/\\d{2}$") || !exp.matches("^\\d{2}/\\d{2}$")) {
+            if (!creditcard.matches("^\\d{14,19}$") || !cvv.matches("\\d{3}") || !exp.matches("^(0[1-9]|1[012])\\/\\d{2}$")) {
                 message += "Invalid card details<br>";
                 invalid = true;
             }
