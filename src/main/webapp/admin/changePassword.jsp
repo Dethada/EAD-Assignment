@@ -62,11 +62,11 @@
                 </div>
             </li>
         </ul>
-        <div>
-            <form class="form-inline my-2 my-lg-0" action="movies.jsp">
+        <div class="w-50">
+            <form class="form-inline mt-2 mb-2 float-right" action="movies.jsp">
                 <input class="form-control mr-sm-2" type="search" name="moviename" placeholder="Movie Title"
                         aria-label="Search">
-                <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Search</button>
+                <button class="btn btn-outline-dark my-2 my-sm-0 mr-1" type="submit">Search</button>
                 <a class="btn btn-outline-danger" href="/backend/Logout">Logout</a>
             </form>
         </div>
