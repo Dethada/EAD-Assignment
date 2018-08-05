@@ -62,7 +62,6 @@
 
 <main role="main">
     <div class="container">
-        <%
         <% String msg = (String) request.getAttribute("message");
             String status = (String) request.getAttribute("status");
             if (msg != null && status != null) {
@@ -71,7 +70,6 @@
         <% } else { %>
         <p class="alert alert-success"><%=msg%></p>
         <% }} %>
-        %>
     </div>
 </main>
 

@@ -18,18 +18,24 @@ import java.security.SecureRandom;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+
+import com.spmovy.beans.UserJB;
 
 @WebServlet("/user/Checkout")
 public class Checkout extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         ArrayList<String> allbookingids = (ArrayList<String>) session.getAttribute("allbookingids");
-        String message;
+        String message = "";
+        UserJB user = (UserJB) session.getAttribute("user");
+        int userid = user.getID();
+        String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+        String concat = timeStamp + userid;
         try {
-            int userid = Integer.parseInt(request.getParameter("userid"));
-            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
-            String concat = timeStamp + userid;
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] transactionhash = digest.digest(concat.getBytes(StandardCharsets.UTF_8));
             String transactionID = 't' + asHex(transactionhash);
@@ -40,14 +46,20 @@ public class Checkout extends HttpServlet {
             random.nextBytes(salt);
             String saltstring = asHex(salt);
 
-            if (BookingJBDB.inserttransaction(transactionID, timeStamp, userid)) {
-                session.setAttribute("status", "success");
-                message = "Transaction Successful";
-                session.setAttribute("message", message);
-            } else {
-                session.setAttribute("status", "failed");
-                message = "Transaction Failed";
-                session.setAttribute("message", message);
+            boolean success = true;
+
+            try {
+                if (!BookingJBDB.inserttransaction(transactionID, timeStamp, userid)) {
+                    request.setAttribute("message", "Transaction Failed");
+                    clearBookings(session, allbookingids);
+                    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/transactionStatus.jsp");
+                    rd.forward(request, response);
+                    return;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                response.sendRedirect("/errors/error.html");
+                return;
             }
 
             for (String bookingid : allbookingids) {
@@ -68,41 +80,30 @@ public class Checkout extends HttpServlet {
                     byte[] tickethash = digest.digest(tickettext.getBytes(StandardCharsets.UTF_8));
                     String ticketID = 'i' + asHex(tickethash);
 
-                    if (BookingJBDB.insertbookseats(price, ticketID, hall_col, hall_row, transactionID, formattedtime, moviedate, movieid, saltstring)) {
-                        session.setAttribute("status", "success");
-                        message = "Transaction Successful";
-                        session.setAttribute("message", message);
-                    } else {
-                        session.setAttribute("status", "failed");
-                        message = "Transaction Failed";
-                        session.setAttribute("message", message);
+                    try {
+                        if (!BookingJBDB.insertbookseats(price, ticketID, hall_col, hall_row, transactionID, formattedtime, moviedate, movieid, saltstring)) {
+                            message += "Purchase for " + bookjb.getMovietitle() + " " + moviedate + " " + movietime + " " + seatno + " Failed<br>";
+                            success = false;
+                        }
+                    } catch (SQLException e) {
+                        message += "Purchase for " + bookjb.getMovietitle() + " " + moviedate + " " + movietime + " " + seatno + " Failed<br>";
+                        success = false;
+                        request.setAttribute("status", "failed");
                     }
-
                 }
                 session.removeAttribute(bookingid);
             }
             session.removeAttribute("allbookingids");
-
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/transactionStatus.jsp");
-            rd.forward(request, response);
-
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            response.sendRedirect("/errors/error.html");
-        } catch (SQLException e) {
-            for (String bookingid : allbookingids) {
-                session.removeAttribute(bookingid);
+            if (success) {
+                message = "Transcation completed";
+                request.setAttribute("status", "success");
+            } else {
+                request.setAttribute("status", "failed");
             }
-            session.removeAttribute("allbookingids");
-            e.printStackTrace();
-            session.setAttribute("status", "failed");
-            message = "Transaction Failed";
-            session.setAttribute("message", message);
+            request.setAttribute("message", message);
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/transactionStatus.jsp");
             rd.forward(request, response);
-
-        } catch (ParseException e) {
+        } catch (NoSuchAlgorithmException | ParseException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
         }
@@ -113,7 +114,14 @@ public class Checkout extends HttpServlet {
         rd.forward(request, response);
     }
 
-    public static String asHex(byte buf[]) {
+    private static void clearBookings(HttpSession session, ArrayList<String> allbookingids) {
+        for (String bookingid : allbookingids) {
+            session.removeAttribute(bookingid);
+        }
+        session.removeAttribute("allbookingids");
+    }
+
+    private static String asHex(byte buf[]) {
         //Obtain a StringBuffer object
         StringBuffer strbuf = new StringBuffer(buf.length * 2);
         int i;
