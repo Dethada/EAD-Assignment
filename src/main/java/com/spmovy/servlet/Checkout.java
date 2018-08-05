@@ -31,15 +31,20 @@ public class Checkout extends HttpServlet {
         HttpSession session = request.getSession(false);
         ArrayList<String> allbookingids = (ArrayList<String>) session.getAttribute("allbookingids");
         String message = "";
+
+        // get user id
         UserJB user = (UserJB) session.getAttribute("user");
         int userid = user.getID();
+
+        // get timestamp
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
         String concat = timeStamp + userid;
         int ticketcount = 0;
         try {
+            // generate SHA256 hash for transaction ID
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] transactionhash = digest.digest(concat.getBytes(StandardCharsets.UTF_8));
-            String transactionID = 't' + asHex(transactionhash);
+            // prepend 't' for transaction IDs
+            String transactionID = 't' + asHex(digest.digest(concat.getBytes(StandardCharsets.UTF_8)));
 
             // generate salt
             SecureRandom random = new SecureRandom();
@@ -49,6 +54,7 @@ public class Checkout extends HttpServlet {
 
             boolean success = true;
 
+            // try to create new transaction
             try {
                 if (!BookingJBDB.inserttransaction(transactionID, timeStamp, userid)) {
                     request.setAttribute("message", "Transaction Failed");
@@ -78,13 +84,13 @@ public class Checkout extends HttpServlet {
                     String hall_row = seatno.substring(0, 1);
                     String hall_col = seatno.substring(1);
                     String tickettext = saltstring + moviedate + movietime + hall_row + hall_col;
-                    byte[] tickethash = digest.digest(tickettext.getBytes(StandardCharsets.UTF_8));
-                    String ticketID = 'i' + asHex(tickethash);
+                    // prepend 'i' for ticket IDs
+                    String ticketID = 'i' + asHex(digest.digest(tickettext.getBytes(StandardCharsets.UTF_8)));
 
                     try {
+                        // check if ticket is already purchased by another user.
                         if (!BookingJBDB.ticketExist(hall_col, hall_row, formattedtime, moviedate, movieid)) {
                             if (!BookingJBDB.insertbookseats(price, ticketID, hall_col, hall_row, transactionID, formattedtime, moviedate, movieid, saltstring)) {
-                                System.out.println("ran2");
                                 message += "Purchase for " + bookjb.getMovietitle() + " " + moviedate + " " + movietime + " " + seatno + " Failed<br>";
                                 success = false;
                             } else ticketcount += 1;
@@ -102,6 +108,8 @@ public class Checkout extends HttpServlet {
                 session.removeAttribute(bookingid);
             }
             session.removeAttribute("allbookingids");
+
+            // if no tickets are successfully purchased, remove the transaction.
             if (ticketcount == 0) {
                 try {
                     BookingJBDB.deleteTransaction(transactionID);
@@ -111,6 +119,8 @@ public class Checkout extends HttpServlet {
                     return;
                 }
             }
+
+            // set messages to be displayed to the user
             if (success) {
                 message = "Transcation completed";
                 request.setAttribute("status", "success");
@@ -131,6 +141,14 @@ public class Checkout extends HttpServlet {
         rd.forward(request, response);
     }
 
+    /**
+     * Search for a user via their contact number
+     *
+     * @param session User's session
+     * @param allbookingids ArrayList of all the booking IDs
+     * @return UserJB if user is found, null if user is not found
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     private static void clearBookings(HttpSession session, ArrayList<String> allbookingids) {
         for (String bookingid : allbookingids) {
             session.removeAttribute(bookingid);
@@ -138,6 +156,12 @@ public class Checkout extends HttpServlet {
         session.removeAttribute("allbookingids");
     }
 
+    /**
+     * This method converts bytes to hex string
+     *
+     * @param buf The bytes to be converted to hex string
+     * @return String - hex string of the bytes
+     */
     private static String asHex(byte buf[]) {
         //Obtain a StringBuffer object
         StringBuffer strbuf = new StringBuffer(buf.length * 2);

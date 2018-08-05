@@ -35,6 +35,7 @@ public class DisplaySeats extends HttpServlet {
             String id = movieid + moviedate + movietime;
 
             if (bookingsession.getAttribute(id) == null) {
+                // create new booking session
                 BookingJB book = new BookingJB();
                 book.setMovieID(movieid);
                 book.setMovietitle(movietitle);
@@ -42,6 +43,7 @@ public class DisplaySeats extends HttpServlet {
                 book.setSlottime(movietime);
                 book.setQty(qty);
 
+                // get the price of tickets
                 Calendar c = Calendar.getInstance();
                 c.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(moviedate));
                 SeatPriceJB pricebean = SeatPriceJBDB.getSeatPrice((c.get(Calendar.DAY_OF_WEEK) < 6) ? "weekday" : "weekend");
@@ -59,10 +61,12 @@ public class DisplaySeats extends HttpServlet {
                     allbookingids.add(id);
                 }
             } else {
+                // update the quantity and price
                 BookingJB currentbook = (BookingJB) bookingsession.getAttribute(id);
                 currentbook.setQty(qty);
                 currentbook.setGrandtotal(currentbook.getPrice() * qty);
             }
+            // get list of booked seats
             Date date = new SimpleDateFormat("h:mm a").parse(movietime);
             String formattedtime = new SimpleDateFormat("HH:mm:ss").format(date);
             beanlist = SeatsJBDB.getOccupiedSeats(movieid, moviedate, formattedtime);
