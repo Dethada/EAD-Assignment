@@ -83,7 +83,6 @@ public class Checkout extends HttpServlet {
 
                     try {
                         if (!BookingJBDB.ticketExist(hall_col, hall_row, formattedtime, moviedate, movieid)) {
-                            System.out.println("ran1");
                             if (!BookingJBDB.insertbookseats(price, ticketID, hall_col, hall_row, transactionID, formattedtime, moviedate, movieid, saltstring)) {
                                 System.out.println("ran2");
                                 message += "Purchase for " + bookjb.getMovietitle() + " " + moviedate + " " + movietime + " " + seatno + " Failed<br>";
