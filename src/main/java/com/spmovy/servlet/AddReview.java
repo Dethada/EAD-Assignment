@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet("/moviedetails")
 public class AddReview extends HttpServlet {
@@ -57,12 +59,16 @@ public class AddReview extends HttpServlet {
         } else {
             ip = request.getRemoteAddr();
         }
+
+        Date date = new Date();
+        String currdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
         try {
-            int updateCount = db.executeUpdate("INSERT INTO reviews(movieID,reviewSentence,name,rating,createdat,ip) VALUES (?,?,?,?,NOW(),?)",
+            int updateCount = db.executeUpdate("INSERT INTO reviews(movieID,reviewSentence,name,rating,createdat,ip) VALUES (?,?,?,?,?,?)",
                     movieid,
                     review,
                     name,
                     rating,
+                    currdate,
                     ip);
             if (updateCount != 1) { // checks if insert is successful
                 response.sendRedirect("/errors/error.html");
