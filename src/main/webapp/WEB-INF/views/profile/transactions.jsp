@@ -1,7 +1,7 @@
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page import="com.spmovy.beans.UserTransactionJB" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <% UserJB user = (UserJB) session.getAttribute("user"); %>
 <!doctype html>
@@ -15,11 +15,11 @@
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
-    <title>SPMovy</title>
+    <title>SPMovy | Transactions</title>
 </head>
 <style>
     body {
-        margin-top:100px;
+        margin-top: 100px;
     }
 </style>
 
@@ -32,19 +32,22 @@
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
-            </ul >
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Profile" class="nav-link">Profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Transactions" class="nav-link">Transactions</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Checkout" class="nav-link">Checkout</a></li>
+            </ul>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 <li class="dropdown order-1">
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            class="btn btn-outline-secondary dropdown-toggle">
+                        Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
@@ -74,19 +77,20 @@
             for (UserTransactionJB transaction : transactionlist) {
         %>
         <tr>
-            <td style="word-wrap: break-word; " ><%= transaction.getID() %>
+            <td style="word-wrap: break-word; "><%= transaction.getID() %>
             </td>
-            <td style="word-wrap: break-word; " ><%= transaction.getAt() %>
-            </td style="word-wrap: break-word; " >
-            <td style="word-wrap: break-word; " ><%= transaction.getTicketID() %>
+            <td style="word-wrap: break-word; "><%= transaction.getAt() %>
+            </td style="word-wrap: break-word
+            ; " >
+            <td style="word-wrap: break-word; "><%= transaction.getTicketID() %>
             </td>
-            <td style="word-wrap: break-word; " ><%= transaction.getPrice() %>
+            <td style="word-wrap: break-word; "><%= transaction.getPrice() %>
             </td>
-            <td style="word-wrap: break-word; " ><%= transaction.getHall_row() + transaction.getHall_column() %>
+            <td style="word-wrap: break-word; "><%= transaction.getHall_row() + transaction.getHall_column() %>
             </td>
-            <td style="word-wrap: break-word; " ><%= transaction.getMoviedate() + " " + transaction.getMovietime() %>
+            <td style="word-wrap: break-word; "><%= transaction.getMoviedate() + " " + transaction.getMovietime() %>
             </td>
-            <td style="word-wrap: break-word; " ><%= StringEscapeUtils.escapeHtml4(transaction.getMovietitle()) %>
+            <td style="word-wrap: break-word; "><%= StringEscapeUtils.escapeHtml4(transaction.getMovietitle()) %>
             </td>
         </tr>
         <% } %>

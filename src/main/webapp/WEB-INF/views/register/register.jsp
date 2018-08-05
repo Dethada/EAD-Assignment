@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <% UserJB user = (UserJB) session.getAttribute("user"); %>
@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Register</title>
+    <title>SPMovy | Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -17,7 +17,7 @@
 </head>
 <style>
     body {
-        margin-top:100px;
+        margin-top: 100px;
     }
 </style>
 <body>
@@ -29,23 +29,26 @@
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
             <% if (user != null) { %>
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
-            </ul >
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Profile" class="nav-link">Profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Transactions" class="nav-link">Transactions</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Checkout" class="nav-link">Checkout</a></li>
+            </ul>
             <% } %>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 <li class="dropdown order-1">
-                <% if (user == null) { %>
+                        <% if (user == null) { %>
                 <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
                 <% } else { %>
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            class="btn btn-outline-secondary dropdown-toggle">
+                        Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
@@ -60,23 +63,26 @@
     <div class="container">
         <% String msg = (String) request.getAttribute("message");
             String invalid = (String) request.getAttribute("failed");
-        if (msg != null && invalid != null) {
-            if (invalid.equals("true")) {%>
+            if (msg != null && invalid != null) {
+                if (invalid.equals("true")) {%>
         <p class="alert alert-danger">${message}</p>
         <% } else { %>
         <p class="alert alert-success">${message}</p>
-        <% }} %>
+        <% }
+        } %>
         <form method="post" action="/RegisterUser" onsubmit="return validateform()">
             <div class="form-group row">
                 <label for="username" class="col-sm-2 col-form-label">Username</label>
                 <div class="col-md-3">
-                    <input id="username" pattern="^[A-z\d]{1,50}$" class="form-control" type="text" name="username" placeholder="Username" required>
+                    <input id="username" pattern="^[A-z\d]{1,50}$" class="form-control" type="text" name="username"
+                           placeholder="Username" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-md-3">
-                    <input id="name" pattern="^[A-z ]{1,255}$" class="form-control" type="text" name="name" placeholder="Name" required>
+                    <input id="name" pattern="^[A-z ]{1,255}$" class="form-control" type="text" name="name"
+                           placeholder="Name" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -88,20 +94,25 @@
             <div class="form-group row">
                 <label for="contact" class="col-sm-2 col-form-label">Contact</label>
                 <div class="col-md-3">
-                    <input id="contact" pattern="^[89]\d{7}$" class="form-control" type="tel" name="contact" placeholder="Contact number" required>
+                    <input id="contact" pattern="^[89]\d{7}$" class="form-control" type="tel" name="contact"
+                           placeholder="Contact number" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="pw1" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-md-3">
-                    <input id="pw1" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password" name="password" placeholder="Password" required>
-                    <div class="invalid-feedback">Does not meet password requirement of 8 to 16 chars and alphanumeric.</div>
+                    <input id="pw1" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password"
+                           name="password" placeholder="Password" required>
+                    <div class="invalid-feedback">Does not meet password requirement of 8 to 16 chars and
+                        alphanumeric.
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Confirm Password</label>
                 <div class="col-md-3">
-                    <input id="pw2" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password" placeholder="Confirm password" required>
+                    <input id="pw2" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password"
+                           placeholder="Confirm password" required>
                     <div class="invalid-feedback">Passwords do not match.</div>
                 </div>
             </div>
@@ -111,25 +122,29 @@
             <div class="form-group row">
                 <label for="cardname" class="col-sm-2 col-form-label">Full Name (on card)</label>
                 <div class="col-md-3">
-                    <input id="cardname" pattern="^[A-z ]{1,26}$" class="form-control" type="text" name="cardname" placeholder="Full Name" required>
+                    <input id="cardname" pattern="^[A-z ]{1,26}$" class="form-control" type="text" name="cardname"
+                           placeholder="Full Name" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="creditcard" class="col-sm-2 col-form-label">Card Number</label>
                 <div class="col-md-3">
-                    <input id="creditcard" pattern="^\d{14,19}$" class="form-control" type="text" name="creditcard" placeholder="Card number" required>
+                    <input id="creditcard" pattern="^\d{14,19}$" class="form-control" type="text" name="creditcard"
+                           placeholder="Card number" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="cvv" class="col-sm-2 col-form-label">CVV</label>
                 <div class="col-md-3">
-                    <input id="cvv" pattern="^\d{3}$" class="form-control" type="text" name="cvv" placeholder="CVV" required>
+                    <input id="cvv" pattern="^\d{3}$" class="form-control" type="text" name="cvv" placeholder="CVV"
+                           required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exp" class="col-sm-2 col-form-label">Expiry Date</label>
                 <div class="col-md-3">
-                    <input id="exp" pattern="^(0[1-9]|1[012])\/\d{2}$" class="form-control" type="text" name="exp" placeholder="MM/YY" required>
+                    <input id="exp" pattern="^(0[1-9]|1[012])\/\d{2}$" class="form-control" type="text" name="exp"
+                           placeholder="MM/YY" required>
                 </div>
             </div>
             <div class="g-recaptcha" data-sitekey="6Ld5D1oUAAAAAGkPcZ6GpeTvFA15pYZLTD6b6hTA"></div>

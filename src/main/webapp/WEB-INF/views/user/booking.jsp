@@ -20,7 +20,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/jquery.seat-charts.css">
     <link rel="stylesheet" href="/css/booking.css">
-    <title>Bookings</title>
+    <title>SPMovy | Bookings</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
@@ -30,19 +30,22 @@
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
-            </ul >
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Profile" class="nav-link">Profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Transactions" class="nav-link">Transactions</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Checkout" class="nav-link">Checkout</a></li>
+            </ul>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 <li class="dropdown order-1">
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            class="btn btn-outline-secondary dropdown-toggle">
+                        Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
@@ -52,29 +55,30 @@
     </div>
 </nav>
 
-    <%
-        String bookingid = (String) request.getAttribute("bookingid");
-        BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
-        int qty = bookjb.getQty();
-        String movietitle = bookjb.getMovietitle();
-        String moviedate = bookjb.getSlotdate();
-        String movietime = bookjb.getSlottime();
-        HashSet<String> seatset = bookjb.getSeatset();
-        String seatstr = "";
-        if (seatset != null) {
-            seatstr = String.join(",", seatset);
-        }
-        ArrayList<String> occupiedseatslist = new ArrayList<String>();
-        ArrayList<SeatsJB> seatbeanlist = (ArrayList<SeatsJB>) request.getAttribute("seatbeanlist");
-        for (SeatsJB seatbean : seatbeanlist) {
-            occupiedseatslist.add("\"" + seatbean.getRow() + "_" + seatbean.getCol()+ "\"");
-        }
-        float seatprice = bookjb.getPrice();
-    %>
+<%
+    String bookingid = (String) request.getAttribute("bookingid");
+    BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
+    int qty = bookjb.getQty();
+    String movietitle = bookjb.getMovietitle();
+    String moviedate = bookjb.getSlotdate();
+    String movietime = bookjb.getSlottime();
+    HashSet<String> seatset = bookjb.getSeatset();
+    String seatstr = "";
+    if (seatset != null) {
+        seatstr = String.join(",", seatset);
+    }
+    ArrayList<String> occupiedseatslist = new ArrayList<String>();
+    ArrayList<SeatsJB> seatbeanlist = (ArrayList<SeatsJB>) request.getAttribute("seatbeanlist");
+    for (SeatsJB seatbean : seatbeanlist) {
+        occupiedseatslist.add("\"" + seatbean.getRow() + "_" + seatbean.getCol() + "\"");
+    }
+    float seatprice = bookjb.getPrice();
+%>
 
 <div class="wrapper">
     <div class="container">
-        <h3 class="mb-2">You have selected <%=qty%> seats for <%=movietitle%> at <%=movietime%>, <%=moviedate%></h3>
+        <h3 class="mb-2">You have selected <%=qty%> seats for <%=movietitle%> at <%=movietime%>, <%=moviedate%>
+        </h3>
         <div class="alert alert-danger" role="alert" style="display: none">
             Please select <%=qty%> tickets before checking out!
         </div>
@@ -95,21 +99,22 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 <script src="/js/jquery.seat-charts.min.js"></script>
 
 
 <script>
     var firstSeatLabel = 1;
     <% if (seatstr.isEmpty()) { %>
-        var selectedseats = [];
+    var selectedseats = [];
     <% } else { %>
-        var selectedseats = "<%=seatstr%>".split(",");
-        if (typeof selectedseats == "string") {
-            selectedseats = [selectedseats];
-        }
-        console.log(selectedseats);
+    var selectedseats = "<%=seatstr%>".split(",");
+    if (typeof selectedseats == "string") {
+        selectedseats = [selectedseats];
+    }
+    console.log(selectedseats);
     <% } %>
     $(document).ready(function () {
         var seatarr = [];
@@ -171,10 +176,10 @@
                                     'seat': seatno,
                                     'bookingid': '<%=bookingid%>'
                                 },
-                                success: (msg) => { 
+                                success: (msg) => {
                                     console.log(msg);
                                 },
-                                error: (e) => { 
+                                error: (e) => {
                                     console.log("ERROR : ", e);
                                     alert("Failed to add seat");
                                 }
@@ -202,9 +207,9 @@
                                 'bookingid': '<%=bookingid%>'
                             },
                             success: (msg) => {
-                                console.log(msg); 
+                                console.log(msg);
                             },
-                            error: (e) => { 
+                            error: (e) => {
                                 console.log("ERROR : ", e);
                                 alert("Failed to remove seat");
                             }
@@ -236,13 +241,13 @@
         });
 
         // some seats have already been booked
-        for (var i=0;i<selectedseats.length;i++) {
+        for (var i = 0; i < selectedseats.length; i++) {
             var seatid = selectedseats[i][0] + "_" + selectedseats[i].slice(1);
             var seat = document.getElementById(seatid);
             // seat.classList.remove('available');
             // seat.classList.add('selected');
             sc.get(seat).status('selected');
-            $('<li>' + selectedseats[i] + ': <b>$' + <%=seatprice%> + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+            $('<li>' + selectedseats[i] + ': <b>$' + <%=seatprice%> +'</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
                 .attr('id', 'cart-item-' + seatid)
                 .data('seatId', seatid)
                 .appendTo($('#selected-seats'));
@@ -259,11 +264,12 @@
         // sc.get(preselectedseats).status('selected');
         sc.get(<%=occupiedseatslist%>).status('unavailable');
     });
-    function check(){
-        if (document.getElementById("counter").innerHTML != <%=qty%>){
+
+    function check() {
+        if (document.getElementById("counter").innerHTML != <%=qty%>) {
             $(".alert").show();
             return false;
-        } else{
+        } else {
             return true;
         }
     }

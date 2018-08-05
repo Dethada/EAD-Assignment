@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/admin/header.html" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page import="java.util.ArrayList" %>
@@ -65,7 +65,8 @@
         </ul>
         <div class="w-50">
             <form class="form-inline mt-2 mb-2 float-right" action="/admin/Users">
-                <input class="form-control mr-sm-2" name="username" type="search" placeholder="Users" aria-label="Search">
+                <input class="form-control mr-sm-2" name="username" type="search" placeholder="Users"
+                       aria-label="Search">
                 <button class="btn btn-outline-dark my-2 my-sm-0 mr-1" type="submit">Search</button>
                 <a class="btn btn-outline-danger" href="/backend/Logout">Logout</a>
             </form>
@@ -83,20 +84,23 @@
     </tr>
     </thead>
     <tbody>
-    <% ArrayList<UserJB> userlist = (ArrayList<UserJB>)request.getAttribute("userlist"); 
-    for (UserJB user: userlist) { %>
-        <tr>
-        <td><%= user.getUsername() %></td>
-        <td><%= user.getEmail() %></td>
-        <td><%= user.getContact() %></td>
+    <% ArrayList<UserJB> userlist = (ArrayList<UserJB>) request.getAttribute("userlist");
+        for (UserJB user : userlist) { %>
+    <tr>
+        <td><%= user.getUsername() %>
+        </td>
+        <td><%= user.getEmail() %>
+        </td>
+        <td><%= user.getContact() %>
+        </td>
         <td><a class="btn btn-info" href="/admin/userdetail?id=<%= user.getID() %>">View</a></td>
         <td>
-        <form style="padding: 0;" method="post" action="/backend/admin/Delete">
-            <input type="hidden" name="table" value="users">
-            <input type="hidden" name="id" value="<%= user.getID() %>">
-            <input class="btn btn-danger" type="submit" value="Delete"></form>
+            <form style="padding: 0;" method="post" action="/backend/admin/Delete">
+                <input type="hidden" name="table" value="users">
+                <input type="hidden" name="id" value="<%= user.getID() %>">
+                <input class="btn btn-danger" type="submit" value="Delete"></form>
         </td>
-        </tr>
+    </tr>
     <% } %>
     </tbody>
 </table>

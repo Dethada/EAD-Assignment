@@ -1,5 +1,5 @@
 <%@ page import="com.spmovy.beans.UserJB" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <% UserJB user = (UserJB) session.getAttribute("user"); %>
 <!doctype html>
@@ -13,11 +13,11 @@
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
-    <title>SPMovy</title>
+    <title>SPMovy | Profile</title>
 </head>
 <style>
     body {
-        margin-top:100px;
+        margin-top: 100px;
     }
 </style>
 
@@ -30,19 +30,22 @@
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
-            </ul >
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Profile" class="nav-link">Profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Transactions" class="nav-link">Transactions</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Checkout" class="nav-link">Checkout</a></li>
+            </ul>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 <li class="dropdown order-1">
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            class="btn btn-outline-secondary dropdown-toggle">
+                        Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
@@ -61,36 +64,44 @@
         <p class="alert alert-danger">${message}</p>
         <% } else { %>
         <p class="alert alert-success">${message}</p>
-        <% }} %>
+        <% }
+        } %>
         <form method="post" action="/user/Profile">
             <div class="form-group row">
                 <label for="username" class="col-sm-2 col-form-label">Username</label>
                 <div class="col-md-3">
-                    <input id="username" pattern="^[A-z\d]{1,50}$" class="form-control" type="text" name="username" placeholder="Username" value="<%= StringEscapeUtils.escapeHtml4(user.getUsername()) %>" required>
+                    <input id="username" pattern="^[A-z\d]{1,50}$" class="form-control" type="text" name="username"
+                           placeholder="Username" value="<%= StringEscapeUtils.escapeHtml4(user.getUsername()) %>"
+                           required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-md-3">
-                    <input id="name" pattern="^[A-z ]{1,255}$" class="form-control" type="text" name="name" placeholder="Name" value="<%= StringEscapeUtils.escapeHtml4(user.getName()) %>" required>
+                    <input id="name" pattern="^[A-z ]{1,255}$" class="form-control" type="text" name="name"
+                           placeholder="Name" value="<%= StringEscapeUtils.escapeHtml4(user.getName()) %>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-md-3">
-                    <input id="email" class="form-control" type="email" name="email" placeholder="Email" value="<%= StringEscapeUtils.escapeHtml4(user.getEmail()) %>" required>
+                    <input id="email" class="form-control" type="email" name="email" placeholder="Email"
+                           value="<%= StringEscapeUtils.escapeHtml4(user.getEmail()) %>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="contact" class="col-sm-2 col-form-label">Contact</label>
                 <div class="col-md-3">
-                    <input id="contact" pattern="^[89]\d{7}$" class="form-control" type="tel" name="contact" placeholder="Contact number" value="<%= StringEscapeUtils.escapeHtml4(user.getContact()) %>" required>
+                    <input id="contact" pattern="^[89]\d{7}$" class="form-control" type="tel" name="contact"
+                           placeholder="Contact number" value="<%= StringEscapeUtils.escapeHtml4(user.getContact()) %>"
+                           required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-md-3">
-                    <a href="/user/ChangePassword" class="btn btn-secondary btn-lg" id="password" role="button" aria-pressed="true">Change Password</a>
+                    <a href="/user/ChangePassword" class="btn btn-secondary btn-lg" id="password" role="button"
+                       aria-pressed="true">Change Password</a>
                 </div>
             </div>
             <div class="form-group row">
@@ -99,25 +110,31 @@
             <div class="form-group row">
                 <label for="cardname" class="col-sm-2 col-form-label">Full Name (on card)</label>
                 <div class="col-md-3">
-                    <input id="cardname" pattern="^[A-z ]{1,26}$" class="form-control" type="text" name="cardname" placeholder="Full Name" value="<%= StringEscapeUtils.escapeHtml4(user.getCardname()) %>" required>
+                    <input id="cardname" pattern="^[A-z ]{1,26}$" class="form-control" type="text" name="cardname"
+                           placeholder="Full Name" value="<%= StringEscapeUtils.escapeHtml4(user.getCardname()) %>"
+                           required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="creditcard" class="col-sm-2 col-form-label">Credit Card</label>
                 <div class="col-md-3">
-                    <input id="creditcard" pattern="^\d{14,19}$" class="form-control" type="text" name="creditcard" placeholder="Card number" value="<%= StringEscapeUtils.escapeHtml4(user.getCreditcard()) %>" required>
+                    <input id="creditcard" pattern="^\d{14,19}$" class="form-control" type="text" name="creditcard"
+                           placeholder="Card number" value="<%= StringEscapeUtils.escapeHtml4(user.getCreditcard()) %>"
+                           required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="cvv" class="col-sm-2 col-form-label">CVV</label>
                 <div class="col-md-3">
-                    <input id="cvv" pattern="^\d{3}$" class="form-control" type="number" name="cvv" placeholder="CVV" value="<%= StringEscapeUtils.escapeHtml4(user.getCvv()) %>" required>
+                    <input id="cvv" pattern="^\d{3}$" class="form-control" type="number" name="cvv" placeholder="CVV"
+                           value="<%= StringEscapeUtils.escapeHtml4(user.getCvv()) %>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exp" class="col-sm-2 col-form-label">Expiry Date</label>
                 <div class="col-md-3">
-                    <input id="exp" pattern="^\d{2}/\d{2}$" class="form-control" type="text" name="exp" placeholder="MM/YY" value="<%= StringEscapeUtils.escapeHtml4(user.getExp()) %>" required>
+                    <input id="exp" pattern="^\d{2}/\d{2}$" class="form-control" type="text" name="exp"
+                           placeholder="MM/YY" value="<%= StringEscapeUtils.escapeHtml4(user.getExp()) %>" required>
                 </div>
             </div>
             <div class="form-group row">

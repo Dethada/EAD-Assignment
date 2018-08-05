@@ -11,7 +11,7 @@ public class UserTransactionJBDB {
     /**
      * Gets All transactions done by the target user
      *
-     * @param userid    userid of the target user
+     * @param userid userid of the target user
      * @return ArrayList<UserTransactionJB> - ArrayList of UserTransaction beans of the target user
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */
@@ -20,8 +20,8 @@ public class UserTransactionJBDB {
         UserTransactionJB transaction;
         DatabaseUtils db = new DatabaseUtils();
         ResultSet rs = db.executeQuery("select t.ID, t.at, b.ticketID, b.price, b.hall_row, b.hall_column, b.moviedate, b.movietime, m.title from transaction t"
-        + " left join bookseats b on b.transactionID = t.ID"
-        + " left join movie m on m.ID = b.movieID where t.userid=?", userid);
+                + " left join bookseats b on b.transactionID = t.ID"
+                + " left join movie m on m.ID = b.movieID where t.userid=?", userid);
         while (rs.next()) {
             transaction = new UserTransactionJB();
             transaction.setID(rs.getString("ID"));

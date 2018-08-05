@@ -27,7 +27,7 @@ public class UserTransactions extends HttpServlet {
             request.setAttribute("userbean", UserJBDB.searchUserByID(userid));
             ArrayList<UserTransactionJB> transactionlist = UserTransactionJBDB.getUserTransactions(userid);
             request.setAttribute("transactionlist", transactionlist);
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
             return;

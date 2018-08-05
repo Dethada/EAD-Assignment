@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
-    <title>Admin Login</title>
+    <title>SPMovy | Admin Login</title>
 </head>
 <body class="text-center">
 <form class="form-signin" method="post" action="/AdminLogin">
