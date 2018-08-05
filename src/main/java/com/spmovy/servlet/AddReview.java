@@ -2,18 +2,21 @@ package com.spmovy.servlet;
 
 import com.spmovy.DatabaseUtils;
 import com.spmovy.Utils;
+import de.triology.recaptchav2java.ReCaptcha;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/backend/AddReview")
+@WebServlet("/moviedetails")
 public class AddReview extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String review = request.getParameter("review");
         int rating;
@@ -33,6 +36,17 @@ public class AddReview extends HttpServlet {
             response.sendRedirect("/errors/error.html");
             return;
         }
+
+        // get reCAPTCHA request param
+        String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+        boolean verify = new ReCaptcha("6Ld5D1oUAAAAAIhYveA4_E8C0chpFH_52K7g_hLm").isValid(gRecaptchaResponse);
+        if (!verify) { // captcha failed
+            request.setAttribute("captcha", "failed");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/moviedetails.jsp");
+            rd.forward(request, response);
+            return;
+        }
+
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return; // return if database connection failed
         String ip;
@@ -62,5 +76,11 @@ public class AddReview extends HttpServlet {
             db.closeConnection();
         }
         response.sendRedirect("/moviedetails.jsp?movieid=" + movieid);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/moviedetails.jsp");
+        rd.forward(request, response);
     }
 }
