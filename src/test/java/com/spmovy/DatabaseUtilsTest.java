@@ -23,12 +23,6 @@ public class DatabaseUtilsTest {
     }
 
     @Test
-    public void executeUpdate() throws Exception {
-        assertEquals(this.db.executeUpdate("INSERT INTO Genre(name, description) VALUES(?,?)", "unittesting", "unittesting"), 1);
-        assertEquals(this.db.executeUpdate("DELETE FROM Genre WHERE name=? AND description=?", "unittesting", "unittesting"), 1);
-    }
-
-    @Test
     public void executeFixedQuery()throws Exception {
         ResultSet rs = this.db.executeFixedQuery("SELECT ID FROM Genre where name=\'Action\'");
         assertTrue(rs.next());
