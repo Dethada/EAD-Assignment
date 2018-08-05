@@ -70,6 +70,8 @@
         <% } else { %>
         <p class="alert alert-success"><%=msg%></p>
         <% }} %>
+
+        <a href="/user/Transactions" class="btn btn-primary">View Transactions</a>
     </div>
 </main>
 
