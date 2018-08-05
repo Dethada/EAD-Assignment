@@ -102,7 +102,6 @@
         %>
         <p class="mb-2">Credit Card Number (Last four digits): <%=replace%>-<%=lastfour%></p>
         <form action="/user/Checkout" method="post">
-            <input type="hidden" name="userid" value="<%=user.getID()%>">
             <input type="submit" class="btn btn-primary" value="Confirm checkout">
         </form>
     </div>
