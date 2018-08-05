@@ -154,8 +154,7 @@
                     if (this.status() == 'available') {
                         if (selectedseats.length >= <%=qty%>) {
                             return 'available';
-                        }
-                        else {
+                        } else {
                             var seatno = this.settings.id;
                             seatno = seatno.replace(/[_-]/g, "");
                             //let's create a new <li> which we'll add to the cart items
@@ -188,7 +187,7 @@
                              */
                             $total.text(parseFloat($total.text()) + this.data().price);
                             selectedseats.push(seatno);
-                            $("#seatarr").val(selectedseats);
+                            // $("#seatarr").val(selectedseats);
                             $counter.text(selectedseats.length);
                             return 'selected';
 
@@ -213,7 +212,7 @@
                         //remove the item from our cart
                         $('#cart-item-' + this.settings.id).remove();
                         selectedseats.pop();
-                        $("#seatarr").val("test");
+                        // $("#seatarr").val("test");
                         //update the counter
                         $counter.text(selectedseats.length);
                         //and total
@@ -238,12 +237,14 @@
 
         // some seats have already been booked
         for (var i=0;i<selectedseats.length;i++) {
-            var seat = document.getElementById(selectedseats[i][0] + "_" + selectedseats[i].slice(1));
-            seat.classList.remove('available');
-            seat.classList.add('selected');
+            var seatid = selectedseats[i][0] + "_" + selectedseats[i].slice(1);
+            var seat = document.getElementById(seatid);
+            // seat.classList.remove('available');
+            // seat.classList.add('selected');
+            sc.get(seat).status('selected');
             $('<li>' + selectedseats[i] + ': <b>$' + <%=seatprice%> + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
-                .attr('id', 'cart-item-' + seat)
-                .data('seatId', seat)
+                .attr('id', 'cart-item-' + seatid)
+                .data('seatId', seatid)
                 .appendTo($('#selected-seats'));
             /*
             * Lets update the counter and total
@@ -254,7 +255,7 @@
             $('#total').text(parseFloat($('#total').text()) + <%=seatprice%>);
         }
         $('#counter').text(selectedseats.length);
-        $("#seatarr").val(selectedseats);
+        // $("#seatarr").val(selectedseats);
         // sc.get(preselectedseats).status('selected');
         sc.get(<%=occupiedseatslist%>).status('unavailable');
     });
