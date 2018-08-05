@@ -153,7 +153,7 @@
                 click: function () {
 
                     if (this.status() == 'available') {
-                        if (sc.find('selected').length >= <%=qty%>) {
+                        if (selectedseats.length >= <%=qty%>) {
                             return 'available';
                         }
                         else {
@@ -164,12 +164,7 @@
                                 .attr('id', 'cart-item-' + this.settings.id)
                                 .data('seatId', this.settings.id)
                                 .appendTo($cart);
-                            /*
-                             * Lets update the counter and total
-                             *
-                             * .find function will not find the current seat, because it will change its stauts only after return
-                             * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
-                             */
+
                             $.ajax({
                                 type: 'POST',
                                 url: "/user/SelectSeat",
@@ -186,20 +181,20 @@
                                     alert("Failed to add seat");
                                 }
                             });
-                            $counter.text(sc.find('selected').length + 1);
-                            $total.text(recalculateTotal(sc) + this.data().price);
+                            /*
+                             * Lets update the counter and total
+                             *
+                             * .find function will not find the current seat, because it will change its stauts only after return
+                             * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
+                             */
+                            $total.text(parseFloat($total.text()) + this.data().price);
                             selectedseats.push(seatno);
                             $("#seatarr").val(selectedseats);
-                            console.log(selectedseats);
+                            $counter.text(selectedseats.length);
                             return 'selected';
 
                         }
                     } else if (this.status() == 'selected') {
-                        //update the counter
-                        $counter.text(sc.find('selected').length - 1);
-                        //and total
-                        $total.text(recalculateTotal(sc) - this.data().price);
-
                         $.ajax({
                             type: 'POST',
                             url: "/user/SelectSeat",
@@ -220,7 +215,10 @@
                         $('#cart-item-' + this.settings.id).remove();
                         selectedseats.pop();
                         $("#seatarr").val("test");
-                        console.log(selectedseats);
+                        //update the counter
+                        $counter.text(selectedseats.length);
+                        //and total
+                        $total.text(parseFloat($total.text()) - this.data().price);
                         //seat has been vacated
                         return 'available';
                     } else if (this.status() == 'unavailable') {
@@ -245,30 +243,22 @@
             seat.classList.remove('available');
             seat.classList.add('selected');
             $('<li>' + selectedseats[i] + ': <b>$' + <%=seatprice%> + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
-                .attr('id', 'cart-item-' + selectedseats[i][0] + "_" + selectedseats[i].slice(1))
-                .data('seatId', selectedseats[i][0] + "_" + selectedseats[i].slice(1))
-                .appendTo($cart);
+                .attr('id', 'cart-item-' + seat)
+                .data('seatId', seat)
+                .appendTo($('#selected-seats'));
             /*
             * Lets update the counter and total
             *
             * .find function will not find the current seat, because it will change its stauts only after return
             * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
             */
-            $counter.text(sc.find('selected').length + 1);
-            $total.text(recalculateTotal(sc) + <%=seatprice%>);
+            $('#total').text(parseFloat($('#total').text()) + <%=seatprice%>);
         }
+        $('#counter').text(selectedseats.length);
+        $("#seatarr").val(selectedseats);
         // sc.get(preselectedseats).status('selected');
         sc.get(<%=occupiedseatslist%>).status('unavailable');
     });
-
-    function recalculateTotal(sc) {
-        var total = 0;
-        //basically find every selected seat and sum its price
-        sc.find('selected').each(function () {
-            total += this.data().price;
-        });
-        return total;
-    }
     function check(){
         if (document.getElementById("counter").innerHTML != <%=qty%>){
             $(".alert").show();
