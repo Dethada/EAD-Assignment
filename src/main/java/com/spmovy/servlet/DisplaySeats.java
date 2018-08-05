@@ -19,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 @WebServlet("/user/DisplaySeats")
 public class DisplaySeats extends HttpServlet {
@@ -58,8 +59,9 @@ public class DisplaySeats extends HttpServlet {
                     allbookingids.add(id);
                 }
             }
-
-            beanlist = SeatsJBDB.getOccupiedSeats(movieid,moviedate,movietime);
+            Date date = new SimpleDateFormat("h:mm a").parse(movietime);
+            String formattedtime = new SimpleDateFormat("HH:mm:ss").format(date);
+            beanlist = SeatsJBDB.getOccupiedSeats(movieid,moviedate,formattedtime);
 
             request.setAttribute("seatbeanlist",beanlist);
             request.setAttribute("bookingid", id);
