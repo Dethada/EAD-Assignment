@@ -86,24 +86,22 @@
         String movietitle = bookjb.getMovietitle();
         String moviedate = bookjb.getSlotdate();
         String movietime = bookjb.getSlottime();
+        float price = bookjb.getPrice();
         HashSet<String> seatset = bookjb.getSeatset();
         for (String seat: seatset) {
-            totalgrandtotal += bookjb.getPrice();
+            totalgrandtotal += price;
 %>
                 <tr id="<%=seat+bookingid%>">
                 <td><%=movietitle%></td>
                 <td><%=moviedate%></td>
                 <td><%=movietime%></td>
                 <td><%=seat%></td>
-                <td>
-                <button type="submit" onclick="return removeSeat('<%=seat%>', '<%=bookingid%>')" class="trans-btn">
-                    <i class="fas fa-times-circle"></i>
-                </button></td>
+                <td><i onclick="return removeSeat('<%=seat%>', '<%=bookingid%>', <%=price%>)" style="cursor: pointer;" class="fas fa-times-circle"></i></td>
                 </tr>
 <%  }} %>
             </tbody>
         </table>
-        <p class="mb-2" style="border-bottom: solid 1px">Grand Total: <%=totalgrandtotal%></p>
+        <p class="mb-2" style="border-bottom: solid 1px">Grand Total: <span id="grandtotal"><%=totalgrandtotal%><span></p>
         <h3 class="mt-2">Personal details</h3>
         <p class="mb-2">Name: <%=user.getName()%></p>
         <p class="mb-2">Email: <%=user.getEmail()%></p>
@@ -131,7 +129,7 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
 <script>
-function removeSeat(seat, bookingid) {
+function removeSeat(seat, bookingid,price) {
     $.ajax({
         type: 'POST',
         url: "/user/SelectSeat",
@@ -143,6 +141,8 @@ function removeSeat(seat, bookingid) {
         success: (msg) => {
             console.log(msg);
             document.getElementById(seat+bookingid).remove();
+            var grandtotal = document.getElementById("grandtotal");
+            grandtotal.innerHTML = parseFloat(grandtotal.innerHTML) - price;
         },
         error: (e) => { 
             console.log("ERROR : ", e);
