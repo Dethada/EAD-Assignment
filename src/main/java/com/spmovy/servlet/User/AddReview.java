@@ -1,4 +1,4 @@
-package com.spmovy.servlet.Admin;
+package com.spmovy.servlet.User;
 
 import com.spmovy.DatabaseUtils;
 import com.spmovy.Utils;
@@ -44,7 +44,7 @@ public class AddReview extends HttpServlet {
         boolean verify = new ReCaptcha("6Ld5D1oUAAAAAIhYveA4_E8C0chpFH_52K7g_hLm").isValid(gRecaptchaResponse);
         if (!verify) { // captcha failed
             request.setAttribute("captcha", "failed");
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/moviedetails.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/moviedetails");
             rd.forward(request, response);
             return;
         }
@@ -81,12 +81,12 @@ public class AddReview extends HttpServlet {
         } finally {
             db.closeConnection();
         }
-        response.sendRedirect("/moviedetails.jsp?movieid=" + movieid);
+        response.sendRedirect("/moviedetails?movieid=" + movieid);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/moviedetails.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/moviedetails");
         rd.forward(request, response);
     }
 }
