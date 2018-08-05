@@ -22,7 +22,7 @@ public class SessionCheckFilter implements Filter {
         if (user == null) {
             res.sendRedirect("/AdminLogin");
         } else {
-            if (!user.getRole().equals("admin")){ //check if user type is not admin
+            if (!user.getRole().equals("admin")) { //check if user type is not admin
                 res.sendRedirect("/AdminLogin");
             }
             fc.doFilter(request, response);

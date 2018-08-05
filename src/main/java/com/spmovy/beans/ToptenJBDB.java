@@ -11,10 +11,10 @@ public class ToptenJBDB {
      * Get top ten most sold movies for a specific month
      * (the showtime of the movie is taken instead of the purchase time)
      *
-     * @param salesmonth        month to retrieve data for
-     * @param salesyear         year to retrieve data for
+     * @param salesmonth month to retrieve data for
+     * @param salesyear  year to retrieve data for
      * @return ArrayList with up to ten top selling movies for the specified month, can return null if
-     *          no tickets are sold in that month.
+     * no tickets are sold in that month.
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */
     public static ArrayList<ToptenJB> getcurrentMonthSales(int salesmonth, int salesyear) throws SQLException {

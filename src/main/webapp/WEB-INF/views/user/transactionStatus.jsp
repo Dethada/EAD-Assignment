@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <title>Status</title>
+    <title>SPMovy | Status</title>
     <style>
         body {
             margin-top: 100px;
@@ -59,10 +59,13 @@
             String status = (String) request.getAttribute("status");
             if (msg != null && status != null) {
                 if (status.equals("failed")) {%>
-        <p class="alert alert-danger"><%=msg%></p>
+        <p class="alert alert-danger"><%=msg%>
+        </p>
         <% } else { %>
-        <p class="alert alert-success"><%=msg%></p>
-        <% }} %>
+        <p class="alert alert-success"><%=msg%>
+        </p>
+        <% }
+        } %>
 
         <a href="/user/Transactions" class="btn btn-info">View Transactions</a>
     </div>

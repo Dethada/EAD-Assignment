@@ -28,7 +28,7 @@ public class User extends HttpServlet {
             } else {
                 request.setAttribute("userlist", UserJBDB.getAllUsers());
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
             return;

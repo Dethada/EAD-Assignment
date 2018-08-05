@@ -13,7 +13,7 @@ public class UserJBDB {
     /**
      * Convinence method for initializing a user bean
      *
-     * @param rs       resultset of users table
+     * @param rs resultset of users table
      * @return UserJB
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */
@@ -36,8 +36,8 @@ public class UserJBDB {
     /**
      * Authenticates a user
      *
-     * @param username      username of user
-     * @param password      password of user
+     * @param username username of user
+     * @param password password of user
      * @return UserJB if valid credentials are provided.
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */
@@ -68,8 +68,8 @@ public class UserJBDB {
     /**
      * Change password for a target user
      *
-     * @param currentpass       user's current password
-     * @param newpass           user's new password
+     * @param currentpass user's current password
+     * @param newpass     user's new password
      * @return true if password change is successful, else returns false.
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */
@@ -113,7 +113,7 @@ public class UserJBDB {
     /**
      * Search for a user via their UserID
      *
-     * @param ID       UserID of the target user
+     * @param ID UserID of the target user
      * @return UserJB if user is found, null if user is not found
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */
@@ -130,7 +130,7 @@ public class UserJBDB {
     /**
      * Search for a user via their username
      *
-     * @param username       username of the target user
+     * @param username username of the target user
      * @return UserJB if user is found, null if user is not found
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */
@@ -147,7 +147,7 @@ public class UserJBDB {
     /**
      * Search for a user via their email
      *
-     * @param email       email of the target user
+     * @param email email of the target user
      * @return UserJB if user is found, null if user is not found
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */
@@ -164,7 +164,7 @@ public class UserJBDB {
     /**
      * Search for a user via their contact number
      *
-     * @param contact       contact number of the target user
+     * @param contact contact number of the target user
      * @return UserJB if user is found, null if user is not found
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */
@@ -181,13 +181,13 @@ public class UserJBDB {
     /**
      * Updates one column in target user's profile
      *
-     * @param userid        userid of target user
-     * @param column        the column that needs to be updated
-     * @param newval        the new value of the column
+     * @param userid userid of target user
+     * @param column the column that needs to be updated
+     * @param newval the new value of the column
      * @return boolean, true if update succeeded else returns false
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */
-    public static boolean updateProfile(int userid, String column, String newval) throws SQLException{
+    public static boolean updateProfile(int userid, String column, String newval) throws SQLException {
         DatabaseUtils db = new DatabaseUtils();
         int c = db.executeUpdate("update users set " + column + "=? where ID=?", newval, userid);
         db.closeConnection();
@@ -197,16 +197,16 @@ public class UserJBDB {
     /**
      * Registers a new user
      *
-     * @param username      username which will be used to login (must be unique)
-     * @param name          name of user
-     * @param email         email of user (must be unique)
-     * @param contact       contact number of user (must be unique)
-     * @param cardname      Full name on credit card
-     * @param creditcard    credit card number of user
-     * @param cvv           credit card's cvv
-     * @param exp           credit card's expiry date in MM/YY format
-     * @param password      User's password plaintext password, will be hashed using bcrypt
-     *                      before inserting into database
+     * @param username   username which will be used to login (must be unique)
+     * @param name       name of user
+     * @param email      email of user (must be unique)
+     * @param contact    contact number of user (must be unique)
+     * @param cardname   Full name on credit card
+     * @param creditcard credit card number of user
+     * @param cvv        credit card's cvv
+     * @param exp        credit card's expiry date in MM/YY format
+     * @param password   User's password plaintext password, will be hashed using bcrypt
+     *                   before inserting into database
      * @return boolean, true if registration succeeded else returns false
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */

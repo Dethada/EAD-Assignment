@@ -26,14 +26,14 @@ public class DisplaySeats extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession bookingsession = request.getSession(false);
         ArrayList<SeatsJB> beanlist;
-        try{
+        try {
             int qty = Integer.parseInt(request.getParameter("qty"));
             int movieid = Integer.parseInt(request.getParameter("movieid"));
             String movietitle = request.getParameter("movietitle");
             String moviedate = request.getParameter("moviedate");
             String movietime = request.getParameter("movietime");
-            String id = movieid+moviedate+movietime;
-            
+            String id = movieid + moviedate + movietime;
+
             if (bookingsession.getAttribute(id) == null) {
                 BookingJB book = new BookingJB();
                 book.setMovieID(movieid);
@@ -49,12 +49,12 @@ public class DisplaySeats extends HttpServlet {
                 book.setPrice(price);
                 book.setGrandtotal(price * qty);
 
-                bookingsession.setAttribute(id,book);
+                bookingsession.setAttribute(id, book);
                 ArrayList<String> allbookingids = (ArrayList<String>) bookingsession.getAttribute("allbookingids");
                 if (allbookingids == null) {
                     allbookingids = new ArrayList<>();
                     allbookingids.add(id);
-                    bookingsession.setAttribute("allbookingids",allbookingids);
+                    bookingsession.setAttribute("allbookingids", allbookingids);
                 } else {
                     allbookingids.add(id);
                 }
@@ -65,12 +65,12 @@ public class DisplaySeats extends HttpServlet {
             }
             Date date = new SimpleDateFormat("h:mm a").parse(movietime);
             String formattedtime = new SimpleDateFormat("HH:mm:ss").format(date);
-            beanlist = SeatsJBDB.getOccupiedSeats(movieid,moviedate,formattedtime);
+            beanlist = SeatsJBDB.getOccupiedSeats(movieid, moviedate, formattedtime);
 
-            request.setAttribute("seatbeanlist",beanlist);
+            request.setAttribute("seatbeanlist", beanlist);
             request.setAttribute("bookingid", id);
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/booking.jsp");
-            rd.forward(request,response);
+            rd.forward(request, response);
 
         } catch (SQLException | ParseException e) {
             e.printStackTrace();

@@ -9,7 +9,7 @@ public class SeatPriceJBDB {
     /**
      * Get the price of a movie ticket for weekday/weekend.
      *
-     * @param day       weekday/weekend
+     * @param day weekday/weekend
      * @return price of the movie ticket.
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */

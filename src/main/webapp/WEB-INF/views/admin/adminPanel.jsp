@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../../../admin/header.html" %>
 <title>Admin Panel</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
@@ -115,7 +115,7 @@
     } finally {
         db.closeConnection();
     }
-    String errormsg = (String)request.getAttribute("inputformat");
+    String errormsg = (String) request.getAttribute("inputformat");
 
     if (request.getAttribute("nosales") != null) {
         String month = new DateFormatSymbols().getMonths()[(Integer) request.getAttribute("month") - 1];
@@ -183,20 +183,17 @@
         }
     });
 </script>
-<% }
-    else if (errormsg != null) {
+<% } else if (errormsg != null) {
 %>
 <div class="alert alert-danger alert-dismissible">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <%
-        if (errormsg.equals("invalidmonth")){
+        if (errormsg.equals("invalidmonth")) {
             out.print(" <strong>Sorry</strong> The month entered is invalid, please enter a valid month in the (MM) format");
-        }
-        else if (errormsg.equals("invalidyear")) {
+        } else if (errormsg.equals("invalidyear")) {
             out.print(" <strong>Sorry</strong> The year entered is invalid, please enter a year from 2018 to the current year");
-        }
-        else {
-           out.print("<strong>Sorry</strong> Please enter a valid month (MM) and year (YYYY) format.");
+        } else {
+            out.print("<strong>Sorry</strong> Please enter a valid month (MM) and year (YYYY) format.");
         }
     %>
 </div>

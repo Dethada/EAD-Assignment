@@ -10,7 +10,7 @@ public class MovieJBDB {
     /**
      * Convenience method for Movie bean initialization
      *
-     * @param rs        Result Set of a movie query
+     * @param rs Result Set of a movie query
      * @return ArrayList of MovieJB.
      * @throws SQLException if invalid sql string/values are provided or database connection is down
      */

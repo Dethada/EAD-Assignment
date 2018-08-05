@@ -20,7 +20,7 @@ public class ChangePassword extends HttpServlet {
         UserJB user = (UserJB) request.getSession().getAttribute("user");
         int userid = user.getID();
         try {
-            if(UserJBDB.changePassword(userid, currentpass, newpass)) {
+            if (UserJBDB.changePassword(userid, currentpass, newpass)) {
                 response.sendRedirect("/admin/changePassword.jsp?result=success");
             } else {
                 response.sendRedirect("/admin/changePassword.jsp?result=failed");

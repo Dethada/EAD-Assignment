@@ -23,7 +23,7 @@ public class UserDetail extends HttpServlet {
         int userid;
         try {
             userid = Integer.parseInt(request.getParameter("id"));
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             response.sendRedirect("/admin/Users");
             return;
         }
@@ -31,7 +31,7 @@ public class UserDetail extends HttpServlet {
             request.setAttribute("userbean", UserJBDB.searchUserByID(userid));
             ArrayList<UserTransactionJB> transactionlist = UserTransactionJBDB.getUserTransactions(userid);
             request.setAttribute("transactionlist", transactionlist);
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
             return;

@@ -28,7 +28,7 @@ public class UserChangePW extends HttpServlet {
             return;
         }
         try {
-            if(UserJBDB.changePassword(userid, currentpass, newpass)) {
+            if (UserJBDB.changePassword(userid, currentpass, newpass)) {
                 request.setAttribute("result", "success");
                 request.setAttribute("message", "Password changed");
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/profile/changepw.jsp");

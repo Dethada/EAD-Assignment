@@ -1,5 +1,5 @@
 <%@ page import="com.spmovy.beans.UserJB" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <% UserJB user = (UserJB) session.getAttribute("user"); %>
 <!doctype html>
@@ -11,15 +11,19 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" defer></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"
+            defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"
+            defer></script>
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
     <title>SPMovy | Change Password</title>
 </head>
 <style>
     body {
-        margin-top:100px;
+        margin-top: 100px;
     }
 </style>
 
@@ -32,19 +36,22 @@
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
-            </ul >
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Profile" class="nav-link">Profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Transactions" class="nav-link">Transactions</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Checkout" class="nav-link">Checkout</a></li>
+            </ul>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 <li class="dropdown order-1">
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            class="btn btn-outline-secondary dropdown-toggle">
+                        Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
@@ -57,13 +64,14 @@
 <main role="main">
     <div class="container">
         <%
-        String result = (String) request.getAttribute("result");
-        if (result != null) {
-            if (result.equals("failed")) { %>
+            String result = (String) request.getAttribute("result");
+            if (result != null) {
+                if (result.equals("failed")) { %>
         <p class="alert alert-danger">${message}</p>
         <% } else if (result.equals("success")) { %>
         <p class="alert alert-success">${message}</p>
-        <% }} %>
+        <% }
+        } %>
         <form id="changepw" method="post" action="/user/ChangePassword" onsubmit="return validateform()">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Current Password</label>
@@ -74,14 +82,18 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">New Password</label>
                 <div class="col-md-3">
-                    <input id="pw1" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password" name="newpass" placeholder="New password" required>
-                    <div class="invalid-feedback">Does not meet password requirement of 8 to 16 chars and alphanumeric.</div>
+                    <input id="pw1" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password"
+                           name="newpass" placeholder="New password" required>
+                    <div class="invalid-feedback">Does not meet password requirement of 8 to 16 chars and
+                        alphanumeric.
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Confirm Password</label>
                 <div class="col-md-3">
-                    <input id="pw2" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password" placeholder="Confirm password" required>
+                    <input id="pw2" pattern="^(\d+[A-z]+|[A-z]+\d+)[\dA-z]*$" class="form-control" type="password"
+                           placeholder="Confirm password" required>
                     <div class="invalid-feedback">Passwords do not match.</div>
                 </div>
             </div>

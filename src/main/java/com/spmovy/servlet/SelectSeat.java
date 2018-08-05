@@ -57,7 +57,7 @@ public class SelectSeat extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
         response.setContentType("text/plain");
-        PrintWriter writer=response.getWriter();
+        PrintWriter writer = response.getWriter();
         writer.append(msg);
         writer.flush();
     }

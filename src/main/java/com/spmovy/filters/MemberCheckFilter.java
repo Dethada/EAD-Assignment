@@ -21,7 +21,7 @@ public class MemberCheckFilter implements Filter {
         if (user == null) {
             res.sendRedirect("/Login");
         } else {
-            if (!user.getRole().equals("member")){ //check if user type is not member
+            if (!user.getRole().equals("member")) { //check if user type is not member
                 res.sendRedirect("/Login");
             }
             fc.doFilter(request, response);

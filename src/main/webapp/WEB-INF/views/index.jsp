@@ -28,23 +28,26 @@
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
             <% if (user != null) { %>
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Profile" class="nav-link" >Profile</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Transactions" class="nav-link" >Transactions</a ></li >
-            </ul >
-            <ul class="nav navbar-nav" >
-                <li class="nav-item" ><a href = "/user/Checkout" class="nav-link" >Checkout</a ></li >
-            </ul >
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Profile" class="nav-link">Profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Transactions" class="nav-link">Transactions</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="/user/Checkout" class="nav-link">Checkout</a></li>
+            </ul>
             <% } %>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 <li class="dropdown order-1">
-                <% if (user == null) { %>
+                        <% if (user == null) { %>
                 <li class="nav-item"><a href="/Login" class="nav-link">Login</a></li>
                 <% } else { %>
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            class="btn btn-outline-secondary dropdown-toggle">
+                        Welcome, <%= StringEscapeUtils.escapeHtml4(user.getName()) %><span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                         <li class="px-3 py-2"><a href="/backend/Logout">Logout</a></li>
                     </ul>
@@ -69,44 +72,48 @@
             <h5>Find movies!</h5>
             <div>
                 <form action="" method="get">
-                <div class="form-group row">
-                    <div class="col-md-3">
-                    <select name="target" class="form-control">
-                        <option value="title">Title</option>
-                        <option value="genre">Genre</option>
-                        <option value="actor">Actor</option>
-                    </select>
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <select name="target" class="form-control">
+                                <option value="title">Title</option>
+                                <option value="genre">Genre</option>
+                                <option value="actor">Actor</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input name="query" class="form-control" type="text" requried>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                    <input name="query" class="form-control" type="text" requried>
-                    </div>
-                    <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                    </div>
-                </div>
                 </form>
             </div>
             <div class="row">
                 <%
-                    ArrayList<MovieJB> movielist = (ArrayList<MovieJB>)request.getAttribute("movielist");
-                    for (MovieJB movie: movielist) {
+                    ArrayList<MovieJB> movielist = (ArrayList<MovieJB>) request.getAttribute("movielist");
+                    for (MovieJB movie : movielist) {
                 %>
                 <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
-                    <a href="moviedetails?movieid=<%= movie.getID() %>"><img class="card-img-top" src="<%= StringEscapeUtils.escapeHtml4(movie.getImagepath()) %>"/></a>
-                    <div class="card-body"><p class="card-text"><%= StringEscapeUtils.escapeHtml4(movie.getTitle()) %></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                            <a class="btn btn-sm btn-outline-secondar" href="/moviedetails?movieid=<%= movie.getID() %>">View</a>
+                        <a href="moviedetails?movieid=<%= movie.getID() %>"><img class="card-img-top"
+                                                                                 src="<%= StringEscapeUtils.escapeHtml4(movie.getImagepath()) %>"/></a>
+                        <div class="card-body"><p
+                                class="card-text"><%= StringEscapeUtils.escapeHtml4(movie.getTitle()) %>
+                        </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondar"
+                                       href="/moviedetails?movieid=<%= movie.getID() %>">View</a>
+                                </div>
+                                <small class="text-muted">Rating <%= movie.getRating() %>/5</small>
+                                <small class="text-muted"><%= movie.getDuration() %> mins</small>
                             </div>
-                            <small class="text-muted">Rating <%= movie.getRating() %>/5</small>
-                            <small class="text-muted"><%= movie.getDuration() %> mins</small>
                         </div>
                     </div>
                 </div>
+                <% } %>
             </div>
-            <% } %>
-    </div>
 
 </main>
 
