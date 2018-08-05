@@ -1,4 +1,4 @@
-package com.spmovy.servlet.Admin;
+package com.spmovy.servlet.User;
 
 import com.spmovy.DatabaseUtils;
 import com.spmovy.Utils;
@@ -81,7 +81,7 @@ public class AddReview extends HttpServlet {
         } finally {
             db.closeConnection();
         }
-        response.sendRedirect("/moviedetails.jsp?movieid=" + movieid);
+        response.sendRedirect("/moviedetails?movieid=" + movieid);
     }
 
     @Override
