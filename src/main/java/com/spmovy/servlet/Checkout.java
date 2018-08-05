@@ -32,45 +32,39 @@ public class Checkout extends HttpServlet {
             byte[] transactionhash = digest.digest(concat.getBytes(StandardCharsets.UTF_8));
             String transactionID = 't' + asHex(transactionhash);
 
+            // generate salt
             SecureRandom random = new SecureRandom();
             byte[] salt = new byte[16];
             random.nextBytes(salt);
             String saltstring = asHex(salt);
-
-
             
             ArrayList<String> allbookingids = (ArrayList<String>) session.getAttribute("allbookingids");
-                for(String bookingid: allbookingids){
-                    String hall_row;
-                    String hall_col;
-                    BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
-                    int movieid = bookjb.getMovieID();
-                    float price = bookjb.getPrice();
-                    String moviedate = bookjb.getSlotdate();
-                    String movietime = bookjb.getSlottime();
-                    Date date = new SimpleDateFormat("h:mm a").parse(movietime);
-                    String formattedtime = new SimpleDateFormat("HH:mm:ss").format(date);
-                    String datetime = moviedate + " " + formattedtime;
-                    HashSet<String> seatset = bookjb.getSeatset();
+            BookingJBDB.inserttransaction(transactionID,timeStamp,userid);
+            for(String bookingid: allbookingids){
+                BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
+                int movieid = bookjb.getMovieID();
+                float price = bookjb.getPrice();
+                String moviedate = bookjb.getSlotdate();
+                String movietime = bookjb.getSlottime();
+                Date date = new SimpleDateFormat("h:mm a").parse(movietime);
+                String formattedtime = new SimpleDateFormat("HH:mm:ss").format(date);
+                HashSet<String> seatset = bookjb.getSeatset();
 
-                    for (String seatno: seatset){
+                for (String seatno: seatset){
 
-                        hall_row = seatno.substring(0,1);
-                        hall_col = seatno.substring(1);
-                        String tickettext = saltstring+moviedate+movietime+hall_row+hall_col;
-                        byte[] tickethash = digest.digest(tickettext.getBytes(StandardCharsets.UTF_8));
-                        String ticketID = 'i' + asHex(tickethash);
+                    String hall_row = seatno.substring(0,1);
+                    String hall_col = seatno.substring(1);
+                    String tickettext = saltstring+moviedate+movietime+hall_row+hall_col;
+                    byte[] tickethash = digest.digest(tickettext.getBytes(StandardCharsets.UTF_8));
+                    String ticketID = 'i' + asHex(tickethash);
 
-                        BookingJBDB.insertseats(hall_col,hall_row);
-                        BookingJBDB.inserttransaction(transactionID,datetime,userid);
-                        BookingJBDB.insertbookseats(price,ticketID,hall_col,hall_row,transactionID,movietime,moviedate,movieid,saltstring);
-
-
-                    }
-
+                    BookingJBDB.insertbookseats(price,ticketID,hall_col,hall_row,transactionID,formattedtime,moviedate,movieid,saltstring);
                 }
+                session.removeAttribute(bookingid);
+            }
+            session.removeAttribute("allbookingids");
             
-
+            response.sendRedirect("/");
 
 
         } catch (NoSuchAlgorithmException e) {

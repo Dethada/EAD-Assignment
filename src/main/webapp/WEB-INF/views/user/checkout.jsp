@@ -71,19 +71,15 @@
     ArrayList<String> allbookingids = (ArrayList<String>) session.getAttribute("allbookingids");
     if (allbookingids != null) {
     float totalgrandtotal = 0;
-    System.out.println(allbookingids.toString());
     for (String bookingid: allbookingids) {
-        System.out.println(bookingid);
         BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
-        float grandtotal = bookjb.getGrandtotal();
-        totalgrandtotal += grandtotal;
         String movietitle = bookjb.getMovietitle();
         String moviedate = bookjb.getSlotdate();
         String movietime = bookjb.getSlottime();
         int qty = bookjb.getQty();
         HashSet<String> seatset = bookjb.getSeatset();
         for (String seat: seatset) {
-            System.out.println(seat);
+            totalgrandtotal += bookjb.getPrice();
 %>
                 <tr>
                 <td><%=movietitle%></td>
