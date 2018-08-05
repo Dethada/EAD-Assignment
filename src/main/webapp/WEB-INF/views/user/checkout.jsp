@@ -76,7 +76,6 @@
         String movietitle = bookjb.getMovietitle();
         String moviedate = bookjb.getSlotdate();
         String movietime = bookjb.getSlottime();
-        int qty = bookjb.getQty();
         HashSet<String> seatset = bookjb.getSeatset();
         for (String seat: seatset) {
             totalgrandtotal += bookjb.getPrice();
