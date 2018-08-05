@@ -99,6 +99,7 @@
                             <div class="btn-group">
                             <a class="btn btn-sm btn-outline-secondar" href="/moviedetails?movieid=<%= movie.getID() %>">View</a>
                             </div>
+                            <small class="text-muted">Rating <%= movie.getRating() %>/5</small>
                             <small class="text-muted"><%= movie.getDuration() %> mins</small>
                         </div>
                     </div>

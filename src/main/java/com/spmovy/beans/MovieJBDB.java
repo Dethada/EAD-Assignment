@@ -22,6 +22,7 @@ public class MovieJBDB {
             movie.setDuration(rs.getInt("duration"));
             movie.setImagepath(rs.getString("imagepath"));
             movie.setStatus(rs.getString("status"));
+            movie.setRating(getMovieRating(movie.getID()));
             movielist.add(movie);
         }
 
@@ -44,6 +45,7 @@ public class MovieJBDB {
             movie.setDuration(rs.getInt("duration"));
             movie.setImagepath(rs.getString("imagepath"));
             movie.setStatus(rs.getString("status"));
+            movie.setRating(getMovieRating(movie.getID()));
             movielist.add(movie);
         }
 
@@ -66,6 +68,7 @@ public class MovieJBDB {
             movie.setDuration(rs.getInt("duration"));
             movie.setImagepath(rs.getString("imagepath"));
             movie.setStatus(rs.getString("status"));
+            movie.setRating(getMovieRating(movie.getID()));
             movielist.add(movie);
         }
 
@@ -88,10 +91,23 @@ public class MovieJBDB {
             movie.setDuration(rs.getInt("duration"));
             movie.setImagepath(rs.getString("imagepath"));
             movie.setStatus(rs.getString("status"));
+            movie.setRating(getMovieRating(movie.getID()));
             movielist.add(movie);
         }
 
         db.closeConnection();
         return movielist;
+    }
+
+    public static float getMovieRating(int movieid) throws SQLException {
+        DatabaseUtils db = new DatabaseUtils();
+        ResultSet rs = db.executeQuery("SELECT avg(rating) as rating FROM spmovy.reviews where movieID=?", movieid);
+        if (rs.next()) {
+            float rating = rs.getFloat("rating");
+            db.closeConnection();
+            return rating;
+        }
+        db.closeConnection();
+        return 0;
     }
 }

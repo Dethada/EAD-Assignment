@@ -10,6 +10,7 @@ public class MovieJB implements java.io.Serializable {
     private int duration;
     private String imagepath;
     private String status;
+    private float rating;
 
     public MovieJB() {
     }
@@ -69,4 +70,13 @@ public class MovieJB implements java.io.Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
 }
