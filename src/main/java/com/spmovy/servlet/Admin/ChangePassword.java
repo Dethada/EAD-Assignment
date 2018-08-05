@@ -17,7 +17,7 @@ public class ChangePassword extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String currentpass = request.getParameter("currentpass");
         String newpass = request.getParameter("newpass");
-        UserJB user = (UserJB) request.getSession().getAttribute("user");
+        UserJB user = (UserJB) request.getSession().getAttribute("admin");
         int userid = user.getID();
         try {
             if (UserJBDB.changePassword(userid, currentpass, newpass)) {
