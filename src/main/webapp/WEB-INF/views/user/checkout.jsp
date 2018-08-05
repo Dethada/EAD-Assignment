@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page import="com.spmovy.beans.BookingJB" %>
 <%@ page import="java.util.HashSet" %>

@@ -35,6 +35,7 @@ public class Checkout extends HttpServlet {
         int userid = user.getID();
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
         String concat = timeStamp + userid;
+        int ticketcount = 0;
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] transactionhash = digest.digest(concat.getBytes(StandardCharsets.UTF_8));
@@ -81,11 +82,19 @@ public class Checkout extends HttpServlet {
                     String ticketID = 'i' + asHex(tickethash);
 
                     try {
-                        if (!BookingJBDB.insertbookseats(price, ticketID, hall_col, hall_row, transactionID, formattedtime, moviedate, movieid, saltstring)) {
-                            message += "Purchase for " + bookjb.getMovietitle() + " " + moviedate + " " + movietime + " " + seatno + " Failed<br>";
+                        if (!BookingJBDB.ticketExist(hall_col, hall_row, formattedtime, moviedate, movieid)) {
+                            System.out.println("ran1");
+                            if (!BookingJBDB.insertbookseats(price, ticketID, hall_col, hall_row, transactionID, formattedtime, moviedate, movieid, saltstring)) {
+                                System.out.println("ran2");
+                                message += "Purchase for " + bookjb.getMovietitle() + " " + moviedate + " " + movietime + " " + seatno + " Failed<br>";
+                                success = false;
+                            } else ticketcount += 1;
+                        } else {
+                            message += "Purchase for " + bookjb.getMovietitle() + " " + moviedate + " " + movietime + " Seat " + seatno + " Failed (Seat booked by another customer.)<br>";
                             success = false;
                         }
                     } catch (SQLException e) {
+                        e.printStackTrace();
                         message += "Purchase for " + bookjb.getMovietitle() + " " + moviedate + " " + movietime + " " + seatno + " Failed<br>";
                         success = false;
                         request.setAttribute("status", "failed");
@@ -94,6 +103,15 @@ public class Checkout extends HttpServlet {
                 session.removeAttribute(bookingid);
             }
             session.removeAttribute("allbookingids");
+            if (ticketcount == 0) {
+                try {
+                    BookingJBDB.deleteTransaction(transactionID);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    response.sendRedirect("/errors/error.html");
+                    return;
+                }
+            }
             if (success) {
                 message = "Transcation completed";
                 request.setAttribute("status", "success");

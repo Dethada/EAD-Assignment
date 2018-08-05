@@ -1,6 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.spmovy.beans.SeatsJB" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page import="com.spmovy.beans.BookingJB" %>
 <%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
@@ -56,7 +56,6 @@
         String bookingid = (String) request.getAttribute("bookingid");
         BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
         int qty = bookjb.getQty();
-        int movieid = bookjb.getMovieID();
         String movietitle = bookjb.getMovietitle();
         String moviedate = bookjb.getSlotdate();
         String movietime = bookjb.getSlottime();
@@ -268,5 +267,8 @@
         }
     }
 </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
 </body>
 </html>

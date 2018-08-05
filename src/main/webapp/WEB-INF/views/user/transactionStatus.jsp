@@ -1,14 +1,7 @@
 <%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
 <% UserJB user = (UserJB) session.getAttribute("user"); %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Javiery
-  Date: 05-Aug-18
-  Time: 2:03 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -74,4 +67,7 @@
 </main>
 
 </body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
 </html>
