@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import com.spmovy.DatabaseUtils;
 
 public class MovieJBDB {
+    /**
+     * Get all movies in the database
+     *
+     * @return ArrayList of MovieJB of all movies in the database.
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static ArrayList<MovieJB> getAllMovies() throws SQLException {
         ArrayList<MovieJB> movielist = new ArrayList<>();
         MovieJB movie;
@@ -30,6 +36,13 @@ public class MovieJBDB {
         return movielist;
     }
 
+    /**
+     * Search for a movie via their Title
+     *
+     * @param title       Movie Title
+     * @return ArrayList of MovieJB if matching movies are found, null if none is found
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static ArrayList<MovieJB> searchTitle(String title) throws SQLException {
         ArrayList<MovieJB> movielist = new ArrayList<>();
         MovieJB movie;
@@ -53,6 +66,13 @@ public class MovieJBDB {
         return movielist;
     }
 
+    /**
+     * Search for a movie via their Genres
+     *
+     * @param genre       Genre name
+     * @return ArrayList of MovieJB if matching movies are found, null if none is found
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static ArrayList<MovieJB> searchGenre(String genre) throws SQLException {
         ArrayList<MovieJB> movielist = new ArrayList<>();
         MovieJB movie;
@@ -76,6 +96,13 @@ public class MovieJBDB {
         return movielist;
     }
 
+    /**
+     * Search for a movie via their Actors
+     *
+     * @param actor       Actor name
+     * @return ArrayList of MovieJB if matching movies are found, null if none is found
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static ArrayList<MovieJB> searchActor(String actor) throws SQLException {
         ArrayList<MovieJB> movielist = new ArrayList<>();
         MovieJB movie;
@@ -99,6 +126,13 @@ public class MovieJBDB {
         return movielist;
     }
 
+    /**
+     * Get the ratings of a movie based on reviews
+     *
+     * @param movieid       Movie ID of the target movie
+     * @return The avgerage rating based on the reviews of the movie.
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static float getMovieRating(int movieid) throws SQLException {
         DatabaseUtils db = new DatabaseUtils();
         ResultSet rs = db.executeQuery("SELECT avg(rating) as rating FROM spmovy.reviews where movieID=?", movieid);
