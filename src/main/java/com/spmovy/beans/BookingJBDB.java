@@ -59,7 +59,7 @@ public class BookingJBDB {
      */
     public static boolean ticketExist(String hall_column, String hall_row, String movietime, String moviedate, int movieid) throws SQLException {
         DatabaseUtils db = new DatabaseUtils();
-        ResultSet rs = db.executeQuery("select * from bookseats where hall_column=? and hall_row=? and movietime=? and moviedate=? and movieID=?", hall_column, hall_row, movietime, moviedate, movieid);
+        ResultSet rs = db.executeQuery("select price from bookseats where hall_column=? and hall_row=? and movietime=? and moviedate=? and movieID=?", hall_column, hall_row, movietime, moviedate, movieid);
         if (rs.next()) {
             db.closeConnection();
             return true;
