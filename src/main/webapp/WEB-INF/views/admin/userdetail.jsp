@@ -89,7 +89,7 @@ ArrayList<UserTransactionJB> transactionlist = (ArrayList<UserTransactionJB>)req
         <tr><td><b>Card Name</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getCardname()) %></td></tr>
         <tr><td><b>Card Number</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getCreditcard()) %></td></tr>
         <tr><td><b>CVV</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getCvv()) %></td></tr>
-        <tr><td><b>Expiery</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getExp()) %></td></tr>
+        <tr><td><b>Expiry</b></td><td><%= StringEscapeUtils.escapeHtml4(userbean.getExp()) %></td></tr>
     </tbody>
 </table>
 <h2>Transaction Details</h2>
