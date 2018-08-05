@@ -58,26 +58,10 @@ public class DisplaySeats extends HttpServlet {
                 } else {
                     allbookingids.add(id);
                 }
-            }
-            else{
+            } else {
                 BookingJB currentbook = (BookingJB) bookingsession.getAttribute(id);
                 currentbook.setQty(qty);
-                Calendar c = Calendar.getInstance();
-                c.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(moviedate));
-                SeatPriceJB pricebean = SeatPriceJBDB.getSeatPrice((c.get(Calendar.DAY_OF_WEEK) < 6) ? "weekday" : "weekend");
-                float price = pricebean.getPrice();
-                currentbook.setPrice(price);
-                currentbook.setGrandtotal(price * qty);
-
-                bookingsession.setAttribute(id,currentbook);
-                ArrayList<String> allbookingids = (ArrayList<String>) bookingsession.getAttribute("allbookingids");
-                if (allbookingids == null) {
-                    allbookingids = new ArrayList<>();
-                    allbookingids.add(id);
-                    bookingsession.setAttribute("allbookingids",allbookingids);
-                } else {
-                    allbookingids.add(id);
-                }
+                currentbook.setGrandtotal(currentbook.getPrice() * qty);
             }
             Date date = new SimpleDateFormat("h:mm a").parse(movietime);
             String formattedtime = new SimpleDateFormat("HH:mm:ss").format(date);
