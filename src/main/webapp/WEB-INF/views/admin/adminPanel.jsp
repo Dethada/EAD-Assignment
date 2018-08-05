@@ -265,8 +265,8 @@
         toptenticketlist.add(bean.getMoviecount());
         toptenmovielist.add("\"" + bean.getMovietitle() + "\"");
     }
-    int monthnumber = beanlist.get(1).getMonth();
-    String year = beanlist.get(1).getYear();
+    int monthnumber = beanlist.get(0).getMonth();
+    String year = beanlist.get(0).getYear();
     String currmonth = new DateFormatSymbols().getMonths()[monthnumber - 1];
 
 %>
