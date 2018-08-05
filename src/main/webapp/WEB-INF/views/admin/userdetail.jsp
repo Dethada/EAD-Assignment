@@ -93,28 +93,28 @@ ArrayList<UserTransactionJB> transactionlist = (ArrayList<UserTransactionJB>)req
     </tbody>
 </table>
 <h2>Transaction Details</h2>
-<table class="table">
+<table class="table" style="table-layout: fixed;">
     <thead class="thead-dark">
     <tr>
-        <th scope="col">Transaction ID</th>
-        <th scope="col">Transaction Time</th>
-        <th scope="col">Ticket ID</th>
-        <th scope="col">Price</th>
-        <th scope="col">Seat</th>
-        <th scope="col">Movie Time</th>
-        <th scope="col">Movie Title</th>
+        <th style="word-wrap: break-word;" scope="col">Transaction ID</th>
+        <th style="word-wrap: break-word;" scope="col">Transaction Time</th>
+        <th style="word-wrap: break-word;" scope="col">Ticket ID</th>
+        <th style="word-wrap: break-word;" scope="col">Price</th>
+        <th style="word-wrap: break-word;" scope="col">Seat</th>
+        <th style="word-wrap: break-word;" scope="col">Movie Time</th>
+        <th style="word-wrap: break-word;" scope="col">Movie Title</th>
     </tr>
     </thead>
     <tbody>
     <% for (UserTransactionJB transaction: transactionlist) { %>
         <tr>
-        <td><%= transaction.getID() %></td>
-        <td><%= transaction.getAt() %></td>
-        <td><%= transaction.getTicketID() %></td>
-        <td><%= transaction.getPrice() %></td>
-        <td><%= transaction.getHall_row() + transaction.getHall_column() %></td>
-        <td><%= transaction.getMoviedate().toString() + " " + transaction.getMovietime().toString() %></td>
-        <td><%= StringEscapeUtils.escapeHtml4(transaction.getMovietitle()) %></td>
+        <td style="word-wrap: break-word;"><%= transaction.getID() %></td>
+        <td style="word-wrap: break-word;"><%= transaction.getAt() %></td>
+        <td style="word-wrap: break-word;"><%= transaction.getTicketID() %></td>
+        <td style="word-wrap: break-word;"><%= transaction.getPrice() %></td>
+        <td style="word-wrap: break-word;"><%= transaction.getHall_row() + transaction.getHall_column() %></td>
+        <td style="word-wrap: break-word;"><%= transaction.getMoviedate().toString() + " " + transaction.getMovietime().toString() %></td>
+        <td style="word-wrap: break-word;"><%= StringEscapeUtils.escapeHtml4(transaction.getMovietitle()) %></td>
         </tr>
     <% } %>
     </tbody>
