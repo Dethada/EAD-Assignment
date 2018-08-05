@@ -93,11 +93,11 @@
                 %>
                 <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
-                    <a href="moviedetails.jsp?movieid=<%= movie.getID() %>"><img class="card-img-top" src="<%= StringEscapeUtils.escapeHtml4(movie.getImagepath()) %>"/></a>
+                    <a href="moviedetails?movieid=<%= movie.getID() %>"><img class="card-img-top" src="<%= StringEscapeUtils.escapeHtml4(movie.getImagepath()) %>"/></a>
                     <div class="card-body"><p class="card-text"><%= StringEscapeUtils.escapeHtml4(movie.getTitle()) %></p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                            <a class="btn btn-sm btn-outline-secondar" href="/moviedetails.jsp?movieid=<%= movie.getID() %>">View</a>
+                            <a class="btn btn-sm btn-outline-secondar" href="/moviedetails?movieid=<%= movie.getID() %>">View</a>
                             </div>
                             <small class="text-muted"><%= movie.getDuration() %> mins</small>
                         </div>

@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <link href="css/album.css" rel="stylesheet">
     <link href="css/fontawesome-stars.css" rel="stylesheet">
     <link href="css/fontawesome-stars-o.css" rel="stylesheet">
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
 
-    <title>Title</title>
+    <title>SPMovy | Movie Details</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
@@ -288,7 +289,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="/backend/AddReview" method="post">
+                            <form action="/moviedetails" method="post">
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
@@ -314,6 +315,7 @@
                                 <br>
                                 <br>
                                 <%out.print("<input type=\"hidden\" name=\"movieid\" value=\"" + movieID + "\">");%>
+                                <div class="g-recaptcha" data-sitekey="6Ld5D1oUAAAAAGkPcZ6GpeTvFA15pYZLTD6b6hTA"></div>
                                 <input type="submit" value="Submit" class="btn btn-primary">
                             </form>
                         </div>
@@ -347,6 +349,11 @@
     </div>
 </footer>
 
+<script>
+    <% if (request.getAttribute("captcha") != null) { %>
+    alert("Captcha failed.");
+    <% } %>
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
