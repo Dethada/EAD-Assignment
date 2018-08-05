@@ -23,8 +23,10 @@ import java.util.*;
 @WebServlet("/user/Checkout")
 public class Checkout extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        ArrayList<String> allbookingids = (ArrayList<String>) session.getAttribute("allbookingids");
+        String message;
         try {
-            HttpSession session = request.getSession(false);
             int userid = Integer.parseInt(request.getParameter("userid"));
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
             String concat = timeStamp + userid;
@@ -37,10 +39,18 @@ public class Checkout extends HttpServlet {
             byte[] salt = new byte[16];
             random.nextBytes(salt);
             String saltstring = asHex(salt);
-            
-            ArrayList<String> allbookingids = (ArrayList<String>) session.getAttribute("allbookingids");
-            BookingJBDB.inserttransaction(transactionID,timeStamp,userid);
-            for(String bookingid: allbookingids){
+
+            if (BookingJBDB.inserttransaction(transactionID, timeStamp, userid)) {
+                session.setAttribute("status", "success");
+                message = "Transaction Successful";
+                session.setAttribute("message", message);
+            } else {
+                session.setAttribute("status", "failed");
+                message = "Transaction Failed";
+                session.setAttribute("message", message);
+            }
+
+            for (String bookingid : allbookingids) {
                 BookingJB bookjb = (BookingJB) session.getAttribute(bookingid);
                 int movieid = bookjb.getMovieID();
                 float price = bookjb.getPrice();
@@ -50,31 +60,51 @@ public class Checkout extends HttpServlet {
                 String formattedtime = new SimpleDateFormat("HH:mm:ss").format(date);
                 HashSet<String> seatset = bookjb.getSeatset();
 
-                for (String seatno: seatset){
+                for (String seatno : seatset) {
 
-                    String hall_row = seatno.substring(0,1);
+                    String hall_row = seatno.substring(0, 1);
                     String hall_col = seatno.substring(1);
-                    String tickettext = saltstring+moviedate+movietime+hall_row+hall_col;
+                    String tickettext = saltstring + moviedate + movietime + hall_row + hall_col;
                     byte[] tickethash = digest.digest(tickettext.getBytes(StandardCharsets.UTF_8));
                     String ticketID = 'i' + asHex(tickethash);
 
-                    BookingJBDB.insertbookseats(price,ticketID,hall_col,hall_row,transactionID,formattedtime,moviedate,movieid,saltstring);
+                    if (BookingJBDB.insertbookseats(price, ticketID, hall_col, hall_row, transactionID, formattedtime, moviedate, movieid, saltstring)) {
+                        session.setAttribute("status", "success");
+                        message = "Transaction Successful";
+                        session.setAttribute("message", message);
+                    } else {
+                        session.setAttribute("status", "failed");
+                        message = "Transaction Failed";
+                        session.setAttribute("message", message);
+                    }
+
                 }
                 session.removeAttribute(bookingid);
             }
             session.removeAttribute("allbookingids");
-            
-            response.sendRedirect("/");
+
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/transactionStatus.jsp");
+            rd.forward(request, response);
 
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
         } catch (SQLException e) {
+            for (String bookingid : allbookingids) {
+                session.removeAttribute(bookingid);
+            }
+            session.removeAttribute("allbookingids");
             e.printStackTrace();
-            response.sendRedirect("/errors/error.html");
+            session.setAttribute("status", "failed");
+            message = "Transaction Failed";
+            session.setAttribute("message", message);
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/transactionStatus.jsp");
+            rd.forward(request, response);
+
         } catch (ParseException e) {
             e.printStackTrace();
+            response.sendRedirect("/errors/error.html");
         }
     }
 
@@ -83,7 +113,7 @@ public class Checkout extends HttpServlet {
         rd.forward(request, response);
     }
 
-    public static String asHex (byte buf[]) {
+    public static String asHex(byte buf[]) {
         //Obtain a StringBuffer object
         StringBuffer strbuf = new StringBuffer(buf.length * 2);
         int i;
