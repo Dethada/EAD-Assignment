@@ -1,4 +1,4 @@
-package com.spmovy.servlet;
+package com.spmovy.servlet.Admin;
 
 import com.spmovy.DatabaseUtils;
 import com.spmovy.Utils;
@@ -8,30 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Time;
 
-@WebServlet("/backend/admin/AddTimeslot")
-public class AddTimeslot extends HttpServlet {
+@WebServlet("/backend/admin/AddActor")
+public class AddActor extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id;
-        Date date;
-        Time time;
-        try {
-            id = Integer.parseInt(request.getParameter("id"));
-            date = Date.valueOf(request.getParameter("date"));
-            time = Time.valueOf(request.getParameter("time") + ":00");
-        } catch (Exception e) { // catch all format exceptions
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        if (name == null || description == null) {
             response.sendRedirect("/errors/error.html");
             return;
         }
         DatabaseUtils db = Utils.getDatabaseUtils(response);
         if (db == null) return; // return if database connection failed
         try {
-            int updateCount = db.executeUpdate("INSERT INTO timeslot VALUES (?, ?, ?)", time, date, id);
+            int updateCount = db.executeUpdate("INSERT INTO actor(Name, description) VALUES (?, ?)", name, description);
             if (updateCount != 1) { // checks if insert is successful
                 response.sendRedirect("/errors/error.html");
                 return;
@@ -39,11 +32,12 @@ public class AddTimeslot extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/errors/error.html");
+            return;
         } finally {
             db.closeConnection();
         }
         if (request.getHeader("referer") == null) {
-            response.sendRedirect("/admin/timeslots.jsp?id=" + id);
+            response.sendRedirect("/admin/actors.jsp");
         } else {
             response.sendRedirect(request.getHeader("referer"));
         }
