@@ -1,4 +1,4 @@
-package com.spmovy.servlet;
+package com.spmovy.servlet.User;
 
 import com.spmovy.beans.BookingJB;
 import com.spmovy.beans.BookingJBDB;

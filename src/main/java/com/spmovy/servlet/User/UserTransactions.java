@@ -1,4 +1,4 @@
-package com.spmovy.servlet;
+package com.spmovy.servlet.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.spmovy.servlet;
+package com.spmovy.servlet.Admin;
 
 import com.spmovy.beans.ToptenJB;
 import com.spmovy.beans.ToptenJBDB;
