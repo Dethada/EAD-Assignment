@@ -24,10 +24,6 @@ public class DatabaseUtils {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        // PD
-//        String url = "jdbc:mysql://spmovy.cago8emkqgze.ap-southeast-1.rds.amazonaws.com/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
-//        this.connection = DriverManager.getConnection(url, "root", "kEJ852ypKZdXd7J9au9NcXjmnpdFe8rHXn");
-        // StandardEye
         String url = "jdbc:mysql://spmovy.c1epxanowzie.ap-southeast-1.rds.amazonaws.com/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
         this.connection = DriverManager.getConnection(url, "StandardEye", "8QQ*q8JC5TzY4%BvkHsLElP8Q87^7QNG2c2K");
     }

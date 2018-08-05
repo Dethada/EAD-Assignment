@@ -10,6 +10,13 @@ import static com.spmovy.BCryptUtil.checkPassword;
 import static com.spmovy.BCryptUtil.hashPassword;
 
 public class UserJBDB {
+    /**
+     * Convinence method for initializing a user bean
+     *
+     * @param rs       resultset of users table
+     * @return UserJB
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     private static UserJB initUser(ResultSet rs) throws SQLException {
         UserJB user = new UserJB();
         user.setID(rs.getInt("ID"));
@@ -26,6 +33,14 @@ public class UserJBDB {
         return user;
     }
 
+    /**
+     * Authenticates a user
+     *
+     * @param username      username of user
+     * @param password      password of user
+     * @return UserJB if valid credentials are provided.
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static UserJB authenticate(String username, String password) throws SQLException {
         ResultSet rs;
         DatabaseUtils db = new DatabaseUtils();
@@ -50,6 +65,14 @@ public class UserJBDB {
         }
     }
 
+    /**
+     * Change password for a target user
+     *
+     * @param currentpass       user's current password
+     * @param newpass           user's new password
+     * @return true if password change is successful, else returns false.
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static boolean changePassword(int ID, String currentpass, String newpass) throws SQLException {
         if (currentpass == null || newpass == null) {
             return false;
@@ -70,6 +93,12 @@ public class UserJBDB {
         return false;
     }
 
+    /**
+     * Get all users in the database.
+     *
+     * @return ArrayList of User beans.
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static ArrayList<UserJB> getAllUsers() throws SQLException {
         ArrayList<UserJB> userlist = new ArrayList<>();
         DatabaseUtils db = new DatabaseUtils();
@@ -81,6 +110,13 @@ public class UserJBDB {
         return userlist;
     }
 
+    /**
+     * Search for a user via their UserID
+     *
+     * @param ID       UserID of the target user
+     * @return UserJB if user is found, null if user is not found
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static UserJB searchUserByID(int ID) throws SQLException {
         DatabaseUtils db = new DatabaseUtils();
         ResultSet rs = db.executeQuery("select * from users where ID=?", ID);
@@ -91,6 +127,13 @@ public class UserJBDB {
         return null;
     }
 
+    /**
+     * Search for a user via their username
+     *
+     * @param username       username of the target user
+     * @return UserJB if user is found, null if user is not found
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static UserJB searchUserByUsername(String username) throws SQLException {
         DatabaseUtils db = new DatabaseUtils();
         ResultSet rs = db.executeQuery("select * from users where username=?", username);
@@ -101,6 +144,13 @@ public class UserJBDB {
         return null;
     }
 
+    /**
+     * Search for a user via their email
+     *
+     * @param email       email of the target user
+     * @return UserJB if user is found, null if user is not found
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static UserJB searchUserByEmail(String email) throws SQLException {
         DatabaseUtils db = new DatabaseUtils();
         ResultSet rs = db.executeQuery("select * from users where email=?", email);
@@ -111,6 +161,13 @@ public class UserJBDB {
         return null;
     }
 
+    /**
+     * Search for a user via their contact number
+     *
+     * @param contact       contact number of the target user
+     * @return UserJB if user is found, null if user is not found
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static UserJB searchUserByContact(String contact) throws SQLException {
         DatabaseUtils db = new DatabaseUtils();
         ResultSet rs = db.executeQuery("select * from users where contact=?", contact);
@@ -121,6 +178,15 @@ public class UserJBDB {
         return null;
     }
 
+    /**
+     * Updates one column in target user's profile
+     *
+     * @param userid        userid of target user
+     * @param column        the column that needs to be updated
+     * @param newval        the new value of the column
+     * @return boolean, true if update succeeded else returns false
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static boolean updateProfile(int userid, String column, String newval) throws SQLException{
         DatabaseUtils db = new DatabaseUtils();
         int c = db.executeUpdate("update users set " + column + "=? where ID=?", newval, userid);
@@ -128,6 +194,22 @@ public class UserJBDB {
         return c == 1;
     }
 
+    /**
+     * Registers a new user
+     *
+     * @param username      username which will be used to login (must be unique)
+     * @param name          name of user
+     * @param email         email of user (must be unique)
+     * @param contact       contact number of user (must be unique)
+     * @param cardname      Full name on credit card
+     * @param creditcard    credit card number of user
+     * @param cvv           credit card's cvv
+     * @param exp           credit card's expiry date in MM/YY format
+     * @param password      User's password plaintext password, will be hashed using bcrypt
+     *                      before inserting into database
+     * @return boolean, true if registration succeeded else returns false
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static boolean register(String username, String role, String name, String email, String contact,
                                    String cardname, String creditcard, String cvv, String exp, String password) throws SQLException {
         DatabaseUtils db = new DatabaseUtils();

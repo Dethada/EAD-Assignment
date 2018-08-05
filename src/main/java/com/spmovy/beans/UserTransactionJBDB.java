@@ -7,6 +7,14 @@ import java.util.ArrayList;
 import com.spmovy.DatabaseUtils;
 
 public class UserTransactionJBDB {
+
+    /**
+     * Gets All transactions done by the target user
+     *
+     * @param userid    userid of the target user
+     * @return ArrayList<UserTransactionJB> - ArrayList of UserTransaction beans of the target user
+     * @throws SQLException if invalid sql string/values are provided or database connection is down
+     */
     public static ArrayList<UserTransactionJB> getUserTransactions(int userid) throws SQLException {
         ArrayList<UserTransactionJB> transactionlist = new ArrayList<>();
         UserTransactionJB transaction;
