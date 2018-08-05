@@ -1,7 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.*"
-         import="org.apache.commons.lang3.StringEscapeUtils" %>
-<%@ page import="com.spmovy.DatabaseUtils" %>
-<%@ page import="com.spmovy.Utils" %>
+<%@ page contentType="text/html;charset=UTF-8" import="org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="com.spmovy.beans.UserJB" %>
 <%@ page import="com.spmovy.beans.MovieJB" %>
 <%@ page import="java.util.ArrayList" %>

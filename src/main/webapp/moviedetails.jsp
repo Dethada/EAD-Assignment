@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.*" import="java.util.*"
+<%@ page contentType="text/html;charset=UTF-8" import="java.sql.*" import="java.util.*"
          import="org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="com.spmovy.DatabaseUtils" %>
 <%@ page import="com.spmovy.Utils" %>
