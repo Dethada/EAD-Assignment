@@ -24,8 +24,8 @@ public class DatabaseUtils {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        String url = "jdbc:mysql://spmovy.c1epxanowzie.ap-southeast-1.rds.amazonaws.com/spmovy?autoReconnect=true&verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
-        this.connection = DriverManager.getConnection(url, "StandardEye", "8QQ*q8JC5TzY4%BvkHsLElP8Q87^7QNG2c2K");
+        String url = "jdbc:mysql://<mysqlserver>/<dbname>?autoReconnect=true&verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
+        this.connection = DriverManager.getConnection(url, "<username>", "<password>");
     }
 
     /**
